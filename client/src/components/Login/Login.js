@@ -54,7 +54,8 @@ const Login = () => {
         )
         .then((res) => {
           //console.log("login", res.data.message);
-          if (res.data.message === "ok") {
+          if (res.status === 200) {
+            const accessToken = res.data.data
             dispatch(authSuccess());
             isAuthenticated(state);
           } else {
