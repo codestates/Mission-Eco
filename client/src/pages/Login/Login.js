@@ -55,14 +55,21 @@ const Login = () => {
         .then((res) => {
           //console.log("login", res.data.message);
           if (res.status === 200) {
-            const accessToken = res.data.data
-            dispatch(authSuccess());
+        handleResponseSuccess()
             isAuthenticated(state);
           } else {
             setErrorMsg("이메일과 비밀번호를 확인해주세요.");
           }
         });*/
     }
+    const handleResponseSuccess = () => {
+      //isAuthenticated() auth 인증
+      //로그인 상태 true
+      //mainpage로 이동
+    };
+    const isAuthenticated = () => {
+      //유저 정보 찾아줌
+    };
   };
 
   return (
