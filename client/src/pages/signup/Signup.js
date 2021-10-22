@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { validEmail } from "../utils/validation";
+import { validEmail, validPassword } from "../../utils/validation";
 function Signup() {
   const [sinupInfo, SetSinupInfo] = useState({
     email: "",
@@ -71,14 +71,15 @@ function Signup() {
   };
 
   const handleSignup = () => {
-    console.log(sinupInfo);
+    console.log(sinupInfo, isEmail, isNickname);
     const { email, password, password2, nickname } = sinupInfo;
     if (!email || !password || !password2 || !nickname) {
       setErrorMsg("모든 항목은 필수입니다.");
-    } else if (password !== password2) {
+    } else if (!validPassword(password) || password !== password2) {
       setErrorMsg("비밀번호를 확인해주세요.");
     } else if (isNickname && isEmail) {
       //회원가입 axios요청
+      setErrorMsg("ok.");
     }
   };
 
