@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { isLogin } from "../../Redux/actions";
 import axios from "axios";
 import { validEmail } from "../../utils/validation";
 import {
@@ -12,6 +15,7 @@ import {
   FormInput,
   FormButton,
   FormBtnBox,
+  BtnLink,
   Text,
   OauthBtn,
 } from "./LoginStyle";
@@ -19,6 +23,8 @@ import {
 axios.defaults.withCredentials = true;
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
   //이메일, 비밀번호 입력
   //이메일형식이 맞는지 검사 -> 형식이 맞지 않다면 errmsg Text
   //2개 input이 모두 채워져 있다면 로그인 요청 보내기
@@ -43,32 +49,40 @@ const Login = () => {
     } else if (!validEmail(email)) {
       setErrMsg("이메일 형식이 아닙니다.");
     } else {
-      setErrMsg("ok.");
-      //axios
-      /*
       axios
         .post(
-          "https://localhost:4000/user/login`",
+          "https://localhost:4000/user/signin",
           { email, password },
           { withCredentials: true }
         )
         .then((res) => {
           //console.log("login", res.data.message);
           if (res.status === 200) {
-        handleResponseSuccess()
-            isAuthenticated(state);
+            handleResponseSuccess();
           } else {
-            setErrorMsg("이메일과 비밀번호를 확인해주세요.");
+            setErrMsg("이메일과 비밀번호를 확인해주세요.");
           }
-        });*/
+        });
     }
     const handleResponseSuccess = () => {
       //isAuthenticated() auth 인증
       //로그인 상태 true
       //mainpage로 이동
+      setErrMsg("ok.");
+      dispatch(isLogin(true));
+      history.push("/");
+      isAuthenticated();
     };
     const isAuthenticated = () => {
       //유저 정보 찾아줌
+      axios
+        .get("https://localhost:4000/mypage/auth", {
+          withCredentials: true,
+        })
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => console.log(err));
     };
   };
 
@@ -90,11 +104,13 @@ const Login = () => {
             <FormButton type="submit" onClick={loginRequestHandler}>
               입장하기!
             </FormButton>
-            <FormBtnBox>
-              <OauthBtn>구글로그인</OauthBtn>
-              <OauthBtn>카카오로그인</OauthBtn>
-            </FormBtnBox>
-            <FormButton type="submit">회원가입</FormButton>
+
+            <OauthBtn>구글로그인</OauthBtn>
+            <OauthBtn>카카오로그인</OauthBtn>
+
+            <FormButton type="submit">
+              <BtnLink to="/signup">회원가입</BtnLink>
+            </FormButton>
           </Form>
         </FormContent>
       </FormWrap>
