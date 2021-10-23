@@ -1,6 +1,6 @@
 const { user } = require('../../models'); // 이름과 model폴더 디렉토리 확인
 const bcrypt = require('bcrypt');
-
+// 
 module.exports = {
   signUp: async (req, res) => {
     // 1. body값에서 email, nickname, password 구조분해 할당으로 받기
