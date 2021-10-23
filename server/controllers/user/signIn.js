@@ -2,7 +2,7 @@ const { user } = require('../../models'); // 경로 일치여부, 모델명 일�
 const { generateAccessToken,
         sendAccessToken } = require('../tokenFunctions');
 const bcrypt = require('bcrypt');
-
+// 
 module.exports = {
   signIn: async (req, res) => {
     /*
