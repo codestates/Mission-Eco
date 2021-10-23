@@ -1,5 +1,5 @@
 import React from "react";
-import CheckPassword from "../components/MyInfo/CheckPassword/CheckPassword";
+import CheckPassword from "../../components/MyInfo/CheckPassword/CheckPassword";
 
 function Mypage() {
   return (
