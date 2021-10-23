@@ -1,5 +1,5 @@
 const { user } = require("../../models");
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
   res.send("checkPwd 테스트 성공");
   //비크립트 적용해서 확인해야하나??
   /**const { userId, password } = req.body;
