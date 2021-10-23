@@ -1,5 +1,5 @@
-const { Users } = require('../../models') // 이름과 model폴더 디렉토리 확인
-const bcrypt = require('bcryptjs')
+const { Users } = require('../../models'); // 이름과 model폴더 디렉토리 확인
+const bcrypt = require('bcrypt');
 
 module.exports = {
   signUp: async (req, res) => {
