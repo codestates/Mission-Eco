@@ -18,7 +18,10 @@ module.exports = (sequelize, DataTypes) => {
       email: DataTypes.STRING,
       password: DataTypes.STRING,
       nickname: DataTypes.STRING,
-      point: DataTypes.INTEGER,
+      point: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
       admin: DataTypes.STRING,
     },
     {
