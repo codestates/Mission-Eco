@@ -1,4 +1,4 @@
-const { Users } = require('../../models'); // 경로 일치여부, 모델명 일치여부 확인
+const { user } = require('../../models'); // 경로 일치여부, 모델명 일치여부 확인
 const { generateAccessToken,
         sendAccessToken } = require('../tokenFunctions');
 const bcrypt = require('bcrypt');
@@ -17,10 +17,10 @@ module.exports = {
       const { email, password } = req.body;
       
       // DB에 저장된 해당 유저의 hash값을 불러온다.
-      const userInfo = await Users.findOne({
+      const userInfo = await user.findOne({
         where: { email }
       });
-
+      console.log('signin userInfo', userInfo)
       // 등록된 이메일이 아닌 경우
       if(!userInfo) {
         return res.status(401).send({ data: null, message: 'not authorized' });

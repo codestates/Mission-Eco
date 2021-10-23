@@ -1,4 +1,4 @@
-const { Users } = require('../../models'); // 이름과 model폴더 디렉토리 확인
+const { user } = require('../../models'); // 이름과 model폴더 디렉토리 확인
 const bcrypt = require('bcrypt');
 
 module.exports = {
@@ -14,16 +14,18 @@ module.exports = {
       console.log('signUp 유저 정보: ', email, nickname, password);
 
       // DB에 동일한 이메일이 존재할 때
-      const db_email = await Users.findOne({ email });
+      const db_email = await user.findOne({ email });
       if(db_email) {
         return res.status(409).send({ message: `${email} already exists.` });
       }
-      
+      console.log('signUp db_email', db_email)
+
       // DB에 동일한 닉네임이 존재할 때
-      const db_nickname = await Users.findOne({ nick_name: nickname });
+      const db_nickname = await user.findOne({ nick_name: nickname });
       if(db_nickname) {
         return res.status(409).send({ message: `${nickname} already exists.` });
       }
+      console.log('signUp db_nickname', db_nickname);
 
       // email, nickname, password 셋 중에 한 개라도 입력되지 않았을 때
       if(!email || !nickname || !password ) {
@@ -38,7 +40,7 @@ module.exports = {
         }
 
         // DB에 hash를 포함한 유저 정보를 저장한다.
-        const new_user = await Users.create({
+        const new_user = await user.create({
                                 nick_name: nickname,
                                 email,
                                 password: hash,
