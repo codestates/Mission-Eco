@@ -9,3 +9,4 @@
 # dotenv 
 .env
 
+config/config.json
