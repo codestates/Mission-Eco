@@ -10,6 +10,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       models.challenge.hasMany(models.post, { foreignKey: "challenge_id" });
+      models.challenge.hasMany(models.challengelike, {
+        foreignKey: "challenge_id",
+      });
     }
   }
   challenge.init(
