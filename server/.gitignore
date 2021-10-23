@@ -1,0 +1,11 @@
+# misc
+.DS_Store
+.package-look.json
+*.pem
+
+# dependencies
+/node_modules
+
+# dotenv 
+.env
+
