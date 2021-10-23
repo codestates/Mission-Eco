@@ -1,6 +1,6 @@
 const { user } = require('../../models'); // 이름과 model폴더 디렉토리 확인
 const bcrypt = require('bcrypt');
-// 
+
 module.exports = {
   signUp: async (req, res) => {
     // 1. body값에서 email, nickname, password 구조분해 할당으로 받기
@@ -11,7 +11,7 @@ module.exports = {
 
     try {
       const { email, nickname, password } = req.body;
-      console.log('signUp 유저 정보: ', email, nickname, password);
+      console.log("signUp 유저 정보: ", email, nickname, password);
 
       // DB에 동일한 이메일이 존재할 때
       const db_email = await user.findOne({ email });
@@ -28,15 +28,15 @@ module.exports = {
       console.log('signUp db_nickname', db_nickname);
 
       // email, nickname, password 셋 중에 한 개라도 입력되지 않았을 때
-      if(!email || !nickname || !password ) {
-        return res.status(422).send('insufficient parameters supplied');
+      if (!email || !nickname || !password) {
+        return res.status(422).send("insufficient parameters supplied");
       }
 
       // hash 생성
       // hash와 유저 정보를 DB에 저장
       bcrypt.hash(password, 10, (err, hash) => {
-        if(err) {
-          console.log('signup bcrypt hash 생성 오류', err)
+        if (err) {
+          console.log("signup bcrypt hash 생성 오류", err);
         }
 
         // DB에 hash를 포함한 유저 정보를 저장한다.
@@ -50,11 +50,9 @@ module.exports = {
       });
 
       // 회원가입 성공
-      res.status(201).send({ message: 'created' });
-
+      res.status(201).send({ message: "created" });
     } catch (err) {
       console.log(err);
     }
-
-  }
-}
+  },
+};
