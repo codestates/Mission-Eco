@@ -1,6 +1,6 @@
 const { post, user } = require("../../models");
 module.exports = {
-  getOneChallengePost: (req, res) => {
+  getOneChallengePost: async (req, res) => {
     res.send("getOneChallengePost 테스트 성공");
   },
   submitPost: async (req, res) => {

@@ -1,6 +1,6 @@
 const { user } = require("../../models");
 module.exports = {
-  nickName: (req, res) => {
+  nickName: async (req, res) => {
     //res.send('nickName 테스트 성공');
     const { nickname } = req.params;
     //닉네임이 안 들어온 경우
@@ -21,7 +21,7 @@ module.exports = {
       }
     }
   },
-  email: (req, res) => {
+  email: async (req, res) => {
     //res.send("email 테스트 성공");
     const { email } = req.params;
     //이메일이 안 들어온 경우

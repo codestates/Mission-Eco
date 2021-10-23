@@ -2,7 +2,7 @@ const { user } = require("../../models");
 const { isAuthorized } = require("../tokenFunctions/index");
 
 module.exports = {
-  modifyMyInfo: (req, res) => {
+  modifyMyInfo: async (req, res) => {
     res.send("nickName 테스트 성공");
     /**const { email } = req.body;
   const inform = await user.findOne({
@@ -35,7 +35,7 @@ module.exports = {
 };
 조금 더 공부해서 작성하기 patch랑 비크립트 공부 후 수정 */
   },
-  deleteAccount: (req, res) => {
+  deleteAccount: async (req, res) => {
     //res.send('email 테스트 성공');
     const accessTokenData = isAuthorized(req);
     if (!accessTokenData) {
