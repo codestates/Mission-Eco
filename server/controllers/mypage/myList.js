@@ -1,6 +1,6 @@
 const { post, challenge, challengelike } = require("../../models");
 module.exports = {
-  getMyList: (req, res) => {
+  getMyList: async (req, res) => {
     //res.send('getMyList 테스트 성공');
     const { userId } = req.params;
     if (!userId) {
@@ -29,7 +29,7 @@ module.exports = {
         .send({ data: { postList, challengeList }, message: "ok" });
     }
   },
-  deletePost: (req, res) => {
+  deletePost: async (req, res) => {
     res.send("deletePost 테스트 성공");
   },
 };
