@@ -1,32 +1,33 @@
-const { Router } = require('express');
+const { Router } = require("express");
 const router = Router();
-const userCtrl = require('./user');
-const mypageCtrl = require('./mypage');
-const challengeCtrl = require('./challenge');
+const userCtrl = require("./user");
+const mypageCtrl = require("./mypage");
+const challengeCtrl = require("./challenge");
 // const mediaCtrl = require('./media');
 // const vendorCtrl = require('./vendor');
 
 // user
-router.post('/user/signin', userCtrl.signIn);
-router.post('/user/signup', userCtrl.signUp);
-router.get('/user/validation/:nickname', userCtrl.nickName);
-router.get('/user/validation/:email', userCtrl.email);
+router.post("/user/signin", userCtrl.signIn);
+router.post("/user/signup", userCtrl.signUp);
+router.post("/user/kakao-signin", userCtrl.kakaoSignin);
+router.get("/user/validation/:nickname", userCtrl.nickName);
+router.get("/user/validation/:email", userCtrl.email);
 
 // mypage
-router.patch('/mypage/userinfo', mypageCtrl.modifyMyInfo); 
-router.delete('/mypage/userinfo', mypageCtrl.deleteAccount);
-router.get('/mypage/mylist/:userId', mypageCtrl.getMyList);
-router.delete('/mypage/mylist/post/:postId', mypageCtrl.deletePost); // Advancd task
-router.get('/mypage/auth', mypageCtrl.auth)
-router.post('/mypage/validation-password', mypageCtrl.checkPwd);
+router.patch("/mypage/userinfo", mypageCtrl.modifyMyInfo);
+router.delete("/mypage/userinfo", mypageCtrl.deleteAccount);
+router.get("/mypage/mylist/:userId", mypageCtrl.getMyList);
+router.delete("/mypage/mylist/post/:postId", mypageCtrl.deletePost); // Advancd task
+router.get("/mypage/auth", mypageCtrl.auth);
+router.post("/mypage/validation-password", mypageCtrl.checkPwd);
 
 // challenge
-router.get('/challenge/all-level', challengeCtrl.showAllLevel);
-router.get('/challenge/:level', challengeCtrl.showOneLevel);
-router.post('/challenge/like', challengeCtrl.like);
-router.post('/challenge/unlike', challengeCtrl.unLike);
-router.get('/challenge/post/:challengeId', challengeCtrl.getOneChallengePost);
-router.post('/challenge/post', challengeCtrl.submitPost);
+router.get("/challenge/all-level", challengeCtrl.showAllLevel);
+router.get("/challenge/:level", challengeCtrl.showOneLevel);
+router.post("/challenge/like", challengeCtrl.like);
+router.post("/challenge/unlike", challengeCtrl.unLike);
+router.get("/challenge/post/:challengeId", challengeCtrl.getOneChallengePost);
+router.post("/challenge/post", challengeCtrl.submitPost);
 
 // media
 // router.get('/media', mediaCtrl.showAllMediaList);
