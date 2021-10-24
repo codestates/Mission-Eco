@@ -23,6 +23,7 @@ module.exports = {
       },
       admin: {
         type: Sequelize.STRING,
+        defaultValue: "user",
       },
       createdAt: {
         allowNull: false,

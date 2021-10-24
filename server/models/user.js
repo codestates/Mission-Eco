@@ -22,7 +22,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         defaultValue: 0,
       },
-      admin: DataTypes.STRING,
+      admin: {
+        type: DataTypes.STRING,
+        defaultValue: "user",
+      },
     },
     {
       sequelize,
