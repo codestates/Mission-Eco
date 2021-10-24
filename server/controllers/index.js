@@ -13,6 +13,7 @@ router.post("/user/kakao-signin", userCtrl.kakaoSignin);
 router.get("/user/validation/:nickname", userCtrl.nickName);
 router.get("/user/validation/:email", userCtrl.email);
 
+
 // mypage
 router.patch("/mypage/userinfo", mypageCtrl.modifyMyInfo);
 router.delete("/mypage/userinfo", mypageCtrl.deleteAccount);

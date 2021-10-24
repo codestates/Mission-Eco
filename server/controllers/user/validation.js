@@ -24,6 +24,7 @@ module.exports = {
   email: async (req, res) => {
     //res.send("email 테스트 성공");
     const { email } = req.params;
+    console.log("eeee", email);
     //이메일이 안 들어온 경우
     if (!email) {
       res.status(400).send({ message: "Bad Request" });
@@ -31,6 +32,7 @@ module.exports = {
       const findemail = await user.findOne({
         where: { email },
       });
+      console.log("server", findemail);
       //같은 이메일을 DB에서 찾아보고 없으면 추가해도 되니까 200응답
       if (!findemail) {
         res.status(200).send({

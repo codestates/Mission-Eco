@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { isLogin } from "../../Redux/actions";
+import { isLogin, getUserInfo } from "../../Redux/actions";
 import axios from "axios";
 import { validEmail } from "../../utils/validation";
+import Kakao from "../kakao/Kakao";
 import {
   Container,
   FormWrap,
@@ -73,6 +74,7 @@ const Login = () => {
       history.push("/");
       isAuthenticated();
     };
+
     const isAuthenticated = () => {
       //유저 정보 찾아줌
       axios
@@ -80,7 +82,8 @@ const Login = () => {
           withCredentials: true,
         })
         .then((res) => {
-          console.log(res.data);
+          dispatch(getUserInfo(res.data.data.userInfo));
+          console.log(res.data.data.userInfo);
         })
         .catch((err) => console.log(err));
     };
@@ -104,10 +107,10 @@ const Login = () => {
             <FormButton type="submit" onClick={loginRequestHandler}>
               입장하기!
             </FormButton>
-
-            <OauthBtn>구글로그인</OauthBtn>
-            <OauthBtn>카카오로그인</OauthBtn>
-
+            <FormBtnBox>
+              <OauthBtn>구글로그인</OauthBtn>
+            </FormBtnBox>
+            <Kakao />
             <FormButton type="submit">
               <BtnLink to="/signup">회원가입</BtnLink>
             </FormButton>
