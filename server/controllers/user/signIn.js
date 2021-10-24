@@ -1,7 +1,6 @@
-const { user } = require('../../models'); // 경로 일치여부, 모델명 일치여부 확인
-const { generateAccessToken,
-        sendAccessToken } = require('../tokenFunctions');
-const bcrypt = require('bcrypt');
+const { user } = require("../../models"); // 경로 일치여부, 모델명 일치여부 확인
+const { generateAccessToken, sendAccessToken } = require("../tokenFunctions");
+const bcrypt = require("bcrypt");
 
 module.exports = {
   signIn: async (req, res) => {
@@ -12,27 +11,27 @@ module.exports = {
      * 4. 2번이 불일치 시 로그인 실패(400)
      * 5. jwt토큰을 생성하여 cookie로 전달한다.
      * 6. 3번이 일치 시 로그인 성공(200)
-    */ 
+     */
     try {
       const { email, password } = req.body;
-      
+
       // DB에 저장된 해당 유저의 hash값을 불러온다.
       const userInfo = await user.findOne({
-        where: { email }
+        where: { email },
       });
-      console.log('signin userInfo', userInfo)
+      console.log("signin userInfo", userInfo);
       // 등록된 이메일이 아닌 경우
-      if(!userInfo) {
-        return res.status(401).send({ data: null, message: 'not authorized' });
+      if (!userInfo) {
+        return res.status(401).send({ data: null, message: "not authorized" });
       }
-      console.log('signin userInfo.password: ', userInfo.password);
-      
+      console.log("signin userInfo.password: ", userInfo.password);
+
       // hash와 요청받은 비밀번호 일치여부 확인
       const match = await bcrypt.compare(password, userInfo.password);
 
       // 비밀번호가 유효하지 않을때 (로그인 실패)
-      if(!match) {
-        return res.status(401).send({ data: null, message: 'not authorized' });
+      if (!match) {
+        return res.status(401).send({ data: null, message: "not authorized" });
       } else {
         // 비밀번호가 유효할 때 (로그인 성공)
         // jwt토큰을 생성하여 쿠키로 전달
@@ -42,9 +41,8 @@ module.exports = {
         const accessToken = generateAccessToken(payload);
         sendAccessToken(res, accessToken, payload);
       }
-    
     } catch (err) {
-      console.log('signin err: ', err)
+      console.log("signin err: ", err);
     }
-  }
-}
+  },
+};
