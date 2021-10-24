@@ -7,6 +7,7 @@ module.exports = {
     //res.send('submitPost 테스트 성공');
     try {
       const { userId, challengeId, img, contents } = req.body;
+      console.log("dddddddddddddfdsfnlwenflewn", req.body);
       if (!userId || !challengeId || !img || !contents) {
         res.status(400).send({ message: "post contents not found" });
       } else {
@@ -16,7 +17,7 @@ module.exports = {
           img: img,
           post_contents: contents,
         });
-        res.status(201).send({ message: "success" });
+        res.status(201).send({ data: new_post, message: "success" });
       }
     } catch (err) {
       console.log(err);
