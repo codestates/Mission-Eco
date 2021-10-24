@@ -1,13 +1,11 @@
 import React from "react";
-import Signup from "./signup/Signup";
-import Singin from "./Singin";
-import Mypage from "./Mypage";
+import Challenge from "./challenge/Challenge";
+import Navbar from "../components/Navbar/Navbar";
 function Main() {
   return (
     <div>
-      <Singin />
-      <Signup />
-      <Mypage />
+      <Navbar />
+      <Challenge />
     </div>
   );
 }

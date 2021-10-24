@@ -1,6 +1,6 @@
 export const initialState = {
-  successLogin: {
-    successLogin: false,
+  isLogin: {
+    isLogin: false,
   },
   userInfo: {
     id: "",
@@ -11,6 +11,9 @@ export const initialState = {
   },
   isLoading: {
     isLoading: false,
+  },
+  isOpenModal: {
+    isOpenModal: false,
   },
   challengeInfo: {
     id: "",
