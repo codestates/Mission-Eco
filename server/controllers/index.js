@@ -9,8 +9,10 @@ const challengeCtrl = require("./challenge");
 // user
 router.post("/user/signin", userCtrl.signIn);
 router.post("/user/signup", userCtrl.signUp);
-router.get("/user/validation/nickname/:nickname", userCtrl.nickName);
-router.get("/user/validation/email/:email", userCtrl.email);
+router.post("/user/kakao-signin", userCtrl.kakaoSignin);
+router.get("/user/validation/:nickname", userCtrl.nickName);
+router.get("/user/validation/:email", userCtrl.email);
+
 
 // mypage
 router.patch("/mypage/userinfo", mypageCtrl.modifyMyInfo);
