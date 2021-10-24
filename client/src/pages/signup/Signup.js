@@ -17,7 +17,7 @@ import { CheckButton } from "./SignupStyle";
 
 function Signup() {
   const history = useHistory();
-  const [sinupInfo, SetSinupInfo] = useState({
+  const [signupInfo, SetSignupInfo] = useState({
     email: "",
     password: "",
     password2: "",
@@ -29,21 +29,20 @@ function Signup() {
   const [isNickname, setIsNickname] = useState(false);
 
   const handelFormValue = (key) => (e) => {
-    SetSinupInfo({ ...sinupInfo, [key]: e.target.value });
+    SetSignupInfo({ ...signupInfo, [key]: e.target.value });
   };
   const checkEmail = () => {
-    if (!sinupInfo.email) {
+    const { email } = signupInfo;
+    if (!email) {
       setErrorMsg("이메일을 확인해주세요.");
     }
-    if (!validEmail(sinupInfo.email)) {
+    if (!validEmail(email)) {
       setErrorMsg("이메일 형식이 아닙니다.");
       ////유효성 검사 이메일 형식이 맞는지
     } else {
-      const { email } = sinupInfo;
-
       axios
         .get(
-          `https://localhost:4000/user/signup/validation/${email}`,
+          `https://localhost:4000/user/validation/email/${email}`,
 
           {
             withCredentials: true,
@@ -61,11 +60,13 @@ function Signup() {
 
   const checkNickname = () => {
     //유효성 검사 nickname 형식이 맞는지 , 이미 유효한 nickname 확인
-    const { nickname } = sinupInfo;
-    if (nickname) {
+    const { nickname } = signupInfo;
+    if (!nickname) {
+      setErrorMsg("닉네임을 입력하세요.");
+    } else {
       axios
-        .post(
-          `https://localhost:4000/user/signup/validation/${nickname}`,
+        .get(
+          `https://localhost:4000/user/validation/nickname/${nickname}`,
 
           {
             withCredentials: true,
@@ -78,13 +79,12 @@ function Signup() {
             setErrorMsg("사용가능한 닉네임입니다. ");
           }
         });
-    } else {
-      setErrorMsg("이미 사용중인 닉네임입니다.");
     }
+    setErrorMsg("이미 사용중인 닉네임입니다.");
   };
 
   const handleSignup = () => {
-    const { email, password, password2, nickname } = sinupInfo;
+    const { email, password, password2, nickname } = signupInfo;
 
     if (!email || !password || !password2 || !nickname) {
       setErrorMsg("모든 항목은 필수입니다.");
@@ -94,10 +94,11 @@ function Signup() {
       axios
         .post(
           "https://localhost:4000/user/signup",
-          { sinupInfo },
+          { signupInfo },
           { withCredentials: true }
         )
         .then((res) => {
+          console.log(res.status);
           if (res.status === 201) {
             setErrorMsg("회원가입완료");
             alert("회원가입완료");
@@ -138,7 +139,6 @@ function Signup() {
               onChange={handelFormValue("nickname")}
             ></FormInput>
             <CheckButton onClick={checkNickname}>중복확인</CheckButton>
-
             <Text>{errorMsg}</Text>
             <FormButton onClick={handleSignup}>회원가입</FormButton>
           </Form>
