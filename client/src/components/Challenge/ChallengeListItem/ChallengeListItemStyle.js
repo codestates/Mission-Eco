@@ -46,6 +46,7 @@ export const ServicesCard = styled.div`
   padding: 30px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
+  background: ${(props) => props.background || "white"};
 
   &:hover {
     transform: scale(1.02);
@@ -115,6 +116,7 @@ export const ServicesCardColor = styled.div`
 export const ServicesH2 = styled.h2`
   font-size: 3rem;
   margin-bottom: 10px;
+  color: #fff;
 `;
 
 export const ServicesP = styled.p`
@@ -125,6 +127,11 @@ export const ServicesP = styled.p`
 export const WishBtn = styled.button`
   border: 0;
   outline: 0;
-  background-color: red;
+  background-color: #fff;
   cursor: pointer;
+`;
+
+export const Img = styled.img`
+  width: 20px;
+  height: 20px;
 `;
