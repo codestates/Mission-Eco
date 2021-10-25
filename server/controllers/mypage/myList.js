@@ -29,7 +29,4 @@ module.exports = {
         .send({ data: { postList, challengeList }, message: "ok" });
     }
   },
-  deletePost: async (req, res) => {
-    res.send("deletePost 테스트 성공");
-  },
 };
