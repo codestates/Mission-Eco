@@ -3,7 +3,7 @@ const { user } = require("../../models");
 const { generateAccessToken, sendAccessToken } = require("../tokenFunctions");
 
 module.exports = async (req, res) => {
-  console.log("kakakkkkkkkkkkkk", req.body);
+  console.log("req.body--", req.body);
   try {
     axios
       .post(
@@ -14,9 +14,8 @@ module.exports = async (req, res) => {
           },
         }
       )
-      .then((res1) => {
-        console.log;
-        console.log("kakao-------", res1.data.access_token);
+      .then(async (res1) => {
+        console.log("req.data.accesstocke--", res1.data.access_token);
         axios
           .get(
             `https://kapi.kakao.com/v2/user/me?access_token=${res1.data.access_token}`,
@@ -28,7 +27,7 @@ module.exports = async (req, res) => {
             }
           )
           .then(async (res2) => {
-            console.log("qqqqqqqqq", res2.data);
+            console.log("res.data---", res2.data);
             const [kakaoUserInfo, created] = await user.findOrCreate({
               where: { email: res2.data.kakao_account.email },
               defaults: {
@@ -39,7 +38,7 @@ module.exports = async (req, res) => {
                 admin: "user",
               },
             });
-            console.log("ooooooo", kakaoUserInfo.dataValues);
+            console.log("kakao--", kakaoUserInfo.dataValues);
             //userInfo에 카카오로 로그인 하려는 사람의 정보가 담김
             //이 유저 정보로 토큰을 발급해서 클라이언트로 전달하면 된다.
             delete kakaoUserInfo.dataValues.password;
