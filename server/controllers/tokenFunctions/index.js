@@ -7,6 +7,7 @@ module.exports = {
   },
   sendAccessToken: (res, accessToken, userInfo) => {
     // JWT 토큰을 쿠키로 전달
+    console.log("accesstoken---", accessToken);
     res.cookie("jwt", accessToken, {
       httpOnly: true,
       secure: true,
