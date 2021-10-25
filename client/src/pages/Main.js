@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Challenge from "./challenge/Challenge";
 import Navbar from "../components/Navbar/Navbar";
 import axios from "axios";
+import MypageEdit from "../components/MyInfo/MypageEdit/MypageEdit";
 function Main() {
   useEffect(() => {
     const authorizationCode = new URL(window.location.href).searchParams.get(
@@ -28,7 +29,7 @@ function Main() {
           }
         }); 
     * 
-     
+    
      */
   };
 
@@ -36,6 +37,7 @@ function Main() {
     <div>
       <Navbar />
       <Challenge />
+      <MypageEdit />
     </div>
   );
 }

@@ -71,6 +71,7 @@ const Login = () => {
       //mainpage로 이동
       setErrMsg("ok.");
       dispatch(isLogin(true));
+      // !
       history.push("/");
       isAuthenticated();
     };
