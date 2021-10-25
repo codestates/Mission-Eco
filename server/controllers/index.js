@@ -8,14 +8,15 @@ const challengeCtrl = require("./challenge");
 
 // user
 router.post("/user/signin", userCtrl.signIn);
+router.post("/user/logout", userCtrl.logout);
 router.post("/user/signup", userCtrl.signUp);
 router.post("/user/kakao-signin", userCtrl.kakaoSignin);
 router.get("/user/validation/:nickname", userCtrl.nickName);
 router.get("/user/validation/:email", userCtrl.email);
 
-
 // mypage
-router.patch("/mypage/userinfo", mypageCtrl.modifyMyInfo);
+router.patch("/mypage/userinfo/nickname", mypageCtrl.modifyNickname);
+router.patch("/mypage/userinfo/password", mypageCtrl.modifyPassword);
 router.delete("/mypage/userinfo", mypageCtrl.deleteAccount);
 router.get("/mypage/mylist/:userId", mypageCtrl.getMyList);
 router.delete("/mypage/mylist/post/:postId", mypageCtrl.deletePost); // Advancd task
