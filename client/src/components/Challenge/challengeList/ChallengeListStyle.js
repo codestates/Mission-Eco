@@ -71,7 +71,7 @@ export const Subbar = styled.div`
   margin-bottom: 3em;
 
   @media screen and (max-width: 480px) {
-    padding: 1px 70px;
+    padding: 1px 50px;
   }
 `;
 
