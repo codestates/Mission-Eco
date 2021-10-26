@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 // import { isLogin, getUserInfo, deleteUserInfo } from "../../Redux/actions";
+import { validPassword } from "../../../utils/validation";
 import axios from "axios";
 import {
   Container,
@@ -26,6 +27,7 @@ const MypageEdit = () => {
 
   // * 에러메시지 state
   const [errMsg, setErrMsg] = useState("");
+  const [pwErrMsg, setPwErrMsg] = useState("");
 
   // * 닉네임 state
   const [nick, setNick] = useState({
@@ -33,18 +35,23 @@ const MypageEdit = () => {
   });
 
   // * 패스워드 state
-  const [pw, setPw] = useState({
-    password: "",
+  const [pwInfo, setPwInfo] = useState({
+    password1: "",
+    password2: "",
   });
+  // const [isPw, setIsPw] = useState(false);
 
-  // * handler 함수
-  const handleInputValue = (key) => (e) => {
+  // * handle Input Value 함수 - Nick
+  const handleNickValue = (key) => (e) => {
     setNick({ ...nick, [key]: e.target.value });
-    // 여기에 setPW도 넣어도 되나?
-    setPw({ ...pw, [key]: e.target.value }); // 이렇게 넣어도 가능?
   };
 
-  // ** handler-닉네임
+  // * handle Input Value함수 - PwInfo
+  const handlePwValue = (key) => (e) => {
+    setPwInfo({ ...pwInfo, [key]: e.target.value });
+  };
+
+  // ** handler - 닉네임
   const { nickname } = nick;
   const changeNickRequestHandler = () => {
     if (!nickname) {
@@ -68,7 +75,6 @@ const MypageEdit = () => {
         });
     }
   };
-  // !
   /* else {
       axios
         .get(
@@ -89,38 +95,48 @@ const MypageEdit = () => {
       // 성공했을 때 응답에 실어보낼*
       /* 여기에 뭐 적어야 하는 지도 모르겠음 */
   // dispatch(changeUserNick(어쩌구)); --> Redux/actions/index.js에 있음
-  // !
 
   // ** handler-패스워드변경
-  const { password } = pw;
-  const changePwRequestHandler = () => {
-    if (!password) {
-      setErrMsg("비밀번호를 입력하세요.");
-      // !
-    } else {
-      axios
-        .patch(
-          `https://localhost:4000/user/validation/password/${password}`, // 여기에 /mypage/userinfo/password 엔드포인트 쓰는거? 일케 쓰는 거 맞음?
+  const { password1, password2 } = pwInfo;
 
-          {
-            withCredentials: true,
-          }
-        )
-        .then((res) => {
-          //console.log("nickname", res.data);
-          if (res.data.message === "ok") {
-            setNick(true);
-            setErrMsg("사용가능한 닉네임입니다. ");
-          }
-          setErrMsg("이미 사용중인 닉네임입니다.");
-        });
+  const changePwRequestHandler = () => {
+    if (!password1 || !password2) {
+      setPwErrMsg("모든 항목은 필수입니다.");
+    } else if (!validPassword(password1)) {
+      setPwErrMsg("비밀번호를 확인해주세요.");
+    } else if (password1 !== password2) {
+      setPwErrMsg("비밀번호가 일치하지 않습니다.");
     }
+    // } else if (isPw) {
+    //   axios
+    //     .patch(
+    //       `https://localhost:4000/user/validation/password/${password}`, // 여기에 /mypage/userinfo/password 엔드포인트 쓰는거? 일케 쓰는 거 맞음?,
+    //       { pwInfo },
+    //       { withCredentials: true }
+    //     )
+    //     .then((res) => {
+    //       console.log(res.status);
+    //       if (res.status === 201) {
+    //         setIsPw(true)
+    //         // setPw(true);
+    //         // 로 해야하나?
+    //       }
+    //     })
+    //     .catch((err) => console.log(err));
+    // }
   };
+  // ! 에러는 안뜨는데 왜 메인페이지에 MypageEdit부분이 안뜨지?
+  //
+  // ** handler 회원탈퇴 ---> 모달창 레이아웃부터 잡기
+  // 회원탈퇴 버튼을 누르면 "확인 모달창"이 뜬다.
+  // 모달창에서 "예" 버튼을 누르면 -> DB에서 내 정보가 삭제된다.
 
   return (
     <>
       <Container>
         <TitleH1>마이페이지</TitleH1>
+
+        {/* 닉네임 변경 */}
         <Wrapper>
           <TitleH3>닉네임 변경하기</TitleH3>
           {/* <div className="title">닉네임</div> */}
@@ -128,7 +144,7 @@ const MypageEdit = () => {
           <Input
             type="text"
             placeholder="새 닉네임을 입력하세요."
-            onChange={handleInputValue("nickname")} // index.js에 nickname으로 들어가 있어서 이렇게적었는데 위의 state명 nick을 적어야 하나?
+            onChange={handleNickValue("nickname")} // index.js에 nickname으로 들어가 있어서 이렇게적었는데 위의 state명 nick을 적어야 하나?
           ></Input>
           {/* <Btn onClick={changeInfoHandler}>닉네임 변경</Btn> */}
           <Btn type="submit" onClick={changeNickRequestHandler}>
@@ -142,19 +158,23 @@ const MypageEdit = () => {
           <TitleH3>비밀번호 변경하기</TitleH3>
           <Span>비밀번호</Span>
           <Input
-            type="text"
+            type="password"
             placeholder="새 비밀번호를 입력하세요."
-            //? handleInputValue에 ("password") 하면 패스워드만 골라서 쓸 수 있음?
-            onChange={handleInputValue("password")}
-            // ?
+            onChange={handleNickValue("password")} // handleInputValue에 ("password") 하면 패스워드만 골라서 쓸 수 있음?
           />
-          <Span>{/* 에러 메시지-비밀번호 형식이 아닙니다. */}</Span>
+          {/* <Span>{pwErrMsg}</Span> */}
           <Span>비밀번호 확인</Span>
-          <Input type="text" placeholder="새 비밀번호를 재입력하세요." />
-          <Span>{/* 에러 메시지-비밀번호가 일치하지 않습니다.*/}</Span>
+          <Input
+            type="password"
+            placeholder="새 비밀번호를 재입력하세요."
+            onChange={handlePwValue("password")}
+          />
+          <Span>{pwErrMsg}</Span>
           <Btn type="submit" onClick={changePwRequestHandler}>
             비밀번호 변경
           </Btn>
+
+          {/* 회원탈퇴 */}
         </Wrapper>
         <Btn type="submit" onClick={changeNickRequestHandler}>
           회원 탈퇴
