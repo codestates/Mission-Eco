@@ -10,8 +10,7 @@ module.exports = async (req, res) => {
         domain: "https://localhost:3000",
       } */
       )
-      .status(205)
-      .json({ message: "logout success" });
+      .sendStatus(205);
   } catch (error) {
     console.log(error);
     //res.status(500).json({ message: "server error" });
