@@ -1,8 +1,50 @@
+const { user, challenge, challengelike } = require("../../models");
+const { isAuthorized } = require("../tokenFunctions/index");
 module.exports = {
-  like: (req, res) => {
-    res.status(201).send("challenge like 테스트 성공");
+  like: async (req, res) => {
+    try {
+      const accessTokenData = isAuthorized(req);
+      //쿠키에 jwt토큰이 없거나 토큰 유효하지 않은 경우
+      if (!accessTokenData) {
+        return res.sendStatus(401);
+      } else {
+        const { id } = accessTokenData;
+        const { challengeId } = req.body;
+        if (!challengeId) {
+          return res.sendStatus(400);
+        }
+        const userChLike = await challengelike.create({
+          user_id: id,
+          challenge_id: challengeId,
+        });
+        return res.sendStatus(204);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   },
-  unLike: (req, res) => {
-    res.send("challenge unlike 테스트 성공");
+  unLike: async (req, res) => {
+    try {
+      const accessTokenData = isAuthorized(req);
+      //쿠키에 jwt토큰이 없거나 토큰 유효하지 않은 경우
+      if (!accessTokenData) {
+        return res.sendStatus(401);
+      } else {
+        const { id } = accessTokenData;
+        const { challengeId } = req.body;
+        if (!challengeId) {
+          return res.sendStatus(400);
+        }
+        const findUserLike = await challengelike.findOne({
+          where: { user_id: id, challenge_id: challengeId },
+        });
+        if (!findUserLike) return res.sendStatus(400);
+        //좋아요 삭제
+        await findUserLike.destroy();
+        return res.sendStatus(204);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   },
 };
