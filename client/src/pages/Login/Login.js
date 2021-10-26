@@ -64,7 +64,7 @@ const Login = () => {
       })
       .catch((err) => console.log(err));
   };
-  
+
   const loginRequestHandler = () => {
     const { email, password } = loginInfo;
     console.log(loginInfo);
@@ -89,7 +89,6 @@ const Login = () => {
           }
         });
     }
-
   };
 
   return (
@@ -110,9 +109,7 @@ const Login = () => {
             <FormButton type="submit" onClick={loginRequestHandler}>
               입장하기!
             </FormButton>
-            <Google
-               handleResponseSuccess={handleResponseSuccess}
-            />
+            <Google handleResponseSuccess={handleResponseSuccess} />
             <Kakao />
             <FormButton type="submit">
               <BtnLink to="/signup">회원가입</BtnLink>

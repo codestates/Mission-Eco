@@ -5,6 +5,7 @@ import { isLogin } from "../../src/Redux/actions/index";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import MypageEdit from "../components/MyInfo/MypageEdit/MypageEdit";
 function Main() {
   const dispatch = useDispatch();
   const history = useHistory();
