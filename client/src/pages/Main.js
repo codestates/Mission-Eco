@@ -5,6 +5,7 @@ import { isLogin } from "../../src/Redux/actions/index";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import MypageEdit from "../components/MyInfo/MypageEdit/MypageEdit";
 function Main() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -26,7 +27,7 @@ function Main() {
       )
       .then((res) => {
         //console.log("klogin", res.data.message);
-        if (res.status === 200) {
+        if (res.status === 204) {
           console.log("kakao ok");
           dispatch(isLogin(true));
           history.push("/");
