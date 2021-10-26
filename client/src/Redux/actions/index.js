@@ -28,7 +28,13 @@ export function deleteUserInfo(userInfo) {
   return {
     type: DELETE_USERINFO,
     payload: {
-      userInfo: null,
+      userInfo: {
+        id: userInfo,
+        email: userInfo,
+        nickname: userInfo,
+        point: userInfo,
+        admin: userInfo,
+      },
     },
   };
 }
