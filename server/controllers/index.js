@@ -35,6 +35,6 @@ router.delete("/challenge-log", challengeLogCtrl.delete);
 // badge
 router.get("/badge", badgeCtrl.badgeList);
 router.post("/badge", badgeCtrl.post);
-router.get("/myBadgeList?", badgeCtrl.myBadgeList);
+router.get("/myBadgeList/:userId", badgeCtrl.myBadgeList);
 
 module.exports = router;

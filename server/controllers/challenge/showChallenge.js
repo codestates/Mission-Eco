@@ -4,7 +4,7 @@ module.exports = async (req, res) => {
   try {
     //챌린지의 리스트를 전체를 보내주기
     const challengeList = await challenge.findAll();
-    res.status(200).send({ challengeList, message: "ok" });
+    res.status(200).send({ challengeList });
   } catch (error) {
     console.log(error);
   }
