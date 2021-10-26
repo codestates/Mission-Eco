@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
    * 쿠키에 accessToken 전달
    * **/
   try {
-    const { email, nickname} = req.body;
+    const { email, nickname } = req.body;
     const token_id = req.headers.authorization;
 
     // DB에 등록되지 않은 유저라면
@@ -22,31 +22,28 @@ module.exports = async (req, res) => {
 
       // hash를 포함한 새 유저 정보를 DB에 저장하고 데이터 찾는다
       // 기존 유저라면 저장하지 않고 데이터만 찾는다
-      const [ db_user, create ] = await user.findOrCreate({
+      const [db_user, create] = await user.findOrCreate({
         where: { email },
         defaults: {
           nickname,
           email,
           password: hash,
-          point: 0,
-          admin: "user",
-      }});
-      
+        },
+      });
+
       console.log("구글 signup db_user: ", db_user);
-  
+
       const payload = db_user.dataValues;
       delete db_user.password;
       console.log("구글 signup payload: ", payload);
 
       // 찾은 데이터로 accessToken 발급
       const accessToken = generateAccessToken(payload);
-  
+
       // 쿠키로 accessToken을 전달
-      sendAccessToken(res, accessToken)
+      sendAccessToken(res, accessToken);
     });
-
-
-  } catch(err) {
-    console.log('구글 로그인 에러', err)
+  } catch (err) {
+    console.log("구글 로그인 에러", err);
   }
-}
+};
