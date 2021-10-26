@@ -61,6 +61,7 @@ function Signup() {
   const checkNickname = () => {
     //유효성 검사 nickname 형식이 맞는지 , 이미 유효한 nickname 확인
     const { nickname } = signupInfo;
+    console.log(nickname, "회원가입");
     if (!nickname) {
       setErrorMsg("닉네임을 입력하세요.");
     } else {
@@ -80,7 +81,7 @@ function Signup() {
           }
         });
     }
-    setErrorMsg("이미 사용중인 닉네임입니다.");
+    setErrorMsg("사용불가 닉네임입니다.");
   };
 
   const handleSignup = () => {

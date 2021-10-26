@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import Challenge from "./challenge/Challenge";
+import ChallengeLog from "./challengeLog/ChallengeLog";
 import Navbar from "../components/Navbar/Navbar";
 import { isLogin } from "../../src/Redux/actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import MypageEdit from "../components/MyInfo/MypageEdit/MypageEdit";
+
 function Main() {
   const state = useSelector((state) => state.infoReducer);
   console.log(state.userInfo);
@@ -44,6 +45,7 @@ function Main() {
     <div>
       <Navbar />
       <Challenge />
+      <ChallengeLog />
     </div>
   );
 }

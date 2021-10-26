@@ -54,10 +54,17 @@ export const ServicesCard = styled.div`
 `;
 
 export const ServicesIcon = styled.img`
-  height: 160px;
-  width: 160px;
+  height: 240px;
+  width: 260px;
   margin-bottom: 10px;
+  border: 1px solid #aaa492;
+
+  @media screen and (max-width: 768px) {
+    height: 300px;
+    width: 320px;
+  }
 `;
+
 export const Subbar = styled.div`
   display: flex;
 
@@ -81,8 +88,8 @@ export const Select = styled.li`
 `;
 
 export const ServicesH1 = styled.h1`
-  margin-top: 150px;
-  font-size: 2.5rem;
+  margin-top: 200px;
+  font-size: 2.8rem;
   color: #010106;
   margin-bottom: 64px;
 
