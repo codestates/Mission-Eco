@@ -44,8 +44,6 @@ module.exports = {
           nickname: nickname,
           email,
           password: hash,
-          point: 0,
-          admin: "user",
         });
         console.log("signup new_user: ", new_user);
       });

@@ -33,9 +33,7 @@ module.exports = async (req, res) => {
               defaults: {
                 email: res2.data.kakao_account.email,
                 password: null, //이 부분은 확인해보기
-                point: 0,
                 nickname: res2.data.properties.nickname,
-                admin: "user",
               },
             });
             console.log("kakao--", kakaoUserInfo.dataValues);
