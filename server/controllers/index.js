@@ -25,6 +25,7 @@ router.post("/mypage/validation-password", mypageCtrl.checkPwd);
 
 // challenge
 router.get("/challenge", challengeCtrl.showChallenge);
+router.get("/challenge/like", challengeCtrl.likeList);
 router.post("/challenge/like", challengeCtrl.like);
 router.post("/challenge/unlike", challengeCtrl.unLike);
 
