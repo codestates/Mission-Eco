@@ -72,6 +72,7 @@ module.exports = {
           res.sendStatus(404);
         } else {
           await deleteUser.destroy();
+          res.clearCookie("jwt");
           res.sendStatus(204);
         }
       }
