@@ -1,5 +1,13 @@
 const { challengelog } = require("../../models");
 module.exports = {
+  get: async (req, res) => {
+    try {
+      const challengeLogList = await challengelog.findAll();
+      res.status(200).send({ challengeLogList });
+    } catch (error) {
+      console.log(error);
+    }
+  },
   post: async (req, res) => {
     //res.send("challenge-log 포스팅 성공");
     try {

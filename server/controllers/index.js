@@ -29,6 +29,7 @@ router.post("/challenge/like", challengeCtrl.like);
 router.post("/challenge/unlike", challengeCtrl.unLike);
 
 // challenge-log
+router.get("/challenge-log", challengeLogCtrl.get);
 router.post("/challenge-log", challengeLogCtrl.post);
 router.delete("/challenge-log", challengeLogCtrl.delete);
 

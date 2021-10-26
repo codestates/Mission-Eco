@@ -30,7 +30,6 @@ const ChallengeListItem = ({ list }) => {
         .post(
           "https://localhost:4000/challenge/like",
           {
-            userId,
             challengeId,
           },
           {
@@ -38,7 +37,7 @@ const ChallengeListItem = ({ list }) => {
           }
         )
         .then((res) => {
-          if (res.status === 201) {
+          if (res.status === 204) {
             setLike(!like);
           }
         });
