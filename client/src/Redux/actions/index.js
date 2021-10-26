@@ -33,6 +33,16 @@ export function deleteUserInfo(userInfo) {
   };
 }
 
+// 닉네임 변경 관련 함수 만들어줘야 할 것 같은데 type 부분에 뭐라 적어야 할지 모르겠음. 일단 주석처리.
+// export function changeUserNick(userInfo) {
+//   return {
+//     type: DELETE_USERINFO,
+//     payload: {
+//       userInfo: null,
+//     },
+//   };
+// }
+
 export function isLoading(boolean) {
   return {
     type: IS_LOADING,
