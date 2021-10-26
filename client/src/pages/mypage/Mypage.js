@@ -6,6 +6,7 @@ function Mypage() {
   return (
     <div>
       <CheckPassword />
+      <MypageEdit />
     </div>
   );
 }

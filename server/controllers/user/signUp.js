@@ -16,14 +16,14 @@ module.exports = {
       // DB에 동일한 이메일이 존재할 때
       const db_email = await user.findOne({ where: { email } });
       if (db_email) {
-        return res.status(409).send({ message: `${email} already exists.` });
+        return res.status(409).send(`${email} already exists.`);
       }
       console.log("signUp db_email", db_email);
 
       // DB에 동일한 닉네임이 존재할 때
       const db_nickname = await user.findOne({ where: { nickname } });
       if (db_nickname) {
-        return res.status(409).send({ message: `${nickname} already exists.` });
+        return res.status(409).send(`${nickname} already exists.`);
       }
       console.log("signUp db_nickname", db_nickname);
 
@@ -44,14 +44,12 @@ module.exports = {
           nickname: nickname,
           email,
           password: hash,
-          point: 0,
-          admin: "user",
         });
         console.log("signup new_user: ", new_user);
       });
 
       // 회원가입 성공
-      return res.status(201).send({ message: "created" });
+      return res.sendStatus(201);
     } catch (err) {
       console.log(err);
     }
