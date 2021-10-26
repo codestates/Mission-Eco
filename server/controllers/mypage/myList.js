@@ -4,10 +4,7 @@ module.exports = {
     //res.send('getMyList 테스트 성공');
     const { userId } = req.params;
     if (!userId) {
-      res.status(400).send({
-        data: null,
-        message: "Bad Request",
-      });
+      res.sendStatus(400);
     } else {
       //포스팅 중에 user_id가 userId인 포스팅을 다 가져오기
       const postList = await post.findAll({ where: { user_id: userId } });
@@ -24,12 +21,7 @@ module.exports = {
           },
         ],
       });
-      res
-        .status(200)
-        .send({ data: { postList, challengeList }, message: "ok" });
+      res.status(200).send({ postList, challengeList });
     }
-  },
-  deletePost: async (req, res) => {
-    res.send("deletePost 테스트 성공");
   },
 };

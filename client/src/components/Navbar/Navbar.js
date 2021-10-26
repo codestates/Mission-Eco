@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { isLogin } from "../../Redux/actions";
+import { isLogin, getUserInfo } from "../../Redux/actions";
 import { ReactComponent as Menubar } from "../../imges/menubar.svg";
+import axios from "axios";
 //import { FaBars } from "react-icons/fa";
 //import { animateScroll as scroll } from "react-scroll";
 import {
@@ -36,8 +37,14 @@ const Navbar = ({ toggle }) => {
   const toggleHome = () => {
     window.scrollToTop();
   };
-  const handleLogout = () => {
+  /*const handleLogout = () => {
+    
+  };*/
+  const KAKAO_LOGOUT = `https://kauth.kakao.com/oauth/logout?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&logout_redirect_uri=https://localhost:3000`;
+  const oauthLogout = () => {
+    window.location.href = KAKAO_LOGOUT;
     dispatch(isLogin(!isLogin));
+    dispatch(getUserInfo(null));
   };
 
   return (
@@ -105,7 +112,7 @@ const Navbar = ({ toggle }) => {
             {!state.isLogin ? (
               <NavBtnLink to="/login">Signin</NavBtnLink>
             ) : (
-              <NavBtnLink to="/login" onClick={handleLogout}>
+              <NavBtnLink to="/login" onClick={oauthLogout}>
                 Logout
               </NavBtnLink>
             )}
