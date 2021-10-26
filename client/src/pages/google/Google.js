@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 
 const clientId =
-  "856802198136-ctdj36d3fkmmo8o2ud1tdtbs01r8debs.apps.googleusercontent.com";
+  "856802198136-5mpl1i164pp7d7nite52rbgj2ur29ghl.apps.googleusercontent.com";
 
 function GoogleLoginBtn({ handleResponseSuccess }) {
   const [showloginButton, setShowloginButton] = useState(true);

@@ -49,7 +49,7 @@ function Signup() {
           }
         )
         .then((res) => {
-          if (res.data.message === "ok") {
+          if (res.status === 204) {
             setIsEmail(true);
             setErrorMsg("사용가능한 이메일입니다. ");
           }
@@ -74,7 +74,7 @@ function Signup() {
         )
         .then((res) => {
           //console.log("nickname", res.data);
-          if (res.data.message === "ok") {
+          if (res.status === 204) {
             setIsNickname(true);
             setErrorMsg("사용가능한 닉네임입니다. ");
           }

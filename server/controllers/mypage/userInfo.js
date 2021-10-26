@@ -33,6 +33,7 @@ module.exports = {
     //res.send("nickName 테스트 성공");
     try {
       const { userId, newPassword } = req.body;
+      console.log(req.body);
       if (!userId) {
         return res.sendStatus(400);
       }

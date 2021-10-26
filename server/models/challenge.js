@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
+
   challenge.init(
     {
       img: DataTypes.STRING,
@@ -30,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "challenge",
+      timestamps: false,
     }
   );
   return challenge;
