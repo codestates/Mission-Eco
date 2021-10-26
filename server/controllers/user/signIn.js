@@ -21,9 +21,9 @@ module.exports = {
         where: { email }
       });
       console.log('signin userInfo', userInfo)
-      // 등록된 이메일이 아닌 경우
+      // 유저 정보가 DB에 없을 경우
       if(!userInfo) {
-        return res.status(401).send({ data: null, message: 'not authorized' });
+        return res.sendStatus(400);
       }
       console.log('signin userInfo.password: ', userInfo.password);
       
@@ -32,7 +32,7 @@ module.exports = {
 
       // 비밀번호가 유효하지 않을때 (로그인 실패)
       if(!match) {
-        return res.status(401).send({ data: null, message: 'not authorized' });
+        return res.sendStatus(401);
       } else {
         // 비밀번호가 유효할 때 (로그인 성공)
         // jwt토큰을 생성하여 쿠키로 전달
@@ -40,7 +40,7 @@ module.exports = {
         const payload = userInfo.dataValues;
         delete payload.password;
         const accessToken = generateAccessToken(payload);
-        sendAccessToken(res, accessToken, payload);
+        sendAccessToken(res, accessToken);
       }
     
     } catch (err) {
