@@ -5,6 +5,7 @@ import { isLogin, getUserInfo } from "../../Redux/actions";
 import axios from "axios";
 import { validEmail } from "../../utils/validation";
 import Kakao from "../kakao/Kakao";
+import Google from "../google/Google";
 import {
   Container,
   FormWrap,
@@ -41,6 +42,29 @@ const Login = () => {
     SetLoginInfo({ ...loginInfo, [key]: e.target.value });
   };
 
+  const handleResponseSuccess = () => {
+    //isAuthenticated() auth 인증
+    //로그인 상태 true
+    //mainpage로 이동
+    setErrMsg("ok.");
+    dispatch(isLogin(true));
+    history.push("/");
+    isAuthenticated();
+  };
+
+  const isAuthenticated = () => {
+    //유저 정보 찾아줌
+    axios
+      .get("https://localhost:4000/mypage/auth", {
+        withCredentials: true,
+      })
+      .then((res) => {
+        dispatch(getUserInfo(res.data.data.userInfo));
+        console.log(res.data.data.userInfo);
+      })
+      .catch((err) => console.log(err));
+  };
+  
   const loginRequestHandler = () => {
     const { email, password } = loginInfo;
     console.log(loginInfo);
@@ -65,28 +89,6 @@ const Login = () => {
           }
         });
     }
-    const handleResponseSuccess = () => {
-      //isAuthenticated() auth 인증
-      //로그인 상태 true
-      //mainpage로 이동
-      setErrMsg("ok.");
-      dispatch(isLogin(true));
-      history.push("/");
-      isAuthenticated();
-    };
-
-    const isAuthenticated = () => {
-      //유저 정보 찾아줌
-      axios
-        .get("https://localhost:4000/mypage/auth", {
-          withCredentials: true,
-        })
-        .then((res) => {
-          dispatch(getUserInfo(res.data.data.userInfo));
-          console.log(res.data.data.userInfo);
-        })
-        .catch((err) => console.log(err));
-    };
   };
 
   return (
@@ -107,9 +109,9 @@ const Login = () => {
             <FormButton type="submit" onClick={loginRequestHandler}>
               입장하기!
             </FormButton>
-            <FormBtnBox>
-              <OauthBtn>구글로그인</OauthBtn>
-            </FormBtnBox>
+            <Google
+               handleResponseSuccess={handleResponseSuccess}
+            />
             <Kakao />
             <FormButton type="submit">
               <BtnLink to="/signup">회원가입</BtnLink>
