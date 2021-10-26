@@ -1,56 +1,75 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ChallengeListItem from "../ChallengeListItem/ChallengeListItem";
-import Icon1 from "../../../imges/svg-1.svg";
-import Icon2 from "../../../imges/svg-2.svg";
-import Icon3 from "../../../imges/svg-3.svg";
+
 import {
   ServicesContiner,
   ServicesH1,
   ServicesWrapper,
-  ServicesCard,
-  ServicesIcon,
-  ServicesH2,
-  ServicesP,
   Subbar,
   Select,
-  ServicesCardColor,
   Button,
 } from "./ChallengeListStyle";
 import axios from "axios";
 
 const ChallengeList = () => {
+  const [allLists, setAllLists] = useState([]);
+  const [listItems, setListItems] = useState([]);
+
   useEffect(() => {
-    handelRequsetList();
+    handleRequsetList();
   }, []);
-  const handelRequsetList = () => {
+
+  const handleRequsetList = () => {
     axios
-      .get("https://localhost:4000/challenge/all-level", {
+      .get("https://localhost:4000/challenge", {
         withCredentials: true,
       })
-      .then((res) => console.log(res));
+      .then((res) => {
+        setAllLists(res.data.challengeList);
+        setListItems(res.data.challengeList);
+      });
   };
+  const handleRequsetLevelList = (e) => {
+    const level = e.target.value;
+    //해당레벨 버튼을 누르면 list state에 저장된 list값들중 해당레벨을 찾아서 setList로 바꾼다.
+    let listItem = allLists.map((list) => list);
+    let itemLevel = listItem.filter((el) => el.level === Number(level));
+    setListItems(itemLevel);
+  };
+
   return (
     <ServicesContiner id="services">
       <ServicesH1>Mission List</ServicesH1>
       <Subbar>
         <Select>
-          <Button>All</Button>
+          <Button onClick={handleRequsetList}>All</Button>
         </Select>
         <Select>
-          <Button>Level 1</Button>
+          <Button value="1" onClick={(e) => handleRequsetLevelList(e)}>
+            Level 1
+          </Button>
         </Select>
         <Select>
-          <Button>Level 2</Button>
+          <Button value="2" onClick={(e) => handleRequsetLevelList(e)}>
+            Level 2
+          </Button>
         </Select>
         <Select>
-          <Button>Level 3</Button>
+          <Button value="3" onClick={(e) => handleRequsetLevelList(e)}>
+            Level 3
+          </Button>
         </Select>
         <Select>
           <Button>미션후기작성</Button>
         </Select>
       </Subbar>
-      <ChallengeListItem />
-      {/**<ServicesWrapper>
+      <ServicesWrapper>
+        {listItems.map((list, idx) => {
+          return <ChallengeListItem list={list} key={idx} />;
+        })}
+      </ServicesWrapper>
+
+      {/**
         <ServicesCard>
           <ServicesIcon src={Icon1} />
         </ServicesCard>

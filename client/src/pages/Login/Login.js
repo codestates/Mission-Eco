@@ -58,7 +58,7 @@ const Login = () => {
         )
         .then((res) => {
           //console.log("login", res.data.message);
-          if (res.status === 200) {
+          if (res.status === 204) {
             handleResponseSuccess();
           } else {
             setErrMsg("이메일과 비밀번호를 확인해주세요.");
@@ -82,8 +82,8 @@ const Login = () => {
           withCredentials: true,
         })
         .then((res) => {
-          dispatch(getUserInfo(res.data.data.userInfo));
-          console.log(res.data.data.userInfo);
+          dispatch(getUserInfo(res.data.userInfo));
+          console.log(res.data.userInfo);
         })
         .catch((err) => console.log(err));
     };
