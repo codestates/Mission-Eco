@@ -12,7 +12,7 @@ module.exports = {
       httpOnly: true,
       secure: true,
     });
-    return res.send({ data: { userInfo }, message: "ok" });
+    return res.sendStatus(204);
   },
   isAuthorized: (req) => {
     const jwt = req.cookies.jwt;
