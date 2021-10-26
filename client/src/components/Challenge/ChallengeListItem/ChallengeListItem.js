@@ -4,17 +4,9 @@ import blackHeart from "../../../imges/blackHeart.png";
 import colorHeart from "../../../imges/colorHeart.png";
 import axios from "axios";
 import {
-  ServicesContiner,
-  ServicesH1,
-  ServicesWrapper,
   ServicesCard,
-  ServicesIcon,
   ServicesH2,
   ServicesP,
-  Subbar,
-  Select,
-  ServicesCardColor,
-  Button,
   WishBtn,
   Img,
 } from "./ChallengeListItemStyle";

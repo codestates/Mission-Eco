@@ -1,26 +1,19 @@
 import React, { useEffect, useState } from "react";
 import ChallengeListItem from "../ChallengeListItem/ChallengeListItem";
-import Icon1 from "../../../imges/svg-1.svg";
-import Icon2 from "../../../imges/svg-2.svg";
-import Icon3 from "../../../imges/svg-3.svg";
+
 import {
   ServicesContiner,
   ServicesH1,
   ServicesWrapper,
-  ServicesCard,
-  ServicesIcon,
-  ServicesH2,
-  ServicesP,
   Subbar,
   Select,
-  ServicesCardColor,
   Button,
 } from "./ChallengeListStyle";
 import axios from "axios";
 
 const ChallengeList = () => {
-  const [lists, setLists] = useState([]);
-  const [items, setItems] = useState([]);
+  const [allLists, setAllLists] = useState([]);
+  const [listItems, setListItems] = useState([]);
 
   useEffect(() => {
     handleRequsetList();
@@ -28,21 +21,20 @@ const ChallengeList = () => {
 
   const handleRequsetList = () => {
     axios
-      .get("https://localhost:4000/challenge/all-level", {
+      .get("https://localhost:4000/challenge", {
         withCredentials: true,
       })
       .then((res) => {
-        setLists(res.data.challengeList);
-        setItems(res.data.challengeList);
+        setAllLists(res.data.challengeList);
+        setListItems(res.data.challengeList);
       });
   };
   const handleRequsetLevelList = (e) => {
     const level = e.target.value;
-    console.log(level);
     //해당레벨 버튼을 누르면 list state에 저장된 list값들중 해당레벨을 찾아서 setList로 바꾼다.
-    let a = lists.map((list) => list);
-    let b = a.filter((el) => el.level === Number(level));
-    setItems(b);
+    let listItem = allLists.map((list) => list);
+    let itemLevel = listItem.filter((el) => el.level === Number(level));
+    setListItems(itemLevel);
   };
 
   return (
@@ -72,7 +64,7 @@ const ChallengeList = () => {
         </Select>
       </Subbar>
       <ServicesWrapper>
-        {items.map((list, idx) => {
+        {listItems.map((list, idx) => {
           return <ChallengeListItem list={list} key={idx} />;
         })}
       </ServicesWrapper>
