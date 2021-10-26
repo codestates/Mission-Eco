@@ -3,9 +3,6 @@ import { GoogleLogin, GoogleLogout } from "react-google-login";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 
-const clientId =
-  "856802198136-5mpl1i164pp7d7nite52rbgj2ur29ghl.apps.googleusercontent.com";
-
 function GoogleLoginBtn({ handleResponseSuccess }) {
   const [showloginButton, setShowloginButton] = useState(true);
   const [showlogoutButton, setShowlogoutButton] = useState(false);
@@ -64,7 +61,7 @@ function GoogleLoginBtn({ handleResponseSuccess }) {
     <div>
       {showloginButton ? (
         <GoogleLogin
-          clientId={clientId}
+          clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
           buttonText="Sign In"
           onSuccess={onLoginSuccess}
           onFailure={onLoginFailure}
@@ -75,7 +72,7 @@ function GoogleLoginBtn({ handleResponseSuccess }) {
 
       {showlogoutButton ? (
         <GoogleLogout
-          clientId={clientId}
+          clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
           buttonText="Sign Out"
           onLogoutSuccess={onSignoutSuccess}
         ></GoogleLogout>
