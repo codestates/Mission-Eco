@@ -59,8 +59,8 @@ const Login = () => {
         withCredentials: true,
       })
       .then((res) => {
-        dispatch(getUserInfo(res.data.data.userInfo));
-        console.log(res.data.data.userInfo);
+        dispatch(getUserInfo(res.data.userInfo));
+        console.log(res.data.userInfo);
       })
       .catch((err) => console.log(err));
   };
