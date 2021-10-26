@@ -27,7 +27,7 @@ function Main() {
       )
       .then((res) => {
         //console.log("klogin", res.data.message);
-        if (res.status === 200) {
+        if (res.status === 204) {
           console.log("kakao ok");
           dispatch(isLogin(true));
           history.push("/");

@@ -41,7 +41,7 @@ const MypageEdit = () => {
     password1: "",
     password2: "",
   });
-  // const [isPw, setIsPw] = useState(false);
+  const [isPw, setIsPw] = useState(false);
 
   // * handle Input Value 함수 - Nick
   const handleNickValue = (key) => (e) => {
@@ -113,7 +113,7 @@ const MypageEdit = () => {
     } else if (isPw) {
       axios
         .patch(
-          `https://localhost:4000/user/validation/password/${password}`, // 여기에 /mypage/userinfo/password 엔드포인트 쓰는거? 일케 쓰는 거 맞음?,
+          `https://localhost:4000/user/validation/password/${password1}`, // 여기에 /mypage/userinfo/password 엔드포인트 쓰는거? 일케 쓰는 거 맞음?,
           { pwInfo },
           { withCredentials: true }
         )
