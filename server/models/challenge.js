@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
+
   challenge.init(
     {
       img: DataTypes.STRING,
