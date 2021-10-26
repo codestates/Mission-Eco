@@ -2,13 +2,13 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.addColumn("posts", "challenge_id", {
+    await queryInterface.addColumn("challengelogs", "challenge_id", {
       type: Sequelize.INTEGER,
     });
-    await queryInterface.addConstraint("posts", {
+    await queryInterface.addConstraint("challengelogs", {
       fields: ["challenge_id"],
       type: "foreign key",
-      name: "challenges_posts_id_fk",
+      name: "challenges_challengelogs_id_fk",
       references: {
         table: "challenges",
         field: "id",
@@ -19,6 +19,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.removeColumn("posts", "challenge_id");
+    await queryInterface.removeColumn("challengelogs", "challenge_id");
   },
 };

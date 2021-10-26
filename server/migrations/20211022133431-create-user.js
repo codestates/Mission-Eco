@@ -17,13 +17,9 @@ module.exports = {
       nickname: {
         type: Sequelize.STRING,
       },
-      point: {
-        type: Sequelize.INTEGER,
-        defaultValue: 0,
-      },
       admin: {
-        type: Sequelize.STRING,
-        defaultValue: "user",
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
       },
       createdAt: {
         allowNull: false,
