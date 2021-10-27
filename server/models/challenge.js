@@ -15,11 +15,12 @@ module.exports = (sequelize, DataTypes) => {
       models.challenge.hasMany(models.challengelike, {
         foreignKey: "challenge_id",
       });
-      models.challenge.hasMany(models.badge, {
+      models.challenge.hasOne(models.badge, {
         foreignKey: "challenge_id",
       });
     }
   }
+
   challenge.init(
     {
       img: DataTypes.STRING,

@@ -36,6 +36,7 @@ const Login = () => {
     email: "",
     password: "",
   });
+
   const [errMsg, setErrMsg] = useState("");
 
   const handleInputValue = (key) => (e) => {
@@ -46,6 +47,7 @@ const Login = () => {
     //isAuthenticated() auth 인증
     //로그인 상태 true
     //mainpage로 이동
+    alert("핸들 성공");
     setErrMsg("ok.");
     dispatch(isLogin(true));
     history.push("/");
@@ -55,12 +57,12 @@ const Login = () => {
   const isAuthenticated = () => {
     //유저 정보 찾아줌
     axios
-      .get("https://localhost:4000/mypage/auth", {
+      .get(`${process.env.REACT_APP_API_URL}/mypage/auth`, {
         withCredentials: true,
       })
       .then((res) => {
-        dispatch(getUserInfo(res.data.data.userInfo));
-        console.log(res.data.data.userInfo);
+        dispatch(getUserInfo(res.data.userInfo));
+        console.log(res.data.userInfo);
       })
       .catch((err) => console.log(err));
   };
@@ -76,7 +78,7 @@ const Login = () => {
     } else {
       axios
         .post(
-          "https://localhost:4000/user/signin",
+          `${process.env.REACT_APP_API_URL}/user/signin`,
           { email, password },
           { withCredentials: true }
         )

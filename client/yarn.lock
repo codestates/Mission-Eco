@@ -6736,6 +6736,8 @@
     "jest-snapshot" "^26.6.2"
 
 "jest-resolve@*":
+  "integrity" "sha512-tRAz2bwraHufNp+CCmAD8ciyCpXCs1NQxB5EJAmtCFy6BN81loFEGWKzYu26Y62lAJJe4X4jg36Kf+NsQyiStQ=="
+  "resolved" "https://registry.npmjs.org/jest-resolve/-/jest-resolve-26.6.0.tgz"
   "version" "26.6.0"
   dependencies:
     "@jest/types" "^26.6.0"
@@ -9425,11 +9427,14 @@
     "@types/react" "*"
     "prop-types" "^15.6.0"
 
+<<<<<<< HEAD
+=======
 "react-hook-form@^7.17.5":
   "integrity" "sha512-4bPtPGkpVhZlgtTbtMGi0RFphKHgxCj5u3AsGz3SBdleELlG1pDf9zRQOtfGlOGkZlc7u78RzD0xu9kOw7PYdQ=="
   "resolved" "https://registry.npmjs.org/react-hook-form/-/react-hook-form-7.17.5.tgz"
   "version" "7.17.5"
 
+>>>>>>> 9d85ed9f8a13386ae58d8cc28e32f18973ac26fa
 "react-is@^16.13.1":
   "integrity" "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ=="
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"

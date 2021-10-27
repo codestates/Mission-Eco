@@ -19,16 +19,18 @@ router.get("/user/validation/email/:email", userCtrl.email);
 router.patch("/mypage/userinfo/nickname", mypageCtrl.modifyNickname);
 router.patch("/mypage/userinfo/password", mypageCtrl.modifyPassword);
 router.delete("/mypage/userinfo", mypageCtrl.deleteAccount);
-router.get("/mypage/mylist/:userId", mypageCtrl.getMyList);
+router.get("/mypage/mylist", mypageCtrl.getMyList);
 router.get("/mypage/auth", mypageCtrl.auth);
 router.post("/mypage/validation-password", mypageCtrl.checkPwd);
 
 // challenge
 router.get("/challenge", challengeCtrl.showChallenge);
+router.get("/challenge/like", challengeCtrl.likeList);
 router.post("/challenge/like", challengeCtrl.like);
 router.post("/challenge/unlike", challengeCtrl.unLike);
 
 // challenge-log
+router.get("/challenge-log", challengeLogCtrl.get);
 router.post("/challenge-log", challengeLogCtrl.post);
 router.delete("/challenge-log", challengeLogCtrl.delete);
 

@@ -21,14 +21,15 @@ const ChallengeList = () => {
 
   const handleRequsetList = () => {
     axios
-      .get("https://localhost:4000/challenge", {
+      .get(`${process.env.REACT_APP_API_URL}/challenge`, {
         withCredentials: true,
       })
       .then((res) => {
         console.log("res--", res.data.challengeList);
         setAllLists(res.data.challengeList);
         setListItems(res.data.challengeList);
-      });
+      })
+      .catch(err => console.log('challengeList.js 오류', err));
   };
   const handleRequsetLevelList = (e) => {
     const level = e.target.value;
