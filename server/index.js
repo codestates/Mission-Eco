@@ -18,7 +18,11 @@ app.use(express.urlencoded({ extended: false }));
 // !mission eco 도메인 생성시 origin에 추가해야함
 app.use(
   cors({
-    origin: ["https://localhost:3000", "http://localhost:3000"],
+    origin: [
+      "https://localhost:3000",
+      "http://localhost:3000",
+      "http://team-meetme.s3-website.ap-northeast-2.amazonaws.com/"
+    ],
     credentials: true, // true설정은 header를 전달해줌
     methods: ["GET", "POST", "OPTIONS", "DELETE", "PATCH"],
   })

@@ -44,7 +44,7 @@ const Navbar = ({ toggle }) => {
     alert("로그아웃버튼");
     //일반유저 로그아웃
     axios
-      .post("https://localhost:4000/user/logout", { withCredentials: true })
+      .post(`${process.env.REACT_APP_API_URL}/user/logout`, { withCredentials: true })
       .then((res) => console.log("out", res));
     dispatch(isLogin(!isLogin));
     dispatch(deleteUserInfo(null));

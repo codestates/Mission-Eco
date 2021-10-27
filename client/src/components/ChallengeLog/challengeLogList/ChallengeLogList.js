@@ -23,12 +23,13 @@ const ChallengeLogList = () => {
 
   const handleRequsetLog = () => {
     axios
-      .get("https://localhost:4000/challenge-log", {
+      .get(`${process.env.REACT_APP_API_URL}/challenge-log`, {
         withCredentials: true,
       })
       .then((res) => {
         setAllLists(res.data.challengeLogList);
-      });
+      })
+      .cath((err) => console.log('challengeLogList.js 오류', err));
   };
 
   return (
