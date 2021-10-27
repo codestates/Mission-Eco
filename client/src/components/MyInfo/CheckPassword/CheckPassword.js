@@ -1,6 +1,7 @@
 // Mypage에서 '수정하기'버튼 클릭눌러서 들어온 페이지 - 기능 구현 여기에
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+
 import axios from "axios";
 import {
   CheckPasswordContainer,
@@ -15,6 +16,7 @@ axios.defaults.withCredentials = true;
 
 export default function CheckPassword() {
   const state = useSelector((state) => state.infoReducer);
+  const dispatch = useDispatch();
   console.log(state.userInfo);
   const [password, setPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");

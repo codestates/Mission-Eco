@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { isLogin, getUserInfo } from "../../Redux/actions";
+import { isLogin, deleteUserInfo } from "../../Redux/actions";
 import { ReactComponent as Menubar } from "../../imges/menubar.svg";
 import axios from "axios";
 //import { FaBars } from "react-icons/fa";
@@ -19,6 +20,7 @@ import {
 
 const Navbar = ({ toggle }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const state = useSelector((state) => state.infoReducer.isLogin);
   const [scrollNav, setScrollNav] = useState(false);
 
@@ -37,15 +39,29 @@ const Navbar = ({ toggle }) => {
   const toggleHome = () => {
     window.scrollToTop();
   };
-  /*const handleLogout = () => {
-    
-  };*/
-  const KAKAO_LOGOUT = `https://kauth.kakao.com/oauth/logout?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&logout_redirect_uri=https://localhost:3000`;
+
+  const handleLogout = () => {
+    alert("로그아웃버튼");
+    //일반유저 로그아웃
+    axios
+      .post("https://localhost:4000/user/logout", { withCredentials: true })
+      .then((res) => console.log("out", res));
+    dispatch(isLogin(!isLogin));
+    dispatch(deleteUserInfo(null));
+    history.push("/challenge");
+    /*/소셜 로그아웃 
+    //카카오
+    const KAKAO_LOGOUT = `https://kauth.kakao.com/oauth/logout?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&logout_redirect_uri=https://localhost:3000`;
+  window.location.href = KAKAO_LOGOUT;
+    //구글 
+    */
+  };
+  /*
   const oauthLogout = () => {
     window.location.href = KAKAO_LOGOUT;
     dispatch(isLogin(!isLogin));
     dispatch(getUserInfo(null));
-  };
+  };*/
 
   return (
     <>
@@ -83,14 +99,14 @@ const Navbar = ({ toggle }) => {
             </NavItem>
             <NavItem>
               <NavLinks
-                to="services"
+                to="/log"
                 //smooth={true}
                 duration={500}
                 //spy={true}
                 exact="true"
                 offset={-80}
               >
-                Service
+                Mission-log
               </NavLinks>
             </NavItem>
             {!state.isLogin ? null : (
@@ -112,7 +128,7 @@ const Navbar = ({ toggle }) => {
             {!state.isLogin ? (
               <NavBtnLink to="/login">Signin</NavBtnLink>
             ) : (
-              <NavBtnLink to="/login" onClick={oauthLogout}>
+              <NavBtnLink to="/login" onClick={handleLogout}>
                 Logout
               </NavBtnLink>
             )}
