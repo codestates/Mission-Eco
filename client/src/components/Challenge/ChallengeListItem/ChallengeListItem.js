@@ -40,6 +40,14 @@ const ChallengeListItem = ({ list }) => {
         )
         .then((res) => {
           if (res.status === 204) {
+            //유저가 좋아요를 누른후 서버에게 해당 유저 좋아요 눌렀음을 알려준다.
+            //서버가 해당 유저와  해당 챌린지를 like테이블에 저장을 하고
+            //like table을 클라에게 넘겨준다.
+            //클라는 해당 라이크 테이블에서 userId, ChallengeId
+            //유저인포에 좋아요한 챌린지 저장?
+            //해당 챌린지가 이미 하트가 되어있으면 다시 클릭시 하트를 취소
+            //언라이크 요청을 보냄
+            console.log("like", res);
             setLike(!like);
           }
         });
