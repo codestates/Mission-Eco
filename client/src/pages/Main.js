@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import MypageEdit from "../components/MyInfo/MypageEdit/MypageEdit";
+import Mypage from "./mypage/Mypage";
+
 function Main() {
   const state = useSelector((state) => state.infoReducer);
   console.log(state.userInfo);

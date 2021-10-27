@@ -93,6 +93,7 @@ const Navbar = ({ toggle }) => {
                 Service
               </NavLinks>
             </NavItem>
+            {/* ------------- Mypage버튼 ------------ */}
             {!state.isLogin ? null : (
               <NavItem>
                 <NavLinks
@@ -101,12 +102,13 @@ const Navbar = ({ toggle }) => {
                   duration={500}
                   //spy={true}
                   exact="true"
-                  offset={-80}
+                  offset={0}
                 >
                   Mypage
                 </NavLinks>
               </NavItem>
             )}
+            {/* ----------------------------------- */}
           </NavMenu>
           <NavBtn>
             {!state.isLogin ? (
