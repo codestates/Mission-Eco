@@ -19,7 +19,7 @@ router.get("/user/validation/email/:email", userCtrl.email);
 router.patch("/mypage/userinfo/nickname", mypageCtrl.modifyNickname);
 router.patch("/mypage/userinfo/password", mypageCtrl.modifyPassword);
 router.delete("/mypage/userinfo", mypageCtrl.deleteAccount);
-router.get("/mypage/mylist/:userId", mypageCtrl.getMyList);
+router.get("/mypage/mylist", mypageCtrl.getMyList);
 router.get("/mypage/auth", mypageCtrl.auth);
 router.post("/mypage/validation-password", mypageCtrl.checkPwd);
 
