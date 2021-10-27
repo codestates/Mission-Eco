@@ -36,6 +36,7 @@ const Login = () => {
     email: "",
     password: "",
   });
+
   const [errMsg, setErrMsg] = useState("");
 
   const handleInputValue = (key) => (e) => {
@@ -46,6 +47,7 @@ const Login = () => {
     //isAuthenticated() auth 인증
     //로그인 상태 true
     //mainpage로 이동
+    alert("핸들 성공");
     setErrMsg("ok.");
     dispatch(isLogin(true));
     history.push("/");

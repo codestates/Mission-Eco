@@ -17,8 +17,8 @@ const ChallengeListItem = ({ log }) => {
   return (
     <ServicesCard>
       <ServicesIcon background={log.img} />
-      <ServicesH2>{log.name}</ServicesH2>
-      <ServicesP></ServicesP>
+      <ServicesH2>{log.challengelog_contents}</ServicesH2>
+      <ServicesP>{log.createdAt}</ServicesP>
     </ServicesCard>
   );
 };
