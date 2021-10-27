@@ -28,7 +28,8 @@ const ChallengeList = () => {
         console.log("res--", res.data.challengeList);
         setAllLists(res.data.challengeList);
         setListItems(res.data.challengeList);
-      });
+      })
+      .catch(err => console.log('challengeList.js 오류', err));
   };
   const handleRequsetLevelList = (e) => {
     const level = e.target.value;
