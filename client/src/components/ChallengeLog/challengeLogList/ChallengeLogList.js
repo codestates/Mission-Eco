@@ -28,7 +28,8 @@ const ChallengeLogList = () => {
       })
       .then((res) => {
         setAllLists(res.data.challengeLogList);
-      });
+      })
+      .cath((err) => console.log('challengeLogList.js 오류', err));
   };
 
   return (
