@@ -2,7 +2,7 @@ const { user } = require("../../models");
 const bcrypt = require("bcrypt");
 
 module.exports = async (req, res) => {
-  res.send("checkPwd 테스트 성공");
+  //res.send("checkPwd 테스트 성공");
   //비크립트 적용해서 확인해야하나??
   const { userId, password } = req.body;
   //id와 password가 들어오지 않을 때
