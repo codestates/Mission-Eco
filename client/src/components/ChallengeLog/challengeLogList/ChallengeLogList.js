@@ -23,7 +23,7 @@ const ChallengeLogList = () => {
 
   const handleRequsetLog = () => {
     axios
-      .get("https://localhost:4000/challenge-log", {
+      .get(`${process.env.REACT_APP_API_URL}/challenge-log`, {
         withCredentials: true,
       })
       .then((res) => {
