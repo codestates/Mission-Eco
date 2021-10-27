@@ -1,9 +1,14 @@
-const { challengelog } = require("../../models");
+const { user, challenge, challengelog } = require("../../models");
 module.exports = {
   get: async (req, res) => {
     try {
-      //inner join 해주기 user_nickname도 함께 넘겨 주기!수정 더 해야 함.
-      const challengeLogList = await challengelog.findAll();
+      //inner join 해주기 user_nickname도 함께 넘겨 주기! 맞게나오려나
+      const challengeLogList = await challengelog.findAll({
+        include: [
+          { model: user, attributes: ["nickname"] },
+          { model: challenge, attributes: ["name"] },
+        ],
+      });
       res.status(200).send({ challengeLogList });
     } catch (error) {
       console.log(error);
@@ -23,13 +28,20 @@ module.exports = {
           img: img,
           challengelog_contents: contents,
         });
-        res.sendStatus(204);
+        res.status(201).send({ new_post });
       }
     } catch (err) {
       console.log(err);
     }
   },
   delete: async (req, res) => {
-    res.send("challenge-log 기록 삭제");
+    //res.send("challenge-log 기록 삭제");
+    const { logId } = req.params;
+    const findLog = await challengelog.findByPk(logId);
+    if (!findLog) {
+      return res.sendStatus(400);
+    }
+    await findLog.destroy();
+    return res.sendStatus(204);
   },
 };
