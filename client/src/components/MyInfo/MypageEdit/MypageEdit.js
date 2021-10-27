@@ -62,7 +62,7 @@ const MypageEdit = () => {
     } else {
       axios
         .get(
-          `https://localhost:4000/user/validation/nickname/${nickname}`,
+          `${process.env.REACT_APP_API_URL}/user/validation/nickname/${nickname}`,
 
           {
             withCredentials: true,
@@ -92,7 +92,7 @@ const MypageEdit = () => {
     } else {
       axios
         .patch(
-          "https://localhost:4000/mypage/userinfo/password", // 여기에 /mypage/userinfo/password 엔드포인트 쓰는거? 일케 쓰는 거 맞음?,
+          `${process.env.REACT_APP_API_URL}/mypage/userinfo/password`, // 여기에 /mypage/userinfo/password 엔드포인트 쓰는거? 일케 쓰는 거 맞음?,
           { userId: state.userInfo.id, newPassword: password1 },
           { withCredentials: true }
         )
@@ -120,7 +120,7 @@ const MypageEdit = () => {
 
   const userDeleteRequestHandler = () => {
     axios
-      .delete(`https://localhost:4000/mypage/userinfo`, {
+      .delete(`${process.env.REACT_APP_API_URL}/mypage/userinfo`, {
         withCredentials: true,
       })
       .then((res) => {
