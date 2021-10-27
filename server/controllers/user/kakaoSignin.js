@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
   try {
     axios
       .post(
-        `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=${process.env.KAKAO_REST_API}&redirect_uri=https://localhost:3000&code=${req.body.authorizationCode}`,
+        `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=${process.env.KAKAO_REST_API}&redirect_uri=${process.env.KAKAO_REDIRECT_URI}&code=${req.body.authorizationCode}`,
         {
           headers: {
             "Content-type": "application/x-www-form-urlencoded;charset=utf-8",

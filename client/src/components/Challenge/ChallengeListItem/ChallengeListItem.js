@@ -30,7 +30,7 @@ const ChallengeListItem = ({ list }) => {
     } else {
       axios
         .post(
-          "https://localhost:4000/challenge/like",
+          `${process.env.REACT_APP_API_URL}/challenge/like`,
           {
             challengeId,
           },
