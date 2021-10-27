@@ -19,7 +19,7 @@ const infoReducer = (state = initialState, action) => {
       return { ...newState, userInfo: action.payload.userInfo };
       break;
     case DELETE_USERINFO:
-      return { ...newState, userInfo: action.payload.userInfo };
+      return { ...newState, userInfo: action.payload };
       break;
     case IS_LOADING:
       return { ...newState, isLoading: action.payload.isLoading };

@@ -8,10 +8,9 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 function Main() {
-  const state = useSelector((state) => state.infoReducer);
-  console.log(state.userInfo);
   const dispatch = useDispatch();
   const history = useHistory();
+
   useEffect(() => {
     isAuthenticated();
     const authorizationCode = new URL(window.location.href).searchParams.get(
@@ -20,7 +19,8 @@ function Main() {
     if (authorizationCode) {
       getAccessToken(authorizationCode);
     }
-  }, []);
+    return () => authorizationCode;
+  });
 
   const isAuthenticated = () => {
     //유저 정보 찾아줌

@@ -18,12 +18,12 @@ import {
   NavBtnLink,
 } from "./NavbarStyle";
 
-const Navbar = ({ toggle }) => {
+const Navbar = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const state = useSelector((state) => state.infoReducer.isLogin);
   const [scrollNav, setScrollNav] = useState(false);
-
+  /*
   const changeNav = () => {
     if (window.scrollY >= 80) {
       setScrollNav(true);
@@ -35,11 +35,11 @@ const Navbar = ({ toggle }) => {
   useEffect(() => {
     window.addEventListener("scroll", changeNav);
   }, []);
-
+  /*
   const toggleHome = () => {
     window.scrollToTop();
   };
-
+  */
   const handleLogout = () => {
     alert("로그아웃버튼");
     //일반유저 로그아웃
@@ -68,7 +68,7 @@ const Navbar = ({ toggle }) => {
       <Nav scrollNav={scrollNav}>
         <NavContainer>
           <NavLogo to="/">Misson-Eco</NavLogo>
-          <MobileIcon onClick={toggle}>
+          <MobileIcon>
             <Menubar fill="white" />
           </MobileIcon>
           <NavMenu>
@@ -107,6 +107,18 @@ const Navbar = ({ toggle }) => {
                 offset={-80}
               >
                 Mission-log
+              </NavLinks>
+            </NavItem>
+            <NavItem>
+              <NavLinks
+                to="/upload"
+                //smooth={true}
+                duration={500}
+                //spy={true}
+                exact="true"
+                offset={-80}
+              >
+                Let's ECO
               </NavLinks>
             </NavItem>
             {!state.isLogin ? null : (

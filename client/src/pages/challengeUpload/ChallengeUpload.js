@@ -28,7 +28,7 @@ function ChallengeUpload() {
     //fd.append("img", selectedFile, selectedFile.name, fd);
     axios
       .post(
-        "https://localhost:4000/challenge/post",
+        "https://localhost:4000/challenge-log",
         {
           userId: userInfo.id,
           challengeId: 1,
@@ -39,7 +39,7 @@ function ChallengeUpload() {
       )
       .then((res) => {
         console.log(res);
-        setImg(res.data.data.img);
+        setImg(res.data.new_post.img);
       });
   };
   return (

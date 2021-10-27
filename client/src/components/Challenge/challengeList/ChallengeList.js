@@ -25,7 +25,7 @@ const ChallengeList = () => {
         withCredentials: true,
       })
       .then((res) => {
-        console.log("res--", res.data.challengeList);
+        // console.log("res--", res.data.challengeList);
         setAllLists(res.data.challengeList);
         setListItems(res.data.challengeList);
       });

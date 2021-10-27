@@ -8,6 +8,7 @@ import Mypage from "./pages/mypage/Mypage";
 import Navbar from "./components/Navbar/Navbar";
 import Challenge from "./pages/challenge/Challenge";
 import ChallengeLog from "./pages/challengeLog/ChallengeLog";
+import ChallengeUpload from "./pages/challengeUpload/ChallengeUpload";
 
 function App() {
   return (
@@ -30,6 +31,10 @@ function App() {
         <Route exact path="/log">
           <Navbar />
           <ChallengeLog />
+        </Route>
+        <Route exact path="/upload">
+          <Navbar />
+          <ChallengeUpload />
         </Route>
       </Switch>
     </Router>
