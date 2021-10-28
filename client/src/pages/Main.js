@@ -21,7 +21,7 @@ function Main() {
     //axios요청
     axios
       .post(
-        "https://localhost:4000/user/kakao-signin",
+        `${process.env.REACT_APP_API_URL}/user/kakao-signin`,
         { authorizationCode },
         { withCredentials: true }
       )

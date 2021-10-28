@@ -26,7 +26,7 @@ export default function CheckPassword() {
     } else {
       /*axios
         .post(
-          "https://localhost:4000/user/login`",
+          `${process.env.REACT_APP_API_URL}/user/login`,
           { password },
           { withCredentials: true }
         )
