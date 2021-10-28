@@ -22,12 +22,7 @@ export const initialState = {
     level: "",
     like: "",
   },
-  postcardInfo: {
-    id: "",
-    userId: "",
-    userNickname: "",
-    challengeId: "",
-    contents: "",
-    createdAt: "",
+  challengeLogList: {
+    challengeLogList: [],
   },
 };

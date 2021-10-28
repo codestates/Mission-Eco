@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+//import { useSelector } from "react-redux";
 import ChallengeListItem from "../ChallengeListItem/ChallengeListItem";
 
 import {
@@ -12,8 +13,10 @@ import {
 import axios from "axios";
 
 const ChallengeList = () => {
+  //const isLogin = useSelector((state) => state.infoReducer.isLogin);
   const [allLists, setAllLists] = useState([]);
   const [listItems, setListItems] = useState([]);
+  //const [likeList, setLikeList] = useState([]);
 
   useEffect(() => {
     handleRequsetList();
@@ -36,6 +39,7 @@ const ChallengeList = () => {
     let listItem = allLists.map((list) => list);
     let itemLevel = listItem.filter((el) => el.level === Number(level));
     setListItems(itemLevel);
+    console.log("add", listItems);
   };
 
   return (
@@ -66,6 +70,7 @@ const ChallengeList = () => {
       </Subbar>
       <ServicesWrapper>
         {listItems.map((list, idx) => {
+          //console.log("lllllll", list);
           return <ChallengeListItem list={list} key={idx} />;
         })}
       </ServicesWrapper>

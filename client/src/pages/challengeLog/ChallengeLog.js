@@ -1,5 +1,5 @@
 import React from "react";
-import ChallengeList from "../../components/Challenge/challengeList/ChallengeList";
+//import ChallengeList from "../../components/Challenge/challengeList/ChallengeList";
 import ChallengeLogList from "../../components/ChallengeLog/challengeLogList/ChallengeLogList";
 
 function ChallengeLog() {

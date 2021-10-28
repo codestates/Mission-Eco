@@ -11,7 +11,6 @@ import {
   TitleH3,
   Input,
   Span,
-  P,
   Btn,
 } from "./MypageEditStyle";
 

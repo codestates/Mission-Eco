@@ -4,7 +4,7 @@ export const DELETE_USERINFO = "DELETE_USERINFO";
 export const IS_LOADING = "IS_LOADING";
 export const IS_OPEN_MODAL = "IS_OPEN_MODAL";
 export const CHALLENGE_INFO = "CHALLENGE_INFO";
-export const POSTCARD_INFO = "POSTCARD_INFO";
+export const CHALLENGE_LOG_LIST = "CHALLENGE_LOG_LIST";
 
 export function isLogin(boolean) {
   return {
@@ -70,11 +70,11 @@ export function getChallengeInfo(challengeInfo) {
   };
 }
 
-export function getPostcardInfo(postcadInfo) {
+export function getChallengeLogList(logList) {
   return {
-    type: POSTCARD_INFO,
+    type: CHALLENGE_LOG_LIST,
     payload: {
-      postcadInfo,
+      logList,
     },
   };
 }

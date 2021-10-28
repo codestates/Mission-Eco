@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import Challenge from "./challenge/Challenge";
-import ChallengeLog from "./challengeLog/ChallengeLog";
 import Navbar from "../components/Navbar/Navbar";
 import { isLogin, getUserInfo } from "../../src/Redux/actions/index";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
@@ -61,7 +60,6 @@ function Main() {
     <div>
       <Navbar />
       <Challenge />
-      <ChallengeLog />
     </div>
   );
 }

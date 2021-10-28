@@ -16,10 +16,10 @@ import {
   FormLabel,
   FormInput,
   FormButton,
-  FormBtnBox,
+  //FormBtnBox,
   BtnLink,
   Text,
-  OauthBtn,
+  //OauthBtn,
 } from "./LoginStyle";
 
 axios.defaults.withCredentials = true;
