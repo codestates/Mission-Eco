@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import kakao from "../../imges/kakao.png";
 import { OauthBtn, Img } from "./KakaoStyle";
 

@@ -5,7 +5,7 @@ import {
   IS_LOADING,
   IS_OPEN_MODAL,
   CHALLENGE_INFO,
-  POSTCARD_INFO,
+  CHALLENGE_LOG_LIST,
 } from "../actions/index";
 import { initialState } from "./initialState";
 
@@ -30,8 +30,8 @@ const infoReducer = (state = initialState, action) => {
     case CHALLENGE_INFO:
       return { ...newState, challengeInfo: action.payload };
       break;
-    case POSTCARD_INFO:
-      return { ...newState, postcardInfo: action.payload };
+    case CHALLENGE_LOG_LIST:
+      return { ...newState, challengeLogList: action.payload };
       break;
 
     default:
