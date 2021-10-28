@@ -37,7 +37,7 @@ function GoogleLoginBtn({ handleResponseSuccess }) {
       .then((res) => {
         // 상태코드가 200이면
         // login 상태를 true로 만들고, 메인페이지로 이동하도록 함, 유저의 정보를 받아옴
-        handleResponseSuccess();
+        //handleResponseSuccess();
         return console.log("구글 로그인 서버의 응답------->", res.status);
       })
       .catch((err) => console.log("googleLogin 컴포넌트 에러", err));

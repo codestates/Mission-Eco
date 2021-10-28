@@ -7,6 +7,7 @@ import Login from "./pages/Login/Login";
 import Mypage from "./pages/mypage/Mypage";
 import Navbar from "./components/Navbar/Navbar";
 import Challenge from "./pages/challenge/Challenge";
+import ChallengeLog from "./pages/challengeLog/ChallengeLog";
 
 function App() {
   return (
@@ -22,9 +23,13 @@ function App() {
           <Login />
         </Route>
         <Route exact path="/mypage" component={Mypage} />
-        <Route exact path="/Challenge">
+        <Route exact path="/challenge">
           <Navbar />
           <Challenge />
+        </Route>
+        <Route exact path="/log">
+          <Navbar />
+          <ChallengeLog />
         </Route>
       </Switch>
     </Router>

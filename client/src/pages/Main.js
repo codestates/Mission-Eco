@@ -1,15 +1,19 @@
 import React, { useEffect } from "react";
 import Challenge from "./challenge/Challenge";
+import ChallengeLog from "./challengeLog/ChallengeLog";
 import Navbar from "../components/Navbar/Navbar";
-import { isLogin } from "../../src/Redux/actions/index";
-import { useDispatch } from "react-redux";
+import { isLogin, getUserInfo } from "../../src/Redux/actions/index";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import MypageEdit from "../components/MyInfo/MypageEdit/MypageEdit";
+
 function Main() {
+  const state = useSelector((state) => state.infoReducer);
+  console.log(state.userInfo);
   const dispatch = useDispatch();
   const history = useHistory();
   useEffect(() => {
+    isAuthenticated();
     const authorizationCode = new URL(window.location.href).searchParams.get(
       "code"
     );
@@ -17,6 +21,20 @@ function Main() {
       getAccessToken(authorizationCode);
     }
   }, []);
+
+  const isAuthenticated = () => {
+    //유저 정보 찾아줌
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/mypage/auth`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        dispatch(getUserInfo(res.data.userInfo));
+        console.log(res.data.userInfo);
+      })
+      .catch((err) => console.log(err));
+  };
+
   const getAccessToken = (authorizationCode) => {
     //axios요청
     axios
@@ -29,6 +47,7 @@ function Main() {
         //console.log("klogin", res.data.message);
         if (res.status === 204) {
           console.log("kakao ok");
+
           dispatch(isLogin(true));
           history.push("/");
           //handleResponseSuccess();
@@ -42,6 +61,7 @@ function Main() {
     <div>
       <Navbar />
       <Challenge />
+      <ChallengeLog />
     </div>
   );
 }

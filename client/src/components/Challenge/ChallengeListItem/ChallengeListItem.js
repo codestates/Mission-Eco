@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import blackHeart from "../../../imges/blackHeart.png";
 import colorHeart from "../../../imges/colorHeart.png";
@@ -12,13 +12,15 @@ import {
 } from "./ChallengeListItemStyle";
 
 const ChallengeListItem = ({ list }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {}, []);
+
   const state = useSelector((state) => state.infoReducer);
 
   const [like, setLike] = useState(false);
   const [errMsg, setErrMsg] = useState("");
 
   const isLogin = state.isLogin.isLogin;
-  console.log("liiiist", isLogin);
 
   const handleLikeBtn = () => {
     const userId = state.userInfo.id;
@@ -30,7 +32,6 @@ const ChallengeListItem = ({ list }) => {
         .post(
           `${process.env.REACT_APP_API_URL}/challenge/like`,
           {
-            userId,
             challengeId,
           },
           {
@@ -38,7 +39,7 @@ const ChallengeListItem = ({ list }) => {
           }
         )
         .then((res) => {
-          if (res.status === 201) {
+          if (res.status === 204) {
             setLike(!like);
           }
         });

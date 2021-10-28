@@ -53,6 +53,14 @@ export const ServicesCard = styled.div`
     transition: all 0.2s ease-in-out;
     cursor: pointer;
   }
+  @media screen and (max-width: 768px) {
+    width: 340px;
+    height: 400px;
+  }
+  @media screen and (max-width: 480px) {
+    width: 340px;
+    height: 400px;
+  }
 `;
 
 export const ServicesIcon = styled.img`
