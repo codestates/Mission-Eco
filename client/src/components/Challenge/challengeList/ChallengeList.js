@@ -21,7 +21,7 @@ const ChallengeList = () => {
 
   const handleRequsetList = () => {
     axios
-      .get("https://localhost:4000/challenge", {
+      .get(`${process.env.REACT_APP_API_URL}/challenge`, {
         withCredentials: true,
       })
       .then((res) => {

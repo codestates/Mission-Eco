@@ -42,7 +42,7 @@ function Signup() {
     } else {
       axios
         .get(
-          `https://localhost:4000/user/validation/email/${email}`,
+          `${process.env.REACT_APP_API_URL}/user/validation/email/${email}`,
 
           {
             withCredentials: true,
@@ -66,7 +66,7 @@ function Signup() {
     } else {
       axios
         .get(
-          `https://localhost:4000/user/validation/nickname/${nickname}`,
+          `${process.env.REACT_APP_API_URL}/user/validation/nickname/${nickname}`,
 
           {
             withCredentials: true,
@@ -93,7 +93,7 @@ function Signup() {
     } else if (isNickname && isEmail) {
       axios
         .post(
-          "https://localhost:4000/user/signup",
+          `${process.env.REACT_APP_API_URL}/user/signup`,
           { signupInfo },
           { withCredentials: true }
         )

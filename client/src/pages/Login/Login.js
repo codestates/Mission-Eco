@@ -55,7 +55,7 @@ const Login = () => {
   const isAuthenticated = () => {
     //유저 정보 찾아줌
     axios
-      .get("https://localhost:4000/mypage/auth", {
+      .get(`${process.env.REACT_APP_API_URL}/mypage/auth`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -76,7 +76,7 @@ const Login = () => {
     } else {
       axios
         .post(
-          "https://localhost:4000/user/signin",
+          `${process.env.REACT_APP_API_URL}/user/signin`,
           { email, password },
           { withCredentials: true }
         )
