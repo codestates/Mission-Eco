@@ -9,7 +9,10 @@ module.exports = {
           { model: challenge, attributes: ["name"] },
         ],
       });
-      res.status(200).send({ challengeLogList });
+      const challengeList = await challenge.findAll({
+        attributes: ["id", "name"],
+      });
+      res.status(200).send({ challengeLogList, challengeList });
     } catch (error) {
       console.log(error);
     }
