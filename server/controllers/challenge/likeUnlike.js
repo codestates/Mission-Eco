@@ -17,7 +17,10 @@ module.exports = {
           user_id: id,
           challenge_id: challengeId,
         });
-        return res.sendStatus(204);
+        const userLikeList = await challengelike.findAll({
+          where: { user_id: id },
+        });
+        return res.status(201).send({ userLikeList });
       }
     } catch (error) {
       console.log(error);
@@ -38,10 +41,13 @@ module.exports = {
         const findUserLike = await challengelike.findOne({
           where: { user_id: id, challenge_id: challengeId },
         });
-        if (!findUserLike) return res.sendStatus(400);
+        if (!findUserLike) return res.status(400).send("no user");
         //좋아요 삭제
         await findUserLike.destroy();
-        return res.sendStatus(204);
+        const userLikeList = await challengelike.findAll({
+          where: { user_id: id },
+        });
+        return res.status(200).send({ userLikeList });
       }
     } catch (error) {
       console.log(error);

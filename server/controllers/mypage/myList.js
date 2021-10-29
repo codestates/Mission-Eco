@@ -22,6 +22,7 @@ module.exports = {
         include: [
           {
             model: challengelike,
+            attribute: [],
             where: { user_id: id },
           },
         ],

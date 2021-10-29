@@ -1,4 +1,4 @@
-const { user, challenge, challengelog } = require("../../models");
+const { user, challengelog, challenge } = require("../../models");
 module.exports = {
   get: async (req, res) => {
     try {
@@ -9,7 +9,10 @@ module.exports = {
           { model: challenge, attributes: ["name"] },
         ],
       });
-      res.status(200).send({ challengeLogList });
+      const challengeList = await challenge.findAll({
+        attributes: ["id", "name"],
+      });
+      res.status(200).send({ challengeLogList, challengeList });
     } catch (error) {
       console.log(error);
     }
@@ -35,13 +38,6 @@ module.exports = {
     }
   },
   delete: async (req, res) => {
-    //res.send("challenge-log 기록 삭제");
-    const { logId } = req.params;
-    const findLog = await challengelog.findByPk(logId);
-    if (!findLog) {
-      return res.sendStatus(400);
-    }
-    await findLog.destroy();
-    return res.sendStatus(204);
+    res.send("challenge-log 기록 삭제");
   },
 };

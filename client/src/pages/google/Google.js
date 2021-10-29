@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
-import { useDispatch } from "react-redux";
+//import { useDispatch } from "react-redux";
 import axios from "axios";
 
 function GoogleLoginBtn({ handleResponseSuccess }) {
@@ -22,7 +22,7 @@ function GoogleLoginBtn({ handleResponseSuccess }) {
     // 첫 방문이 아니라면 구글 사용자의 정보를 불러온다.
     axios
       .post(
-        "https://localhost:4000/user/google-signin",
+        `${process.env.REACT_APP_API_URL}/user/google-signin`,
         {
           email,
           nickname: username,
