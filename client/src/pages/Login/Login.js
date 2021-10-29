@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { isLogin, getUserInfo } from "../../Redux/actions";
+import { getUserInfo, isLogin, userSignin } from "../../Redux/actions";
 import axios from "axios";
 import { validEmail } from "../../utils/validation";
 import Kakao from "../kakao/Kakao";
@@ -25,13 +25,11 @@ import {
 axios.defaults.withCredentials = true;
 
 const Login = () => {
+  const login = useSelector((state) => state.infoReducer.isLogin);
+  console.log("login", login);
   const dispatch = useDispatch();
   const history = useHistory();
-  //이메일, 비밀번호 입력
-  //이메일형식이 맞는지 검사 -> 형식이 맞지 않다면 errmsg Text
-  //2개 input이 모두 채워져 있다면 로그인 요청 보내기
-  //로그인이 성공하면 메인화면으로 나가기
-  //로그인이 실패하면 이메일또는 비밀번호를 확인해주세요.
+
   const [loginInfo, SetLoginInfo] = useState({
     email: "",
     password: "",
@@ -39,17 +37,16 @@ const Login = () => {
 
   const [errMsg, setErrMsg] = useState("");
 
+  useState(() => {}, []);
+
   const handleInputValue = (key) => (e) => {
     SetLoginInfo({ ...loginInfo, [key]: e.target.value });
   };
 
   const handleResponseSuccess = () => {
-    //isAuthenticated() auth 인증
-    //로그인 상태 true
-    //mainpage로 이동
     alert("핸들 성공");
     setErrMsg("ok.");
-    dispatch(isLogin(true));
+
     history.push("/");
     isAuthenticated();
   };
@@ -57,7 +54,7 @@ const Login = () => {
   const isAuthenticated = () => {
     //유저 정보 찾아줌
     axios
-      .get("https://localhost:4000/mypage/auth", {
+      .get(`${process.env.REACT_APP_API_URL}/mypage/auth`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -67,29 +64,21 @@ const Login = () => {
       .catch((err) => console.log(err));
   };
 
-  const loginRequestHandler = () => {
+  const loginRequestHandler = async (e) => {
+    e.preventDefault();
     const { email, password } = loginInfo;
-    console.log(loginInfo);
 
     if (!email || !password) {
       setErrMsg("이메일과 비밀번호를 확인해주세요.");
     } else if (!validEmail(email)) {
       setErrMsg("이메일 형식이 아닙니다.");
     } else {
-      axios
-        .post(
-          "https://localhost:4000/user/signin",
-          { email, password },
-          { withCredentials: true }
-        )
-        .then((res) => {
-          //console.log("login", res.data.message);
-          if (res.status === 204) {
-            handleResponseSuccess();
-          } else {
-            setErrMsg("이메일과 비밀번호를 확인해주세요.");
-          }
-        });
+      dispatch(userSignin(loginInfo));
+      if (isLogin) {
+        handleResponseSuccess();
+      } else {
+        setErrMsg("이메일과 비밀번호를 확인해주세요.");
+      }
     }
   };
 
@@ -98,7 +87,7 @@ const Login = () => {
       <FormWrap>
         <Icon to="/">Mission Eco</Icon>
         <FormContent>
-          <Form action="#">
+          <Form onSubmit={(e) => e.preventDefault()}>
             <FormH1>Sign in to your account</FormH1>
             <FormLabel htmlFor="for">Email</FormLabel>
             <FormInput type="email" onChange={handleInputValue("email")} />

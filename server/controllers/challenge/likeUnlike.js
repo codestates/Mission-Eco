@@ -41,7 +41,7 @@ module.exports = {
         const findUserLike = await challengelike.findOne({
           where: { user_id: id, challenge_id: challengeId },
         });
-        if (!findUserLike) return res.sendStatus(400);
+        if (!findUserLike) return res.status(400).send("no user");
         //좋아요 삭제
         await findUserLike.destroy();
         const userLikeList = await challengelike.findAll({

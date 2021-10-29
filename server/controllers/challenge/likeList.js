@@ -1,6 +1,6 @@
 const { challengelike } = require("../../models");
 const { isAuthorized } = require("../tokenFunctions/index");
-
+const sequelize = require("sequelize");
 module.exports = {
   likeList: async (req, res) => {
     try {

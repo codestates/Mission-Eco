@@ -1,7 +1,9 @@
+/*eslint-disable */
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { isLogin, deleteUserInfo } from "../../Redux/actions";
+import { deleteUserInfo, userSignout } from "../../Redux/actions";
+
 import { ReactComponent as Menubar } from "../../imges/menubar.svg";
 import axios from "axios";
 //import { FaBars } from "react-icons/fa";
@@ -21,7 +23,9 @@ import {
 const Navbar = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const state = useSelector((state) => state.infoReducer.isLogin);
+  //const state = useSelector((state) => state.infoReducer.isLogin);
+  const isLogin = useSelector((state) => state.infoReducer.isLogin);
+  console.log(isLogin, "dfsfsd");
   const [scrollNav, setScrollNav] = useState(false);
   /*
   const changeNav = () => {
@@ -40,14 +44,13 @@ const Navbar = () => {
     window.scrollToTop();
   };
   */
-  const handleLogout = () => {
+  const handleLogout = async () => {
     alert("로그아웃버튼");
     //일반유저 로그아웃
-    axios
-      .post("https://localhost:4000/user/logout", { withCredentials: true })
-      .then((res) => console.log("out", res));
-    dispatch(isLogin(!isLogin));
+    await dispatch(userSignout());
+    // dispatch(isLogin(false));
     dispatch(deleteUserInfo(null));
+    //dispatch(getUserLikeList(null));
     history.push("/challenge");
     /*/소셜 로그아웃 
     //카카오
@@ -121,7 +124,7 @@ const Navbar = () => {
                 Let's ECO
               </NavLinks>
             </NavItem>
-            {!state.isLogin ? null : (
+            {!isLogin ? null : (
               <NavItem>
                 <NavLinks
                   to="mypage"
@@ -137,10 +140,10 @@ const Navbar = () => {
             )}
           </NavMenu>
           <NavBtn>
-            {!state.isLogin ? (
+            {!isLogin ? (
               <NavBtnLink to="/login">Signin</NavBtnLink>
             ) : (
-              <NavBtnLink to="/login" onClick={handleLogout}>
+              <NavBtnLink to="/" onClick={handleLogout}>
                 Logout
               </NavBtnLink>
             )}

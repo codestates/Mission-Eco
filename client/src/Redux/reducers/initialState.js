@@ -1,7 +1,6 @@
 export const initialState = {
-  isLogin: {
-    isLogin: false,
-  },
+  userSignin: {},
+  isLogin: false,
   userInfo: {
     id: "",
     email: "",
@@ -24,5 +23,8 @@ export const initialState = {
   },
   challengeLogList: {
     challengeLogList: [],
+  },
+  userLikeList: {
+    userLikeList: [],
   },
 };

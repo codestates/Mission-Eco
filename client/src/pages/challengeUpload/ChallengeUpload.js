@@ -28,7 +28,7 @@ function ChallengeUpload() {
     //fd.append("img", selectedFile, selectedFile.name, fd);
     axios
       .post(
-        "https://localhost:4000/challenge-log",
+        `${process.env.REACT_APP_API_URL}/challenge-log`,
         {
           userId: userInfo.id,
           challengeId: 1,
