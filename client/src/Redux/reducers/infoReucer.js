@@ -1,19 +1,26 @@
+/*eslint-disable */
 import {
   IS_LOGIN,
+  USER_SIGNIN,
   USER_INFO,
   DELETE_USERINFO,
   IS_LOADING,
   IS_OPEN_MODAL,
   CHALLENGE_INFO,
   CHALLENGE_LOG_LIST,
+  USER_LIKE_LIST,
 } from "../actions/index";
+
 import { initialState } from "./initialState";
 
 const infoReducer = (state = initialState, action) => {
   const newState = { ...state };
   switch (action.type) {
+    case USER_SIGNIN:
+      return { ...newState, userSignin: action.payload };
+      break;
     case IS_LOGIN:
-      return { ...newState, isLogin: action.payload };
+      return { isLogin: action.payload };
       break;
     case USER_INFO:
       return { ...newState, userInfo: action.payload.userInfo };
@@ -32,6 +39,9 @@ const infoReducer = (state = initialState, action) => {
       break;
     case CHALLENGE_LOG_LIST:
       return { ...newState, challengeLogList: action.payload };
+      break;
+    case USER_LIKE_LIST:
+      return { ...newState, userLikeList: action.payload };
       break;
 
     default:

@@ -1,3 +1,4 @@
+/*eslint-disable */
 // Mypage에서 '수정하기'버튼 클릭눌러서 들어온 페이지 - 기능 구현 여기에
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
@@ -32,7 +33,7 @@ export default function CheckPassword() {
     } else {
       axios
         .post(
-          "https://localhost:4000/mypage/validation-password",
+          `${process.env.REACT_APP_API_URL}/validation-password`,
           { userId: state.userInfo.id, password },
           { withCredentials: true }
         )

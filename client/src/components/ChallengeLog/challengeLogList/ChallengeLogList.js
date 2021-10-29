@@ -26,7 +26,7 @@ const ChallengeLogList = () => {
 
   useEffect(() => {
     axios
-      .get("https://localhost:4000/challenge-log", {
+      .get(`${process.env.REACT_APP_API_URL}/challenge-log`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -52,6 +52,7 @@ const ChallengeLogList = () => {
     //해당 log를 누르면 list state에 저장된 list값들중 해당로그를 찾아서 setList로 바꾼다.
     let logItem = challengeLogList.logList.map((list) => list);
     let logId = logItem.filter((el) => el.challenge_id === Number(log));
+    console.log(logId);
     setListLog(logId);
   };
 
@@ -66,6 +67,7 @@ const ChallengeLogList = () => {
           <Dropdowncontent isActive={isActive}>
             <List>All</List>
             {listName.map((log, idx) => {
+              console.log("log", log);
               return (
                 <List
                   key={idx}
