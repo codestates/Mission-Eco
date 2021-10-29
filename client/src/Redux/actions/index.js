@@ -1,16 +1,21 @@
+import axios from "axios";
+
 export const IS_LOGIN = "IS_LOGIN";
+export const USER_SIGNIN = "USER_SIGNIN";
+export const USER_SIGNOUT = "USER_SIGNOUT";
 export const USER_INFO = "USER_INFO";
 export const DELETE_USERINFO = "DELETE_USERINFO";
 export const IS_LOADING = "IS_LOADING";
 export const IS_OPEN_MODAL = "IS_OPEN_MODAL";
 export const CHALLENGE_INFO = "CHALLENGE_INFO";
-export const POSTCARD_INFO = "POSTCARD_INFO";
+export const CHALLENGE_LOG_LIST = "CHALLENGE_LOG_LIST";
+export const USER_LIKE_LIST = " USER_LIKE_LIST";
 
 export function isLogin(boolean) {
   return {
     type: IS_LOGIN,
     payload: {
-      isLogin: boolean,
+      boolean,
     },
   };
 }
@@ -28,13 +33,7 @@ export function deleteUserInfo(userInfo) {
   return {
     type: DELETE_USERINFO,
     payload: {
-      userInfo: {
-        id: userInfo,
-        email: userInfo,
-        nickname: userInfo,
-        point: userInfo,
-        admin: userInfo,
-      },
+      userInfo,
     },
   };
 }
@@ -76,11 +75,58 @@ export function getChallengeInfo(challengeInfo) {
   };
 }
 
-export function getPostcardInfo(postcadInfo) {
+export function getChallengeLogList(logList) {
   return {
-    type: POSTCARD_INFO,
+    type: CHALLENGE_LOG_LIST,
     payload: {
-      postcadInfo,
+      logList,
     },
   };
 }
+
+export function getUserLikeList(likeList) {
+  return {
+    type: USER_LIKE_LIST,
+    payload: {
+      likeList,
+    },
+  };
+}
+
+export const userSignin = (loginInfo) => async (dispatch) => {
+  const { email, password } = loginInfo;
+  const data = await axios
+    .post(
+      `${process.env.REACT_APP_API_URL}/user/signin`,
+      {
+        email,
+        password,
+      },
+      {
+        withCredentials: true,
+      }
+    )
+    .then((res) => {
+      if (res.status === 204) {
+        return true;
+      }
+    })
+    .catch((err) => console.log(err));
+
+  // dispatch({ type: IS_LOGIN, payload: data });
+  dispatch({ type: IS_LOGIN, payload: data });
+};
+
+export const userSignout = () => async (dispatch) => {
+  const data = await axios
+    .post(`${process.env.REACT_APP_API_URL}/user/logout`, {
+      withCredentials: true,
+    })
+    .then((res) => {
+      if (res.status === 205) {
+        return false;
+      }
+    });
+  console.log(data);
+  dispatch({ type: IS_LOGIN, payload: data });
+};

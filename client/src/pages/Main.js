@@ -1,40 +1,45 @@
 import React, { useEffect } from "react";
 import Challenge from "./challenge/Challenge";
-import ChallengeLog from "./challengeLog/ChallengeLog";
 import Navbar from "../components/Navbar/Navbar";
-import { isLogin, getUserInfo } from "../../src/Redux/actions/index";
+import { getUserInfo } from "../../src/Redux/actions/index";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+//import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 function Main() {
-  const state = useSelector((state) => state.infoReducer);
-  console.log(state.userInfo);
+  const isLogin = useSelector((state) => state.infoReducer.isLogin);
   const dispatch = useDispatch();
-  const history = useHistory();
+  //const history = useHistory();
+
   useEffect(() => {
     isAuthenticated();
-    const authorizationCode = new URL(window.location.href).searchParams.get(
+
+    /* const authorizationCode = new URL(window.location.href).searchParams.get(
       "code"
     );
     if (authorizationCode) {
       getAccessToken(authorizationCode);
     }
-  }, []);
+    return () => authorizationCode; */ //
+  });
 
   const isAuthenticated = () => {
     //유저 정보 찾아줌
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/mypage/auth`, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        dispatch(getUserInfo(res.data.userInfo));
-        console.log(res.data.userInfo);
-      })
-      .catch((err) => console.log(err));
+    if (isLogin.isLogin) {
+      axios
+        .get(`${process.env.REACT_APP_API_URL}/mypage/auth`, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          dispatch(getUserInfo(res.data.userInfo));
+          console.log(res.data.userInfo);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      console.log("not login");
+    }
   };
-
+  /*
   const getAccessToken = (authorizationCode) => {
     //axios요청
     axios
@@ -55,13 +60,12 @@ function Main() {
           console.log("kakao fail");
         }
       });
-  };
+  };*/
 
   return (
     <div>
       <Navbar />
       <Challenge />
-      <ChallengeLog />
     </div>
   );
 }

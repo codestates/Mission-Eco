@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 
 module.exports = {
   signIn: async (req, res) => {
+    console.log(req.body);
     /*
      * 1. email, password를 구조분해 할당으로 받는다.
      * 2. 등록된 이메일이 아닌 경우 (401)
