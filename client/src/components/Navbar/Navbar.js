@@ -17,6 +17,7 @@ import {
   NavBtn,
   NavBtnLink,
 } from "./NavbarStyle";
+require("dotenv").config();
 
 const Navbar = ({ toggle }) => {
   const dispatch = useDispatch();
@@ -36,9 +37,6 @@ const Navbar = ({ toggle }) => {
     window.addEventListener("scroll", changeNav);
   }, []);
 
-  const toggleHome = () => {
-    window.scrollToTop();
-  };
 
   const handleLogout = () => {
     alert("로그아웃버튼");

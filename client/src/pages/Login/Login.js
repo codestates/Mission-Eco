@@ -5,7 +5,6 @@ import { isLogin, getUserInfo } from "../../Redux/actions";
 import axios from "axios";
 import { validEmail } from "../../utils/validation";
 import Kakao from "../kakao/Kakao";
-import Google from "../google/Google";
 import {
   Container,
   FormWrap,
@@ -16,10 +15,8 @@ import {
   FormLabel,
   FormInput,
   FormButton,
-  FormBtnBox,
   BtnLink,
-  Text,
-  OauthBtn,
+  Text
 } from "./LoginStyle";
 
 axios.defaults.withCredentials = true;
@@ -111,7 +108,6 @@ const Login = () => {
             <FormButton type="submit" onClick={loginRequestHandler}>
               입장하기!
             </FormButton>
-            <Google handleResponseSuccess={handleResponseSuccess} />
             <Kakao />
             <FormButton type="submit">
               <BtnLink to="/signup">회원가입</BtnLink>

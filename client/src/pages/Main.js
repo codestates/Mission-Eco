@@ -12,6 +12,7 @@ function Main() {
   console.log(state.userInfo);
   const dispatch = useDispatch();
   const history = useHistory();
+
   useEffect(() => {
     isAuthenticated();
     const authorizationCode = new URL(window.location.href).searchParams.get(
@@ -20,7 +21,7 @@ function Main() {
     if (authorizationCode) {
       getAccessToken(authorizationCode);
     }
-  }, []);
+  });
 
   const isAuthenticated = () => {
     //유저 정보 찾아줌

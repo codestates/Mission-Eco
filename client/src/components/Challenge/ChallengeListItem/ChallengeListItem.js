@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import blackHeart from "../../../imges/blackHeart.png";
 import colorHeart from "../../../imges/colorHeart.png";
 import axios from "axios";
@@ -12,7 +12,6 @@ import {
 } from "./ChallengeListItemStyle";
 
 const ChallengeListItem = ({ list }) => {
-  const dispatch = useDispatch();
   useEffect(() => {}, []);
 
   const state = useSelector((state) => state.infoReducer);
@@ -23,7 +22,6 @@ const ChallengeListItem = ({ list }) => {
   const isLogin = state.isLogin.isLogin;
 
   const handleLikeBtn = () => {
-    const userId = state.userInfo.id;
     const challengeId = list.id;
     if (!isLogin) {
       setErrMsg("로그인후 이용해주세요.");
