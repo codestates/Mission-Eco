@@ -28,10 +28,6 @@ export const ServicesWrapper = styled.div`
   padding: 0 50px;
 
   @media screen and (max-width: 768px) {
-    grid-template-columns: 1fr 1fr;
-    padding: 0 20px;
-  }
-  @media screen and (max-width: 480px) {
     grid-template-columns: 1fr;
     padding: 0 20px;
   }
@@ -41,12 +37,12 @@ export const ServicesCard = styled.div`
   background: #fff;
   display: flex;
   flex-direction: column;
-  //justify-content: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   border-radius: 0px;
-  height: 300px;
-  padding: 30px;
+  width: 280px;
+  height: 340px;
+  padding: 10px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
 
@@ -55,13 +51,29 @@ export const ServicesCard = styled.div`
     transition: all 0.2s ease-in-out;
     cursor: pointer;
   }
+  @media screen and (max-width: 768px) {
+    width: 340px;
+    height: 400px;
+  }
+  @media screen and (max-width: 480px) {
+    width: 340px;
+    height: 400px;
+  }
 `;
 
 export const ServicesIcon = styled.img`
-  height: 160px;
-  width: 160px;
+  width: 260px;
+  height: 240px;
   margin-bottom: 10px;
+  border: 1px solid #d8d8d8;
+  background: ${(props) => props.background || "white"};
+
+  @media screen and (max-width: 768px) {
+    height: 300px;
+    width: 320px;
+  }
 `;
+
 export const Subbar = styled.div`
   display: flex;
 
@@ -85,8 +97,8 @@ export const Select = styled.li`
 `;
 
 export const ServicesH1 = styled.h1`
-  margin-top: 150px;
-  font-size: 2.5rem;
+  margin-top: 200px;
+  font-size: 2.8rem;
   color: #010106;
   margin-bottom: 64px;
 
@@ -94,35 +106,15 @@ export const ServicesH1 = styled.h1`
     font-size: 2rem;
   }
 `;
-export const ServicesCardColor = styled.div`
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  //justify-content: flex-start;
-  justify-content: center;
-  align-items: center;
-  border-radius: 0px;
-  height: 300px;
-  padding: 30px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  transition: all 0.2s ease-in-out;
-  background-color: #a2d2ff;
 
-  &:hover {
-    transform: scale(1.02);
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-  }
-`;
-
-export const ServicesH2 = styled.h2`
-  font-size: 3rem;
+export const ServicesH2 = styled.span`
+  font-size: 1rem;
   margin-bottom: 10px;
 `;
 
 export const ServicesP = styled.p`
-  font-size: 1rem;
-  text-align: center;
+  font-size: 0.8rem;
+  text-align: right;
 `;
 
 export const Button = styled.button`
