@@ -7,11 +7,14 @@ module.exports = async (req, res) => {
     const challengeList = await challenge.findAll({
       include: [
         {
+          attributes: ["user_id", "challenge_id"],
           model: challengelike,
+          as: "challengelikes",
         },
       ],
     });
-    res.status(200).send({ challengeList });
+    const data = challengeList.map((el) => el.dataValues);
+    res.status(200).send({ data });
   } catch (error) {
     console.log(error);
   }
