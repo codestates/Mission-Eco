@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router";
-// import { isLogin, getUserInfo, deleteUserInfo } from "../../Redux/actions";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { isLogin, deleteUserInfo } from "../../../Redux/actions";
 import { validPassword } from "../../../utils/validation";
-import Modal from "../../Modal/Modal";
 import axios from "axios";
 import {
   Container,
@@ -20,8 +18,9 @@ import {
 axios.defaults.withCredentials = true;
 
 const MypageEdit = () => {
-  // const dispatch = useDispatch();
-  // const history = useHistory();
+  const state = useSelector((state) => state.infoReducer);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   // input text창에 변경할 닉네임 입력 후 닉네임 변경하기 버튼 누르면 서버로 변경 요청 보내기
   // 해당 닉네임이 DB에 존재하는지 검사 -> 이미 DB에 존재하는 닉네임이라면 errmsg Text
@@ -42,6 +41,8 @@ const MypageEdit = () => {
     password2: "",
   });
   const [isPw, setIsPw] = useState(false);
+
+  useEffect(() => {}, [state.userInfo]);
 
   // * handle Input Value 함수 - Nick
   const handleNickValue = (key) => (e) => {
@@ -69,39 +70,17 @@ const MypageEdit = () => {
         )
         .then((res) => {
           //console.log("nickname", res.data);
-          if (res.data.message === "ok") {
+          if (res.status === 204) {
             setNick(true);
             setErrMsg("사용가능한 닉네임입니다. ");
           }
-          setErrMsg("이미 사용중인 닉네임입니다.");
         });
     }
+    setErrMsg("이미 사용중인 닉네임입니다.");
   };
-  /* else {
-      axios
-        .get(
-          "https://localhost:4000/mypageEdit...?여기도 localhost4000 뒤에 정확히 무슨 주소 들어가야 하는지를 모르겠음",
-          "/user/validation/:nickname"
-          { withCredentials: true }
-        )
-        .then((res) => {
-          if (res.status === 200) {
-            handleResponseSuccess();
-          } else {
-            setErrMsg("닉네임을 확인해주세요.");
-          }
-        });
-      // 이렇게 작성해보려고 했는데, DB에 이미 존재하는 닉네임인지 확인하는 함수 작성을 못하겠음
-    } 
-    const handleResponseSuccess = () => {}
-      // 성공했을 때 응답에 실어보낼*
-      /* 여기에 뭐 적어야 하는 지도 모르겠음 */
-  // dispatch(changeUserNick(어쩌구)); --> Redux/actions/index.js에 있음
-
-  // ** handler-패스워드변경
-  const { password1, password2 } = pwInfo;
 
   const changePwRequestHandler = () => {
+    const { password1, password2 } = pwInfo;
     console.log(password1);
     console.log(password2);
     if (!password1 || !password2) {
@@ -110,23 +89,25 @@ const MypageEdit = () => {
       setPwErrMsg("비밀번호를 확인해주세요.");
     } else if (password1 !== password2) {
       setPwErrMsg("비밀번호가 일치하지 않습니다.");
-    } else if (isPw) {
+    } else {
       axios
         .patch(
-          `${process.env.REACT_APP_API_URL}/user/validation/password/${password1}`, // 여기에 /mypage/userinfo/password 엔드포인트 쓰는거? 일케 쓰는 거 맞음?,
-          { pwInfo },
+          `${process.env.REACT_APP_API_URL}/mypage/userinfo/password`, // 여기에 /mypage/userinfo/password 엔드포인트 쓰는거? 일케 쓰는 거 맞음?,
+          { userId: state.userInfo.id, newPassword: password1 },
           { withCredentials: true }
         )
         .then((res) => {
           console.log(res.status);
-          if (res.status === 201) {
+          if (res.status === 204) {
             setIsPw(true);
+            setPwErrMsg("비밀번호가 변경완료");
             // setPw(true);
             // 로 해야하나?
           }
         })
         .catch((err) => console.log(err));
     }
+    setPwErrMsg("비밀번호가 변경실패");
   };
   //
   // ** handler 회원탈퇴 ---> 모달창 레이아웃부터 잡기
@@ -145,6 +126,9 @@ const MypageEdit = () => {
       .then((res) => {
         console.log(res.status);
         if (res.status === 204) {
+          dispatch(deleteUserInfo(null));
+          dispatch(isLogin(!isLogin));
+          history.push("/");
           console.log("회원탈퇴 완료");
         } else {
           console.log("회원탈퇴 실패");
