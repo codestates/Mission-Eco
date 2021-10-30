@@ -1,47 +1,54 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import blackHeart from "../../../imges/blackHeart.png";
-import colorHeart from "../../../imges/colorHeart.png";
+import React, { useState, useEffect } from "react";
+import Like from "../../Like/Like";
+
 import axios from "axios";
-import {
-  ServicesCard,
-  ServicesH2,
-  ServicesP,
-  WishBtn,
-  Img,
-} from "./ChallengeListItemStyle";
+import { ServicesCard, ServicesH2, ServicesP } from "./ChallengeListItemStyle";
 
-const ChallengeListItem = ({ list }) => {
-  const state = useSelector((state) => state.infoReducer);
-
-  const [like, setLike] = useState(false);
-  const [errMsg, setErrMsg] = useState("");
-
-  const isLogin = state.isLogin.isLogin;
-  console.log("liiiist", isLogin);
-
-  const handleLikeBtn = () => {
-    const userId = state.userInfo.id;
-    const challengeId = list.id;
-    if (!isLogin) {
-      setErrMsg("로그인후 이용해주세요.");
+const ChallengeListItem = ({ list, render, isLogin }) => {
+  const [like, setlike] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const challengeId = list.id;
+  console.log(list);
+  useEffect(() => {
+    if (list.challengelikes.length !== 0) {
+      setlike(true);
     } else {
-      axios
-        .post(
-          `${process.env.REACT_APP_API_URL}/challenge/like`,
-          {
-            userId,
-            challengeId,
-          },
-          {
-            withCredentials: true,
-          }
-        )
-        .then((res) => {
-          if (res.status === 201) {
-            setLike(!like);
-          }
-        });
+      setlike(false);
+    }
+  }, [list]);
+
+  const toggleLike = async (e) => {
+    const Alt = e.target.alt;
+    if (!isLogin) {
+      setIsOpenModal(true);
+    } else if (Alt === "disliked") {
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/challenge/like`,
+        {
+          challengeId,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      if (res.status === 201) {
+        setlike(true);
+        render();
+      }
+    } else {
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/challenge/unlike`,
+        {
+          challengeId,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      if (res.status === 200) {
+        setlike(false);
+        render();
+      }
     }
   };
 
@@ -49,22 +56,19 @@ const ChallengeListItem = ({ list }) => {
     <ServicesCard background={list.img}>
       <ServicesH2>{list.name}</ServicesH2>
       <ServicesP></ServicesP>
-      {/**로그인 안하고 하트 누르면 모달창
-       * 로그인하고 하트 누르면 하트 바뀜
-       */}
-
-      {!like ? (
-        <WishBtn onClick={handleLikeBtn}>
-          <Img src={blackHeart} />
-          LIKE
-        </WishBtn>
+      {isOpenModal ? (
+        <>
+          <Like
+            onClick={toggleLike}
+            list={list}
+            like={like}
+            isLogin={isLogin}
+          />
+          "로그인이 필요합니다 모달창 ."
+        </>
       ) : (
-        <WishBtn onClick={handleLikeBtn}>
-          <Img src={colorHeart} />
-          LIKE OK
-        </WishBtn>
+        <Like onClick={toggleLike} list={list} like={like} isLogin={isLogin} />
       )}
-      {errMsg}
     </ServicesCard>
   );
 };

@@ -1,7 +1,6 @@
 export const initialState = {
-  isLogin: {
-    isLogin: false,
-  },
+  userSignin: {},
+  isLogin: false,
   userInfo: {
     id: "",
     email: "",
@@ -22,12 +21,10 @@ export const initialState = {
     level: "",
     like: "",
   },
-  postcardInfo: {
-    id: "",
-    userId: "",
-    userNickname: "",
-    challengeId: "",
-    contents: "",
-    createdAt: "",
+  challengeLogList: {
+    challengeLogList: [],
+  },
+  userLikeList: {
+    userLikeList: [],
   },
 };

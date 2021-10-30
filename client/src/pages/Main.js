@@ -1,22 +1,45 @@
 import React, { useEffect } from "react";
 import Challenge from "./challenge/Challenge";
 import Navbar from "../components/Navbar/Navbar";
-import { isLogin } from "../../src/Redux/actions/index";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { getUserInfo } from "../../src/Redux/actions/index";
+import { useDispatch, useSelector } from "react-redux";
+//import { useHistory } from "react-router-dom";
 import axios from "axios";
-import MypageEdit from "../components/MyInfo/MypageEdit/MypageEdit";
+
 function Main() {
+  const isLogin = useSelector((state) => state.infoReducer.isLogin);
   const dispatch = useDispatch();
-  const history = useHistory();
+  //const history = useHistory();
+
   useEffect(() => {
-    const authorizationCode = new URL(window.location.href).searchParams.get(
+    isAuthenticated();
+
+    /* const authorizationCode = new URL(window.location.href).searchParams.get(
       "code"
     );
     if (authorizationCode) {
       getAccessToken(authorizationCode);
     }
-  }, []);
+    return () => authorizationCode; */ //
+  });
+
+  const isAuthenticated = () => {
+    //유저 정보 찾아줌
+    if (isLogin.isLogin) {
+      axios
+        .get(`${process.env.REACT_APP_API_URL}/mypage/auth`, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          dispatch(getUserInfo(res.data.userInfo));
+          console.log(res.data.userInfo);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      console.log("not login");
+    }
+  };
+  /*
   const getAccessToken = (authorizationCode) => {
     //axios요청
     axios
@@ -29,6 +52,7 @@ function Main() {
         //console.log("klogin", res.data.message);
         if (res.status === 204) {
           console.log("kakao ok");
+
           dispatch(isLogin(true));
           history.push("/");
           //handleResponseSuccess();
@@ -36,7 +60,7 @@ function Main() {
           console.log("kakao fail");
         }
       });
-  };
+  };*/
 
   return (
     <div>
