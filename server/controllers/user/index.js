@@ -5,5 +5,6 @@ module.exports = {
   nickName: require("./validation").nickName,
   email: require("./validation").email,
   kakaoSignin: require("./kakaoSignin"),
-  googleSignin: require("./googleSignin"),
+  googleSignin: require("./googleSignin").googleSignin,
+  googleCallback: require("./googleSignin").googleCallback,
 };

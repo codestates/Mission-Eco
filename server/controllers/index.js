@@ -12,6 +12,7 @@ router.post("/user/logout", userCtrl.logout);
 router.post("/user/signup", userCtrl.signUp);
 router.post("/user/kakao-signin", userCtrl.kakaoSignin);
 router.post("/user/google-signin", userCtrl.googleSignin);
+router.post("/user/google-signin/callback", userCtrl.googleCallback);
 router.get("/user/validation/nickname/:nickname", userCtrl.nickName);
 router.get("/user/validation/email/:email", userCtrl.email);
 

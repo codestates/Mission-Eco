@@ -100,7 +100,7 @@ const Login = () => {
             <FormButton type="submit" onClick={loginRequestHandler}>
               입장하기!
             </FormButton>
-            <Google handleResponseSuccess={handleResponseSuccess} />
+            <Google />
             <Kakao />
             <FormButton type="submit">
               <BtnLink to="/signup">회원가입</BtnLink>

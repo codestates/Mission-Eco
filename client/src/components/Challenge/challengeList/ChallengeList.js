@@ -27,11 +27,12 @@ const ChallengeList = () => {
           withCredentials: true,
         }
       );
+
       //console.log("res", res.data.data);
       if (res.status === 200) {
         setAllLists(res.data.data);
         setListItems(res.data.data);
-      }
+      } 
     };
     list();
   }, [render]);
@@ -93,7 +94,7 @@ const ChallengeList = () => {
                 />
               );
             })
-          : listItems.map((list, idx) => {
+          : listItems && listItems.map((list, idx) => {
               //console.log("lllllll", list);
               return (
                 <ChallengeListItem
