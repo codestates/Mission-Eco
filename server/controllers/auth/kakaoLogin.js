@@ -56,7 +56,7 @@ module.exports = {
                 secure: true,
                 httpOnly: true,
               });
-              res.redirect("https://localhost:3000/oauth");
+              res.redirect("https://mission-eco.co.kr/oauth");
             });
         });
     } catch (error) {

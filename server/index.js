@@ -21,7 +21,7 @@ app.use(
     origin: [
       "https://localhost:3000",
       "http://localhost:3000",
-      "http://team-meetme.s3-website.ap-northeast-2.amazonaws.com/"
+      "https://mission-eco.co.kr"
     ],
     credentials: true, // true설정은 header를 전달해줌
     methods: ["GET", "POST", "OPTIONS", "DELETE", "PATCH"],

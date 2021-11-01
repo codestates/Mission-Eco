@@ -4,11 +4,14 @@ import { useHistory } from "react-router-dom";
 import { userSignin, authSuccess } from "../../Redux/actions";
 import axios from "axios";
 import { validEmail } from "../../utils/validation";
-import kakao from "../../imges/kakao.png";
-import Google from "../google/Google";
+import kakaoLogo from "../../imges/kakao-logo.png";
+import googleLogo from "../../imges/google-logo.png";
 import {
   Container,
+  LeftTxt,
+  RightTxt,
   FormWrap,
+  SocialLoigin,
   Icon,
   FormContent,
   Form,
@@ -16,12 +19,14 @@ import {
   FormLabel,
   FormInput,
   FormButton,
-  //FormBtnBox,
+  FormBtnBox,
   BtnLink,
+  LinkSignUp,
+  LinkFindIdPwd,
+  GeneralLogin,
   Text,
-  //OauthBtn,
-  KakaoBtn,
-  Img,
+  OauthBtn,
+  Logo
 } from "./LoginStyle";
 
 axios.defaults.withCredentials = true;
@@ -93,31 +98,46 @@ function Login() {
     window.location.href = `${process.env.REACT_APP_API_URL}/auth/kakao`;
   };
 
+  const googleLogin = async () => {
+    window.location.href = `${process.env.REACT_APP_API_URL}/auth/google`;
+  }
+
   return (
     <Container>
+      {/* <FormH1>로그인</FormH1> */}
+      <LeftTxt>Hello,</LeftTxt>
+      <RightTxt>We always<br/>think about<br/>our<br/>Earth</RightTxt>
       <FormWrap>
-        <Icon to="/">Mission Eco</Icon>
+        <Icon to="/"></Icon>
         <FormContent>
           <Form onSubmit={(e) => e.preventDefault()}>
-            <FormH1>Sign in to your account</FormH1>
-            <FormLabel htmlFor="for">Email</FormLabel>
-            <FormInput type="email" onChange={handleInputValue("email")} />
-            <FormLabel htmlFor="for">Pssword</FormLabel>
-            <FormInput
-              type="password"
-              onChange={handleInputValue("password")}
-            />
-            <Text>{errMsg}</Text>
-            <FormButton type="submit" onClick={loginRequestHandler}>
-              입장하기!
-            </FormButton>
-            <Google />
-            <KakaoBtn onClick={kakaoLogin}>
-              <Img src={kakao} />
-            </KakaoBtn>
-            <FormButton type="submit">
-              <BtnLink to="/signup">회원가입</BtnLink>
-            </FormButton>
+          <GeneralLogin>
+              <div>
+                <FormLabel htmlFor="for">이메일</FormLabel>
+                <FormInput type="email" onChange={handleInputValue("email")} />
+              </div>
+              <div>
+                <FormLabel htmlFor="for">비밀번호</FormLabel>
+                <FormInput
+                  type="password"
+                  onChange={handleInputValue("password")}
+                />
+              </div>
+              <Text>{errMsg}</Text>
+              <FormButton type="submit" onClick={loginRequestHandler}>
+                로그인
+              </FormButton>
+            <BtnLink to="/"><LinkFindIdPwd>아이디 / 비밀번호 찾기</LinkFindIdPwd></BtnLink>
+            <BtnLink to="/signup"><LinkSignUp>회원가입</LinkSignUp></BtnLink>
+            </GeneralLogin>
+            <SocialLoigin>
+              <OauthBtn onClick={kakaoLogin}>
+                <Logo src={kakaoLogo}/>
+              </OauthBtn>
+              <OauthBtn onClick={googleLogin}>
+                <Logo src={googleLogo}/>
+              </OauthBtn>
+            </SocialLoigin>
           </Form>
         </FormContent>
       </FormWrap>
