@@ -10,3 +10,5 @@
 .env
 
 config/config.json
+
+yarn.lock

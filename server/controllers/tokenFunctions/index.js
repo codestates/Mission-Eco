@@ -7,7 +7,7 @@ module.exports = {
   },
   sendAccessToken: (res, accessToken, userInfo) => {
     // JWT 토큰을 쿠키로 전달
-    console.log("accesstoken---", accessToken);
+    //console.log("accesstoken---", accessToken);
     res.cookie("jwt", accessToken, {
       httpOnly: true,
       secure: true,
@@ -16,7 +16,7 @@ module.exports = {
   },
   isAuthorized: (req) => {
     const jwt = req.cookies.jwt;
-    console.log("jwt=======", jwt);
+    //console.log("jwt=======", jwt);
     // 쿠키에 jwt 토큰이 없는 요청
     if (!jwt) return null;
 
