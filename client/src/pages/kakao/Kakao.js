@@ -1,5 +1,5 @@
 import React from "react";
-import kakao from "../../imges/kakao.png";
+import kakao from "../../imges/kakao-logo.png";
 import { OauthBtn, Img } from "./KakaoStyle";
 
 function kakaoLogin() {

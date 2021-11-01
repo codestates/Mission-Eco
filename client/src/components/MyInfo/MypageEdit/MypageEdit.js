@@ -110,17 +110,17 @@ const MypageEdit = () => {
       setPwErrMsg("비밀번호를 확인해주세요.");
     } else if (password1 !== password2) {
       setPwErrMsg("비밀번호가 일치하지 않습니다.");
-    } else if (isPw) {
+    } else {
       axios
         .patch(
-          `https://localhost:4000/user/validation/password/${password}`, // 여기에 /mypage/userinfo/password 엔드포인트 쓰는거? 일케 쓰는 거 맞음?,
+          `https://localhost:4000/user/validation/password/${password1}`, // 여기에 /mypage/userinfo/password 엔드포인트 쓰는거? 일케 쓰는 거 맞음?,
           { pwInfo },
           { withCredentials: true }
         )
         .then((res) => {
           console.log(res.status);
           if (res.status === 201) {
-            setIsPw(true);
+            // setIsPw(true);
             // setPw(true);
             // 로 해야하나?
           }
