@@ -16,6 +16,12 @@ router.post("/user/google-signin/callback", userCtrl.googleCallback);
 router.get("/user/validation/nickname/:nickname", userCtrl.nickName);
 router.get("/user/validation/email/:email", userCtrl.email);
 
+//auth
+router.get("/auth/kakao", authCtrl.kakaoLogin);
+router.get("/auth/kakaoCallback", authCtrl.kakaoCallback);
+router.get("/auth/google", authCtrl.kakaoLogin);
+router.get("/auth/googleCallback", authCtrl.kakaoCallback);
+
 // mypage
 router.patch("/mypage/userinfo/nickname", mypageCtrl.modifyNickname);
 router.patch("/mypage/userinfo/password", mypageCtrl.modifyPassword);
