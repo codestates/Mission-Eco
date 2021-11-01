@@ -4,7 +4,7 @@ import Navbar from "../../components/Navbar/Navbar";
 // import CheckPassword from "../../components/MyInfo/CheckPassword/CheckPassword";
 // import MypageEdit from "../../components/MyInfo/MypageEdit/MypageEdit";
 import axios from "axios";
-import { getChallengeInfo } from "../../Redux/actions";
+import { getChallengeInfo, getPostcardInfo } from "../../Redux/actions";
 import {
   H1,
   Btn,
@@ -14,79 +14,64 @@ import {
   ListContainer,
   ListItem,
 } from "./MypageStyle";
-// import CheckPassword from "../../components/MyInfo/CheckPassword/CheckPassword";
-// import MypageEdit from "../../components/MyInfo/MypageEdit/MypageEdit";
-import ChallengeLogItem from "../../components/ChallengeLog/ChallengeLogItem/ChallengeLogItem";
 
 const Mypage = () => {
-  const dispatch = useDispatch();
+  // ! 현진 작성 부분 =============================================================================================
+  // Navbar에서 mypage탭 누르면 이동할 때 요청보내려고 Navbar에서 작성하다가 뭔가 Mypage에 작성해야하는 것 같아서 옮겨옴
+  // 별도의 action없이 이 컴포넌트 렌더링되는 순간 서버에 리스트 요청 보내려면? ---> useEffect?...
+
+  // const dispatch = useDispatch();
 
   const [errMsg, setErrMsg] = useState("");
-  // ! dispatch(getChallengeInfo(challengeInfo))로 받아온 애들 담아놓으려고 만든 state --> 이렇게 해야되는 건지 아닌지 모르겠는데 일단 해봄
-  const [challengeLists, setChallengeLists] = useState([]);
 
-  useEffect(() => {
-    allListRequest();
-  }, []);
-
-  // ! <> 여기부터 allListRequest 함수 ===============================================================================================================
-  //  mypage탭 누르면 -> mypage로 이동과 동시에 리스트 요청 보내기 위해 만든 함수.
-  const allListRequest = async () => {
-    await axios
+  // mypage탭 누르면 -> mypage로 이동과 동시에 리스트 요청 보내기 위해 만든 함수.
+  const listRequest = () => {
+    axios
       .get(
-        `https://localhost:4000/mypage/mylist`,
+        `${process.env.REACT_APP_API_URL}/mypage/mylist`,
         // "http://team-meetme.s3-website.ap-northeast-2.amazonaws.com/mypage/mylist/:userId",
         { withCredentials: true }
       )
       .then((res) => {
+        // 리스트 받아옴
         console.log("login", res.data);
-
         if (res.status === 200) {
           setErrMsg("success request");
-          // 내가 좋아요한 챌린지, 내가 쓴 글(ChallengeLog리스트 받아옴
-          const { myLogList, challengeList } = res.data;
-          setChallengeLists(challengeList);
-          console.log("myLogList", myLogList);
+          // const challengeInfo = res.data;
+          // const postcardInfo = res.data;
+          // dispatch(getChallengeInfo(challengeInfo));
+          // dispatch(getPostcardInfo(postcardInfo));
         } else if (res.status === 400) {
           setErrMsg("Bad Request");
         }
       });
-  }; // ! </> 여기까지 allListRequest 함수 ==============================================================================================================================
-  // ? <>작성중
-  // const listMap = () => {
-  //   let challengeListItem = challengeList.map(res.data.challengeInfo);
-  // };
+  };
 
-  // const listMap = challengeList.map((list) => list);
-  // setChallengeList(listMap);
-  // ?</>작성중
+  useEffect(() => {
+    listRequest();
+  }, []);
 
-  // ============= 👆🏻 여기까지 해서 res로 List를 쭉 받아왔음 (내가 작성한 게시물(ChallengeLog), 내가 좋아요 누른 챌린지) 👇🏻 =========================
+  // ? 받아온 리스트에서 userId에 해당하는 아이템들만 필터링해주는 함수
 
-  // res.~ 에서 맵돌려서 솎아내기 --> 이 함수를 useEffect에 넣어 이 페이지 렌더링 될 때 얘도 바로 렌더링 되게 만들 것임.
+  // !==============================================================================================================
 
-  // const handleRequestLogList = (e) => {
-  //   const challengeLog = e.target.value;
-  //   let listItem = res.data.challengeInfo.map((list) => list);
-  // };
-
+  // const renderItems = items.return(
   return (
     <div>
       <Navbar />
       <MypageContainer>
-        {/* mypage-top-container ( 페이지 타이틀, 마이페이지 수정버튼 ) */}
-        <Container id="mypage-top-area">
+        <Container>
+          {/* 자꾸 Navbar에 가려서 안보여서 밑으로 내려오게 하려고 3개 만든거임 원래 1개여야 함. */}
           <H1>마이페이지</H1>
           <Btn type="submit">수정하기✍🏻</Btn>
         </Container>
+        {/* 어떻게 해야 Navbar랑 Container 위치가 안 겹치게 만들 수 있는가... */}
 
-        {/* mypage-1st-container (유저 닉네임, 이 유저가 획득한 뱃지 갯수) */}
         <Container>
+          {/* filter된 리스트들은 */}
           <Title>닉네임: 환경요정</Title>
           <Title>에코뱃지: 7개</Title>
         </Container>
-
-        {/* mypage-2nd-container ( 이 유저가 획득한 뱃지 이미지들 ) */}
         <Container>
           나의 에코뱃지
           <ListContainer>
@@ -96,28 +81,17 @@ const Mypage = () => {
             <ListItem>li</ListItem>
           </ListContainer>
         </Container>
-
-        {/* // ! 👇🏻 여기부터 작성 ! 👇🏻 ======================  */}
-        {/* res 중에서 challengeList만 솎아서 */}
-        {/* // ! ChallengeList(props) -->매핑패줘서 --> (props받아서 개별로 사용중)ChallengeListItem 참고 */}
         <Container>
-          나의 ChallengeLog List
+          나의 포스팅
           <ListContainer>
-            {/* // ? <>작성중 */}
-            {challengeLists &&
-              challengeLists.map((list, idx) => {
-                // setChallengeList(dispatch(getChallengeInfo(challengeInfo))) 해서 challengeList가 받아온 데이터(필터링 되서 온 응답) res.data로 갱신된 상태 아님? 그래서 challengeList에 맵돌린건데 왜 function이 아니래 ㅡㅡ ㅡㅡ
-                return <ChallengeLogItem list={list} key={idx} />;
-              })}
-            {/* // ? </> */}
+            ul
             <ListItem>li</ListItem>
-            <ListItem>ChallengeListItem.js</ListItem>
+            <ListItem>li</ListItem>
+            <ListItem>li</ListItem>
           </ListContainer>
         </Container>
-
-        {/* res에서 challengeLikeList만 솎아서 */}
         <Container>
-          내가 좋아한 챌린지 List
+          나의 좋아요
           <ListContainer>
             ul
             <ListItem>li</ListItem>
@@ -126,6 +100,8 @@ const Mypage = () => {
           </ListContainer>
         </Container>
       </MypageContainer>
+      {/* <CheckPassword /> */}
+      {/* <MypageEdit /> */}
     </div>
   );
 };
