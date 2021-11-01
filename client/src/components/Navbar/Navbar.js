@@ -47,7 +47,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     alert("로그아웃버튼");
     //일반유저 로그아웃
-    await dispatch(userSignout());
+    dispatch(userSignout());
     // dispatch(isLogin(false));
     dispatch(deleteUserInfo(null));
     //dispatch(getUserLikeList(null));

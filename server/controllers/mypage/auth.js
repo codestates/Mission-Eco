@@ -11,8 +11,9 @@ module.exports = async (req, res) => {
     } else {
       const { id } = accessTokenData;
       const data = await user.findOne({ where: { id } });
+      const userInfo = data.dataValues;
       delete data.dataValues.password;
-      res.status(200).send({ userInfo: data.dataValues });
+      res.status(200).send({ userInfo });
     }
   } catch (error) {
     console.log(error);
