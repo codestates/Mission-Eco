@@ -1,2 +1,2 @@
-// 전체 좋아요 받아오는 틀
-// 여기서 맵핑 돌려서 ListItem으로
+//  map한 애들 하나씩 보여주는 애. ChaleengeLogList 참고.
+import React, { useState, useEffect } from "react";
