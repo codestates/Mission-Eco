@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getChallengeList } from "../../../Redux/actions";
 import ChallengeListItem from "../ChallengeListItem/ChallengeListItem";
 
 import {
@@ -10,45 +11,35 @@ import {
   Select,
   Button,
 } from "./ChallengeListStyle";
-import axios from "axios";
 
 const ChallengeList = () => {
+  const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.infoReducer.isLogin);
-  const [allLists, setAllLists] = useState([]);
+  const userInfo = useSelector((state) => state.infoReducer.userInfo);
+  console.log(userInfo);
   const [listItems, setListItems] = useState([]);
   const [render, setRender] = useState(false);
-  const [all, setAll] = useState(false);
+  const [all, setAll] = useState(true);
+  const challengeList = useSelector((state) => state.infoReducer.challengeList);
 
   useEffect(() => {
-    const list = async () => {
-      const res = await axios.get(
-        `${process.env.REACT_APP_API_URL}/challenge`,
-        {
-          withCredentials: true,
-        }
-      );
-      //console.log("res", res.data.data);
-      if (res.status === 200) {
-        setAllLists(res.data.data);
-        setListItems(res.data.data);
-      }
-    };
-    list();
-  }, [render]);
+    dispatch(getChallengeList());
+  }, [dispatch]);
+
+  useEffect(() => {}, [challengeList]);
 
   const handleRequsetLevelList = (e) => {
     const level = e.target.value;
-
+    console.log(level);
     if (Number(level) === 0) {
       setAll(true);
     } else {
-      setAll(false);
-      let listItems = allLists.map((list) => list);
-      let itemLevel = listItems.filter((el) => el.level === Number(level));
+      const itemLevel = challengeList.filter(
+        (el) => el.level === Number(level)
+      );
       setListItems(itemLevel);
+      setAll(false);
     }
-    //해당레벨 버튼을 누르면 list state에 저장된 list값들중 해당레벨을 찾아서 setList로 바꾼다.
-    //let listItem = allLists.map((list) => list);
   };
 
   return (
@@ -80,29 +71,25 @@ const ChallengeList = () => {
         </Select>
       </Subbar>
       <ServicesWrapper>
-        {all
-          ? allLists.map((list, idx) => {
-              //console.log("lllllll", list);
+        {challengeList && all
+          ? challengeList.map((list, idx) => {
               return (
                 <ChallengeListItem
                   list={list}
                   key={idx}
-                  liked={list.challengelikes}
+                  userId={userInfo.id}
                   isLogin={isLogin}
                   render={() => setRender(!render)}
                 />
               );
             })
           : listItems.map((list, idx) => {
-              //console.log("lllllll", list);
               return (
                 <ChallengeListItem
                   list={list}
                   key={idx}
-                  liked={list.challengelikes}
+                  userId={userInfo.id}
                   isLogin={isLogin}
-                  //click={click}
-                  // likeList={likeList}
                   render={() => setRender(!render)}
                 />
               );
