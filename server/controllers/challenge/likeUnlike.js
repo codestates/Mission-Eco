@@ -13,14 +13,20 @@ module.exports = {
         if (!challengeId) {
           return res.sendStatus(400);
         }
-        const userChLike = await challengelike.create({
+        await challengelike.create({
           user_id: id,
           challenge_id: challengeId,
         });
-        const userLikeList = await challengelike.findAll({
-          where: { user_id: id },
+        const challengeList = await challenge.findAll({
+          include: [
+            {
+              attributes: ["user_id", "challenge_id"],
+              model: challengelike,
+              as: "challengelikes",
+            },
+          ],
         });
-        return res.status(201).send({ userLikeList });
+        return res.status(201).send({ challengeList });
       }
     } catch (error) {
       console.log(error);
@@ -44,10 +50,16 @@ module.exports = {
         if (!findUserLike) return res.status(400).send("no user");
         //좋아요 삭제
         await findUserLike.destroy();
-        const userLikeList = await challengelike.findAll({
-          where: { user_id: id },
+        const challengeList = await challenge.findAll({
+          include: [
+            {
+              attributes: ["user_id", "challenge_id"],
+              model: challengelike,
+              as: "challengelikes",
+            },
+          ],
         });
-        return res.status(200).send({ userLikeList });
+        return res.status(200).send({ challengeList });
       }
     } catch (error) {
       console.log(error);
