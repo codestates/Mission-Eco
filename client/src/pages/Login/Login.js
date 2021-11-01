@@ -8,7 +8,10 @@ import Kakao from "../kakao/Kakao";
 import Google from "../google/Google";
 import {
   Container,
+  LeftTxt,
+  RightTxt,
   FormWrap,
+  SocialLoigin,
   Icon,
   FormContent,
   Form,
@@ -18,6 +21,9 @@ import {
   FormButton,
   //FormBtnBox,
   BtnLink,
+  LinkSignUp,
+  LinkFindIdPwd,
+  GeneralLogin,
   Text,
   //OauthBtn,
 } from "./LoginStyle";
@@ -84,27 +90,36 @@ const Login = () => {
 
   return (
     <Container>
+      {/* <FormH1>로그인</FormH1> */}
+      <LeftTxt>Hello,</LeftTxt>
+      <RightTxt>We always<br/>think about<br/>our<br/>Earth</RightTxt>
       <FormWrap>
-        <Icon to="/">Mission Eco</Icon>
+        <Icon to="/"></Icon>
         <FormContent>
           <Form onSubmit={(e) => e.preventDefault()}>
-            <FormH1>Sign in to your account</FormH1>
-            <FormLabel htmlFor="for">Email</FormLabel>
-            <FormInput type="email" onChange={handleInputValue("email")} />
-            <FormLabel htmlFor="for">Pssword</FormLabel>
-            <FormInput
-              type="password"
-              onChange={handleInputValue("password")}
-            />
-            <Text>{errMsg}</Text>
-            <FormButton type="submit" onClick={loginRequestHandler}>
-              입장하기!
-            </FormButton>
-            <Google handleResponseSuccess={handleResponseSuccess} />
-            <Kakao />
-            <FormButton type="submit">
-              <BtnLink to="/signup">회원가입</BtnLink>
-            </FormButton>
+          <GeneralLogin>
+              <div>
+                <FormLabel htmlFor="for">이메일</FormLabel>
+                <FormInput type="email" onChange={handleInputValue("email")} />
+              </div>
+              <div>
+                <FormLabel htmlFor="for">비밀번호</FormLabel>
+                <FormInput
+                  type="password"
+                  onChange={handleInputValue("password")}
+                />
+              </div>
+              <Text>{errMsg}</Text>
+              <FormButton type="submit" onClick={loginRequestHandler}>
+                로그인
+              </FormButton>
+            <BtnLink to="/"><LinkFindIdPwd>아이디 / 비밀번호 찾기</LinkFindIdPwd></BtnLink>
+            <BtnLink to="/signup"><LinkSignUp>회원가입</LinkSignUp></BtnLink>
+            </GeneralLogin>
+            <SocialLoigin>
+              <Google />
+              <Kakao />
+            </SocialLoigin>
           </Form>
         </FormContent>
       </FormWrap>
