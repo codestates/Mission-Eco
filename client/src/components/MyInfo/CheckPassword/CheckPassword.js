@@ -33,7 +33,7 @@ export default function CheckPassword() {
     } else {
       axios
         .post(
-          `${process.env.REACT_APP_API_URL}/validation-password`,
+          `${process.env.REACT_APP_API_URL}/mypage/validation-password`,
           { userId: state.userInfo.id, password },
           { withCredentials: true }
         )
