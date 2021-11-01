@@ -12,13 +12,13 @@ import {
 } from "./ChallengeLogStyle";
 
 const ChallengeListItem = ({ log }) => {
-  const state = useSelector((state) => state.infoReducer);
+  // const state = useSelector((state) => state.infoReducer);
 
   return (
     <ServicesCard>
-      <ServicesIcon background={log.img} />
+      {/* <ServicesIcon background={log.img} />
       <ServicesH2>{log.challengelog_contents}</ServicesH2>
-      <ServicesP>{log.createdAt}</ServicesP>
+      <ServicesP>{log.createdAt}</ServicesP> */}
     </ServicesCard>
   );
 };

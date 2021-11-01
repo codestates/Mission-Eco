@@ -19,14 +19,15 @@ const ChallengeLogList = () => {
 
   useEffect(() => {
     handleRequsetLog();
-  }, []);
+  }, []); // 페이지가 로딩됨과 동시에 handleRequestLog함수가 발동된다.
 
   const handleRequsetLog = () => {
-    axios
+    axios // handleRequestLog함수는 challenge-log엔드포인트로 get요청을 보낸 뒤
       .get(`${process.env.REACT_APP_API_URL}/challenge-log`, {
         withCredentials: true,
       })
       .then((res) => {
+        // challenge-log엔드포인트로부터 온 응답에 담긴 data의 challengeLogList를 setAllLists의 인자로 전달 ---> allList의 값 갱신
         setAllLists(res.data.challengeLogList);
       })
       .catch((err) => console.log("challengeLogList.js 오류", err));
@@ -64,8 +65,43 @@ const ChallengeLogList = () => {
       </Subbar>
       <ServicesWrapper>
         {allLists.map((log, idx) => {
+          // allList를 map(로그, 인덱스)돌려서 ChallengeLogItem의
           return <ChallengeLogItem log={log} key={idx} />;
         })}
+
+        {/* // ! 👇🏻 효영님 refactoring중 👇🏻 =========================================================================== */}
+        {/*
+
+        {all
+          ? allLists.map((list, idx) => {
+              //console.log("lllllll", list);
+              return (
+                <ChallengeListItem
+                  list={list}
+                  key={idx}
+                  liked={list.challengelikes}
+                  isLogin={isLogin.isLogin}
+                />
+              );
+            })
+          : listItems.map((list, idx) => {
+              //console.log("lllllll", list);
+              return (
+                <ChallengeListItem
+                  list={list}
+                  key={idx}
+                  liked={list.challengelikes}
+                  isLogin={isLogin.isLogin}
+                  //click={click}
+
+                  // likeList={likeList}
+                  //render={() => setRender(!render)}
+                />
+              );
+            })}
+        
+        */}
+        {/* // ! ==================================================================================================== */}
 
         <ServicesCard>
           <ServicesIcon />

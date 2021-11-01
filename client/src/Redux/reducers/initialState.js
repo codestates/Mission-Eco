@@ -22,6 +22,7 @@ export const initialState = {
     level: "",
     like: "",
   },
+  challengeList: [],
   postcardInfo: {
     id: "",
     userId: "",

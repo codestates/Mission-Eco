@@ -48,6 +48,7 @@ const ChallengeListItem = ({ list }) => {
 
   return (
     <ServicesCard background={list.img}>
+      {/* //! list컴포넌트에서 ChallengeListItem컴포넌트로 맵돌리고 있는 것임 */}
       <ServicesH2>{list.name}</ServicesH2>
       <ServicesP></ServicesP>
       {/**로그인 안하고 하트 누르면 모달창
