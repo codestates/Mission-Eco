@@ -99,6 +99,13 @@ export const Text = styled.span`
 
 export const FormBtnBox = styled.div``;
 export const BtnLink = styled(Link)``;
+export const Img = styled.img``;
+export const KakaoBtn = styled.button`
+  background-color: #fee500;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+`;
 
 export const OauthBtn = styled.button`
   background: #ffc947;

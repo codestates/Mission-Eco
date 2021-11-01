@@ -1,27 +1,31 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import Like from "../../Like/Like";
-
-import axios from "axios";
+import { addLike, deleteLike } from "../../../Redux/actions";
 import { ServicesCard, ServicesH2, ServicesP } from "./ChallengeListItemStyle";
 
-const ChallengeListItem = ({ list, render, isLogin }) => {
+const ChallengeListItem = ({ list, userId, isLogin }) => {
+  const dispatch = useDispatch();
   const [like, setlike] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const challengeId = list.id;
-  console.log(list);
+
   useEffect(() => {
-    if (list.challengelikes.length !== 0) {
+    const liked = list.challengelikes.map((el) => el.user_id);
+    if (liked.includes(userId)) {
       setlike(true);
     } else {
       setlike(false);
     }
-  }, [list]);
+  }, [list, userId]);
 
   const toggleLike = async (e) => {
     const Alt = e.target.alt;
     if (!isLogin) {
       setIsOpenModal(true);
     } else if (Alt === "disliked") {
+      dispatch(addLike(challengeId));
+      /*
       const res = await axios.post(
         `${process.env.REACT_APP_API_URL}/challenge/like`,
         {
@@ -32,10 +36,14 @@ const ChallengeListItem = ({ list, render, isLogin }) => {
         }
       );
       if (res.status === 201) {
+        console.log(res);
         setlike(true);
         render();
-      }
+      }*/
     } else {
+      dispatch(deleteLike(challengeId));
+      setlike(false);
+      /*
       const res = await axios.post(
         `${process.env.REACT_APP_API_URL}/challenge/unlike`,
         {
@@ -48,7 +56,7 @@ const ChallengeListItem = ({ list, render, isLogin }) => {
       if (res.status === 200) {
         setlike(false);
         render();
-      }
+      }*/
     }
   };
 
