@@ -17,6 +17,8 @@ router.get("/user/validation/email/:email", userCtrl.email);
 //auth
 router.get("/auth/kakao", authCtrl.kakaoLogin);
 router.get("/auth/kakaoCallback", authCtrl.kakaoCallback);
+router.get("/auth/google", authCtrl.googleLogin);
+router.get("/auth/googleCallback", authCtrl.googleCallback);
 
 // mypage
 router.patch("/mypage/userinfo/nickname", mypageCtrl.modifyNickname);
