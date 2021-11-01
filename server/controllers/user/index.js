@@ -4,5 +4,4 @@ module.exports = {
   signUp: require("./signUp").signUp,
   nickName: require("./validation").nickName,
   email: require("./validation").email,
-  googleSignin: require("./googleSignin"),
 };
