@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getUserInfo, isLogin, userSignin } from "../../Redux/actions";
+import { getUserInfo, userSignin } from "../../Redux/actions";
 import axios from "axios";
 import { validEmail } from "../../utils/validation";
-import Kakao from "../kakao/Kakao";
+import kakao from "../../imges/kakao.png";
 import Google from "../google/Google";
 import {
   Container,
@@ -20,13 +20,15 @@ import {
   BtnLink,
   Text,
   //OauthBtn,
+  KakaoBtn,
+  Img,
 } from "./LoginStyle";
 
 axios.defaults.withCredentials = true;
 
-const Login = () => {
+function Login() {
   const login = useSelector((state) => state.infoReducer.isLogin);
-  console.log("login", login);
+  console.log("aaaaaaaadfsfsd", login);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -37,14 +39,14 @@ const Login = () => {
 
   const [errMsg, setErrMsg] = useState("");
 
-  useState(() => {}, []);
+  //useState(() => {}, []);
 
   const handleInputValue = (key) => (e) => {
     SetLoginInfo({ ...loginInfo, [key]: e.target.value });
   };
 
   const handleResponseSuccess = () => {
-    alert("핸들 성공");
+    alert("로그인 성공");
     setErrMsg("ok.");
 
     history.push("/");
@@ -73,13 +75,20 @@ const Login = () => {
     } else if (!validEmail(email)) {
       setErrMsg("이메일 형식이 아닙니다.");
     } else {
-      dispatch(userSignin(loginInfo));
-      if (isLogin) {
-        handleResponseSuccess();
-      } else {
-        setErrMsg("이메일과 비밀번호를 확인해주세요.");
-      }
+      dispatch(userSignin(loginInfo)).then((res) => {
+        console.log(res);
+        if (res) {
+          handleResponseSuccess();
+        } else {
+          setErrMsg("이메일과 비밀번호를 확인해주세요.");
+        }
+      });
     }
+  };
+
+  const kakaoLogin = async () => {
+    window.location.href = `${process.env.REACT_APP_API_URL}/auth/kakao`;
+    //어떻게 handlesuccess로 연결할 것인가
   };
 
   return (
@@ -100,8 +109,10 @@ const Login = () => {
             <FormButton type="submit" onClick={loginRequestHandler}>
               입장하기!
             </FormButton>
-            <Google handleResponseSuccess={handleResponseSuccess} />
-            <Kakao />
+            <Google />
+            <KakaoBtn onClick={kakaoLogin}>
+              <Img src={kakao} />
+            </KakaoBtn>
             <FormButton type="submit">
               <BtnLink to="/signup">회원가입</BtnLink>
             </FormButton>
@@ -110,6 +121,6 @@ const Login = () => {
       </FormWrap>
     </Container>
   );
-};
+}
 
 export default Login;
