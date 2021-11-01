@@ -4,22 +4,25 @@ const userCtrl = require("./user");
 const mypageCtrl = require("./mypage");
 const challengeCtrl = require("./challenge");
 const challengeLogCtrl = require("./challengeLog");
+const authCtrl = require("./auth");
 const badgeCtrl = require("./badge");
 
 // user
 router.post("/user/signin", userCtrl.signIn);
 router.post("/user/logout", userCtrl.logout);
 router.post("/user/signup", userCtrl.signUp);
-router.post("/user/kakao-signin", userCtrl.kakaoSignin);
-router.post("/user/google-signin", userCtrl.googleSignin);
 router.get("/user/validation/nickname/:nickname", userCtrl.nickName);
 router.get("/user/validation/email/:email", userCtrl.email);
+
+//auth
+router.get("/auth/kakao", authCtrl.kakaoLogin);
+router.get("/auth/kakaoCallback", authCtrl.kakaoCallback);
 
 // mypage
 router.patch("/mypage/userinfo/nickname", mypageCtrl.modifyNickname);
 router.patch("/mypage/userinfo/password", mypageCtrl.modifyPassword);
 router.delete("/mypage/userinfo", mypageCtrl.deleteAccount);
-router.get("/mypage/mylist/:userId", mypageCtrl.getMyList);
+router.get("/mypage/mylist", mypageCtrl.getMyList);
 router.get("/mypage/auth", mypageCtrl.auth);
 router.post("/mypage/validation-password", mypageCtrl.checkPwd);
 

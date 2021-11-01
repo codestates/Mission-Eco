@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Challenge from "./challenge/Challenge";
 import Navbar from "../components/Navbar/Navbar";
-import { getUserInfo } from "../../src/Redux/actions/index";
+import { authSuccess } from "../../src/Redux/actions/index";
 import { useDispatch, useSelector } from "react-redux";
 //import { useHistory } from "react-router-dom";
 import axios from "axios";
@@ -11,21 +11,12 @@ function Main() {
   const dispatch = useDispatch();
   //const history = useHistory();
 
-  useEffect(() => {
-    isAuthenticated();
+  useEffect(() => {}, []);
 
-    /* const authorizationCode = new URL(window.location.href).searchParams.get(
-      "code"
-    );
-    if (authorizationCode) {
-      getAccessToken(authorizationCode);
-    }
-    return () => authorizationCode; */ //
-  });
-
+  /*
   const isAuthenticated = () => {
     //유저 정보 찾아줌
-    if (isLogin.isLogin) {
+    if (isLogin) {
       axios
         .get(`${process.env.REACT_APP_API_URL}/mypage/auth`, {
           withCredentials: true,
@@ -38,7 +29,7 @@ function Main() {
     } else {
       console.log("not login");
     }
-  };
+  };*/
   /*
   const getAccessToken = (authorizationCode) => {
     //axios요청
