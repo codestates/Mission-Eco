@@ -20,7 +20,6 @@ const ChallengeList = () => {
   const [listItems, setListItems] = useState([]);
   const [render, setRender] = useState(false);
   const [all, setAll] = useState(true);
-
   const challengeList = useSelector((state) => state.infoReducer.challengeList);
 
   useEffect(() => {
