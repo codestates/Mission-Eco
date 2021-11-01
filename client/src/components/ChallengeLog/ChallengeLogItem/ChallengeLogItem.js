@@ -1,14 +1,9 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-
-import axios from "axios";
+import React from "react";
 import {
   ServicesCard,
   ServicesH2,
   ServicesP,
   ServicesIcon,
-  WishBtn,
-  Img,
 } from "./ChallengeLogStyle";
 
 const ChallengeListItem = ({ log }) => {
@@ -16,9 +11,10 @@ const ChallengeListItem = ({ log }) => {
 
   return (
     <ServicesCard>
-      {/* <ServicesIcon background={log.img} />
+      <ServicesIcon background={log.img} />
       <ServicesH2>{log.challengelog_contents}</ServicesH2>
-      <ServicesP>{log.createdAt}</ServicesP> */}
+      <ServicesP>닉네임:{log.user.nickname}</ServicesP>
+      <ServicesP>{log.createdAt}</ServicesP>
     </ServicesCard>
   );
 };

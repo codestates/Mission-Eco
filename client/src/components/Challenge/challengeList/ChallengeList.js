@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getChallengeList } from "../../../Redux/actions";
 import ChallengeListItem from "../ChallengeListItem/ChallengeListItem";
 
 import {
@@ -9,39 +11,36 @@ import {
   Select,
   Button,
 } from "./ChallengeListStyle";
-import axios from "axios";
 
 const ChallengeList = () => {
-  const [allLists, setAllLists] = useState([]); // ? allLists의 기본값은 빈배열이며, setAllLists가 이를 갱신할 예정.
+  const dispatch = useDispatch();
+  const isLogin = useSelector((state) => state.infoReducer.isLogin);
+  const userInfo = useSelector((state) => state.infoReducer.userInfo);
+  console.log(userInfo);
   const [listItems, setListItems] = useState([]);
+  const [render, setRender] = useState(false);
+  const [all, setAll] = useState(true);
+  const challengeList = useSelector((state) => state.infoReducer.challengeList);
 
   useEffect(() => {
-    // ? 이 페이지가 렌더링 될 때 handleRequesetList함수가 발동된다.
-    handleRequsetList();
-  }, []);
+    dispatch(getChallengeList());
+  }, [dispatch]);
 
-  const handleRequsetList = () => {
-    // ? handleRequesetList함수는=======================================================
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/challenge`, {
-        // ? 이 엔드포인트로 get요청을 보낸다.
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log("res--", res.data.challengeList); // ? 응답으로 서버에서 받아온 data 중 challengeList
-        setAllLists(res.data.challengeList); // ? 그것을 setAllLists에 전달 --> listItems는 빈배열이 아닌 challengeList로 채워짐.
-        setListItems(res.data.challengeList);
-      })
-      .catch((err) => console.log("challengeList.js 오류", err));
-  }; // ? 여기까지 handleRequesetList 함수 =============================================================================
+  useEffect(() => {}, [challengeList]);
 
   const handleRequsetLevelList = (e) => {
     // ? handleRequesetLevelList 함수 =======================================================
     const level = e.target.value;
-    //해당레벨 버튼을 누르면 list state에 저장된 list값들중 해당레벨을 찾아서 setList로 바꾼다.
-    let listItem = allLists.map((list) => list); // ? allList를 map돌려서 list 뽑아낸다.
-    let itemLevel = listItem.filter((el) => el.level === Number(level));
-    setListItems(itemLevel);
+    console.log(level);
+    if (Number(level) === 0) {
+      setAll(true);
+    } else {
+      const itemLevel = challengeList.filter(
+        (el) => el.level === Number(level)
+      );
+      setListItems(itemLevel);
+      setAll(false);
+    }
   };
 
   return (
@@ -49,7 +48,9 @@ const ChallengeList = () => {
       <ServicesH1>Mission List</ServicesH1>
       <Subbar>
         <Select>
-          <Button onClick={handleRequsetList}>All</Button>
+          <Button value="0" onClick={(e) => handleRequsetLevelList(e)}>
+            All
+          </Button>
         </Select>
         <Select>
           <Button value="1" onClick={(e) => handleRequsetLevelList(e)}>
@@ -71,64 +72,30 @@ const ChallengeList = () => {
         </Select>
       </Subbar>
       <ServicesWrapper>
-        {listItems.map((list, idx) => {
-          return <ChallengeListItem list={list} key={idx} />;
-        })}
+        {challengeList && all
+          ? challengeList.map((list, idx) => {
+              return (
+                <ChallengeListItem
+                  list={list}
+                  key={idx}
+                  userId={userInfo.id}
+                  isLogin={isLogin}
+                  render={() => setRender(!render)}
+                />
+              );
+            })
+          : listItems.map((list, idx) => {
+              return (
+                <ChallengeListItem
+                  list={list}
+                  key={idx}
+                  userId={userInfo.id}
+                  isLogin={isLogin}
+                  render={() => setRender(!render)}
+                />
+              );
+            })}
       </ServicesWrapper>
-
-      {/**
-        <ServicesCard>
-          <ServicesIcon src={Icon1} />
-        </ServicesCard>
-        <ServicesCard>
-          <ServicesIcon src={Icon2} />
-        </ServicesCard>
-        <ServicesCard>
-          <ServicesIcon src={Icon3} />
-        </ServicesCard>
-        <ServicesCardColor>
-          <ServicesH2>캔뿌셔</ServicesH2>
-          <ServicesP></ServicesP>
-        </ServicesCardColor>
-        <ServicesCard>
-          <ServicesH2>플로깅</ServicesH2>
-          <ServicesP></ServicesP>
-        </ServicesCard>
-        <ServicesCard>
-          <ServicesH2>분리수거</ServicesH2>
-          <ServicesP></ServicesP>
-        </ServicesCard>
-        <ServicesCard>
-          <ServicesIcon />
-          <ServicesH2>Reduce waste</ServicesH2>
-          <ServicesP>We help waste your trash and help earth.</ServicesP>
-        </ServicesCard>
-        <ServicesCard>
-          <ServicesIcon />
-          <ServicesH2>Reduce waste</ServicesH2>
-          <ServicesP>We help waste your trash and help earth.</ServicesP>
-        </ServicesCard>
-        <ServicesCard>
-          <ServicesIcon />
-          <ServicesH2>Reduce waste</ServicesH2>
-          <ServicesP>We help waste your trash and help earth.</ServicesP>
-        </ServicesCard>
-        <ServicesCard>
-          <ServicesIcon />
-          <ServicesH2>Reduce waste</ServicesH2>
-          <ServicesP>We help waste your trash and help earth.</ServicesP>
-        </ServicesCard>
-        <ServicesCard>
-          <ServicesIcon />
-          <ServicesH2>Reduce waste</ServicesH2>
-          <ServicesP>We help waste your trash and help earth.</ServicesP>
-        </ServicesCard>
-        <ServicesCard>
-          <ServicesIcon />
-          <ServicesH2>Reduce waste</ServicesH2>
-          <ServicesP>We help waste your trash and help earth.</ServicesP>
-        </ServicesCard>
-      </ServicesWrapper> */}
     </ServicesContiner>
   );
 };

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { isLogin, getUserInfo } from "../../Redux/actions";
+import { userSignin, authSuccess } from "../../Redux/actions";
 import axios from "axios";
 import { validEmail } from "../../utils/validation";
-import Kakao from "../kakao/Kakao";
+import kakao from "../../imges/kakao.png";
 import Google from "../google/Google";
 import {
   Container,
@@ -16,22 +16,22 @@ import {
   FormLabel,
   FormInput,
   FormButton,
-  FormBtnBox,
+  //FormBtnBox,
   BtnLink,
   Text,
-  OauthBtn,
+  //OauthBtn,
+  KakaoBtn,
+  Img,
 } from "./LoginStyle";
 
 axios.defaults.withCredentials = true;
 
-const Login = () => {
+function Login() {
+  const login = useSelector((state) => state.infoReducer.isLogin);
+  console.log("aaaaaaaadfsfsd", login);
   const dispatch = useDispatch();
   const history = useHistory();
-  //이메일, 비밀번호 입력
-  //이메일형식이 맞는지 검사 -> 형식이 맞지 않다면 errmsg Text
-  //2개 input이 모두 채워져 있다면 로그인 요청 보내기
-  //로그인이 성공하면 메인화면으로 나가기
-  //로그인이 실패하면 이메일또는 비밀번호를 확인해주세요.
+
   const [loginInfo, SetLoginInfo] = useState({
     email: "",
     password: "",
@@ -39,24 +39,24 @@ const Login = () => {
 
   const [errMsg, setErrMsg] = useState("");
 
+  useState(() => {}, []);
+
   const handleInputValue = (key) => (e) => {
     SetLoginInfo({ ...loginInfo, [key]: e.target.value });
   };
 
   const handleResponseSuccess = () => {
-    //isAuthenticated() auth 인증
-    //로그인 상태 true
-    //mainpage로 이동
-    alert("핸들 성공");
+    alert("로그인 성공");
     setErrMsg("ok.");
-    dispatch(isLogin(true));
+
     history.push("/");
     isAuthenticated();
   };
 
   const isAuthenticated = () => {
     //유저 정보 찾아줌
-    axios
+    dispatch(authSuccess());
+    /*axios
       .get(`${process.env.REACT_APP_API_URL}/mypage/auth`, {
         withCredentials: true,
       })
@@ -64,33 +64,33 @@ const Login = () => {
         dispatch(getUserInfo(res.data.userInfo));
         console.log(res.data.userInfo);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err));*/
   };
 
-  const loginRequestHandler = () => {
+  const loginRequestHandler = async (e) => {
+    console.log("eee");
+    e.preventDefault();
     const { email, password } = loginInfo;
-    console.log(loginInfo);
 
     if (!email || !password) {
       setErrMsg("이메일과 비밀번호를 확인해주세요.");
     } else if (!validEmail(email)) {
       setErrMsg("이메일 형식이 아닙니다.");
     } else {
-      axios
-        .post(
-          `${process.env.REACT_APP_API_URL}/user/signin`,
-          { email, password },
-          { withCredentials: true }
-        )
-        .then((res) => {
-          //console.log("login", res.data.message);
-          if (res.status === 204) {
-            handleResponseSuccess();
-          } else {
-            setErrMsg("이메일과 비밀번호를 확인해주세요.");
-          }
-        });
+      dispatch(userSignin(loginInfo)).then((res) => {
+        console.log(res);
+        if (res) {
+          handleResponseSuccess();
+        } else {
+          setErrMsg("이메일과 비밀번호를 확인해주세요.");
+        }
+      });
     }
+  };
+
+  const kakaoLogin = async () => {
+    //ㄷㅏ른 url로 이동
+    window.location.href = `${process.env.REACT_APP_API_URL}/auth/kakao`;
   };
 
   return (
@@ -98,7 +98,7 @@ const Login = () => {
       <FormWrap>
         <Icon to="/">Mission Eco</Icon>
         <FormContent>
-          <Form action="#">
+          <Form onSubmit={(e) => e.preventDefault()}>
             <FormH1>Sign in to your account</FormH1>
             <FormLabel htmlFor="for">Email</FormLabel>
             <FormInput type="email" onChange={handleInputValue("email")} />
@@ -111,8 +111,10 @@ const Login = () => {
             <FormButton type="submit" onClick={loginRequestHandler}>
               입장하기!
             </FormButton>
-            <Google handleResponseSuccess={handleResponseSuccess} />
-            <Kakao />
+            <Google />
+            <KakaoBtn onClick={kakaoLogin}>
+              <Img src={kakao} />
+            </KakaoBtn>
             <FormButton type="submit">
               <BtnLink to="/signup">회원가입</BtnLink>
             </FormButton>
@@ -121,6 +123,6 @@ const Login = () => {
       </FormWrap>
     </Container>
   );
-};
+}
 
 export default Login;

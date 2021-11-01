@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Navbar from "../../components/Navbar/Navbar";
+// import CheckPassword from "../../components/MyInfo/CheckPassword/CheckPassword";
+// import MypageEdit from "../../components/MyInfo/MypageEdit/MypageEdit";
+import axios from "axios";
+import { getChallengeInfo } from "../../Redux/actions";
 import {
   H1,
   Btn,
@@ -12,8 +16,6 @@ import {
 } from "./MypageStyle";
 // import CheckPassword from "../../components/MyInfo/CheckPassword/CheckPassword";
 // import MypageEdit from "../../components/MyInfo/MypageEdit/MypageEdit";
-import axios from "axios";
-import { getChallengeInfo, getPostcardInfo } from "../../Redux/actions";
 import ChallengeLogItem from "../../components/ChallengeLog/ChallengeLogItem/ChallengeLogItem";
 
 const Mypage = () => {
@@ -22,8 +24,6 @@ const Mypage = () => {
   const [errMsg, setErrMsg] = useState("");
   // ! dispatch(getChallengeInfo(challengeInfo))로 받아온 애들 담아놓으려고 만든 state --> 이렇게 해야되는 건지 아닌지 모르겠는데 일단 해봄
   const [challengeLists, setChallengeLists] = useState([]);
-  // ! 얘는 마찬가지로 dispatch(getPostcardInfo(postcardInfo))로 받아온 애들 담아놓으려고 만든 state임
-  const [postcardList, setPostcardList] = useState([]);
 
   useEffect(() => {
     allListRequest();
@@ -46,7 +46,6 @@ const Mypage = () => {
           // 내가 좋아요한 챌린지, 내가 쓴 글(ChallengeLog리스트 받아옴
           const { myLogList, challengeList } = res.data;
           setChallengeLists(challengeList);
-          console.log("디스패치 결과", dispatch(getPostcardInfo(myLogList))); // >> dispatch 하는 이유는?...
           console.log("myLogList", myLogList);
         } else if (res.status === 400) {
           setErrMsg("Bad Request");
