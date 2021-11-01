@@ -14,7 +14,6 @@ module.exports = {
   },
   kakaoCallback: async (req, res) => {
     try {
-      console.log("kakao---", req.query.code);
       axios
         .post(
           `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT_URI}&code=${req.query.code}`,
@@ -25,7 +24,6 @@ module.exports = {
           }
         )
         .then(async (res1) => {
-          console.log("req.data.accesstocke--", res1.data.access_token);
           axios
             .get(
               `https://kapi.kakao.com/v2/user/me?access_token=${res1.data.access_token}`,
@@ -37,7 +35,6 @@ module.exports = {
               }
             )
             .then(async (res2) => {
-              console.log("res.data---", res2.data);
               const [kakaoUserInfo, created] = await user.findOrCreate({
                 where: { email: res2.data.kakao_account.email },
                 defaults: {

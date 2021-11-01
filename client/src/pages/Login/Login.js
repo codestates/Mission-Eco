@@ -26,7 +26,7 @@ import {
   GeneralLogin,
   Text,
   OauthBtn,
-  Logo
+  Logo,
 } from "./LoginStyle";
 
 axios.defaults.withCredentials = true;
@@ -44,7 +44,7 @@ function Login() {
 
   const [errMsg, setErrMsg] = useState("");
 
-  useState(() => {}, []);
+  //useState(() => {}, []);
 
   const handleInputValue = (key) => (e) => {
     SetLoginInfo({ ...loginInfo, [key]: e.target.value });
@@ -100,18 +100,26 @@ function Login() {
 
   const googleLogin = async () => {
     window.location.href = `${process.env.REACT_APP_API_URL}/auth/google`;
-  }
+  };
 
   return (
     <Container>
       {/* <FormH1>로그인</FormH1> */}
       <LeftTxt>Hello,</LeftTxt>
-      <RightTxt>We always<br/>think about<br/>our<br/>Earth</RightTxt>
+      <RightTxt>
+        We always
+        <br />
+        think about
+        <br />
+        our
+        <br />
+        Earth
+      </RightTxt>
       <FormWrap>
         <Icon to="/"></Icon>
         <FormContent>
           <Form onSubmit={(e) => e.preventDefault()}>
-          <GeneralLogin>
+            <GeneralLogin>
               <div>
                 <FormLabel htmlFor="for">이메일</FormLabel>
                 <FormInput type="email" onChange={handleInputValue("email")} />
@@ -127,15 +135,19 @@ function Login() {
               <FormButton type="submit" onClick={loginRequestHandler}>
                 로그인
               </FormButton>
-            <BtnLink to="/"><LinkFindIdPwd>아이디 / 비밀번호 찾기</LinkFindIdPwd></BtnLink>
-            <BtnLink to="/signup"><LinkSignUp>회원가입</LinkSignUp></BtnLink>
+              <BtnLink to="/">
+                <LinkFindIdPwd>아이디 / 비밀번호 찾기</LinkFindIdPwd>
+              </BtnLink>
+              <BtnLink to="/signup">
+                <LinkSignUp>회원가입</LinkSignUp>
+              </BtnLink>
             </GeneralLogin>
             <SocialLoigin>
               <OauthBtn onClick={kakaoLogin}>
-                <Logo src={kakaoLogo}/>
+                <Logo src={kakaoLogo} />
               </OauthBtn>
               <OauthBtn onClick={googleLogin}>
-                <Logo src={googleLogo}/>
+                <Logo src={googleLogo} />
               </OauthBtn>
             </SocialLoigin>
           </Form>
