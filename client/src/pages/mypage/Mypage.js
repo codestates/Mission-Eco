@@ -17,7 +17,7 @@ import axios from "axios";
 import ChallengeLogItem from "../../components/ChallengeLog/ChallengeLogItem/ChallengeLogItem";
 
 const Mypage = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const [errMsg, setErrMsg] = useState("");
   // ! dispatch(getChallengeInfo(challengeInfo))로 받아온 애들 담아놓으려고 만든 state --> 이렇게 해야되는 건지 아닌지 모르겠는데 일단 해봄
