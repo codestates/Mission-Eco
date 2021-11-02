@@ -1,4 +1,5 @@
-// ChallengeLogStyle에서 복붙함
+// ! ChallengeLogStyle에서 복붙함
+// ! LikeList용으로 수정해야함 (style.js도)
 import styled from "styled-components";
 
 export const ServicesContiner = styled.div`

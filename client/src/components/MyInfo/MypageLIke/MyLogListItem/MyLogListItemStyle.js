@@ -1,4 +1,4 @@
-// ! LikeListItem용으로 수정해야함
+// ! MyLogListItem용으로 수정해야함
 import styled from "styled-components";
 
 export const ServicesContiner = styled.div`
