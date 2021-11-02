@@ -1,3 +1,3 @@
 #  프로젝트 소개 
 
-![IMG_B402FBE27B67-1](https://user-images.githubusercontent.com/78816754/138211767-8ee0bce6-1245-4b8c-8985-c7d838bcc59f.jpeg)
+![IMG_69B429D25130-1](https://user-images.githubusercontent.com/78816754/138313308-c79889c7-4b74-4b72-92d7-e8b1c3806428.jpeg)
