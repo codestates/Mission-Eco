@@ -110,6 +110,7 @@ function Login() {
         <Icon to="/"></Icon>
         <FormContent>
           <Form onSubmit={(e) => e.preventDefault()}>
+<<<<<<< HEAD
           <GeneralLogin>
               <div>
                 <FormLabel htmlFor="for">이메일</FormLabel>
@@ -137,6 +138,25 @@ function Login() {
                 <Logo src={googleLogo}/>
               </OauthBtn>
             </SocialLoigin>
+=======
+            <FormH1>Sign in to your account</FormH1>
+            <FormLabel htmlFor="for">Email</FormLabel>
+            <FormInput type="email" onChange={handleInputValue("email")} />
+            <FormLabel htmlFor="for">Pssword</FormLabel>
+            <FormInput
+              type="password"
+              onChange={handleInputValue("password")}
+            />
+            <Text>{errMsg}</Text>
+            <FormButton type="submit" onClick={loginRequestHandler}>
+              입장하기!
+            </FormButton>
+            <Google />
+            <Kakao />
+            <FormButton type="submit">
+              <BtnLink to="/signup">회원가입</BtnLink>
+            </FormButton>
+>>>>>>> google-login
           </Form>
         </FormContent>
       </FormWrap>
