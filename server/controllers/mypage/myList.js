@@ -1,13 +1,18 @@
-const { post, challenge, challengelike } = require("../../models");
+const { challengelog, challenge, challengelike } = require("../../models");
+const { isAuthorized } = require("../tokenFunctions/index");
 module.exports = {
   getMyList: async (req, res) => {
-    //res.send('getMyList 테스트 성공');
-    const { userId } = req.params;
-    if (!userId) {
-      res.sendStatus(400);
+    //포스팅 중에 user_id가 userId인 포스팅을 다 가져오기
+    const accessTokenData = isAuthorized(req);
+    //쿠키에 jwt토큰이 없거나 토큰 유효하지 않은 경우
+    if (!accessTokenData) {
+      return res.sendStatus(401);
     } else {
-      //포스팅 중에 user_id가 userId인 포스팅을 다 가져오기
-      const postList = await post.findAll({ where: { user_id: userId } });
+      const { id } = accessTokenData;
+
+      const myLogList = await challengelog.findAll({
+        where: { user_id: id },
+      });
       /**SELECT name,img,level FROM challenge INNER JOIN challengelike ON
        * challenge.id = challengelike.challenge_id
        * WHERE challengelike.user_id = userId
@@ -17,11 +22,12 @@ module.exports = {
         include: [
           {
             model: challengelike,
-            where: { user_id: userId },
+            attribute: [],
+            where: { user_id: id },
           },
         ],
       });
-      res.status(200).send({ postList, challengeList });
+      res.status(200).send({ myLogList, challengeList });
     }
   },
 };

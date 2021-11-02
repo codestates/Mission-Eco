@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 
 module.exports = {
   signIn: async (req, res) => {
+    console.log(req.body);
     /*
      * 1. email, password를 구조분해 할당으로 받는다.
      * 2. 등록된 이메일이 아닌 경우 (401)
@@ -22,7 +23,7 @@ module.exports = {
       console.log("signin userInfo", userInfo);
       // 등록된 이메일이 아닌 경우
       if (!userInfo) {
-        return res.status(401).send({ data: null, message: "not authorized" });
+        return res.sendStatus(401);
       }
       console.log("signin userInfo.password: ", userInfo.password);
 
@@ -31,7 +32,7 @@ module.exports = {
 
       // 비밀번호가 유효하지 않을때 (로그인 실패)
       if (!match) {
-        return res.status(401).send({ data: null, message: "not authorized" });
+        return res.sendStatus(401);
       } else {
         // 비밀번호가 유효할 때 (로그인 성공)
         // jwt토큰을 생성하여 쿠키로 전달

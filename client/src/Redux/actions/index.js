@@ -1,16 +1,24 @@
+import axios from "axios";
+
 export const IS_LOGIN = "IS_LOGIN";
+export const USER_SIGNIN = "USER_SIGNIN";
+export const USER_SIGNOUT = "USER_SIGNOUT";
 export const USER_INFO = "USER_INFO";
 export const DELETE_USERINFO = "DELETE_USERINFO";
 export const IS_LOADING = "IS_LOADING";
 export const IS_OPEN_MODAL = "IS_OPEN_MODAL";
 export const CHALLENGE_INFO = "CHALLENGE_INFO";
-export const POSTCARD_INFO = "POSTCARD_INFO";
+export const CHALLENGE_LIST = "CHALLENGE_LIST";
+export const CHALLENGE_LOG_LIST = "CHALLENGE_LOG_LIST";
+export const USER_LIKE_LIST = "USER_LIKE_LIST";
+export const IS_LIKE = "IS_LIKE";
+export const AUTH_SUCCESS = "AUTH_SUCCESS";
 
 export function isLogin(boolean) {
   return {
     type: IS_LOGIN,
     payload: {
-      isLogin: boolean,
+      boolean,
     },
   };
 }
@@ -26,12 +34,22 @@ export function getUserInfo(userInfo) {
 
 export function deleteUserInfo(userInfo) {
   return {
-    type: DELETE_USERINFO,
+    type: USER_INFO,
     payload: {
-      userInfo: null,
+      userInfo,
     },
   };
 }
+
+// 닉네임 변경 관련 함수 만들어줘야 할 것 같은데 type 부분에 뭐라 적어야 할지 모르겠음. 일단 주석처리.
+// export function changeUserNick(userInfo) {
+//   return {
+//     type: DELETE_USERINFO,
+//     payload: {
+//       userInfo: null,
+//     },
+//   };
+// }
 
 export function isLoading(boolean) {
   return {
@@ -60,11 +78,137 @@ export function getChallengeInfo(challengeInfo) {
   };
 }
 
-export function getPostcardInfo(postcadInfo) {
+export const addLike = (challengeId) => async (dispatch) => {
+  const like = await axios
+    .post(
+      `${process.env.REACT_APP_API_URL}/challenge/like`,
+      {
+        challengeId,
+      },
+      {
+        withCredentials: true,
+      }
+    )
+    .then((res) => {
+      console.log(res.data.challengeList);
+      if (res.status === 201) {
+        return res.data.challengeList;
+      }
+    });
+  dispatch({ type: CHALLENGE_LIST, payload: like });
+};
+
+export const deleteLike = (challengeId) => async (dispatch) => {
+  const unlike = await axios
+    .post(
+      `${process.env.REACT_APP_API_URL}/challenge/unlike`,
+      {
+        challengeId,
+      },
+      {
+        withCredentials: true,
+      }
+    )
+    .then((res) => {
+      console.log(res);
+      if (res.status === 200) {
+        return res.data.challengeList;
+      }
+    });
+  dispatch({ type: CHALLENGE_LIST, payload: unlike });
+};
+
+export const getChallengeList = () => async (dispatch) => {
+  const list = await axios
+    .get(`${process.env.REACT_APP_API_URL}/challenge`, {
+      withCredentials: true,
+    })
+    .then((res) => {
+      if (res.status === 200) {
+        return res.data.data;
+      }
+    });
+
+  return dispatch({ type: CHALLENGE_LIST, payload: list });
+};
+
+export const getChallengeLogList = () => async (dispatch) => {
+  const logList = await axios
+    .get(`${process.env.REACT_APP_API_URL}/challenge-log`, {
+      withCredentials: true,
+    })
+    .then((res) => {
+      if (res.status === 200) {
+        return res.data;
+      }
+    });
+
+  return dispatch({ type: CHALLENGE_LOG_LIST, payload: logList });
+};
+
+export function getUserLikeList(likeList) {
   return {
-    type: POSTCARD_INFO,
+    type: USER_LIKE_LIST,
     payload: {
-      postcadInfo,
+      likeList,
     },
   };
 }
+
+export const userSignin = (loginInfo) => async (dispatch) => {
+  const { email, password } = loginInfo;
+  const data = await axios
+    .post(
+      `${process.env.REACT_APP_API_URL}/user/signin`,
+      {
+        email,
+        password,
+      },
+      {
+        withCredentials: true,
+      }
+    )
+    .then((res) => {
+      if (res.status === 204) {
+        return true;
+      } else {
+        return false;
+      }
+    })
+    .catch((err) => console.log(err));
+
+  dispatch({ type: IS_LOGIN, payload: data });
+  return data;
+};
+
+export const userSignout = () => async (dispatch) => {
+  const data = await axios
+    .post(`${process.env.REACT_APP_API_URL}/user/logout`, {
+      withCredentials: true,
+    })
+    .then((res) => {
+      if (res.status === 205) {
+        return false;
+      }
+    });
+  console.log(data);
+  dispatch({ type: IS_LOGIN, payload: data });
+};
+export const authSuccess = () => async (dispatch) => {
+  const data = await axios
+    .get(`${process.env.REACT_APP_API_URL}/mypage/auth`, {
+      withCredentials: true,
+    })
+    .then((res) => {
+      console.log(res);
+      if (res.status === 200) {
+        return res.data.userInfo;
+      }
+      console.log(res.data.userInfo);
+    });
+  dispatch({ type: IS_LOGIN, payload: true });
+  dispatch({ type: USER_INFO, payload: data });
+  return data;
+  //console.log("auth", res.data.data.userInfo);
+  //isAuthenticated(res.data.data.userInfo);
+};

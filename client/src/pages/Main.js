@@ -1,34 +1,57 @@
 import React, { useEffect } from "react";
 import Challenge from "./challenge/Challenge";
 import Navbar from "../components/Navbar/Navbar";
+import { authSuccess } from "../../src/Redux/actions/index";
+import { useDispatch, useSelector } from "react-redux";
+//import { useHistory } from "react-router-dom";
 import axios from "axios";
+
 function Main() {
-  useEffect(() => {
-    const authorizationCode = new URL(window.location.href).searchParams.get(
-      "code"
-    );
-    if (authorizationCode) {
-      getAccessToken(authorizationCode);
+  const isLogin = useSelector((state) => state.infoReducer.isLogin);
+  const dispatch = useDispatch();
+  //const history = useHistory();
+
+  useEffect(() => {}, []);
+
+  /*
+  const isAuthenticated = () => {
+    //유저 정보 찾아줌
+    if (isLogin) {
+      axios
+        .get(`${process.env.REACT_APP_API_URL}/mypage/auth`, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          dispatch(getUserInfo(res.data.userInfo));
+          console.log(res.data.userInfo);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      console.log("not login");
     }
-  }, []);
+  };*/
+  /*
   const getAccessToken = (authorizationCode) => {
+    //axios요청
     axios
       .post(
-        "https://localhost:4000/user/kakao-signin",
+        `${process.env.REACT_APP_API_URL}/user/kakao-signin`,
         { authorizationCode },
         { withCredentials: true }
       )
       .then((res) => {
         //console.log("klogin", res.data.message);
-        if (res.status === 200) {
-          //handleResponseSuccess();
+        if (res.status === 204) {
           console.log("kakao ok");
+
+          dispatch(isLogin(true));
+          history.push("/");
+          //handleResponseSuccess();
         } else {
-          //setErrMsg("이메일과 비밀번호를 확인해주세요.");
           console.log("kakao fail");
         }
       });
-  };
+  };*/
 
   return (
     <div>

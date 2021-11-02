@@ -42,14 +42,14 @@ function Signup() {
     } else {
       axios
         .get(
-          `https://localhost:4000/user/validation/email/${email}`,
+          `${process.env.REACT_APP_API_URL}/user/validation/email/${email}`,
 
           {
             withCredentials: true,
           }
         )
         .then((res) => {
-          if (res.data.message === "ok") {
+          if (res.status === 204) {
             setIsEmail(true);
             setErrorMsg("사용가능한 이메일입니다. ");
           }
@@ -61,12 +61,13 @@ function Signup() {
   const checkNickname = () => {
     //유효성 검사 nickname 형식이 맞는지 , 이미 유효한 nickname 확인
     const { nickname } = signupInfo;
+    console.log(nickname, "회원가입");
     if (!nickname) {
       setErrorMsg("닉네임을 입력하세요.");
     } else {
       axios
         .get(
-          `https://localhost:4000/user/validation/nickname/${nickname}`,
+          `${process.env.REACT_APP_API_URL}/user/validation/nickname/${nickname}`,
 
           {
             withCredentials: true,
@@ -74,13 +75,13 @@ function Signup() {
         )
         .then((res) => {
           //console.log("nickname", res.data);
-          if (res.data.message === "ok") {
+          if (res.status === 204) {
             setIsNickname(true);
             setErrorMsg("사용가능한 닉네임입니다. ");
           }
         });
     }
-    setErrorMsg("이미 사용중인 닉네임입니다.");
+    setErrorMsg("사용불가 닉네임입니다.");
   };
 
   const handleSignup = () => {
@@ -93,7 +94,7 @@ function Signup() {
     } else if (isNickname && isEmail) {
       axios
         .post(
-          "https://localhost:4000/user/signup",
+          `${process.env.REACT_APP_API_URL}/user/signup`,
           { signupInfo },
           { withCredentials: true }
         )
