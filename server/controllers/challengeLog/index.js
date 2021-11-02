@@ -1,4 +1,4 @@
-const { user, challenge, challengelog } = require("../../models");
+const { user, challengelog, challenge } = require("../../models");
 module.exports = {
   get: async (req, res) => {
     try {
@@ -9,7 +9,10 @@ module.exports = {
           { model: challenge, attributes: ["name"] },
         ],
       });
-      res.status(200).send({ challengeLogList });
+      const challengeList = await challenge.findAll({
+        attributes: ["id", "name"],
+      });
+      res.status(200).send({ challengeLogList, challengeList });
     } catch (error) {
       console.log(error);
     }
@@ -18,7 +21,6 @@ module.exports = {
     //res.send("challenge-log 포스팅 성공");
     try {
       const { userId, challengeId, img, contents } = req.body;
-      console.log("dddddddddddddfdsfnlwenflewn", req.body);
       if (!userId || !challengeId || !img || !contents) {
         res.sendStatus(400);
       } else {
@@ -35,13 +37,12 @@ module.exports = {
     }
   },
   delete: async (req, res) => {
-    //res.send("challenge-log 기록 삭제");
-    const { logId } = req.params;
-    const findLog = await challengelog.findByPk(logId);
-    if (!findLog) {
+    const { id } = req.body;
+    const deleteLog = await challengelog.findByPk(id);
+    if (!deleteLog) {
       return res.sendStatus(400);
     }
-    await findLog.destroy();
-    return res.sendStatus(204);
+    await deleteLog.destroy();
+    res.sendStatus(204);
   },
 };

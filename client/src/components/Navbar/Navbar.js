@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+/*eslint-disable */
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { isLogin, deleteUserInfo } from "../../Redux/actions";
+import { deleteUserInfo, userSignout } from "../../Redux/actions";
+
 import { ReactComponent as Menubar } from "../../imges/menubar.svg";
 import axios from "axios";
 //import { FaBars } from "react-icons/fa";
@@ -18,12 +20,14 @@ import {
   NavBtnLink,
 } from "./NavbarStyle";
 
-const Navbar = ({ toggle }) => {
+const Navbar = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const state = useSelector((state) => state.infoReducer.isLogin);
+  //const state = useSelector((state) => state.infoReducer.isLogin);
+  const isLogin = useSelector((state) => state.infoReducer.isLogin);
+  console.log(isLogin, "dfsfsd");
   const [scrollNav, setScrollNav] = useState(false);
-
+  /*
   const changeNav = () => {
     if (window.scrollY >= 80) {
       setScrollNav(true);
@@ -35,19 +39,18 @@ const Navbar = ({ toggle }) => {
   useEffect(() => {
     window.addEventListener("scroll", changeNav);
   }, []);
-
+  /*
   const toggleHome = () => {
     window.scrollToTop();
   };
-
-  const handleLogout = () => {
+  */
+  const handleLogout = async () => {
     alert("로그아웃버튼");
     //일반유저 로그아웃
-    axios
-      .post(`${process.env.REACT_APP_API_URL}/user/logout`, { withCredentials: true })
-      .then((res) => console.log("out", res));
-    dispatch(isLogin(!isLogin));
+    dispatch(userSignout());
+    // dispatch(isLogin(false));
     dispatch(deleteUserInfo(null));
+    //dispatch(getUserLikeList(null));
     history.push("/challenge");
     /*/소셜 로그아웃 
     //카카오
@@ -68,7 +71,7 @@ const Navbar = ({ toggle }) => {
       <Nav scrollNav={scrollNav}>
         <NavContainer>
           <NavLogo to="/">Misson-Eco</NavLogo>
-          <MobileIcon onClick={toggle}>
+          <MobileIcon>
             <Menubar fill="white" />
           </MobileIcon>
           <NavMenu>
@@ -109,7 +112,19 @@ const Navbar = ({ toggle }) => {
                 Mission-log
               </NavLinks>
             </NavItem>
-            {!state.isLogin ? null : (
+            <NavItem>
+              <NavLinks
+                to="/upload"
+                //smooth={true}
+                duration={500}
+                //spy={true}
+                exact="true"
+                offset={-80}
+              >
+                Let's ECO
+              </NavLinks>
+            </NavItem>
+            {!isLogin ? null : (
               <NavItem>
                 <NavLinks
                   to="mypage"
@@ -125,10 +140,10 @@ const Navbar = ({ toggle }) => {
             )}
           </NavMenu>
           <NavBtn>
-            {!state.isLogin ? (
+            {!isLogin ? (
               <NavBtnLink to="/login">Signin</NavBtnLink>
             ) : (
-              <NavBtnLink to="/login" onClick={handleLogout}>
+              <NavBtnLink to="/" onClick={handleLogout}>
                 Logout
               </NavBtnLink>
             )}

@@ -15,7 +15,7 @@ const Modal = () => {
     console.log(state);
     // axios
     //   .delete(
-    //     `https://localhost:4000//mypage/userinfo`, // ! 여기 이렇게 작성하는 거 맞나요?
+    //     `${process.env.REACT_APP_API_URL}/mypage/userinfo`, // ! 여기 이렇게 작성하는 거 맞나요?
     //     { withCredentials: true } // ! 이건 넣어둬야하는 것 같아서 일단 안지움(뭔지 정확히 모름..)
     //   )
     //   .then((res) => {
