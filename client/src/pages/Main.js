@@ -1,14 +1,8 @@
 import React, { useEffect } from "react";
 import Challenge from "./challenge/Challenge";
 import Navbar from "../components/Navbar/Navbar";
-import { authSuccess } from "../../src/Redux/actions/index";
-import { useDispatch, useSelector } from "react-redux";
-//import { useHistory } from "react-router-dom";
-import axios from "axios";
 
 function Main() {
-  const isLogin = useSelector((state) => state.infoReducer.isLogin);
-  const dispatch = useDispatch();
   //const history = useHistory();
 
   useEffect(() => {}, []);
