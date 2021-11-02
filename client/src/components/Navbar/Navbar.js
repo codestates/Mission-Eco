@@ -19,6 +19,7 @@ import {
   NavBtn,
   NavBtnLink,
 } from "./NavbarStyle";
+require("dotenv").config();
 
 const Navbar = () => {
   const dispatch = useDispatch();

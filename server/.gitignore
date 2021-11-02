@@ -10,3 +10,4 @@
 .env
 
 config/config.json
+config/config.js
