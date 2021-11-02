@@ -7,7 +7,7 @@ const challengeLogCtrl = require("./challengeLog");
 const authCtrl = require("./auth");
 const badgeCtrl = require("./badge");
 
-// user
+// users
 router.post("/user/signin", userCtrl.signIn);
 router.post("/user/logout", userCtrl.logout);
 router.post("/user/signup", userCtrl.signUp);
