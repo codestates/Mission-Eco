@@ -111,6 +111,9 @@ function Login() {
         <FormContent>
           <Form onSubmit={(e) => e.preventDefault()}>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> signin
           <GeneralLogin>
               <div>
                 <FormLabel htmlFor="for">이메일</FormLabel>
@@ -131,6 +134,7 @@ function Login() {
             <BtnLink to="/signup"><LinkSignUp>회원가입</LinkSignUp></BtnLink>
             </GeneralLogin>
             <SocialLoigin>
+<<<<<<< HEAD
               <OauthBtn onClick={kakaoLogin}>
                 <Logo src={kakaoLogo}/>
               </OauthBtn>
@@ -157,6 +161,11 @@ function Login() {
               <BtnLink to="/signup">회원가입</BtnLink>
             </FormButton>
 >>>>>>> google-login
+=======
+              <Google />
+              <Kakao />
+            </SocialLoigin>
+>>>>>>> signin
           </Form>
         </FormContent>
       </FormWrap>

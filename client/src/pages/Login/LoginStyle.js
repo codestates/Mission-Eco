@@ -31,6 +31,10 @@ export const Container = styled.div`
   @media screen and (max-width: 1350px) { 
     width: 80%;
   }
+<<<<<<< HEAD
+=======
+
+>>>>>>> signin
   @media screen and (max-width: 980px) { 
     width: 100%;
   }
@@ -51,6 +55,7 @@ export const LeftTxt = styled.p`
   @media screen and (max-width: 1350px) {
     font-size: 1.6rem;
   }
+<<<<<<< HEAD
   @media screen and (max-width: 980px) {
     left: 1.2rem;
   }
@@ -59,6 +64,18 @@ export const LeftTxt = styled.p`
   }
 `;
 
+=======
+
+  @media screen and (max-width: 980px) {
+    left: 1.2rem;
+  }
+
+  @media screen and (max-width: 750px) {
+    top: 3000%; // 글씨를 화면 밖으로 보내기
+  }
+`;
+
+>>>>>>> signin
 export const RightTxt = styled.p`
   position: absolute;
   top: 30%;
@@ -68,12 +85,24 @@ export const RightTxt = styled.p`
   font-size: 2.4rem;
   font-family: 'Cormorant Garamond', serif;
   font-weight: 500;
+<<<<<<< HEAD
   @media screen and (max-width: 1200px) {
     font-size: 1.6rem;
   }
   @media screen and (max-width: 980px) {
     right: 1.2rem;
   }
+=======
+
+  @media screen and (max-width: 1200px) {
+    font-size: 1.6rem;
+  }
+
+  @media screen and (max-width: 980px) {
+    right: 1.2rem;
+  }
+
+>>>>>>> signin
   @media screen and (max-width: 750px) {
     top: 3000%; // 글씨를 화면 밖으로 보내기
   }
@@ -105,6 +134,10 @@ export const FormContent = styled.div`
   width: 510px;
   margin: 1rem auto 0;
   padding: 1.2rem 2.5rem 0;
+<<<<<<< HEAD
+=======
+
+>>>>>>> signin
   @media screen and (max-width: 480px) { // 테스트하고 480으로 바꾸기
     width: 100%;
   }
@@ -145,6 +178,10 @@ export const FormButton = styled.button`
    color: #fff;
    font-weight: bold;
    border-radius: 4px;
+<<<<<<< HEAD
+=======
+
+>>>>>>> signin
    
    &:hover {
     transition: 1s;
@@ -162,6 +199,7 @@ export const BtnLink = styled(Link)`
   position: relative;
   text-decoration: none;
   `;
+<<<<<<< HEAD
 
 export const LinkFindIdPwd = styled.span`
   color: #999;
@@ -181,6 +219,30 @@ export const LinkSignUp = styled.span`
   }
 `;
 
+=======
+
+export const LinkFindIdPwd = styled.span`
+  color: #999;
+  &:hover {
+    transition: 1s;
+    color: #333;
+  }
+`;
+
+export const LinkSignUp = styled.span`
+  display: float;
+  color: #999;
+  float:right;
+  &:hover {
+    transition: 1s;
+    color: #333;
+  }
+`;
+
+export const OauthBtn = styled.button`
+`;
+
+>>>>>>> signin
 export const SocialLoigin = styled.div`
   margin: 1.4rem 0;
 `

@@ -1,4 +1,5 @@
 import React from "react";
+<<<<<<< HEAD
 
 function GoogleLoginBtn() {
 
@@ -16,6 +17,18 @@ function GoogleLoginBtn() {
         <div id="comment">구글 로그인</div>
       </button>
     </div>
+=======
+import { OauthBtn,Img } from "../kakao/KakaoStyle";
+import googleLogo from "../../imges/google-logo.png"
+function GoogleLogin() {
+
+  return (
+    <>
+      <OauthBtn>
+        <Img src={googleLogo}/>
+      </OauthBtn>
+    </>
+>>>>>>> signin
   );
 }
-export default GoogleLoginBtn;
+export default GoogleLogin;

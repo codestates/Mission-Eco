@@ -7,7 +7,7 @@ import {
   FormWrap,
   FormContent,
   Form,
-  FormH1,
+  Icon,
   FormLabel,
   FormInput,
   FormButton,
@@ -113,12 +113,14 @@ function Signup() {
   return (
     <Container>
       <FormWrap>
+        <Icon to="/"></Icon>
         <FormContent>
           <Form onSubmit={(e) => e.preventDefault()}>
-            <FormH1>회원가입</FormH1>
+            {/* <FormH1>회원가입</FormH1> */}
             <FormLabel>이메일</FormLabel>
             <FormInput type="text" onChange={handelFormValue("email")} />
             <CheckButton onClick={checkEmail}>중복확인</CheckButton>
+
             <FormLabel>비밀번호</FormLabel>
             <FormInput
               className="FormInput"
@@ -126,7 +128,7 @@ function Signup() {
               placeholder="비밀번호 입력"
               onChange={handelFormValue("password")}
             ></FormInput>
-            <FormLabel>비밀번호확인</FormLabel>
+            <FormLabel>비밀번호 재확인</FormLabel>
             <FormInput
               className="FormInput"
               type="password"
