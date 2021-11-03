@@ -10,3 +10,4 @@ export const CheckButton = styled.div`
   text-align: center;
   cursor: pointer;
 `;
+
