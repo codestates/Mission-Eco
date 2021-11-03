@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ChallengeLogItem from "../ChallengeLogItem/ChallengeLogItem";
 import { getChallengeLogList } from "../../../Redux/actions";
+import blobMenu from "../../../imges/blobMenu.svg";
 import {
   ServicesContiner,
   ServicesH1,
@@ -48,6 +49,7 @@ const ChallengeLogList = () => {
       <Subbar>
         <Dropdown>
           <DropButton onClick={dropBtnClick}>
+            <img src={blobMenu} alt="blobkmenu" />
             <span>클릭하면 목록이 주루룩~</span>
           </DropButton>
           <Dropdowncontent isActive={isActive}>
@@ -65,7 +67,7 @@ const ChallengeLogList = () => {
                 );
               })}
           </Dropdowncontent>
-        </Dropdown>{" "}
+        </Dropdown>
         <Select>
           <Button>
             <ServicesP>All</ServicesP>

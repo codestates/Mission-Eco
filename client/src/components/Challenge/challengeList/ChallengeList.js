@@ -12,7 +12,7 @@ import {
   Button,
 } from "./ChallengeListStyle";
 
-const ChallengeList = () => {
+const ChallengeList = ({ img }) => {
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.infoReducer.isLogin);
   const userInfo = useSelector((state) => state.infoReducer.userInfo);
@@ -80,6 +80,7 @@ const ChallengeList = () => {
                   userId={userInfo.id}
                   isLogin={isLogin}
                   render={() => setRender(!render)}
+                  img={img}
                 />
               );
             })
@@ -91,6 +92,7 @@ const ChallengeList = () => {
                   userId={userInfo.id}
                   isLogin={isLogin}
                   render={() => setRender(!render)}
+                  img={img}
                 />
               );
             })}

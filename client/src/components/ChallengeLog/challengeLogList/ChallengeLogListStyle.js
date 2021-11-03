@@ -129,19 +129,18 @@ export const Dropdown = styled.div`
 `;
 
 export const DropButton = styled.button`
-  border: 1px solid rgb(37, 37, 37);
-  border-radius: 4px;
-  background-color: #f5f5f5;
-  font-weight: 400;
+  //border: 1px solid rgb(37, 37, 37);
+  //border-radius: 4px;
+  //background-color: #f5f5f5;
+  //font-weight: 400;
   color: rgb(37, 37, 37);
-  padding: 12px;
-  width: 15em;
+  //padding: 12px;
+  //width: 15em;
 
   text-align: left;
   cursor: pointer;
   font-size: 12px;
 `;
-
 export const Dropdowncontent = styled.div`
   display: ${(props) => (props.isActive ? `block` : `none`)};
   position: absolute;

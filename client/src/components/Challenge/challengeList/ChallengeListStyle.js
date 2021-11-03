@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import blob1 from "../../../imges/blob1.svg";
 
 export const ServicesContiner = styled.div`
   display: flex;
@@ -7,8 +8,13 @@ export const ServicesContiner = styled.div`
   align-items: center;
 
   margin: 0 auto;
-  background: #fff;
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
 
+  z-index: -1;
+
+  background-image: url(${blob1});
   @media screen and (max-width: 768px) {
     //height: 1100px;
   }
@@ -69,9 +75,10 @@ export const Subbar = styled.div`
   //justify-content: center;
   //align-items: center;
   padding: 1px 280px;
-  border-top: 1px solid green;
-  border-bottom: 1px solid green;
-  color: rgb(100, 100, 100);
+  border-top: 1px solid #010101;
+  border-bottom: 1px solid #010101;
+
+  //background: #d8e3e7;
   margin-bottom: 3em;
 
   @media screen and (max-width: 480px) {
@@ -82,6 +89,9 @@ export const Subbar = styled.div`
 export const Select = styled.li`
   list-style: none;
   margin: 1em;
+  &:hover {
+    border-bottom: 1px solid black;
+  }
 `;
 
 export const ServicesH1 = styled.h1`
