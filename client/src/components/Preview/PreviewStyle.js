@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const PreviewCT = styled.form`
+export const PreviewCT = styled.div`
   //flex-basis: 50%;
   display: flex;
   justify-content: center;
@@ -21,8 +21,9 @@ export const PreviewCT = styled.form`
 export const Title = styled.h3`
   //width: 100%;
   text-align: center;
-  //margin-bottom: 1em;
-  color: green;
+  height: 0px;
+  margin-bottom: 0;
+  color: #010101;
 `;
 export const Container = styled.div`
   //padding: 1em 2em;
@@ -56,7 +57,7 @@ export const ServicesCard = styled.div`
   align-items: center;
   border-radius: 0px;
   width: 340px;
-  height: 440px;
+  height: 520px;
   padding: 10px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
@@ -78,7 +79,7 @@ export const ServicesCard = styled.div`
 
 export const ServicesIcon = styled.img`
   width: 320px;
-  height: 330px;
+  height: 360px;
   margin-bottom: 15px;
   border: 1px solid #d8d8d8;
   background: ${(props) => props.background || "white"};
@@ -99,7 +100,7 @@ export const ServicesH2 = styled.span`
 `;
 
 export const ServicesP = styled.p`
-  font-size: 0.8rem;
+  font-size: 1rem;
   text-align: right;
 `;
 

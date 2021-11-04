@@ -1,21 +1,31 @@
 import React, { useRef } from "react";
-import { Button } from "../Preview/PreviewStyle";
-
-import { Form, Input, Select, FileInput } from "./LogAddFormStyle";
+import { useSelector } from "react-redux";
+import imgUpload from "../../imges/imageUpload.png";
+import {
+  Form,
+  Input,
+  Select,
+  FileInput,
+  Button,
+  ClickImg,
+  ImgSelect,
+} from "./LogAddFormStyle";
 
 const LogAddForm = ({
   logs,
   addLog,
   resetLog,
+  Img,
   setImg,
   fileSelectedHandler,
 }) => {
-  const nicknameRef = useRef();
+  const userInfo = useSelector((state) => state.infoReducer.userInfo);
+
   const challengeRef = useRef();
   const contentsRef = useRef();
-
-  const { nickname, challenge, contents, fileName, fileURL } = logs;
-
+  const { challenge, contents } = logs;
+  const { nickname } = userInfo;
+  console.log(userInfo);
   const changeImage = (e) => {
     e.preventDefault();
 
@@ -37,14 +47,15 @@ const LogAddForm = ({
   };
 
   return (
-    <Form>
+    <Form onSubmit={(e) => e.preventDefault()}>
       <Select
         name="challenge"
-        placeholder="challenge"
+        placeholder="challenge를 선택해주세요."
         value={challenge}
         ref={challengeRef}
         onChange={onChange}
       >
+        <option value="선택">챌린지 선택</option>
         <option value="플로깅">플로깅</option>
         <option value="용기내">용기내</option>
         <option value="캔뿌셔">캔뿌셔</option>
@@ -52,10 +63,11 @@ const LogAddForm = ({
       <Input
         type="text"
         name="nickname"
-        placeholder="nickname"
+        placeholder={nickname || "nickname"}
+        readonly
         value={nickname || ""}
-        ref={nicknameRef}
-        onChange={onChange}
+        //ref={nicknameRef}
+        //onChange={onChange}
       />
       <Input
         name="contents"
@@ -64,11 +76,19 @@ const LogAddForm = ({
         ref={contentsRef}
         onChange={onChange}
       />
-      <FileInput
-        type="file"
-        accept="image/*"
-        onChange={fileSelectedHandler}
-      ></FileInput>
+      <ImgSelect>
+        <label for="file-input">
+          <ClickImg src={imgUpload} alt="select img" />
+        </label>
+        <FileInput
+          id="file-input"
+          type="file"
+          accept="image/*"
+          onChange={fileSelectedHandler}
+        ></FileInput>
+      </ImgSelect>
+
+      <Button>업로드 하기!</Button>
     </Form>
   );
 };

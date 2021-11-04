@@ -9,12 +9,14 @@ import {
   ServicesWrapper,
   Dropdown,
   ServicesP,
+  SubbarWrapper,
   Subbar,
   Select,
   Button,
   DropButton,
   Dropdowncontent,
   List,
+  Img,
 } from "./ChallengeLogListStyle";
 
 const ChallengeLogList = () => {
@@ -46,30 +48,31 @@ const ChallengeLogList = () => {
   return (
     <ServicesContiner id="services">
       <ServicesH1>Mission Log</ServicesH1>
-      <Subbar>
-        <Dropdown>
-          <DropButton onClick={dropBtnClick}>
-            <img src={blobMenu} alt="blobkmenu" />
-            <span>클릭하면 목록이 주루룩~</span>
-          </DropButton>
-          <Dropdowncontent isActive={isActive}>
-            <List onClick={(e) => handleRequsetLogList(e)}>All</List>
-            {challengeList &&
-              challengeList.map((log, idx) => {
-                return (
-                  <List
-                    key={idx}
-                    value={log.id}
-                    onClick={(e) => handleRequsetLogList(e)}
-                  >
-                    {log.name}
-                  </List>
-                );
-              })}
-          </Dropdowncontent>
-        </Dropdown>
-        <Select>
-          <Button>
+      <SubbarWrapper>
+        <Subbar>
+          <Dropdown>
+            <DropButton onClick={dropBtnClick}>
+              <span>클릭하면 목록이 주루룩~</span>
+              <Img src={blobMenu} alt="blobkmenu" />
+            </DropButton>
+            <Dropdowncontent isActive={isActive}>
+              <List onClick={(e) => handleRequsetLogList(e)}>All</List>
+              {challengeList &&
+                challengeList.map((log, idx) => {
+                  return (
+                    <List
+                      key={idx}
+                      value={log.id}
+                      onClick={(e) => handleRequsetLogList(e)}
+                    >
+                      {log.name}
+                    </List>
+                  );
+                })}
+            </Dropdowncontent>
+          </Dropdown>
+          <Select>
+            {/** <Button>
             <ServicesP>All</ServicesP>
           </Button>
         </Select>
@@ -86,14 +89,15 @@ const ChallengeLogList = () => {
         <Select>
           <Button>
             <ServicesP>Level 3</ServicesP>
-          </Button>
-        </Select>
-        <Select>
-          <Button>
-            <ServicesP>미션후기작성</ServicesP>
-          </Button>
-        </Select>
-      </Subbar>
+          </Button>*/}
+          </Select>
+          <Select>
+            <Button>
+              <ServicesP>미션후기작성</ServicesP>
+            </Button>
+          </Select>
+        </Subbar>
+      </SubbarWrapper>
       <ServicesWrapper>
         {!isActive
           ? challengeLogList &&

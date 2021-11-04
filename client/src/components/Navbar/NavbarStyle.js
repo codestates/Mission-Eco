@@ -13,7 +13,7 @@ export const Nav = styled.nav`
   font-size: 1rem;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 100;
 
   @media screen and (max-width: 960px) {
     transition: 0.8s all esse;
@@ -95,11 +95,16 @@ export const NavBtn = styled.nav`
   }
 `;
 
+export const Img = styled.img`
+  width: 100px;
+  height: 100px;
+`;
+
 export const NavBtnLink = styled(LinkR)`
   border-radius: 50px;
   background: #ffa928;
   white-space: nowrap;
-  padding: 10px 22px;
+  padding: 10px 82px;
   color: #010606;
   font-size: 16px;
   outline: none;

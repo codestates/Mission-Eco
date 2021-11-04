@@ -39,9 +39,9 @@ export const ServicesCard = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  border-radius: 0px;
+  //border-radius: 6px;
   width: 280px;
-  height: 340px;
+  height: 400px;
   padding: 10px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
@@ -63,9 +63,10 @@ export const ServicesCard = styled.div`
 
 export const ServicesIcon = styled.img`
   width: 260px;
-  height: 240px;
-  margin-bottom: 10px;
-  border: 1px solid #d8d8d8;
+  height: 280px;
+  margin-bottom: 2em;
+  border: 1px solid #234b68;
+  border-radius: 6px;
   background: ${(props) => props.background || "white"};
 
   @media screen and (max-width: 768px) {

@@ -43,7 +43,7 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #fff;
+  background: transparent;
 `;
 
 export const UploaderWrapper = styled.div`
@@ -55,7 +55,7 @@ export const UploaderWrapper = styled.div`
   height: 50em;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  background: #d0e2ff;
+  background: #dbe6fd;
   @media screen and (max-width: 768px) {
     width: 500px;
     height: 60em;
@@ -81,7 +81,43 @@ export const Input = styled.input`
   width: 16rem;
   height: 2rem;
 `;
-export const Img = styled.img``;
+export const BtnWrapper = styled.div`
+  display: flex;
+`;
+
+export const Button = styled.button`
+  border-radius: 5px;
+  width: 100%;
+  height: 4em;
+  margin: 0 13em 1em;
+  background: #005792;
+  white-space: nowrap;
+  color: ${({ dark }) => (dark ? "#010606" : "#fff")};
+  font-size: 14px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1em;
+  //transition: all 0.2s ease-in-out;
+
+  &:hover {
+    // transition: all 0.2s ease-in-out;
+    background: #f0a500;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 0 5em;
+    margin: 1em 2em;
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 0 2em;
+    margin: 0 1em 1em;
+  }
+`;
+
 export const UploadBtn = styled.button`
   width: 50%;
   height: 2em;

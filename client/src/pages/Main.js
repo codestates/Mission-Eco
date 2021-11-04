@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar/Navbar";
 import { useDispatch, useSelector } from "react-redux";
+import { isToggle } from "../../src/Redux/actions";
 //import { useHistory } from "react-router-dom"
 import HeroSection from "../components/HeroSection/HeroSection";
 import MainInfo from "../components/InfoSection/MainInfo";
@@ -9,17 +10,21 @@ import {
   homeObjTwo,
   homeObjThree,
 } from "../components/InfoSection/Data";
-function Main() {
-  const isLogin = useSelector((state) => state.infoReducer.isLogin);
+import Sidebar from "../components/Sidebar/Sidebar";
+function Main({}) {
+  const Toggle = useSelector((state) => state.infoReducer.isToggle);
   const dispatch = useDispatch();
   //const history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
 
+  useEffect(() => {
+    return setIsOpen(false);
+  }, []);
+  console.log(Toggle);
   const toggle = () => {
+    console.log("click");
     setIsOpen(!isOpen);
   };
-
-  useEffect(() => {}, []);
 
   //sidebar
   //navbar
@@ -28,7 +33,6 @@ function Main() {
 
   return (
     <div>
-      <Navbar />
       <HeroSection />
       <MainInfo {...homeObjOne} />
       <MainInfo {...homeObjTwo} />

@@ -2,9 +2,10 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteUserInfo, userSignout } from "../../Redux/actions";
-
+import { deleteUserInfo, userSignout, isToggle } from "../../Redux/actions";
+import logo from "../../imges/logo.png";
 import { ReactComponent as Menubar } from "../../imges/menubar.svg";
+
 import axios from "axios";
 //import { FaBars } from "react-icons/fa";
 import { animateScroll as scroll } from "react-scroll";
@@ -18,9 +19,10 @@ import {
   NavLinks,
   NavBtn,
   NavBtnLink,
+  Img,
 } from "./NavbarStyle";
 
-const Navbar = () => {
+const Navbar = ({ togglehandler }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   //const state = useSelector((state) => state.infoReducer.isLogin);
@@ -57,21 +59,22 @@ const Navbar = () => {
       <Nav scrollNav={scrollNav}>
         <NavContainer>
           <NavLogo to="/" onClick={toggleHome} scrollNav={scrollNav}>
+            <Img src={logo} />
             Misson-Eco
           </NavLogo>
-          <MobileIcon>
-            <Menubar fill="white" />
+          <MobileIcon onClick={togglehandler}>
+            <Menubar />
           </MobileIcon>
           <NavMenu>
             <NavItem>
               <NavLinks
-                to="challenge"
-                //smooth={true}
+                to="/"
+                // smooth={true}
                 duration={500}
-                //spy={true}
+                // spy={true}
                 exact="true"
                 offset={-80}
-                //activeClass="active"
+                activeClass="active"
                 scrollNav={scrollNav}
               >
                 About
@@ -80,9 +83,9 @@ const Navbar = () => {
             <NavItem>
               <NavLinks
                 to="challenge"
-                //smooth={true}
+                // smooth={true}
                 duration={500}
-                //spy={true}
+                //  spy={true}
                 exact="true"
                 offset={-80}
                 scrollNav={scrollNav}
@@ -93,9 +96,9 @@ const Navbar = () => {
             <NavItem>
               <NavLinks
                 to="/log"
-                //smooth={true}
+                // smooth={true}
                 duration={500}
-                //spy={true}
+                //  spy={true}
                 exact="true"
                 offset={-80}
                 scrollNav={scrollNav}
@@ -106,11 +109,11 @@ const Navbar = () => {
             <NavItem>
               <NavLinks
                 to="/upload"
-                //smooth={true}
+                //  smooth={true}
                 duration={500}
-                //spy={true}
+                // spy={true}
                 exact="true"
-                offset={0}
+                offset={-80}
                 scrollNav={scrollNav}
               >
                 Let's ECO
@@ -120,7 +123,7 @@ const Navbar = () => {
               <NavItem>
                 <NavLinks
                   to="mypage"
-                  //smooth={true}
+                  //  smooth={true}
                   duration={500}
                   //spy={true}
                   exact="true"

@@ -2,23 +2,25 @@ import React, { useState } from "react";
 import { upload } from "../../utils/imgUploader";
 import { useSelector } from "react-redux";
 import Uploader from "../../components/Upload/Uploader/Uploader";
-
+import Classifier from "../../components/Upload/Classifier/Classifier";
 import axios from "axios";
 import {
   Container,
   UploaderWrapper,
-  H1,
+  Button,
   Input,
-  Img,
+  BtnWrapper,
   UploadBtn,
   InputBox,
   ServicesContiner,
 } from "./ChallengeUploadStyle";
+
 import Preview from "../../components/Preview/Preview";
 import LogAddForm from "../../components/LogAddForm/LogAddForm";
 
 function ChallengeUpload() {
   const userInfo = useSelector((state) => state.infoReducer.userInfo);
+  const [isVideo, setIsVideo] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploadFile, setUploadFile] = useState(null);
   const [img, setImg] = useState("");
@@ -30,8 +32,15 @@ function ChallengeUpload() {
     setLogs({});
   };
 
+  const clickVideoHandler = () => {
+    setIsVideo(true);
+  };
+  const clickImgHandler = () => {
+    setIsVideo(false);
+  };
+
   const imageModelURL =
-    "https://teachablemachine.withgoogle.com/models/A8TWqY6z6/model.json";
+    "https://teachablemachine.withgoogle.com/models/961H1RAK0/model.json";
 
   const fileSelectedHandler = (e) => {
     console.log(e.target.files[0]);
@@ -65,12 +74,18 @@ function ChallengeUpload() {
   return (
     <ServicesContiner>
       <Container>
+        <h2>챌린지 업로드 미리보기</h2>
+        <BtnWrapper>
+          <Button onClick={clickVideoHandler}>Video Click!</Button>
+          <Button onClick={clickImgHandler}>Image Click!</Button>
+        </BtnWrapper>
         <UploaderWrapper>
           <Preview
             logs={logs}
             selectedFile={selectedFile}
             imageModelURL={imageModelURL}
             fileUploadHandler={fileUploadHandler}
+            isVideo={isVideo}
           />
           <LogAddForm
             logs={logs}
@@ -80,12 +95,11 @@ function ChallengeUpload() {
             fileSelectedHandler={fileSelectedHandler}
           />
         </UploaderWrapper>
-        <Uploader setImg={setImg} fileSelectedHandler={fileSelectedHandler} />
-        {/** <Classifier
-        img={img}
-        imageModelURL={imageModelURL}
-        selectedFile={selectedFile}
-      />*/}
+        {/**  <Uploader setImg={setImg} fileSelectedHandler={fileSelectedHandler} /><Classifier
+          img={img}
+          imageModelURL={imageModelURL}
+          selectedFile={selectedFile}
+        /> */}
       </Container>
     </ServicesContiner>
   );

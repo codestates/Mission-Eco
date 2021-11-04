@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const InfoContainer = styled.div`
   color: #fff;
-  background: ${({ lightBg }) => (lightBg ? "#f9f9f9" : "#010606")};
+  background: ${({ lightBg }) => (lightBg ? "#9dbfa5" : "#f9f9f9")};
 
   @media screen and (max-width: 768px) {
     padding: 100px 0;
@@ -68,7 +68,7 @@ export const Heading = styled.h1`
   font-size: 48px;
   line-height: 1.1;
   font-weight: 600;
-  color: ${({ lightText }) => (lightText ? "#f7f8fa" : "#010606")};
+  color: ${({ lightText }) => (lightText ? "#010606" : "#f7f8fa")};
 
   @media screen and (max-width: 480px) {
     font-size: 32px;
