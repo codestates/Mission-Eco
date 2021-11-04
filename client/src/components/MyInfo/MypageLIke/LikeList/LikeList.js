@@ -1,24 +1,20 @@
 // ChallengeLogList 참고.
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import LikeListItem from "../LikeListItem/LikeListItem";
-
-// import { ServicesCard } from "../LikeList/LikeListStyle";
-import MyLogListItem from "../MyLogListItem/MyLogListItem";
-// import { ServicesCard } from "../MyLogListItem/MyLogListItemStyle";
 import axios from "axios";
+import LikeListItem from "../LikeListItem/LikeListItem";
+// import Slider from "react-styled-carousel";
 
 const LikeList = () => {
   const [challengeLists, setChallengeLists] = useState([]);
-  const [myLogLists, setMyLogLists] = useState([]);
+  // const [myLogLists, setMyLogLists] = useState([]);
 
   useEffect(() => {
-    allListRequest();
+    LikeAndLogListRequest();
   }, []);
 
-  // ! <> 여기부터 allListRequest 함수 ===============================================================================================================
-  //  mypage탭 누르면 -> mypage로 이동과 동시에 리스트 요청 보내기 위해 만든 함수.
-  const allListRequest = async () => {
+  // mypage탭 누르면 -> mypage로 이동과 동시에 리스트 요청 보내기 위해 만든 함수.
+  const LikeAndLogListRequest = async () => {
     await axios
       .get(
         `https://localhost:4000/mypage/mylist`,
@@ -29,14 +25,9 @@ const LikeList = () => {
         console.log("login", res.data);
 
         if (res.status === 200) {
-          const { myLogList, challengeList } = res.data;
-
-          console.log("🌳 myLogList🌳", myLogList);
-          // ? 여기서 setPost~~로 ChallengeLog를 보여주기 위한 useState 해준다.
-          setMyLogLists(myLogList);
-
+          // const { myLogList, challengeList } = res.data;
+          const { challengeList } = res.data;
           console.log("✨ challengeList ✨", challengeList);
-          // console.log("✨ challengeLists ✨", challengeLists);
           // ! 여기서 ChallengeList useState에 담았다!
           setChallengeLists(challengeList);
         } else if (res.status === 400) {
@@ -49,12 +40,6 @@ const LikeList = () => {
 
   return (
     <>
-      {/* //? ChallengeLog를 보여주기 위한 맵을 돌린다. */}
-      {myLogLists.map((list, idx) => {
-        //? <myLogListItem디렉토리 안에 LikeListItem처럼 컴포넌트 만들어서 여기서 쓰3></myLogListItem디렉토리>
-        return <MyLogListItem list={list} key={idx}></MyLogListItem>;
-      })}
-
       {/* // ! ChallengeList보여주기 위한 맵 */}
       {challengeLists &&
         challengeLists.map((list, idx) => {
