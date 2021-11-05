@@ -21,7 +21,6 @@ module.exports = {
     //res.send("challenge-log 포스팅 성공");
     try {
       const { userId, challengeId, img, contents } = req.body;
-      console.log("dddddddddddddfdsfnlwenflewn", req.body);
       if (!userId || !challengeId || !img || !contents) {
         res.sendStatus(400);
       } else {
@@ -38,6 +37,12 @@ module.exports = {
     }
   },
   delete: async (req, res) => {
-    res.send("challenge-log 기록 삭제");
+    const { logId } = req.params;
+    const deleteLog = await challengelog.findByPk(logId);
+    if (!deleteLog) {
+      return res.sendStatus(400);
+    }
+    await deleteLog.destroy();
+    res.sendStatus(204);
   },
 };

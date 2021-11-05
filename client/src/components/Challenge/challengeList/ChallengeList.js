@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getChallengeList } from "../../../Redux/actions";
 import ChallengeListItem from "../ChallengeListItem/ChallengeListItem";
+import LoadingIndicator from "../../Loading/LoadingIndicator";
 
 import {
   ServicesContiner,
@@ -20,15 +21,18 @@ const ChallengeList = () => {
   const [listItems, setListItems] = useState([]);
   const [render, setRender] = useState(false);
   const [all, setAll] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const challengeList = useSelector((state) => state.infoReducer.challengeList);
 
   useEffect(() => {
-    dispatch(getChallengeList());
+    setIsLoading(true);
+    dispatch(getChallengeList()).then(() => setIsLoading(false));
   }, [dispatch]);
 
   useEffect(() => {}, [challengeList]);
 
   const handleRequsetLevelList = (e) => {
+    // ? handleRequesetLevelList 함수 =======================================================
     const level = e.target.value;
     console.log(level);
     if (Number(level) === 0) {
@@ -70,31 +74,37 @@ const ChallengeList = () => {
           <Button>미션후기작성</Button>
         </Select>
       </Subbar>
-      <ServicesWrapper>
-        {challengeList && all
-          ? challengeList.map((list, idx) => {
-              return (
-                <ChallengeListItem
-                  list={list}
-                  key={idx}
-                  userId={userInfo.id}
-                  isLogin={isLogin}
-                  render={() => setRender(!render)}
-                />
-              );
-            })
-          : listItems.map((list, idx) => {
-              return (
-                <ChallengeListItem
-                  list={list}
-                  key={idx}
-                  userId={userInfo.id}
-                  isLogin={isLogin}
-                  render={() => setRender(!render)}
-                />
-              );
-            })}
-      </ServicesWrapper>
+      {isLoading ? (
+        <ServicesWrapper>
+          <LoadingIndicator />
+        </ServicesWrapper>
+      ) : (
+        <ServicesWrapper>
+          {challengeList && all
+            ? challengeList.map((list, idx) => {
+                return (
+                  <ChallengeListItem
+                    list={list}
+                    key={idx}
+                    userId={userInfo.id}
+                    isLogin={isLogin}
+                    render={() => setRender(!render)}
+                  />
+                );
+              })
+            : listItems.map((list, idx) => {
+                return (
+                  <ChallengeListItem
+                    list={list}
+                    key={idx}
+                    userId={userInfo.id}
+                    isLogin={isLogin}
+                    render={() => setRender(!render)}
+                  />
+                );
+              })}
+        </ServicesWrapper>
+      )}
     </ServicesContiner>
   );
 };
