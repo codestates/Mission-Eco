@@ -1,6 +1,7 @@
 export const initialState = {
   userSignin: {},
   isLogin: false,
+  isToggle: false,
   userInfo: {},
   isLoading: {
     isLoading: false,

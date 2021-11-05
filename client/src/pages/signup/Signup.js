@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { validEmail, validPassword } from "../../utils/validation";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import SignupModal from "./SignupModal";
+import { CheckButton } from "./SignupStyle";
 import {
   Container,
   FormWrap,
@@ -13,7 +15,7 @@ import {
   FormButton,
   Text,
 } from "../Login/LoginStyle";
-import { CheckButton } from "./SignupStyle";
+
 
 function Signup() {
   const history = useHistory();
@@ -27,6 +29,8 @@ function Signup() {
   const [errorMsg, setErrorMsg] = useState("");
   const [isEmail, setIsEmail] = useState(false);
   const [isNickname, setIsNickname] = useState(false);
+  const [ isOpen, setIsOpen ] = useState(false);
+  const [ isSignUpOk, setSignUpOk ] = useState(false);
 
   const handelFormValue = (key) => (e) => {
     SetSignupInfo({ ...signupInfo, [key]: e.target.value });
@@ -101,14 +105,23 @@ function Signup() {
         .then((res) => {
           console.log(res.status);
           if (res.status === 201) {
-            setErrorMsg("회원가입완료");
-            alert("회원가입완료");
-            history.push("/");
+            setSignUpOk(true);
+            setIsOpen(true);
+          } else {
+            setSignUpOk(false);
           }
         })
         .catch((err) => console.log(err));
     }
   };
+  
+  // 모달 x버튼이 클릭되면 창이 닫힌다
+  const openModalHandler = () => {
+    setIsOpen(false); // 회원가입 성공 메시지 창이 X버튼으로 닫히면 
+    history.push('/'); // 랜딩페이지로 감
+  };
+
+  console.log('is open이 상태가 다 변하는지???', isOpen)
 
   return (
     <Container>
@@ -147,7 +160,10 @@ function Signup() {
           </Form>
         </FormContent>
       </FormWrap>
+      { isSignUpOk && isOpen ? 
+       <SignupModal openModalHandler={openModalHandler}/> : null}
     </Container>
+
   );
 }
 
