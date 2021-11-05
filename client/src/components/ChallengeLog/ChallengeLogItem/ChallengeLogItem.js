@@ -7,6 +7,8 @@ import {
 } from "./ChallengeLogStyle";
 
 const ChallengeListItem = ({ log }) => {
+  // const state = useSelector((state) => state.infoReducer);
+
   return (
     <ServicesCard>
       <ServicesIcon background={log.img} />

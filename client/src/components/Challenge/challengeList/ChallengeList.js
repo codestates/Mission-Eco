@@ -32,6 +32,7 @@ const ChallengeList = () => {
   useEffect(() => {}, [challengeList]);
 
   const handleRequsetLevelList = (e) => {
+    // ? handleRequesetLevelList 함수 =======================================================
     const level = e.target.value;
     console.log(level);
     if (Number(level) === 0) {
