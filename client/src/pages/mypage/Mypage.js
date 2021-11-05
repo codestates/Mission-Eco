@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+//import { useDispatch } from "react-redux";
 import Navbar from "../../components/Navbar/Navbar";
 // import CheckPassword from "../../components/MyInfo/CheckPassword/CheckPassword";
 // import MypageEdit from "../../components/MyInfo/MypageEdit/MypageEdit";
 import axios from "axios";
-import { getChallengeInfo, getPostcardInfo } from "../../Redux/actions";
+//import { getChallengeInfo, getPostcardInfo } from "../../Redux/actions";
 import {
   H1,
   Btn,
