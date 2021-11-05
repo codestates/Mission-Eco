@@ -23,29 +23,10 @@ const ChallengeList = () => {
   const challengeList = useSelector((state) => state.infoReducer.challengeList);
 
   useEffect(() => {
-<<<<<<< HEAD
     dispatch(getChallengeList());
   }, [dispatch]);
 
   useEffect(() => {}, [challengeList]);
-=======
-    const list = async () => {
-      const res = await axios.get(
-        `${process.env.REACT_APP_API_URL}/challenge`,
-        {
-          withCredentials: true,
-        }
-      );
-
-      //console.log("res", res.data.data);
-      if (res.status === 200) {
-        setAllLists(res.data.data);
-        setListItems(res.data.data);
-      } 
-    };
-    list();
-  }, [render]);
->>>>>>> google-login
 
   const handleRequsetLevelList = (e) => {
     const level = e.target.value;
@@ -102,12 +83,7 @@ const ChallengeList = () => {
                 />
               );
             })
-<<<<<<< HEAD
           : listItems.map((list, idx) => {
-=======
-          : listItems && listItems.map((list, idx) => {
-              //console.log("lllllll", list);
->>>>>>> google-login
               return (
                 <ChallengeListItem
                   list={list}
