@@ -33,10 +33,6 @@ export const Container = styled.div`
   @media screen and (max-width: 980px) {
     width: 100%;
   }
-<<<<<<< HEAD
-=======
-
->>>>>>> 042baf5bc35a6177d1a39888fccc24666786ec5e
   @media screen and (max-width: 750px) {
     width: 100%;
   }
@@ -49,10 +45,6 @@ export const LeftTxt = styled.p`
   top: 30%;
   font-family: "Cormorant Garamond", serif;
   font-weight: 500;
-<<<<<<< HEAD
-=======
-
->>>>>>> 042baf5bc35a6177d1a39888fccc24666786ec5e
   @media screen and (max-width: 1350px) {
     font-size: 1.6rem;
   }
@@ -151,10 +143,6 @@ export const FormButton = styled.button`
   color: #fff;
   font-weight: bold;
   border-radius: 4px;
-<<<<<<< HEAD
-=======
-
->>>>>>> 042baf5bc35a6177d1a39888fccc24666786ec5e
   &:hover {
     transition: 1s;
     color: #fff;
@@ -195,8 +183,4 @@ export const SocialLoigin = styled.div`
 export const GeneralLogin = styled.div`
   text-align: left;
   margin-bottom: 4rem;
-<<<<<<< HEAD
 `;
-=======
-`;
->>>>>>> 042baf5bc35a6177d1a39888fccc24666786ec5e
