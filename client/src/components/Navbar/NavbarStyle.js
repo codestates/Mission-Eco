@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import { Link as LinkR } from "react-router-dom";
-import { Link as LinkS } from "react-scroll";
 
 export const Nav = styled.nav`
-  background: ${({ scrollNav }) => (scrollNav ? "#234b68" : "transparent")};
+  background: ${({ scrollnav }) => (scrollnav ? "#234b68" : "#ddd")};
   // background: linear-gradient(to right, #283c86, #45a247);
   height: 80px;
   margin-top: -80px;
@@ -31,7 +30,7 @@ export const NavContainer = styled.div`
 `;
 
 export const NavLogo = styled(LinkR)`
-  color: ${({ scrollNav }) => (scrollNav ? "#fff" : "#234b68")};
+  color: ${({ scrollnav }) => (scrollnav ? "#fff" : "#234b68")};
   justify-self: flex-start;
   cursor: pointer;
   font-size: 1.5rem;
@@ -73,7 +72,7 @@ export const NavItem = styled.li`
 `;
 
 export const NavLinks = styled(LinkR)`
-  color: ${({ scrollNav }) => (scrollNav ? "#fff" : "#234b68")};
+  color: ${({ scrollnav }) => (scrollnav ? "#fff" : "#234b68")};
   display: flex;
   align-items: center;
   text-decoration: none;

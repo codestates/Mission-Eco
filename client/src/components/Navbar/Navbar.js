@@ -27,13 +27,13 @@ const Navbar = ({ togglehandler }) => {
   const history = useHistory();
   //const state = useSelector((state) => state.infoReducer.isLogin);
   const isLogin = useSelector((state) => state.infoReducer.isLogin);
-  const [scrollNav, setScrollNav] = useState(false);
+  const [scrollnav, setScrollNav] = useState(0);
 
   const changeNav = () => {
     if (window.scrollY >= 80) {
-      setScrollNav(true);
+      setScrollNav(1);
     } else {
-      setScrollNav(false);
+      setScrollNav(0);
     }
   };
 
@@ -56,9 +56,9 @@ const Navbar = ({ togglehandler }) => {
 
   return (
     <>
-      <Nav scrollNav={scrollNav}>
+      <Nav scrollnav={scrollnav} disabled>
         <NavContainer>
-          <NavLogo to="/" onClick={toggleHome} scrollNav={scrollNav}>
+          <NavLogo to="/" onClick={toggleHome} scrollnav={scrollnav} disabled>
             <Img src={logo} />
             Misson-Eco
           </NavLogo>
@@ -74,8 +74,9 @@ const Navbar = ({ togglehandler }) => {
                 // spy={true}
                 exact="true"
                 offset={-80}
-                activeClass="active"
-                scrollNav={scrollNav}
+                activeclass="active"
+                scrollnav={scrollnav}
+                disabled
               >
                 About
               </NavLinks>
@@ -88,7 +89,8 @@ const Navbar = ({ togglehandler }) => {
                 //  spy={true}
                 exact="true"
                 offset={-80}
-                scrollNav={scrollNav}
+                scrollnav={scrollnav}
+                disabled
               >
                 Challenge
               </NavLinks>
@@ -101,7 +103,8 @@ const Navbar = ({ togglehandler }) => {
                 //  spy={true}
                 exact="true"
                 offset={-80}
-                scrollNav={scrollNav}
+                scrollnav={scrollnav}
+                disabled
               >
                 Mission-log
               </NavLinks>
@@ -114,25 +117,29 @@ const Navbar = ({ togglehandler }) => {
                 // spy={true}
                 exact="true"
                 offset={-80}
-                scrollNav={scrollNav}
+                scrollnav={scrollnav}
+                disabled
               >
                 Let's ECO
               </NavLinks>
             </NavItem>
             {!isLogin ? null : (
-              <NavItem>
-                <NavLinks
-                  to="mypage"
-                  //  smooth={true}
-                  duration={500}
-                  //spy={true}
-                  exact="true"
-                  offset={-80}
-                  scrollNav={scrollNav}
-                >
-                  Mypage
-                </NavLinks>
-              </NavItem>
+              <>
+                <NavItem>
+                  <NavLinks
+                    to="mypage"
+                    //  smooth={true}
+                    duration={500}
+                    //spy={true}
+                    exact="true"
+                    offset={-80}
+                    scrollnav={scrollnav}
+                    disabled
+                  >
+                    Mypage
+                  </NavLinks>
+                </NavItem>
+              </>
             )}
           </NavMenu>
           <NavBtn>

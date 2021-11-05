@@ -51,7 +51,7 @@ const LogAddForm = ({
       <Select
         name="challenge"
         placeholder="challenge를 선택해주세요."
-        value={challenge}
+        defaultValue={challenge}
         ref={challengeRef}
         onChange={onChange}
       >
@@ -65,14 +65,14 @@ const LogAddForm = ({
         name="nickname"
         placeholder={nickname || "nickname"}
         readonly
-        value={nickname || ""}
+        defaultValue={nickname || ""}
         //ref={nicknameRef}
         //onChange={onChange}
       />
       <Input
         name="contents"
         placeholder="contents"
-        value={contents || ""}
+        defaultValue={contents || ""}
         ref={contentsRef}
         onChange={onChange}
       />
