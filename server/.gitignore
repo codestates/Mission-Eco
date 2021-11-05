@@ -11,4 +11,4 @@
 
 config/config.json
 
-yarn.lock
+.yarn.lock
