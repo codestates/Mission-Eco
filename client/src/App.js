@@ -46,6 +46,13 @@ function App() {
           <Route exact path="/upload">
             <ChallengeUpload />
           </Route>
+
+          {/*<Route exact path="/admin">
+          //관리자페이지
+          <Navbar />
+          <AdminWrapper />
+          <footer/>
+        </Route> */}
         </>
       </Switch>
     </Router>

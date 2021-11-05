@@ -14,6 +14,7 @@ import {
 function Main() {
   const Toggle = useSelector((state) => state.infoReducer.isToggle);
 
+
   //const history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
 

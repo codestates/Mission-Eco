@@ -21,6 +21,7 @@ import {
   NavBtnLink,
   Img,
 } from "./NavbarStyle";
+require("dotenv").config();
 
 const Navbar = ({ togglehandler }) => {
   const dispatch = useDispatch();

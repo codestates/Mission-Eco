@@ -18,6 +18,7 @@ import {
   List,
   Img,
 } from "./ChallengeLogListStyle";
+require("dotenv").config();
 
 const ChallengeLogList = () => {
   const logList = useSelector((state) => state.infoReducer.challengeLogList);

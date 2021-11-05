@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getChallengeList } from "../../../Redux/actions";
 import ChallengeListItem from "../ChallengeListItem/ChallengeListItem";
+import LoadingIndicator from "../../Loading/LoadingIndicator";
 
 import {
   ServicesContiner,
@@ -20,15 +21,18 @@ const ChallengeList = ({ img }) => {
   const [listItems, setListItems] = useState([]);
   const [render, setRender] = useState(false);
   const [all, setAll] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const challengeList = useSelector((state) => state.infoReducer.challengeList);
 
   useEffect(() => {
-    dispatch(getChallengeList());
+    setIsLoading(true);
+    dispatch(getChallengeList()).then(() => setIsLoading(false));
   }, [dispatch]);
 
   useEffect(() => {}, [challengeList]);
 
   const handleRequsetLevelList = (e) => {
+    // ? handleRequesetLevelList 함수 =======================================================
     const level = e.target.value;
     console.log(level);
     if (Number(level) === 0) {
