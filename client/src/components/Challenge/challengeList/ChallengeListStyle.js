@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import blob1 from "../../../imges/blob1.svg";
 
 export const ServicesContiner = styled.div`
   display: flex;
@@ -7,8 +8,10 @@ export const ServicesContiner = styled.div`
   align-items: center;
 
   margin: 0 auto;
-  background: #fff;
 
+  z-index: -1;
+
+  //background-image: url(${blob1});
   @media screen and (max-width: 768px) {
     //height: 1100px;
   }
@@ -20,7 +23,8 @@ export const ServicesContiner = styled.div`
 
 export const ServicesWrapper = styled.div`
   max-width: 1000px;
-  margin: 0 auto;
+
+  //margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
@@ -64,36 +68,96 @@ export const ServicesIcon = styled.img`
 `;
 export const Subbar = styled.div`
   display: flex;
-
+  
   // flex-direction: column;
-  //justify-content: center;
   //align-items: center;
-  padding: 1px 280px;
-  border-top: 1px solid green;
-  border-bottom: 1px solid green;
+  padding: 0 8.2rem;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   color: rgb(100, 100, 100);
-  margin-bottom: 3em;
+  margin-bottom: 4em;
+
+  @media screen and (min-width: 768px) and (max-width: 980px) {
+   padding: 0 6rem;
+  }
+
+  @media screen and (min-width: 481px) and (max-width: 767px) {
+    padding:0 1.2rem;
+  }
 
   @media screen and (max-width: 480px) {
-    padding: 1px 50px;
-  }
-`;
-
-export const Select = styled.li`
-  list-style: none;
-  margin: 1em;
+    padding:0;
+  } 
 `;
 
 export const ServicesH1 = styled.h1`
-  margin-top: 150px;
+  padding-top: 13rem;
   font-size: 2.5rem;
   color: #010106;
-  margin-bottom: 64px;
-
+  
   @media screen and (max-width: 480px) {
     font-size: 2rem;
   }
+  `;
+  
+  export const ServicesTxt = styled.p`
+    /* padding-top: 13rem; */
+    margin-bottom: 6rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.4rem;
+    color: #999;
+  `;
+
+// All, level1,2,3 감싸는 ul
+export const SelectLeft = styled.ul`
+  list-style: none;
+  margin-right: 6rem; 
+  
+  @media screen and (min-width: 768px) and (max-width: 980px) {
+    margin-right: 4.4rem; 
+  }
+
+  @media screen and (min-width: 481px) and (max-width: 767px) {
+    margin-right: 1.4rem; 
+  }
+
+  @media screen and (max-width: 480px) {
+    margin-right: 0;
+  } 
 `;
+
+// 미션 하러 Go 감싸는 ul
+export const SelectRight = styled.ul`
+  list-style: none;
+`;
+
+
+// 개별 메뉴 버튼
+export const Button = styled.li`
+  display:inline-block;
+  line-height: 1rem;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 1rem 1.5rem;
+  color:#333;
+
+  &:hover {
+    background-color: #9dbfa5;
+    transition: 0.8s;
+    color: #fff;
+  }
+  
+  @media screen and (min-width: 481px) and (max-width: 980px) {
+    padding: 1rem;
+  }
+
+  @media screen and (max-width: 480px) {
+    font-size: 12px;
+  }
+`;
+
 export const ServicesCardColor = styled.div`
   background: #fff;
   display: flex;
@@ -123,11 +187,4 @@ export const ServicesH2 = styled.h2`
 export const ServicesP = styled.p`
   font-size: 1rem;
   text-align: center;
-`;
-
-export const Button = styled.button`
-  border: 0;
-  outline: 0;
-  background-color: transparent;
-  cursor: pointer;
 `;
