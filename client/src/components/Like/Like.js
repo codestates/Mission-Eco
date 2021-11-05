@@ -3,7 +3,7 @@ import blackHeart from "../../imges/blackHeart.png";
 import colorHeart from "../../imges/colorHeart.png";
 import { Img } from "./LikeStyle";
 
-const Like = ({ isLogin, like, onClick }) => {
+const Like = ({ isLogin, like, onClick, likeNum }) => {
   return (
     <>
       {isLogin ? (
@@ -18,7 +18,7 @@ const Like = ({ isLogin, like, onClick }) => {
       ) : (
         <div>
           <Img src={blackHeart} onClick={onClick} alt="disliked" />
-          <h3>로그인시 이용가능</h3>
+          <span>{likeNum}</span>
         </div>
       )}
     </>

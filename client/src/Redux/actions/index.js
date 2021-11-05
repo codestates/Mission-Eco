@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const IS_LOGIN = "IS_LOGIN";
+export const IS_TOGGLE = "IS_TOGGLE";
 export const USER_SIGNIN = "USER_SIGNIN";
 export const USER_SIGNOUT = "USER_SIGNOUT";
 export const USER_INFO = "USER_INFO";
@@ -56,6 +57,15 @@ export function isLoading(boolean) {
     type: IS_LOADING,
     payload: {
       isLoading: boolean,
+    },
+  };
+}
+
+export function isToggle(boolean) {
+  return {
+    type: IS_TOGGLE,
+    payload: {
+      isToggle: boolean,
     },
   };
 }

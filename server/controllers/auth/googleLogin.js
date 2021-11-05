@@ -81,7 +81,7 @@ module.exports = {
         })
         
         // 클라이언트로 다시 redirect한다
-        res.redirect("https://mission-eco.co.kr/oauth");
+        res.redirect("https://localhost:3000/oauth");
 
     } catch (err) {
         // userInfor가 받아오는 것을 실패했다면
