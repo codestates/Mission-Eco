@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getChallengeList } from "../../../Redux/actions";
 import ChallengeListItem from "../ChallengeListItem/ChallengeListItem";
 import LoadingIndicator from "../../Loading/LoadingIndicator";
-//
 import {
   ServicesContiner,
   ServicesTxt,
@@ -27,7 +26,8 @@ const ChallengeList = ({ img }) => {
   const challengeList = useSelector((state) => state.infoReducer.challengeList);
 
   useEffect(() => {
-    dispatch(getChallengeList());
+    setIsLoading(true);
+    dispatch(getChallengeList()).then(() => setIsLoading(false));
   }, [dispatch]);
 
   useEffect(() => {}, [challengeList]);
