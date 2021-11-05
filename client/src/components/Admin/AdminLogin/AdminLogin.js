@@ -1,30 +1,20 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { userSignin, authSuccess } from "../../Redux/actions";
+//import { userSignin, authSuccess } from "../../Redux/actions";
 import axios from "axios";
 import { validEmail } from "../../utils/validation";
-import kakaoLogo from "../../imges/kakao-logo.png";
-import googleLogo from "../../imges/google-logo.png";
 import {
   Container,
-  LeftTxt,
-  RightTxt,
   FormWrap,
-  SocialLoigin,
   Icon,
   FormContent,
   Form,
   FormLabel,
   FormInput,
   FormButton,
-  BtnLink,
-  LinkSignUp,
-  LinkFindIdPwd,
   GeneralLogin,
   Text,
-  OauthBtn,
-  Logo,
 } from "./LoginStyle";
 
 axios.defaults.withCredentials = true;
@@ -52,26 +42,11 @@ function Login() {
     alert("로그인 성공");
     setErrMsg("ok.");
 
-    history.push("/");
-    isAuthenticated();
-  };
-
-  const isAuthenticated = () => {
-    //유저 정보 찾아줌
-    dispatch(authSuccess());
-    /*axios
-      .get(`${process.env.REACT_APP_API_URL}/mypage/auth`, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        dispatch(getUserInfo(res.data.userInfo));
-        console.log(res.data.userInfo);
-      })
-      .catch((err) => console.log(err));*/
+    history.push("/admin"); //관리자 페이지로 이동
+    //isAuthenticated();
   };
 
   const loginRequestHandler = async (e) => {
-    console.log("eee");
     e.preventDefault();
     const { email, password } = loginInfo;
 
@@ -80,39 +55,25 @@ function Login() {
     } else if (!validEmail(email)) {
       setErrMsg("이메일 형식이 아닙니다.");
     } else {
-      dispatch(userSignin(loginInfo)).then((res) => {
-        console.log(res);
-        if (res) {
-          handleResponseSuccess();
-        } else {
-          setErrMsg("이메일과 비밀번호를 확인해주세요.");
-        }
-      });
+      axios
+        .post(
+          `${process.env.REACT_APP_API_URL}/admin/signin`,
+          { email, password },
+          { "Content-Type": "application/json" }
+        )
+        .then((res) => {
+          if (res.status === 401) {
+            setErrMsg(res.message);
+          } else if (res.status === 204) {
+            handleResponseSuccess();
+          }
+        });
     }
-  };
-
-  const kakaoLogin = async () => {
-    //ㄷㅏ른 url로 이동
-    window.location.href = `${process.env.REACT_APP_API_URL}/auth/kakao`;
-  };
-
-  const googleLogin = async () => {
-    window.location.href = `${process.env.REACT_APP_API_URL}/auth/google`;
   };
 
   return (
     <Container>
       {/* <FormH1>로그인</FormH1> */}
-      <LeftTxt>Hello,</LeftTxt>
-      <RightTxt>
-        We always
-        <br />
-        think about
-        <br />
-        our
-        <br />
-        Earth
-      </RightTxt>
       <FormWrap>
         <Icon to="/"></Icon>
         <FormContent>
@@ -131,23 +92,9 @@ function Login() {
               </div>
               <Text>{errMsg}</Text>
               <FormButton type="submit" onClick={loginRequestHandler}>
-                로그인
+                관리자 로그인
               </FormButton>
-              <BtnLink to="/">
-                <LinkFindIdPwd>아이디 / 비밀번호 찾기</LinkFindIdPwd>
-              </BtnLink>
-              <BtnLink to="/signup">
-                <LinkSignUp>회원가입</LinkSignUp>
-              </BtnLink>
             </GeneralLogin>
-            <SocialLoigin>
-              <OauthBtn onClick={kakaoLogin}>
-                <Logo src={kakaoLogo} />
-              </OauthBtn>
-              <OauthBtn onClick={googleLogin}>
-                <Logo src={googleLogo} />
-              </OauthBtn>
-            </SocialLoigin>
           </Form>
         </FormContent>
       </FormWrap>
