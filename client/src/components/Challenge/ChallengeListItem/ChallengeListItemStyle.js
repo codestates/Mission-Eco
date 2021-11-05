@@ -6,7 +6,7 @@ export const ServicesContiner = styled.div`
   justify-content: center;
   align-items: center;
 
-  margin: 0 auto;
+  margin: 200 auto;
   background: #fff;
 
   @media screen and (max-width: 768px) {
@@ -42,17 +42,19 @@ export const ServicesCard = styled.div`
   align-items: center;
   border-radius: 0px;
   width: 280px;
-  height: 300px;
+  height: 340px;
   padding: 30px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
   background: ${(props) => props.background || "white"};
+  z-index: 0;
 
-  &:hover {
-    transform: scale(1.02);
-    transition: all 0.2s ease-in-out;
+  &.flipped {
+    transition: all 0.5s ease-in-out;
     cursor: pointer;
+    transform: rotateY(180deg);
   }
+
   @media screen and (max-width: 768px) {
     width: 340px;
     height: 400px;
@@ -113,12 +115,12 @@ export const ServicesCardColor = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
   background-color: #a2d2ff;
-
+  /*
   &:hover {
     transform: scale(1.02);
     transition: all 0.2s ease-in-out;
     cursor: pointer;
-  }
+  }*/
 `;
 
 export const ServicesH2 = styled.h2`
@@ -140,6 +142,49 @@ export const WishBtn = styled.button`
 `;
 
 export const Img = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 100%;
+  height: 100%;
+`;
+
+export const CardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 0;
+
+  &.flipped {
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+    transform: rotateY(180deg);
+  }
+`;
+
+export const CardInner = styled.div``;
+
+export const DetailCard = styled.div`
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  //justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0px;
+  width: 280px;
+  height: 340px;
+  padding: 30px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+  //background: ${(props) => props.background || "white"};
+  z-index: 1;
+
+  @media screen and (max-width: 768px) {
+    width: 340px;
+    height: 400px;
+  }
+  @media screen and (max-width: 480px) {
+    width: 340px;
+    height: 400px;
+  }
 `;

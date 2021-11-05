@@ -13,7 +13,7 @@ import {
   Button,
 } from "./ChallengeListStyle";
 
-const ChallengeList = () => {
+const ChallengeList = ({ img }) => {
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.infoReducer.isLogin);
   const userInfo = useSelector((state) => state.infoReducer.userInfo);
@@ -74,37 +74,33 @@ const ChallengeList = () => {
           <Button>미션후기작성</Button>
         </Select>
       </Subbar>
-      {isLoading ? (
-        <ServicesWrapper>
-          <LoadingIndicator />
-        </ServicesWrapper>
-      ) : (
-        <ServicesWrapper>
-          {challengeList && all
-            ? challengeList.map((list, idx) => {
-                return (
-                  <ChallengeListItem
-                    list={list}
-                    key={idx}
-                    userId={userInfo.id}
-                    isLogin={isLogin}
-                    render={() => setRender(!render)}
-                  />
-                );
-              })
-            : listItems.map((list, idx) => {
-                return (
-                  <ChallengeListItem
-                    list={list}
-                    key={idx}
-                    userId={userInfo.id}
-                    isLogin={isLogin}
-                    render={() => setRender(!render)}
-                  />
-                );
-              })}
-        </ServicesWrapper>
-      )}
+      <ServicesWrapper>
+        {challengeList && all
+          ? challengeList.map((list, idx) => {
+              return (
+                <ChallengeListItem
+                  list={list}
+                  key={idx}
+                  userId={userInfo.id}
+                  isLogin={isLogin}
+                  render={() => setRender(!render)}
+                  img={img}
+                />
+              );
+            })
+          : listItems.map((list, idx) => {
+              return (
+                <ChallengeListItem
+                  list={list}
+                  key={idx}
+                  userId={userInfo.id}
+                  isLogin={isLogin}
+                  render={() => setRender(!render)}
+                  img={img}
+                />
+              );
+            })}
+      </ServicesWrapper>
     </ServicesContiner>
   );
 };
