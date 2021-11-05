@@ -19,13 +19,14 @@ import {
   NavBtn,
   NavBtnLink,
 } from "./NavbarStyle";
+require("dotenv").config();
 
 const Navbar = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   //const state = useSelector((state) => state.infoReducer.isLogin);
   const isLogin = useSelector((state) => state.infoReducer.isLogin);
-  console.log(isLogin, "dfsfsd");
+  console.log(isLogin, "로그인 상태");
   const [scrollNav, setScrollNav] = useState(false);
   /*
   const changeNav = () => {

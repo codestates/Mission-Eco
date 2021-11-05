@@ -15,6 +15,7 @@ import {
   Dropdowncontent,
   List,
 } from "./ChallengeLogListStyle";
+require("dotenv").config();
 
 const ChallengeLogList = () => {
   const logList = useSelector((state) => state.infoReducer.challengeLogList);

@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
 import Challenge from "./challenge/Challenge";
 import Navbar from "../components/Navbar/Navbar";
+<<<<<<< HEAD
+
+function Main() {
+=======
 //import { authSuccess } from "../../src/Redux/actions/index";
 //import { useSelector } from "react-redux";
 //import { useHistory } from "react-router-dom";
@@ -10,6 +14,7 @@ import Navbar from "../components/Navbar/Navbar";
 function Main() {
   //const isLogin = useSelector((state) => state.infoReducer.isLogin);
   //const dispatch = useDispatch();
+>>>>>>> 042baf5bc35a6177d1a39888fccc24666786ec5e
   //const history = useHistory();
 
   useEffect(() => {}, []);
