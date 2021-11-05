@@ -1,6 +1,6 @@
 // ChallengeLogList 참고.
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import LikeListItem from "../LikeListItem/LikeListItem";
 // import Slider from "react-styled-carousel";

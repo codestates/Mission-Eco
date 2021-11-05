@@ -13,8 +13,8 @@ const LikeListItem = ({ list }) => {
   console.log(list);
   return (
     <>
-      <p>나는 좋아요 한 애들이야</p>
       <ServicesCard>
+        {/* <p>나는 좋아요 한 애들이야</p> */}
         <ServicesIcon background={list.img} />
         <ServicesH2>{list.name}</ServicesH2>
         <ServicesP>{list.level}</ServicesP>
