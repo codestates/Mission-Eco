@@ -6,12 +6,14 @@ import axios from "axios";
 import { validEmail } from "../../utils/validation";
 import kakaoLogo from "../../imges/kakao-logo.png";
 import googleLogo from "../../imges/google-logo.png";
+import logo from "../../imges/logo.png";
 import {
   Container,
   LeftTxt,
   RightTxt,
   FormWrap,
   SocialLoigin,
+  Logo,
   Icon,
   FormContent,
   Form,
@@ -24,7 +26,7 @@ import {
   GeneralLogin,
   Text,
   OauthBtn,
-  Logo,
+  MissionLogo,
 } from "./LoginStyle";
 
 axios.defaults.withCredentials = true;
@@ -114,7 +116,7 @@ function Login() {
         Earth
       </RightTxt>
       <FormWrap>
-        <Icon to="/"></Icon>
+        <Icon to="/"><MissionLogo imgUrl={logo} alt="mission eco logo"/></Icon>
         <FormContent>
           <Form onSubmit={(e) => e.preventDefault()}>
             <GeneralLogin>

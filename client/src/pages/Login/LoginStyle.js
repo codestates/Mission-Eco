@@ -40,7 +40,7 @@ export const Container = styled.div`
 
 export const LeftTxt = styled.p`
   position: absolute;
-  color: #a5e464;
+  color: #9dbfa5;
   font-size: 2.4rem;
   top: 30%;
   font-family: "Cormorant Garamond", serif;
@@ -61,7 +61,7 @@ export const RightTxt = styled.p`
   top: 30%;
   right: 0;
   text-align: left;
-  color: #a5e464;
+  color: #9dbfa5;
   font-size: 2.4rem;
   font-family: "Cormorant Garamond", serif;
   font-weight: 500;
@@ -84,15 +84,25 @@ export const FormWrap = styled.div`
 
 export const Icon = styled(Link)`
   display: inline-block;
+  margin: 2rem;
   width: 100px;
   height: 100px;
   margin: 1.5rem 0 1rem;
-  border-radius: 50%;
-  border: 1px solid #ddd;
   text-align: center;
   line-height: 180%; // 이미지로 바뀌면 수정
   text-decoration: none;
   color: #fff;
+
+  @media screen and (max-width: 480px) {
+    /* margin-left: 16px; */
+  }
+  `;
+
+export const MissionLogo = styled.div`
+  width: 100%;
+  height: 100%;
+  background: center/220% no-repeat url(${props => props.imgUrl});
+
   @media screen and (max-width: 480px) {
     /* margin-left: 16px; */
   }
@@ -138,16 +148,17 @@ export const FormButton = styled.button`
   display: block;
   width: 100%;
   height: 50px;
-  background-color: #a5e464;
+  background-color: #9dbfa5;
   border: none;
   color: #fff;
   font-weight: bold;
   border-radius: 4px;
   &:hover {
     transition: 1s;
-    color: #fff;
+    color: #333;
     cursor: pointer;
-    background-color: #74c025;
+    border: 2px solid #fff;
+    background-color: #fff;
   }
 `;
 
