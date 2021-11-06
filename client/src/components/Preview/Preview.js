@@ -1,14 +1,18 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import ml5 from "ml5";
 
 import {
   Container,
   PreviewCT,
-  Title,
-  ServicesCard,
-  ServicesH2,
-  ServicesP,
-  ServicesIcon,
+  LogContent,
+  LogHashP,
+  NameNtime,
+  LogP,
+  LogH2,
+  LogCardContatainer,
+  LogImgContainer,
+  LogImg,
   Button,
   List,
   Item,
@@ -23,9 +27,11 @@ const Preview = ({
   fileUploadHandler,
   isVideo,
 }) => {
+  const userInfo = useSelector((state) => state.infoReducer.userInfo);
   const [results, setResults] = useState([]);
   const [isLoading, setLoading] = useState(false);
-  const { nickname, challenge, contents, fileName, fileURL } = logs;
+  const { challenge, contents, fileName, fileURL } = logs;
+  const { nickname } = userInfo;
   //const url = fileURL || DEFAULT_IMAGE;
   console.log(false === selectedFile);
   const classifyImg = () => {
@@ -51,43 +57,63 @@ const Preview = ({
     <PreviewCT onSubmit={(e) => e.preventDefault()}>
       <Container>
         {!selectedFile ? (
-          <ServicesCard>
+          <LogCardContatainer>
             {isVideo ? (
               <Classifier imageModelURL={imageModelURL} />
             ) : (
               <>
-                <ServicesIcon />
-                <ServicesP>#{challenge}</ServicesP>
-                <ServicesH2>{contents}</ServicesH2>
-                <ServicesP>닉네임:{nickname}</ServicesP>
-                <ServicesP>time:21.11.16</ServicesP>
+                <LogImgContainer>
+                  <LogImg />
+                </LogImgContainer>
+                <LogContent>
+                  <LogHashP>
+                    # {challenge ? challenge : "챌린지를 선택하세요."}
+                  </LogHashP>
+                  <NameNtime>
+                    <LogP>닉네임:{nickname ? nickname : "nickname"}</LogP>
+                    <LogP className="time">time</LogP>
+                  </NameNtime>
+                  <LogH2>{contents ? contents : "내용을 입력해주세요."}</LogH2>
+                </LogContent>
               </>
             )}
-          </ServicesCard>
+          </LogCardContatainer>
         ) : (
-          <ServicesCard>
-            <ServicesIcon
-              src={selectedFile}
-              id="image"
-              onLoad={classifyImg}
-              crossOrigin="anonymous"
-            />
-
-            <ServicesP>#{challenge}</ServicesP>
-            <ServicesH2>{contents}</ServicesH2>
-            <ServicesP>닉네임:{nickname}</ServicesP>
-            <ServicesP>time:21.11.16</ServicesP>
-          </ServicesCard>
+          <LogCardContatainer>
+            <LogImgContainer>
+              <LogImg
+                src={selectedFile}
+                id="image"
+                onLoad={classifyImg}
+                crossOrigin="anonymous"
+              />
+            </LogImgContainer>
+            <LogContent>
+              <LogHashP># {challenge}</LogHashP>
+              <NameNtime>
+                <LogP>닉네임:{nickname}</LogP>
+                <LogP className="time">time</LogP>
+              </NameNtime>
+              <LogH2>{contents}</LogH2>
+            </LogContent>
+          </LogCardContatainer>
         )}
 
         {isLoading ? (
           <Img alt="now loading" src="gif/loading.gif" />
         ) : (
           <List>
-            {results.length && (
+            {results.length !== 0 && (
               <>
-                <Item>{results[0].label}</Item>
-                <Item>{Math.floor(results[0].confidence * 100)}%</Item>
+                <Item>
+                  {`예측결과 ${results[0].label}:
+                    ${Math.floor(results[0].confidence * 100)}%,
+                    ${results[1].label}:
+                    ${Math.floor(results[1].confidence * 100)}%,
+                    ${results[2].label}:
+                    ${Math.floor(results[2].confidence * 100)}`}
+                  %
+                </Item>
               </>
             )}
             {/*results.length &&
@@ -102,17 +128,6 @@ const Preview = ({
                 );
               })*/}
           </List>
-        )}
-        {!isVideo ? null : (
-          <>
-            {results.length &&
-            results[0].label === "천연 수세미" &&
-            results[0].confidence > 0.8 ? (
-              <Button onClick={fileUploadHandler}>업로드</Button>
-            ) : (
-              <span>해당 이미지는 입니다.</span>
-            )}
-          </>
         )}
       </Container>
     </PreviewCT>

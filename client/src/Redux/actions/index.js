@@ -100,7 +100,6 @@ export const addLike = (challengeId) => async (dispatch) => {
       }
     )
     .then((res) => {
-      console.log(res.data.challengeList);
       if (res.status === 201) {
         return res.data.challengeList;
       }

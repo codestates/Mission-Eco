@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import imgUpload from "../../imges/imageUpload.png";
 import {
@@ -16,43 +16,51 @@ const LogAddForm = ({
   addLog,
   resetLog,
   Img,
-  setImg,
+  fileUploadHandler,
+  selectedFile,
   fileSelectedHandler,
 }) => {
+  const isLogin = useSelector((state) => state.infoReducer.isLogin);
   const userInfo = useSelector((state) => state.infoReducer.userInfo);
-
+  const [selectMission, setSelectMission] = useState(false);
+  const [addContents, setAddContents] = useState(false);
   const challengeRef = useRef();
   const contentsRef = useRef();
   const { challenge, contents } = logs;
   const { nickname } = userInfo;
   console.log(userInfo);
-  const changeImage = (e) => {
-    e.preventDefault();
 
-    const imgSrc = e.target.value;
-    console.log(imgSrc);
-    setImg(imgSrc);
-  };
-
+  useEffect((el) => {}, [logs]);
+  console.log(challenge, contents, "loadddform");
   const resetInput = (e) => {
-    e.target.value = "";
+    resetLog();
   };
 
   const onChange = (event) => {
-    if (event.currentTarget == null) {
+    if (event.currentTarget === null) {
       return;
     }
     event.preventDefault();
     addLog({ ...logs, [event.currentTarget.name]: event.currentTarget.value });
+    setSelectMission(true);
+  };
+
+  const onChange2 = (event) => {
+    if (event.currentTarget === null) {
+      return;
+    }
+    event.preventDefault();
+    addLog({ ...logs, [event.currentTarget.name]: event.currentTarget.value });
+    setAddContents(true);
   };
 
   return (
     <Form onSubmit={(e) => e.preventDefault()}>
       <Select
         name="challenge"
-        placeholder="challenge를 선택해주세요."
-        defaultValue={challenge}
-        ref={challengeRef}
+        placeholder={"challenge를 선택해주세요."}
+        value={challenge || "challenge"}
+        //ref={challengeRef}
         onChange={onChange}
       >
         <option value="선택">챌린지 선택</option>
@@ -64,20 +72,21 @@ const LogAddForm = ({
         type="text"
         name="nickname"
         placeholder={nickname || "nickname"}
-        readonly
-        defaultValue={nickname || ""}
+        readOnly
+        value={nickname || "nickname"}
+
         //ref={nicknameRef}
         //onChange={onChange}
       />
       <Input
         name="contents"
         placeholder="contents"
-        defaultValue={contents || ""}
-        ref={contentsRef}
-        onChange={onChange}
+        value={contents || ""}
+        //ref={contentsRef}
+        onChange={onChange2}
       />
       <ImgSelect>
-        <label for="file-input">
+        <label htmlFor="file-input">
           <ClickImg src={imgUpload} alt="select img" />
         </label>
         <FileInput
@@ -87,8 +96,12 @@ const LogAddForm = ({
           onChange={fileSelectedHandler}
         ></FileInput>
       </ImgSelect>
-
-      <Button>업로드 하기!</Button>
+      {/**로그인 true && 위에칸 모두 채워져 있으면 && 예측 결과 80퍼 이상시에만 업로드 가능 */}
+      {selectMission && addContents && selectedFile && isLogin ? (
+        <Button onClick={fileUploadHandler}>업로드 하기!</Button>
+      ) : (
+        <Button onClick={resetInput}>업로드전 위 항목을 채워주세요!</Button>
+      )}
     </Form>
   );
 };

@@ -4,12 +4,12 @@ import ChallengeLogItem from "../ChallengeLogItem/ChallengeLogItem";
 import { getChallengeLogList } from "../../../Redux/actions";
 import blobMenu from "../../../imges/blobMenu.svg";
 import {
-  ServicesContiner,
-  ServicesH1,
-  ServicesWrapper,
+  ChallengeLogContiner,
+  ChallengeLogH1,
+  ChallengeLogWrapper,
   Dropdown,
-  ServicesP,
-  SubbarWrapper,
+  ChallengeP,
+  ChallengeSubbar,
   Subbar,
   Select,
   Button,
@@ -47,59 +47,37 @@ const ChallengeLogList = () => {
   };
 
   return (
-    <ServicesContiner id="services">
-      <ServicesH1>Mission Log</ServicesH1>
-      <SubbarWrapper>
-        <Subbar>
-          <Dropdown>
-            <DropButton onClick={dropBtnClick}>
-              <span>클릭하면 목록이 주루룩~</span>
-              <Img src={blobMenu} alt="blobkmenu" />
-            </DropButton>
-            <Dropdowncontent isActive={isActive}>
-              <List onClick={(e) => handleRequsetLogList(e)}>All</List>
-              {challengeList &&
-                challengeList.map((log, idx) => {
-                  return (
-                    <List
-                      key={idx}
-                      value={log.id}
-                      onClick={(e) => handleRequsetLogList(e)}
-                    >
-                      {log.name}
-                    </List>
-                  );
-                })}
-            </Dropdowncontent>
-          </Dropdown>
-          <Select>
-            {/** <Button>
-            <ServicesP>All</ServicesP>
-          </Button>
-        </Select>
+    <ChallengeLogContiner id="services">
+      <ChallengeLogH1>Mission Log</ChallengeLogH1>
+      <ChallengeSubbar>
+        <Dropdown>
+          <DropButton onClick={dropBtnClick}>
+            <span>클릭하면 목록이 주루룩~</span>
+          </DropButton>
+          <Dropdowncontent isActive={isActive}>
+            <List onClick={(e) => handleRequsetLogList(e)}>All</List>
+            {challengeList &&
+              challengeList.map((log, idx) => {
+                return (
+                  <List
+                    key={idx}
+                    value={log.id}
+                    onClick={(e) => handleRequsetLogList(e)}
+                  >
+                    {log.name}
+                  </List>
+                );
+              })}
+          </Dropdowncontent>
+        </Dropdown>
+
         <Select>
           <Button>
-            <ServicesP>Level 1</ServicesP>
+            <ChallengeP>미션후기작성</ChallengeP>
           </Button>
         </Select>
-        <Select>
-          <Button>
-            <ServicesP>Level 2</ServicesP>
-          </Button>
-        </Select>
-        <Select>
-          <Button>
-            <ServicesP>Level 3</ServicesP>
-          </Button>*/}
-          </Select>
-          <Select>
-            <Button>
-              <ServicesP>미션후기작성</ServicesP>
-            </Button>
-          </Select>
-        </Subbar>
-      </SubbarWrapper>
-      <ServicesWrapper>
+      </ChallengeSubbar>
+      <ChallengeLogWrapper>
         {!isActive
           ? challengeLogList &&
             challengeLogList.map((log, idx) => {
@@ -109,8 +87,8 @@ const ChallengeLogList = () => {
             listLog.map((log, idx) => {
               return <ChallengeLogItem log={log} key={idx} />;
             })}
-      </ServicesWrapper>
-    </ServicesContiner>
+      </ChallengeLogWrapper>
+    </ChallengeLogContiner>
   );
 };
 
