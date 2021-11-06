@@ -3,6 +3,8 @@ import Navbar from "../../components/Navbar/Navbar";
 import {
   H1,
   Btn,
+  BtnLink,
+  LinkCheckPassword,
   MypageContainer,
   Container,
   Title,
@@ -15,19 +17,18 @@ import MyLogList from "../../components/MyInfo/MypageLIke/MyLogList/MyLogList";
 import Footer from "../../components/Footer/Footer";
 
 const Mypage = () => {
-  // const dispatch = useDispatch();
-
-  // const [errMsg, setErrMsg] = useState("");
-
   useEffect(() => {}, []);
 
   return (
     <MypageContainer>
-      <Navbar />
       {/* mypage-top-container ( 페이지 타이틀, 마이페이지 수정버튼 ) */}
       <Container id="mypage-top-area">
         <H1>마이페이지</H1>
-        <Btn type="submit">수정하기✍🏻</Btn>
+        {/* <Btn type="submit">수정하기✍🏻</Btn> */}
+
+        <BtnLink to="/checkpassword">
+          <LinkCheckPassword>수정하기✍🏻</LinkCheckPassword>
+        </BtnLink>
       </Container>
 
       {/* mypage-1st-container (유저 닉네임, 이 유저가 획득한 뱃지 갯수) */}

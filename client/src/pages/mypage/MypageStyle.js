@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const MypageContainer = styled.div`
   margin-top: 10em;
@@ -18,6 +19,19 @@ export const H1 = styled.h1`
 
 export const Btn = styled.button`
   color: skyblue;
+`;
+export const BtnLink = styled(Link)`
+  position: relative;
+  text-decoration: none;
+`;
+export const LinkCheckPassword = styled.span`
+  display: float;
+  color: #999;
+  float: right;
+  &:hover {
+    transition: 1s;
+    color: #333;
+  }
 `;
 
 export const Container = styled.div`
