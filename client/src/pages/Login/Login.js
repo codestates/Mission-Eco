@@ -14,7 +14,6 @@ import {
   FormWrap,
   SocialLoigin,
   Logo,
-  Icon,
   FormContent,
   Form,
   FormLabel,
@@ -26,6 +25,7 @@ import {
   GeneralLogin,
   Text,
   OauthBtn,
+  Icon,
   MissionLogo,
 } from "./LoginStyle";
 
@@ -87,7 +87,7 @@ function Login() {
         if (res) {
           handleResponseSuccess();
         } else {
-          setErrMsg("이메일과 비밀번호를 확인해주세요.");
+          setErrMsg("이메일 또는 비밀번호를 확인해주세요.");
         }
       });
     }
