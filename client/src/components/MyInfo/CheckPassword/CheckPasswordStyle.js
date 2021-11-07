@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 export const CheckPasswordContainer = styled.div`
   background: orange;
+  margin: 5em;
 `;
 
 // export const Icon = styled(Link);
