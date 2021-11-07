@@ -71,7 +71,6 @@ const Classifier = ({ imageModelURL }) => {
 
   const toggle = () => {
     setStart(!start);
-    console.log("a");
     classifyImg();
     setResults([]);
   };
@@ -97,19 +96,17 @@ const Classifier = ({ imageModelURL }) => {
             {start ? "확인하기" : "캡쳐하기"}
           </Button>
         )}
-        <List>
-          {results.length > 0 &&
-            results.map((result, index) => {
-              const { label, confidence } = result;
-              return (
-                <Item key={index}>{`${
-                  index + 1
-                }. Predictation : ${label} , ${Math.floor(
-                  confidence * 100
-                )}%`}</Item>
-              );
-            })}
-        </List>
+        {results.length !== 0 ? (
+          <List>
+            {`예측결과 ${results[0].label}:
+                    ${Math.floor(results[0].confidence * 100)}%,
+                    ${results[1].label}:
+                    ${Math.floor(results[1].confidence * 100)}%,
+                    ${results[2].label}:
+                    ${Math.floor(results[2].confidence * 100)}`}
+            %
+          </List>
+        ) : null}
       </Container>
     </>
   );

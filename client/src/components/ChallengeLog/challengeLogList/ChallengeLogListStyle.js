@@ -1,19 +1,13 @@
 import styled from "styled-components";
 import blob1 from "../../../imges/blob1.svg";
 
-export const ServicesContiner = styled.div`
+export const ChallengeLogContiner = styled.div`
   //height: 800px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   //background: #010606;
-  background-image: url(${blob1});
-
-  //background-position: center;
-  background-size: cover;
-
-  background-size: cover;
 
   @media screen and (max-width: 768px) {
     //height: 1100px;
@@ -24,7 +18,7 @@ export const ServicesContiner = styled.div`
   }
 `;
 
-export const ServicesWrapper = styled.div`
+export const ChallengeLogWrapper = styled.div`
   max-width: 1000px;
   margin: 0 auto;
   display: grid;
@@ -71,124 +65,160 @@ export const ServicesCard = styled.div`
   }
 `;
 
-export const ServicesIcon = styled.img`
-  height: 240px;
-  width: 260px;
-  margin-bottom: 10px;
-  border: 1px solid #aaa492;
-
-  @media screen and (max-width: 768px) {
-    height: 300px;
-    width: 320px;
-  }
+export const SubTxt = styled.p`
+  margin-bottom: 6rem;
+  padding-top: 0.6rem;
+  padding-bottom: 0.4rem;
+  color: #999;
 `;
 
 export const ServicesH1 = styled.h1`
-  margin-top: 150px;
+  padding-top: 13rem;
   font-size: 2.5rem;
-  color: #fff;
-  margin-bottom: 64px;
+  color: #010106;
 
   @media screen and (max-width: 480px) {
     font-size: 2rem;
   }
 `;
 
-export const ServicesH2 = styled.h2`
-  font-size: 1rem;
-  margin-bottom: 10px;
-`;
-
-export const ServicesP = styled.p`
-  font-size: 1rem;
-  text-align: center;
-  color: #fff;
-`;
 export const Button = styled.button`
+  display: block;
+  line-height: 1rem;
+  font-size: 1rem;
   border: 0;
   outline: 0;
   background-color: transparent;
   cursor: pointer;
+  padding: 1rem 1.5rem;
+  color: #333;
+
+  &:hover {
+    background-color: #9dbfa5;
+    transition: 0.8s;
+    color: #fff;
+  }
+
+  @media screen and (min-width: 481px) and (max-width: 980px) {
+    padding: 1rem;
+  }
+
+  @media screen and (max-width: 480px) {
+    font-size: 12px;
+    border-right: 1px solid #ddd;
+  }
 `;
+
 export const Select = styled.li`
   list-style: none;
   margin: 1em;
 `;
-export const SubbarWrapper = styled.div`
+export const ChallengeSubbar = styled.div`
   display: flex;
-  justify-content: space-between;
-  //position: relative;
-  margin: 0;
-  justify-content: left;
-`;
-
-export const Subbar = styled.div`
-  //flex-direction: column;
+  height: 50px;
+  width: 900px;
+  // flex-direction: column;
   //justify-content: center;
-  //align-items: center;
-  padding: 1px 280px;
-  border-top: 1px solid #6d9886;
-  border-bottom: 1px solid #6d9886;
-  color: rgb(100, 100, 100);
+  align-items: center;
+
+  padding: 1px 130px;
+  border-top: 1px solid #010101;
+  border-bottom: 1px solid #010101;
+
+  //background: #d8e3e7;
   margin-bottom: 3em;
-  justify-content: left;
+  @media screen and (max-width: 768px) {
+    padding: 1px 50px;
+    height: 60px;
+    max-width: 1100px;
+  }
 
   @media screen and (max-width: 480px) {
-    padding: 1px 50px;
+    padding: 0;
+    height: 70px;
+    width: 370px;
   }
 `;
 
-export const Dropdown = styled.div`
-  //position: fixed;
+export const Subbar = styled.div`
   display: flex;
-`;
-{
-  /**export const DropButton = styled.button`
-  //border: 1px solid rgb(37, 37, 37);
-  //border-radius: 4px;
-  background: transparent;
-  //font-weight: 400;
-  color: rgb(37, 37, 37);
-  //padding: 12px;
-  //width: 15em;
-  border: none;
-  text-align: left;
-  cursor: pointer;
-  font-size: 12px;
-`; */
-}
-export const DropButton = styled.button`
-  //border: 1px solid rgb(37, 37, 37);
-  //border-radius: 4px;
-  background: transparent;
-  //font-weight: 400;
-  color: rgb(37, 37, 37);
-  //padding: 12px;
-  //width: 15em;
-  border: none;
-  text-align: left;
-  cursor: pointer;
-  font-size: 12px;
-`;
-export const Dropdowncontent = styled.div`
-  display: ${(props) => (props.isActive ? `block` : `none`)};
-  position: absolute;
-  z-index: 1; /*다른 요소들보다 앞에 배치*/
-  font-weight: 400;
-  background-color: #f9f9f9;
-  width: 1000px;
-`;
 
-export const List = styled.li`
-  display: block;
-  text-decoration: none;
-  color: rgb(37, 37, 37);
-  font-size: 12px;
-  padding: 12px 20px;
-  &:hover {
-    cursor: pointer;
-    background-color: #d3e4cd;
+  // flex-direction: column;
+  //align-items: center;
+  padding: 0 8.2rem;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  color: rgb(100, 100, 100);
+  margin-bottom: 4em;
+
+  @media screen and (min-width: 768px) and (max-width: 980px) {
+    padding: 0 6rem;
+  }
+
+  @media screen and (min-width: 481px) and (max-width: 767px) {
+    padding: 0 1.2rem;
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 0;
   }
 `;
 
 export const Img = styled.img``;
+
+export const ServicesP = styled.div`
+  font-size: 1rem;
+  text-align: center;
+  color: #333;
+  /* border: 1px solid red; */
+`;
+
+export const SelectLogBox = styled.div`
+  /* border: 1px solid blue; */
+  margin-right: 14rem;
+
+  @media screen and (min-width: 768px) and (max-width: 980px) {
+    margin-right: 4.4rem;
+  }
+
+  @media screen and (min-width: 481px) and (max-width: 767px) {
+    margin-right: 1.4rem;
+  }
+
+  @media screen and (max-width: 480px) {
+    margin-right: 0;
+  }
+`;
+
+export const SelectLog = styled.select`
+  display: inline-block;
+  line-height: 1rem;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  cursor: pointer;
+  padding: 1rem 1.5rem;
+  color: #333;
+
+  &:hover {
+    background-color: #9dbfa5;
+    transition: 0.8s;
+    color: #fff;
+  }
+
+  @media screen and (min-width: 481px) and (max-width: 980px) {
+    padding: 1rem;
+  }
+
+  @media screen and (max-width: 480px) {
+    font-size: 12px;
+  }
+`;
+
+export const Optioon = styled.option`
+  display: block;
+  font-size: 1rem;
+  height: 20px;
+`;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link as LinkR } from "react-router-dom";
 
 export const Nav = styled.nav`
-  background: ${({ scrollnav }) => (scrollnav ? "#234b68" : "#ddd")};
+  background: ${({ scrollnav }) => (scrollnav ? "#234b68" : "transparent")};
   // background: linear-gradient(to right, #283c86, #45a247);
   height: 80px;
   margin-top: -80px;
