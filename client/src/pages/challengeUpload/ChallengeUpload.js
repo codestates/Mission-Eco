@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { upload } from "../../utils/imgUploader";
 import { useSelector } from "react-redux";
-import Uploader from "../../components/Upload/Uploader/Uploader";
-import Classifier from "../../components/Upload/Classifier/Classifier";
+import Modal from "../../components/Modal/Modal";
 import axios from "axios";
 import {
   ChallengeUploadCT,
@@ -21,19 +20,22 @@ import LogAddForm from "../../components/LogAddForm/LogAddForm";
 
 function ChallengeUpload() {
   const userInfo = useSelector((state) => state.infoReducer.userInfo);
-  const [isVideo, setIsVideo] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploadFile, setUploadFile] = useState(null);
+  const [isVideo, setIsVideo] = useState(false);
+  const [results, setResults] = useState([]);
+  const [isUpload, setIsUpload] = useState(false);
   const [img, setImg] = useState("");
   const [logs, setLogs] = useState({});
 
-  useEffect(() => {}, [isVideo]);
+  useEffect(() => {}, [isVideo, results]);
 
   const addLog = (log) => {
     setLogs(log);
   };
 
   const resetLog = (log) => {
+    setResults([]);
     setLogs({});
     setSelectedFile(null);
     setUploadFile(null);
@@ -58,6 +60,7 @@ function ChallengeUpload() {
   };
 
   const fileUploadHandler = async () => {
+    setIsUpload(true);
     const uploaded = await upload(uploadFile);
     console.log(uploaded);
     //fd.append("img", selectedFile, selectedFile.name, fd);
@@ -75,6 +78,9 @@ function ChallengeUpload() {
       .then((res) => {
         URL.revokeObjectURL(selectedFile);
         setImg(res.data.new_post.img);
+        setResults([]);
+        resetLog();
+        setIsUpload(false);
       });
   };
   return (
@@ -92,17 +98,21 @@ function ChallengeUpload() {
               selectedFile={selectedFile}
               imageModelURL={imageModelURL}
               isVideo={isVideo}
+              results={results}
+              setResults={setResults}
             />
             <LogAddForm
               logs={logs}
               addLog={addLog}
               resetLog={resetLog}
               setImg={setImg}
+              results={results}
               selectedFile={selectedFile}
               fileSelectedHandler={fileSelectedHandler}
               fileUploadHandler={fileUploadHandler}
             />
           </UploaderWrapper>
+          {isUpload ? <Modal msg={"참여완료!"} setState={false} /> : null}
           {/**  <Uploader setImg={setImg} fileSelectedHandler={fileSelectedHandler} /><Classifier
           img={img}
           imageModelURL={imageModelURL}

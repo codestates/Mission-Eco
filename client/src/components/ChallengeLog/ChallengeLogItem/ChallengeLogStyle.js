@@ -78,7 +78,7 @@ export const LogHashP = styled.p`
   font-size: 1rem;
   text-align: left;
   margin-bottom: 1.4rem;
-  color: #234b68;
+  color: #14279b;
   font-weight: 600;
 `;
 

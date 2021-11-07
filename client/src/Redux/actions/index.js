@@ -71,11 +71,10 @@ export function isToggle(boolean) {
 }
 
 export function isOpenModal(boolean) {
+  console.log(boolean);
   return {
     type: IS_OPEN_MODAL,
-    payload: {
-      isOpenModal: boolean,
-    },
+    payload: boolean,
   };
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import ml5 from "ml5";
 
@@ -24,16 +24,17 @@ const Preview = ({
   logs,
   selectedFile,
   imageModelURL,
-  fileUploadHandler,
   isVideo,
+  results,
+  setResults,
 }) => {
   const userInfo = useSelector((state) => state.infoReducer.userInfo);
-  const [results, setResults] = useState([]);
   const [isLoading, setLoading] = useState(false);
-  const { challenge, contents, fileName, fileURL } = logs;
+  const { challenge, contents } = logs;
   const { nickname } = userInfo;
-  //const url = fileURL || DEFAULT_IMAGE;
-  console.log(false === selectedFile);
+
+  //비디오 결과가 바뀔때 마다 결과 리셋 video ? setResults([])
+
   const classifyImg = () => {
     setLoading(true);
     const classifier = ml5.imageClassifier(imageModelURL, modelLoaded);
@@ -48,8 +49,8 @@ const Preview = ({
         return classifiedResults;
       })
       .then((classifiedResults) => {
-        setLoading(false);
         setResults(classifiedResults);
+        setLoading(false);
       });
   };
   console.log(results[0]);
