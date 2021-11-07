@@ -7,6 +7,7 @@ import { validEmail } from "../../utils/validation";
 import kakaoLogo from "../../imges/kakao-logo.png";
 import googleLogo from "../../imges/google-logo.png";
 import logo from "../../imges/logo.png";
+
 import {
   Container,
   LeftTxt,
@@ -28,7 +29,7 @@ import {
   Icon,
   MissionLogo,
 } from "./LoginStyle";
-
+//
 axios.defaults.withCredentials = true;
 
 function Login() {

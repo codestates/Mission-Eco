@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+//
 export const JoinRow = styled.div`
 
   > div {
@@ -7,7 +8,7 @@ export const JoinRow = styled.div`
     text-align: left;
 
     > div {
-      
+
       > span.success-msg {
         color: green;
       }

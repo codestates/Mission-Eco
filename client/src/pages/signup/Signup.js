@@ -16,7 +16,7 @@ import {
   Icon,
   MissionLogo,
 } from "../Login/LoginStyle";
-
+//
 function Signup() {
   const history = useHistory();
   const [signupInfo, SetSignupInfo] = useState({

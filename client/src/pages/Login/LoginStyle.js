@@ -12,7 +12,7 @@ export const OauthBtn = styled.button`
   border-radius: 50%;
   cursor: pointer;
 `;
-
+//
 export const Logo = styled.img`
   display: block;
   text-align: left;
