@@ -71,7 +71,6 @@ export const CloseBtn = styled.div`
   height: 40px;
   right: 0;
   top: -42px;
-
   /* X모양의 버튼 만들기 */
   ::before {
     content: "";
@@ -83,7 +82,6 @@ export const CloseBtn = styled.div`
     background-color: #ccc;
     transform: rotate(135deg) translate(0%);
   }
-
   ::after {
     content: "";
     position: absolute;

@@ -4,21 +4,11 @@ import { getChallengeList } from "../../../Redux/actions";
 import ChallengeListItem from "../ChallengeListItem/ChallengeListItem";
 import LoadingIndicator from "../../Loading/LoadingIndicator";
 import {
-<<<<<<< HEAD
   ChallengeContiner,
   ChallengeH1,
   ChallengeWrapper,
   ChallengeSubbar,
   ChallengeSelect,
-=======
-  ServicesContiner,
-  ServicesTxt,
-  ServicesH1,
-  ServicesWrapper,
-  Subbar,
-  SelectLeft,
-  SelectRight,
->>>>>>> 5bcbb00863087b53a59d1f5b1170bdfb7e3d4af4
   Button,
 } from "./ChallengeListStyle";
 
@@ -53,9 +43,8 @@ const ChallengeList = () => {
       setAll(false);
     }
   };
-  
+
   return (
-<<<<<<< HEAD
     <ChallengeContiner id="services">
       <ChallengeH1>Mission List</ChallengeH1>
       <ChallengeSubbar>
@@ -84,31 +73,6 @@ const ChallengeList = () => {
         </ChallengeSelect>
       </ChallengeSubbar>
       <ChallengeWrapper>
-=======
-    <ServicesContiner id="services">
-      <ServicesH1>Mission List</ServicesH1>
-      <ServicesTxt>우리 지구를 위한 미션을 확인해 보세요.</ServicesTxt>
-      <Subbar>
-        <SelectLeft>
-          <Button value="0" onClick={(e) => handleRequsetLevelList(e)}>
-            All
-          </Button>
-          <Button value="1" onClick={(e) => handleRequsetLevelList(e)}>
-            Level 1
-          </Button>
-          <Button value="2" onClick={(e) => handleRequsetLevelList(e)}>
-            Level 2
-          </Button>
-          <Button value="3" onClick={(e) => handleRequsetLevelList(e)}>
-            Level 3
-          </Button>
-        </SelectLeft>
-        <SelectRight>
-          <Button>미션 하러Go</Button>
-        </SelectRight>
-      </Subbar>
-      <ServicesWrapper>
->>>>>>> 5bcbb00863087b53a59d1f5b1170bdfb7e3d4af4
         {challengeList && all
           ? challengeList.map((list, idx) => {
               return (
