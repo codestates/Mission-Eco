@@ -1,6 +1,6 @@
-// Mypage에서 '수정하기'버튼 클릭눌러서 들어온 페이지 - 기능 구현 여기에
+/*eslint-disable */
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import axios from "axios";
 import {
@@ -16,8 +16,9 @@ axios.defaults.withCredentials = true;
 
 export default function CheckPassword() {
   const state = useSelector((state) => state.infoReducer);
-  const dispatch = useDispatch();
-  console.log(state.userInfo);
+  // const userInfo = useSelector((state) => state.infoReducer.userInfo);
+  console.log(state);
+
   const [password, setPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
 
@@ -40,8 +41,10 @@ export default function CheckPassword() {
           //console.log("login", res.data.message);
           if (res.status === 204) {
             setErrMsg("비밀번호 ok.");
+            // MypageEdit 페이지로 이동
           } else {
             setErrMsg("비밀번호를 확인해주세요.");
+            // 팝업으로 에러메시지 띄우기
           }
         });
     }

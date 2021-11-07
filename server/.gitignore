@@ -1,6 +1,6 @@
 # misc
 .DS_Store
-.package-look.json
+.package-lock.json
 *.pem
 
 # dependencies
@@ -10,3 +10,5 @@
 .env
 
 config/config.json
+config/config.js
+yarn.lock

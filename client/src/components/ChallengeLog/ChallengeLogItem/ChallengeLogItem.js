@@ -1,23 +1,20 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-
-import axios from "axios";
+import React from "react";
 import {
   ServicesCard,
   ServicesH2,
   ServicesP,
   ServicesIcon,
-  WishBtn,
-  Img,
 } from "./ChallengeLogStyle";
 
 const ChallengeListItem = ({ log }) => {
-  const state = useSelector((state) => state.infoReducer);
+  // const state = useSelector((state) => state.infoReducer);
 
   return (
     <ServicesCard>
       <ServicesIcon background={log.img} />
+      <ServicesP>#{log.challenge.name}</ServicesP>
       <ServicesH2>{log.challengelog_contents}</ServicesH2>
+      <ServicesP>닉네임:{log.user.nickname}</ServicesP>
       <ServicesP>{log.createdAt}</ServicesP>
     </ServicesCard>
   );

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import blob1 from "../../../imges/blob1.svg";
 
 export const ServicesContiner = styled.div`
   //height: 800px;
@@ -6,7 +7,13 @@ export const ServicesContiner = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #010606;
+  //background: #010606;
+  background-image: url(${blob1});
+
+  //background-position: center;
+  background-size: cover;
+
+  background-size: cover;
 
   @media screen and (max-width: 768px) {
     //height: 1100px;
@@ -107,10 +114,16 @@ export const Select = styled.li`
   list-style: none;
   margin: 1em;
 `;
-export const Subbar = styled.div`
+export const SubbarWrapper = styled.div`
   display: flex;
+  justify-content: space-between;
+  //position: relative;
+  margin: 0;
+  justify-content: left;
+`;
 
-  // flex-direction: column;
+export const Subbar = styled.div`
+  //flex-direction: column;
   //justify-content: center;
   //align-items: center;
   padding: 1px 280px;
@@ -118,8 +131,64 @@ export const Subbar = styled.div`
   border-bottom: 1px solid #6d9886;
   color: rgb(100, 100, 100);
   margin-bottom: 3em;
+  justify-content: left;
 
   @media screen and (max-width: 480px) {
     padding: 1px 50px;
   }
 `;
+
+export const Dropdown = styled.div`
+  //position: fixed;
+  display: flex;
+`;
+{
+  /**export const DropButton = styled.button`
+  //border: 1px solid rgb(37, 37, 37);
+  //border-radius: 4px;
+  background: transparent;
+  //font-weight: 400;
+  color: rgb(37, 37, 37);
+  //padding: 12px;
+  //width: 15em;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 12px;
+`; */
+}
+export const DropButton = styled.button`
+  //border: 1px solid rgb(37, 37, 37);
+  //border-radius: 4px;
+  background: transparent;
+  //font-weight: 400;
+  color: rgb(37, 37, 37);
+  //padding: 12px;
+  //width: 15em;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 12px;
+`;
+export const Dropdowncontent = styled.div`
+  display: ${(props) => (props.isActive ? `block` : `none`)};
+  position: absolute;
+  z-index: 1; /*다른 요소들보다 앞에 배치*/
+  font-weight: 400;
+  background-color: #f9f9f9;
+  width: 1000px;
+`;
+
+export const List = styled.li`
+  display: block;
+  text-decoration: none;
+  color: rgb(37, 37, 37);
+  font-size: 12px;
+  padding: 12px 20px;
+  &:hover {
+    cursor: pointer;
+    background-color: #d3e4cd;
+  }
+`;
+
+export const Img = styled.img``;

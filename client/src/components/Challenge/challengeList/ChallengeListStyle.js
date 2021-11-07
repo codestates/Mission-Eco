@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import blob1 from "../../../imges/blob1.svg";
 
 export const ServicesContiner = styled.div`
   display: flex;
@@ -7,8 +8,10 @@ export const ServicesContiner = styled.div`
   align-items: center;
 
   margin: 0 auto;
-  background: #fff;
 
+  z-index: -1;
+
+  //background-image: url(${blob1});
   @media screen and (max-width: 768px) {
     //height: 1100px;
   }
@@ -20,7 +23,8 @@ export const ServicesContiner = styled.div`
 
 export const ServicesWrapper = styled.div`
   max-width: 1000px;
-  margin: 0 auto;
+
+  //margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
@@ -28,6 +32,10 @@ export const ServicesWrapper = styled.div`
   padding: 0 50px;
 
   @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    padding: 0 20px;
+  }
+  @media screen and (max-width: 480px) {
     grid-template-columns: 1fr;
     padding: 0 20px;
   }
@@ -60,24 +68,38 @@ export const ServicesIcon = styled.img`
 `;
 export const Subbar = styled.div`
   display: flex;
-
+  height: 50px;
+  width: 900px;
   // flex-direction: column;
-  //justify-content: center;
-  //align-items: center;
-  padding: 1px 280px;
-  border-top: 1px solid green;
-  border-bottom: 1px solid green;
-  color: rgb(100, 100, 100);
+  justify-content: center;
+  align-items: center;
+
+  padding: 1px 130px;
+  border-top: 1px solid #010101;
+  border-bottom: 1px solid #010101;
+
+  //background: #d8e3e7;
   margin-bottom: 3em;
+  @media screen and (max-width: 768px) {
+    padding: 1px 50px;
+    height: 60px;
+    max-width: 1100px;
+  }
 
   @media screen and (max-width: 480px) {
-    padding: 1px 50px;
+    padding: 0;
+    height: 70px;
+    width: 370px;
   }
 `;
 
 export const Select = styled.li`
   list-style: none;
+  text-align: center;
   margin: 1em;
+  &:hover {
+    border-bottom: 1px solid black;
+  }
 `;
 
 export const ServicesH1 = styled.h1`
@@ -124,6 +146,12 @@ export const ServicesP = styled.p`
 export const Button = styled.button`
   border: 0;
   outline: 0;
+  font-size: 16px;
+
   background-color: transparent;
   cursor: pointer;
+
+  @media screen and (max-width: 480px) {
+    font-size: 12px;
+  }
 `;

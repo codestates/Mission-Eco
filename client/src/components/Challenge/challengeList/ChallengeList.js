@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getChallengeList } from "../../../Redux/actions";
 import ChallengeListItem from "../ChallengeListItem/ChallengeListItem";
+import LoadingIndicator from "../../Loading/LoadingIndicator";
 
 import {
   ServicesContiner,
@@ -9,34 +12,38 @@ import {
   Select,
   Button,
 } from "./ChallengeListStyle";
-import axios from "axios";
 
-const ChallengeList = () => {
-  const [allLists, setAllLists] = useState([]);
+const ChallengeList = ({ img }) => {
+  const dispatch = useDispatch();
+  const isLogin = useSelector((state) => state.infoReducer.isLogin);
+  const userInfo = useSelector((state) => state.infoReducer.userInfo);
+  console.log(userInfo);
   const [listItems, setListItems] = useState([]);
+  const [render, setRender] = useState(false);
+  const [all, setAll] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const challengeList = useSelector((state) => state.infoReducer.challengeList);
 
   useEffect(() => {
-    handleRequsetList();
-  }, []);
+    setIsLoading(true);
+    dispatch(getChallengeList()).then(() => setIsLoading(false));
+  }, [dispatch]);
 
-  const handleRequsetList = () => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/challenge`, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log("res--", res.data.challengeList);
-        setAllLists(res.data.challengeList);
-        setListItems(res.data.challengeList);
-      })
-      .catch(err => console.log('challengeList.js 오류', err));
-  };
+  useEffect(() => {}, [challengeList]);
+
   const handleRequsetLevelList = (e) => {
+    // ? handleRequesetLevelList 함수 =======================================================
     const level = e.target.value;
-    //해당레벨 버튼을 누르면 list state에 저장된 list값들중 해당레벨을 찾아서 setList로 바꾼다.
-    let listItem = allLists.map((list) => list);
-    let itemLevel = listItem.filter((el) => el.level === Number(level));
-    setListItems(itemLevel);
+    console.log(level);
+    if (Number(level) === 0) {
+      setAll(true);
+    } else {
+      const itemLevel = challengeList.filter(
+        (el) => el.level === Number(level)
+      );
+      setListItems(itemLevel);
+      setAll(false);
+    }
   };
 
   return (
@@ -44,7 +51,9 @@ const ChallengeList = () => {
       <ServicesH1>Mission List</ServicesH1>
       <Subbar>
         <Select>
-          <Button onClick={handleRequsetList}>All</Button>
+          <Button value="0" onClick={(e) => handleRequsetLevelList(e)}>
+            All
+          </Button>
         </Select>
         <Select>
           <Button value="1" onClick={(e) => handleRequsetLevelList(e)}>
@@ -66,64 +75,32 @@ const ChallengeList = () => {
         </Select>
       </Subbar>
       <ServicesWrapper>
-        {listItems.map((list, idx) => {
-          return <ChallengeListItem list={list} key={idx} />;
-        })}
+        {challengeList && all
+          ? challengeList.map((list, idx) => {
+              return (
+                <ChallengeListItem
+                  list={list}
+                  key={idx}
+                  userId={userInfo.id}
+                  isLogin={isLogin}
+                  render={() => setRender(!render)}
+                  img={img}
+                />
+              );
+            })
+          : listItems.map((list, idx) => {
+              return (
+                <ChallengeListItem
+                  list={list}
+                  key={idx}
+                  userId={userInfo.id}
+                  isLogin={isLogin}
+                  render={() => setRender(!render)}
+                  img={img}
+                />
+              );
+            })}
       </ServicesWrapper>
-
-      {/**
-        <ServicesCard>
-          <ServicesIcon src={Icon1} />
-        </ServicesCard>
-        <ServicesCard>
-          <ServicesIcon src={Icon2} />
-        </ServicesCard>
-        <ServicesCard>
-          <ServicesIcon src={Icon3} />
-        </ServicesCard>
-        <ServicesCardColor>
-          <ServicesH2>캔뿌셔</ServicesH2>
-          <ServicesP></ServicesP>
-        </ServicesCardColor>
-        <ServicesCard>
-          <ServicesH2>플로깅</ServicesH2>
-          <ServicesP></ServicesP>
-        </ServicesCard>
-        <ServicesCard>
-          <ServicesH2>분리수거</ServicesH2>
-          <ServicesP></ServicesP>
-        </ServicesCard>
-        <ServicesCard>
-          <ServicesIcon />
-          <ServicesH2>Reduce waste</ServicesH2>
-          <ServicesP>We help waste your trash and help earth.</ServicesP>
-        </ServicesCard>
-        <ServicesCard>
-          <ServicesIcon />
-          <ServicesH2>Reduce waste</ServicesH2>
-          <ServicesP>We help waste your trash and help earth.</ServicesP>
-        </ServicesCard>
-        <ServicesCard>
-          <ServicesIcon />
-          <ServicesH2>Reduce waste</ServicesH2>
-          <ServicesP>We help waste your trash and help earth.</ServicesP>
-        </ServicesCard>
-        <ServicesCard>
-          <ServicesIcon />
-          <ServicesH2>Reduce waste</ServicesH2>
-          <ServicesP>We help waste your trash and help earth.</ServicesP>
-        </ServicesCard>
-        <ServicesCard>
-          <ServicesIcon />
-          <ServicesH2>Reduce waste</ServicesH2>
-          <ServicesP>We help waste your trash and help earth.</ServicesP>
-        </ServicesCard>
-        <ServicesCard>
-          <ServicesIcon />
-          <ServicesH2>Reduce waste</ServicesH2>
-          <ServicesP>We help waste your trash and help earth.</ServicesP>
-        </ServicesCard>
-      </ServicesWrapper> */}
     </ServicesContiner>
   );
 };

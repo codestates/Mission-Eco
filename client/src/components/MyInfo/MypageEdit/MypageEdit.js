@@ -1,3 +1,4 @@
+/*eslint-disable */
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,7 +12,6 @@ import {
   TitleH3,
   Input,
   Span,
-  P,
   Btn,
 } from "./MypageEditStyle";
 
@@ -40,7 +40,6 @@ const MypageEdit = () => {
     password1: "",
     password2: "",
   });
-  const [isPw, setIsPw] = useState(false);
 
   useEffect(() => {}, [state.userInfo]);
 
@@ -99,7 +98,6 @@ const MypageEdit = () => {
         .then((res) => {
           console.log(res.status);
           if (res.status === 204) {
-            setIsPw(true);
             setPwErrMsg("비밀번호가 변경완료");
             // setPw(true);
             // 로 해야하나?
