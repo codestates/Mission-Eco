@@ -12,7 +12,6 @@ export const LogCardContatainer = styled.div`
   padding: 14px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
-
   &:hover {
     transform: scale(1.02);
     transition: all 0.2s ease-in-out;
@@ -38,12 +37,10 @@ export const LogImgContainer = styled.div`
   justify-content: center;
   border: 1px solid #11324d;
   //background: ${(props) => props.background || "white"};
-
   @media screen and (max-width: 768px) {
     height: 300px;
     width: 310px;
   }
-
   @media screen and (max-width: 480px) {
     height: 300px;
     width: 290px;
