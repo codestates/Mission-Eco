@@ -17,9 +17,11 @@ const Footer = () => {
         <Title>🌏 ABOUT US 🌳</Title>
         {/* <Icon>깃헙 아이콘 img에 우리 깃헙 링크 🔗</Icon> */}
         {/* <Icon src="https://toppng.com/uploads/preview/see-all-open-source-repositories-github-logo-11563031735gubsot66ry.png" /> */}
-        <i className="fab fa-github-square fa-2x">Mission-Eco</i>
 
         <ServicesWrapper>
+          <ServicesCard>
+            <i className="fab fa-github-square fa-2x">Mission-Eco</i>
+          </ServicesCard>
           <ServicesCard>
             <Name>김수경</Name>
             <Position>Back-end</Position>

@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Challenge from "./pages/challenge/Challenge";
 import ChallengeLog from "./pages/challengeLog/ChallengeLog";
 import ChallengeUpload from "./pages/challengeUpload/ChallengeUpload";
+import CheckPassword from "./components/MyInfo/CheckPassword/CheckPassword";
 import Sidebar from "./components/Sidebar/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
 import { isToggle } from "../src/Redux/actions";
@@ -46,7 +47,9 @@ function App() {
           <Route exact path="/upload">
             <ChallengeUpload />
           </Route>
-
+          <Route exact path="/checkpassword">
+            <CheckPassword />
+          </Route>
           {/*<Route exact path="/admin">
           //관리자페이지
           <Navbar />
