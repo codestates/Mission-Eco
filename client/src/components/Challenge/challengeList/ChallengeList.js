@@ -4,6 +4,13 @@ import { getChallengeList } from "../../../Redux/actions";
 import ChallengeListItem from "../ChallengeListItem/ChallengeListItem";
 import LoadingIndicator from "../../Loading/LoadingIndicator";
 import {
+<<<<<<< HEAD
+  ChallengeContiner,
+  ChallengeH1,
+  ChallengeWrapper,
+  ChallengeSubbar,
+  ChallengeSelect,
+=======
   ServicesContiner,
   ServicesTxt,
   ServicesH1,
@@ -11,16 +18,15 @@ import {
   Subbar,
   SelectLeft,
   SelectRight,
+>>>>>>> 5bcbb00863087b53a59d1f5b1170bdfb7e3d4af4
   Button,
 } from "./ChallengeListStyle";
 
-const ChallengeList = ({ img }) => {
+const ChallengeList = () => {
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.infoReducer.isLogin);
   const userInfo = useSelector((state) => state.infoReducer.userInfo);
-  console.log(userInfo);
   const [listItems, setListItems] = useState([]);
-  const [render, setRender] = useState(false);
   const [all, setAll] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const challengeList = useSelector((state) => state.infoReducer.challengeList);
@@ -28,12 +34,13 @@ const ChallengeList = ({ img }) => {
   useEffect(() => {
     setIsLoading(true);
     dispatch(getChallengeList()).then(() => setIsLoading(false));
+
+    //setImgData(...challengeList);
   }, [dispatch]);
 
   useEffect(() => {}, [challengeList]);
 
   const handleRequsetLevelList = (e) => {
-    // ? handleRequesetLevelList 함수 =======================================================
     const level = e.target.value;
     console.log(level);
     if (Number(level) === 0) {
@@ -48,6 +55,36 @@ const ChallengeList = ({ img }) => {
   };
   
   return (
+<<<<<<< HEAD
+    <ChallengeContiner id="services">
+      <ChallengeH1>Mission List</ChallengeH1>
+      <ChallengeSubbar>
+        <ChallengeSelect>
+          <Button value="0" onClick={(e) => handleRequsetLevelList(e)}>
+            All
+          </Button>
+        </ChallengeSelect>
+        <ChallengeSelect>
+          <Button value="1" onClick={(e) => handleRequsetLevelList(e)}>
+            Level 1
+          </Button>
+        </ChallengeSelect>
+        <ChallengeSelect>
+          <Button value="2" onClick={(e) => handleRequsetLevelList(e)}>
+            Level 2
+          </Button>
+        </ChallengeSelect>
+        <ChallengeSelect>
+          <Button value="3" onClick={(e) => handleRequsetLevelList(e)}>
+            Level 3
+          </Button>
+        </ChallengeSelect>
+        <ChallengeSelect>
+          <Button>미션후기작성</Button>
+        </ChallengeSelect>
+      </ChallengeSubbar>
+      <ChallengeWrapper>
+=======
     <ServicesContiner id="services">
       <ServicesH1>Mission List</ServicesH1>
       <ServicesTxt>우리 지구를 위한 미션을 확인해 보세요.</ServicesTxt>
@@ -71,6 +108,7 @@ const ChallengeList = ({ img }) => {
         </SelectRight>
       </Subbar>
       <ServicesWrapper>
+>>>>>>> 5bcbb00863087b53a59d1f5b1170bdfb7e3d4af4
         {challengeList && all
           ? challengeList.map((list, idx) => {
               return (
@@ -79,8 +117,6 @@ const ChallengeList = ({ img }) => {
                   key={idx}
                   userId={userInfo.id}
                   isLogin={isLogin}
-                  render={() => setRender(!render)}
-                  img={img}
                 />
               );
             })
@@ -91,13 +127,11 @@ const ChallengeList = ({ img }) => {
                   key={idx}
                   userId={userInfo.id}
                   isLogin={isLogin}
-                  render={() => setRender(!render)}
-                  img={img}
                 />
               );
             })}
-      </ServicesWrapper>
-    </ServicesContiner>
+      </ChallengeWrapper>
+    </ChallengeContiner>
   );
 };
 

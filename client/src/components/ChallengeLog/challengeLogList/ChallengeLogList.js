@@ -14,7 +14,7 @@ import {
   SubTxt,
   SelectLogBox,
   SelectLog,
-  Optioon
+  Optioon,
 } from "./ChallengeLogListStyle";
 require("dotenv").config();
 
@@ -24,43 +24,46 @@ const ChallengeLogList = () => {
   const { challengeList, challengeLogList } = logList;
   const [listLog, setListLog] = useState(challengeLogList);
   const [isAll, setIsAll] = useState(false);
-  
+
   // DB에 데이타 변경되면(챌린지가)
   // 첼린지가 가능한 챌린지만 축출함
-  const availbleChallenges = challengeList && challengeList.reduce((acc, log) => {
-   if(log.id === 1 || log.id === 2  || log.id === 8 || log.id === 12 ) {
-     acc.push(log);
-   }
-   return acc
-  }, []);
+  const availbleChallenges =
+    challengeList &&
+    challengeList.reduce((acc, log) => {
+      if (log.id === 1 || log.id === 2 || log.id === 8 || log.id === 12) {
+        acc.push(log);
+      }
+      return acc;
+    }, []);
 
-  const options = availbleChallenges && availbleChallenges.map((log) => {
-    return <option value={log.id}>{log.name}</option>
-  });
+  const options =
+    availbleChallenges &&
+    availbleChallenges.map((log) => {
+      return <option value={log.id}>{log.name}</option>;
+    });
 
-  console.log('availbleChallenges-------', availbleChallenges)
+  console.log("availbleChallenges-------", availbleChallenges);
 
   useEffect(() => {
     dispatch(getChallengeLogList());
   }, [dispatch]);
 
-  // 클릭된 옵션에 따라서 로그 리스트를 달리 보여줌 
+  // 클릭된 옵션에 따라서 로그 리스트를 달리 보여줌
   const handleRequsetLogList = (e) => {
     const ChallengeId = e.target.value;
-    console.log('e.target.valuee.target.value==', e.target.value)
+    console.log("e.target.valuee.target.value==", e.target.value);
 
-    // 모든 리스트를 다보여준다 
-    if (Number(ChallengeId) === 0 ) {
+    // 모든 리스트를 다보여준다
+    if (Number(ChallengeId) === 0) {
       setListLog(challengeLogList);
     } else {
       // 그외 숫자면 challengeLogList id와 클릭된 ChallengeId가 일치하는 로그들을 보여준다
       const ClickedLog = challengeLogList.filter(
         (log) => log.challenge_id === Number(ChallengeId)
       );
-      console.log('ClickedLog ===> ', ClickedLog)
+      console.log("ClickedLog ===> ", ClickedLog);
       setListLog(ClickedLog);
     }
-
   };
 
   // 챌린지 할 수 있는 챌린지만 분류
@@ -75,10 +78,11 @@ const ChallengeLogList = () => {
         <Subbar>
           <SelectLogBox>
             <SelectLog onChange={handleRequsetLogList}>
-              <Optioon value="0" >클릭하면 목록이 주르륵~</Optioon>
-              {availbleChallenges && availbleChallenges.map((log) => {
-                return <Optioon value={log.id}>{log.name}</Optioon>
-            })}
+              <Optioon value="0">클릭하면 목록이 주르륵~</Optioon>
+              {availbleChallenges &&
+                availbleChallenges.map((log) => {
+                  return <Optioon value={log.id}>{log.name}</Optioon>;
+                })}
             </SelectLog>
           </SelectLogBox>
           <ServicesP>
@@ -87,9 +91,10 @@ const ChallengeLogList = () => {
         </Subbar>
       </SubbarWrapper>
       <ServicesWrapper>
-        {listLog && listLog.map((log, idx) => {
-              return <ChallengeLogItem log={log} key={idx} />;
-        })}
+        {listLog &&
+          listLog.map((log, idx) => {
+            return <ChallengeLogItem log={log} key={idx} />;
+          })}
       </ServicesWrapper>
     </ServicesContiner>
   );

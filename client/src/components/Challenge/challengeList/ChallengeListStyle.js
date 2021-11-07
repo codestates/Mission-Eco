@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import blob1 from "../../../imges/blob1.svg";
 
-export const ServicesContiner = styled.div`
+export const ChallengeContiner = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -21,7 +21,7 @@ export const ServicesContiner = styled.div`
   }
 `;
 
-export const ServicesWrapper = styled.div`
+export const ChallengeWrapper = styled.div`
   max-width: 1000px;
 
   //margin: 0 auto;
@@ -41,32 +41,7 @@ export const ServicesWrapper = styled.div`
   }
 `;
 
-export const ServicesCard = styled.div`
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  //justify-content: flex-start;
-  justify-content: center;
-  align-items: center;
-  border-radius: 0px;
-  height: 300px;
-  padding: 30px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  transition: all 0.2s ease-in-out;
-
-  &:hover {
-    transform: scale(1.02);
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-  }
-`;
-
-export const ServicesIcon = styled.img`
-  height: 160px;
-  width: 160px;
-  margin-bottom: 10px;
-`;
-export const Subbar = styled.div`
+export const ChallengeSubbar = styled.div`
   display: flex;
   
   // flex-direction: column;
@@ -90,6 +65,9 @@ export const Subbar = styled.div`
   } 
 `;
 
+<<<<<<< HEAD
+export const ChallengeSelect = styled.li`
+=======
 export const ServicesH1 = styled.h1`
   padding-top: 13rem;
   font-size: 2.5rem;
@@ -110,6 +88,7 @@ export const ServicesH1 = styled.h1`
 
 // All, level1,2,3 감싸는 ul
 export const SelectLeft = styled.ul`
+>>>>>>> 5bcbb00863087b53a59d1f5b1170bdfb7e3d4af4
   list-style: none;
   margin-right: 6rem; 
   
@@ -126,6 +105,13 @@ export const SelectLeft = styled.ul`
   } 
 `;
 
+<<<<<<< HEAD
+export const ChallengeH1 = styled.h1`
+  margin-top: 150px;
+  font-size: 2.5rem;
+  color: #010106;
+  margin-bottom: 64px;
+=======
 // 미션 하러 Go 감싸는 ul
 export const SelectRight = styled.ul`
   list-style: none;
@@ -152,6 +138,7 @@ export const Button = styled.li`
   @media screen and (min-width: 481px) and (max-width: 980px) {
     padding: 1rem;
   }
+>>>>>>> 5bcbb00863087b53a59d1f5b1170bdfb7e3d4af4
 
   @media screen and (max-width: 480px) {
     font-size: 12px;
@@ -179,6 +166,20 @@ export const ServicesCardColor = styled.div`
   }
 `;
 
+<<<<<<< HEAD
+export const Button = styled.button`
+  border: 0;
+  outline: 0;
+  font-size: 16px;
+
+  background-color: transparent;
+  cursor: pointer;
+
+  @media screen and (max-width: 480px) {
+    font-size: 12px;
+  }
+`;
+=======
 export const ServicesH2 = styled.h2`
   font-size: 3rem;
   margin-bottom: 10px;
@@ -190,3 +191,4 @@ export const ServicesP = styled.p`
 `;
 
 //
+>>>>>>> 5bcbb00863087b53a59d1f5b1170bdfb7e3d4af4
