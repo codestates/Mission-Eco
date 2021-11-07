@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { getChallengeList } from "../../../Redux/actions";
 import ChallengeListItem from "../ChallengeListItem/ChallengeListItem";
 import LoadingIndicator from "../../Loading/LoadingIndicator";
-
 import {
   ServicesContiner,
+  ServicesTxt,
   ServicesH1,
   ServicesWrapper,
   Subbar,
-  Select,
+  SelectLeft,
+  SelectRight,
   Button,
 } from "./ChallengeListStyle";
 
@@ -45,34 +46,29 @@ const ChallengeList = ({ img }) => {
       setAll(false);
     }
   };
-
+  
   return (
     <ServicesContiner id="services">
       <ServicesH1>Mission List</ServicesH1>
+      <ServicesTxt>우리 지구를 위한 미션을 확인해 보세요.</ServicesTxt>
       <Subbar>
-        <Select>
+        <SelectLeft>
           <Button value="0" onClick={(e) => handleRequsetLevelList(e)}>
             All
           </Button>
-        </Select>
-        <Select>
           <Button value="1" onClick={(e) => handleRequsetLevelList(e)}>
             Level 1
           </Button>
-        </Select>
-        <Select>
           <Button value="2" onClick={(e) => handleRequsetLevelList(e)}>
             Level 2
           </Button>
-        </Select>
-        <Select>
           <Button value="3" onClick={(e) => handleRequsetLevelList(e)}>
             Level 3
           </Button>
-        </Select>
-        <Select>
-          <Button>미션후기작성</Button>
-        </Select>
+        </SelectLeft>
+        <SelectRight>
+          <Button>미션 하러Go</Button>
+        </SelectRight>
       </Subbar>
       <ServicesWrapper>
         {challengeList && all
