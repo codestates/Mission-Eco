@@ -6,9 +6,7 @@ export const initialState = {
   isLoading: {
     isLoading: false,
   },
-  isOpenModal: {
-    isOpenModal: false,
-  },
+  isOpenModal: false,
   challengeInfo: {
     id: "",
     name: "",

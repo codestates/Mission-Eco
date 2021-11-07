@@ -1,6 +1,19 @@
 import styled from "styled-components";
 import blob1 from "../../imges/blob1.svg";
 
+export const ChallengeUploadCT = styled.div`
+  background-image: url(${blob1});
+  min-height: 100%;
+  //min-height: 1800px;
+  background-position: center;
+  background-size: cover;
+
+  background-size: cover;
+
+  // background-attachment: fixed;
+  z-index: -1;
+`;
+
 export const ServicesContiner = styled.div`
   display: flex;
   flex-direction: column;
@@ -8,13 +21,9 @@ export const ServicesContiner = styled.div`
   align-items: center;
 
   margin: 0 auto;
-  min-height: 100%;
-  background-position: center;
-  background-size: cover;
+  min-height: 100vh;
+  // background-image: url(${blob1});
 
-  z-index: -1;
-
-  background-image: url(${blob1});
   @media screen and (max-width: 768px) {
     //height: 1100px;
   }
@@ -52,7 +61,7 @@ export const UploaderWrapper = styled.div`
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
   position: relative;
   border-radius: 10px;
-  height: 50em;
+  height: 36em;
   display: grid;
   grid-template-columns: 1fr 1fr;
   background: #dbe6fd;
@@ -64,7 +73,7 @@ export const UploaderWrapper = styled.div`
 
   @media screen and (max-width: 480px) {
     width: 340px;
-    height: 62em;
+    height: 60em;
     grid-template-columns: 1fr;
   }
 `;
