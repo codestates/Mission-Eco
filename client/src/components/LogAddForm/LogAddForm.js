@@ -81,6 +81,7 @@ const LogAddForm = ({
         setOpenModal(!openModal);
         setIsUpload(true);
         setErrMsg("참여가능!");
+        fileUploadHandler();
       } else {
         setModalMsg(`해당 이미지는 ${results[0].label}, 
         ${Math.floor(
