@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ChallengeLogItem from "../ChallengeLogItem/ChallengeLogItem";
 import { getChallengeLogList } from "../../../Redux/actions";
-import blobMenu from "../../../imges/blobMenu.svg";
+
 import {
   ServicesContiner,
   ServicesH1,
