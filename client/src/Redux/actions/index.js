@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const IS_LOGIN = "IS_LOGIN";
+export const IS_TOGGLE = "IS_TOGGLE";
 export const USER_SIGNIN = "USER_SIGNIN";
 export const USER_SIGNOUT = "USER_SIGNOUT";
 export const USER_INFO = "USER_INFO";
@@ -60,12 +61,20 @@ export function isLoading(boolean) {
   };
 }
 
+export function isToggle(boolean) {
+  return {
+    type: IS_TOGGLE,
+    payload: {
+      isToggle: boolean,
+    },
+  };
+}
+
 export function isOpenModal(boolean) {
+  console.log(boolean);
   return {
     type: IS_OPEN_MODAL,
-    payload: {
-      isOpenModal: boolean,
-    },
+    payload: boolean,
   };
 }
 
@@ -90,7 +99,6 @@ export const addLike = (challengeId) => async (dispatch) => {
       }
     )
     .then((res) => {
-      console.log(res.data.challengeList);
       if (res.status === 201) {
         return res.data.challengeList;
       }

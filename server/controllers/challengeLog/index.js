@@ -37,8 +37,8 @@ module.exports = {
     }
   },
   delete: async (req, res) => {
-    const { id } = req.body;
-    const deleteLog = await challengelog.findByPk(id);
+    const { logId } = req.params;
+    const deleteLog = await challengelog.findByPk(logId);
     if (!deleteLog) {
       return res.sendStatus(400);
     }

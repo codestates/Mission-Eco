@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getChallengeList } from "../../../Redux/actions";
 import ChallengeListItem from "../ChallengeListItem/ChallengeListItem";
-
+import LoadingIndicator from "../../Loading/LoadingIndicator";
 import {
-  ServicesContiner,
-  ServicesH1,
-  ServicesWrapper,
-  Subbar,
-  Select,
+  ChallengeContiner,
+  ChallengeH1,
+  ChallengeWrapper,
+  ChallengeSubbar,
+  ChallengeSelect,
   Button,
 } from "./ChallengeListStyle";
 
@@ -16,14 +16,16 @@ const ChallengeList = () => {
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.infoReducer.isLogin);
   const userInfo = useSelector((state) => state.infoReducer.userInfo);
-  console.log(userInfo);
   const [listItems, setListItems] = useState([]);
-  const [render, setRender] = useState(false);
   const [all, setAll] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const challengeList = useSelector((state) => state.infoReducer.challengeList);
 
   useEffect(() => {
-    dispatch(getChallengeList());
+    setIsLoading(true);
+    dispatch(getChallengeList()).then(() => setIsLoading(false));
+
+    //setImgData(...challengeList);
   }, [dispatch]);
 
   useEffect(() => {}, [challengeList]);
@@ -43,34 +45,34 @@ const ChallengeList = () => {
   };
 
   return (
-    <ServicesContiner id="services">
-      <ServicesH1>Mission List</ServicesH1>
-      <Subbar>
-        <Select>
+    <ChallengeContiner id="services">
+      <ChallengeH1>Mission List</ChallengeH1>
+      <ChallengeSubbar>
+        <ChallengeSelect>
           <Button value="0" onClick={(e) => handleRequsetLevelList(e)}>
             All
           </Button>
-        </Select>
-        <Select>
+        </ChallengeSelect>
+        <ChallengeSelect>
           <Button value="1" onClick={(e) => handleRequsetLevelList(e)}>
             Level 1
           </Button>
-        </Select>
-        <Select>
+        </ChallengeSelect>
+        <ChallengeSelect>
           <Button value="2" onClick={(e) => handleRequsetLevelList(e)}>
             Level 2
           </Button>
-        </Select>
-        <Select>
+        </ChallengeSelect>
+        <ChallengeSelect>
           <Button value="3" onClick={(e) => handleRequsetLevelList(e)}>
             Level 3
           </Button>
-        </Select>
-        <Select>
+        </ChallengeSelect>
+        <ChallengeSelect>
           <Button>미션후기작성</Button>
-        </Select>
-      </Subbar>
-      <ServicesWrapper>
+        </ChallengeSelect>
+      </ChallengeSubbar>
+      <ChallengeWrapper>
         {challengeList && all
           ? challengeList.map((list, idx) => {
               return (
@@ -79,7 +81,6 @@ const ChallengeList = () => {
                   key={idx}
                   userId={userInfo.id}
                   isLogin={isLogin}
-                  render={() => setRender(!render)}
                 />
               );
             })
@@ -90,12 +91,11 @@ const ChallengeList = () => {
                   key={idx}
                   userId={userInfo.id}
                   isLogin={isLogin}
-                  render={() => setRender(!render)}
                 />
               );
             })}
-      </ServicesWrapper>
-    </ServicesContiner>
+      </ChallengeWrapper>
+    </ChallengeContiner>
   );
 };
 

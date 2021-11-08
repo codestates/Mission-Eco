@@ -6,29 +6,30 @@ import axios from "axios";
 import { validEmail } from "../../utils/validation";
 import kakaoLogo from "../../imges/kakao-logo.png";
 import googleLogo from "../../imges/google-logo.png";
+import logo from "../../imges/logo.png";
+
 import {
   Container,
   LeftTxt,
   RightTxt,
   FormWrap,
   SocialLoigin,
-  Icon,
+  Logo,
   FormContent,
   Form,
-  FormH1,
   FormLabel,
   FormInput,
   FormButton,
-  FormBtnBox,
   BtnLink,
   LinkSignUp,
   LinkFindIdPwd,
   GeneralLogin,
   Text,
   OauthBtn,
-  Logo,
+  Icon,
+  MissionLogo,
 } from "./LoginStyle";
-
+//
 axios.defaults.withCredentials = true;
 
 function Login() {
@@ -87,7 +88,7 @@ function Login() {
         if (res) {
           handleResponseSuccess();
         } else {
-          setErrMsg("이메일과 비밀번호를 확인해주세요.");
+          setErrMsg("이메일 또는 비밀번호를 확인해주세요.");
         }
       });
     }
@@ -116,7 +117,7 @@ function Login() {
         Earth
       </RightTxt>
       <FormWrap>
-        <Icon to="/"></Icon>
+        <Icon to="/"><MissionLogo imgUrl={logo} alt="mission eco logo"/></Icon>
         <FormContent>
           <Form onSubmit={(e) => e.preventDefault()}>
             <GeneralLogin>

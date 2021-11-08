@@ -2,19 +2,21 @@ import React, { useState } from "react";
 import { validEmail, validPassword } from "../../utils/validation";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import SignupModal from "./SignupModal";
+import { JoinRow } from "./SignupStyle";
+import logo from "../../imges/logo.png";
 import {
   Container,
   FormWrap,
   FormContent,
   Form,
-  FormH1,
   FormLabel,
   FormInput,
   FormButton,
-  Text,
+  Icon,
+  MissionLogo,
 } from "../Login/LoginStyle";
-import { CheckButton } from "./SignupStyle";
-
+//
 function Signup() {
   const history = useHistory();
   const [signupInfo, SetSignupInfo] = useState({
@@ -23,49 +25,112 @@ function Signup() {
     password2: "",
     nickname: "",
   });
+  
 
-  const [errorMsg, setErrorMsg] = useState("");
-  const [isEmail, setIsEmail] = useState(false);
-  const [isNickname, setIsNickname] = useState(false);
+  // 모달 상태 훅
+  const [ isOpen, setIsOpen ] = useState(false);
+  const [ isSignUpOk, setSignUpOk ] = useState(false);
+  
+  // 유저 정보 유효성 검사 상태 훅
+  // 이메일
+  const [ isVaildEamil, setVaildEamil ] = useState(false);
+  const [ isNewEamil, setIsNewEamil ] = useState(false);
 
+  // 패스워드
+  const [ isVaildPwd, setVaildPwd ] = useState(false);
+  const [ isSameRePwd, setSameRePwd ] = useState(false);
+
+  // 닉네임
+  const [ isVaildNickname, setVaildNickname ] = useState(false);
+  const [ isMoreThen3Length, setMoreThen3Length ] = useState(false);
+  
+  // input입력창에 따른 유저정보 값 저장
   const handelFormValue = (key) => (e) => {
     SetSignupInfo({ ...signupInfo, [key]: e.target.value });
-  };
-  const checkEmail = () => {
-    const { email } = signupInfo;
-    if (!email) {
-      setErrorMsg("이메일을 확인해주세요.");
-    }
-    if (!validEmail(email)) {
-      setErrorMsg("이메일 형식이 아닙니다.");
-      ////유효성 검사 이메일 형식이 맞는지
-    } else {
-      axios
-        .get(
-          `${process.env.REACT_APP_API_URL}/user/validation/email/${email}`,
 
+    // 각각의 input창이 아무값이 없을 때("" 일 때)
+    // 새로운 요청을 위해 이전의 값을 초기화한다
+
+    if(key === "email" && signupInfo.email.length === 0) {
+      setVaildEamil(false);
+      setIsNewEamil(false);
+    }
+
+    if(key === "nickname" && signupInfo.nickname.length === 0) {
+      setVaildNickname(false);
+      setMoreThen3Length(false);
+    }
+
+    if(key === "password" && signupInfo.password.length === 0) {
+      setVaildPwd(false);
+    }
+
+    if(key === "password2" && signupInfo.password2.length === 0) {
+      setSameRePwd(false);
+    }
+  };
+  
+  // 이메일 유효성검사와 중복검사
+  const checkEmail = async () => {
+    const { email } = signupInfo;
+    // 새로운 요청을 위해 이전의 값을 초기화한다
+    setVaildEamil(false);
+    setIsNewEamil(false);
+    
+    // 1.이메일 형식이 맞는지 확인
+    if (!validEmail(email)) {
+      // 1-1.이메일 형식이 맞지 않는 경우
+      setVaildEamil(false);
+      return;
+    } else {
+      setVaildEamil(true);
+      // 1-2.이메일 형식이 맞는 경우
+      // 2. 사용가능한 이메일인지 확인
+      await axios.get(
+          `${process.env.REACT_APP_API_URL}/user/validation/email/${email}`,
           {
             withCredentials: true,
           }
         )
         .then((res) => {
           if (res.status === 204) {
-            setIsEmail(true);
-            setErrorMsg("사용가능한 이메일입니다. ");
+            // 2-1.등록된 이메일이 없는 경우
+            setIsNewEamil(true);
+            return;
+          } else {
+            // 2-2.이미 등록된 이메일이 있는 경우
+            setIsNewEamil(false);
+            return;
           }
-        });
-      setErrorMsg("이미 사용중인 이메일입니다.");
-    }
+        })
+        .catch((err) => console.log(err));
+      }
   };
-
-  const checkNickname = () => {
+  
+  const handleEmailBlur = async () => {
+    await checkEmail();
+    return;
+  };
+  
+  // 닉네임 길이 확인과 중복검사
+  const checkNickname = async () => {
     //유효성 검사 nickname 형식이 맞는지 , 이미 유효한 nickname 확인
     const { nickname } = signupInfo;
-    console.log(nickname, "회원가입");
-    if (!nickname) {
-      setErrorMsg("닉네임을 입력하세요.");
+
+    // 새로운 검사를 위해서 값을 초기화
+    setVaildNickname(false);
+    setMoreThen3Length(false);
+
+    // 1. 닉네임이 3글자 이상인지 확인
+    // 1-1. 닉네임이 3글자 이하이면 중복검사 요청을 보내지 않음
+    if (nickname.length < 3) {
+      setMoreThen3Length(false);
+      return;
     } else {
-      axios
+      // 1-2. 입력된 값이 3글자 이상일때
+      setMoreThen3Length(true);
+      // 2. 등록된 이메일이 있는지 확인
+      await axios
         .get(
           `${process.env.REACT_APP_API_URL}/user/validation/nickname/${nickname}`,
 
@@ -74,24 +139,73 @@ function Signup() {
           }
         )
         .then((res) => {
-          //console.log("nickname", res.data);
           if (res.status === 204) {
-            setIsNickname(true);
-            setErrorMsg("사용가능한 닉네임입니다. ");
+            // 2-1. 등록된 닉네임이 없는 경우
+            setVaildNickname(true);
+          } else {
+            // 2-2. 이미 등록된 닉네임이 있는 경우
+            setVaildNickname(false);
           }
-        });
+        })
+        .catch((err) => console.log(err));
     }
-    setErrorMsg("사용불가 닉네임입니다.");
+  };
+  
+  const handleNickNameBlur = async () => {
+    await checkNickname();
+    return;
+  }
+  
+  // 비밀번호 유효성 검사
+  const checkVaildPwd = () => {
+    const { password } = signupInfo;
+    
+    // 1.비밀번호 유효성 검사 
+    // 비밀번호 조건: 8~16자 영문 대 소문자, 숫자, 특수문자를 사용
+    // 1-1. 비밀번호 조건에 부합하지 않을 때
+    if (!validPassword(password) ) {
+      setVaildPwd(false);
+      return;
+    } else {
+      // 1-2. 비밀번호 조건에 부합할 때
+      setVaildPwd(true);
+      return;
+    }
+    
+  }
+  
+  const handleVaildPwdBlur = () => {
+    checkVaildPwd();
+    return;
   };
 
-  const handleSignup = () => {
-    const { email, password, password2, nickname } = signupInfo;
+  // 비밀번호 일치여부 확인
+  const checkMatchPwd = () => {
+    const { password, password2 } = signupInfo;
 
-    if (!email || !password || !password2 || !nickname) {
-      setErrorMsg("모든 항목은 필수입니다.");
-    } else if (!validPassword(password) || password !== password2) {
-      setErrorMsg("비밀번호를 확인해주세요.");
-    } else if (isNickname && isEmail) {
+    // 비밀번호 일치여부
+    if(password !== password2) {
+      // 2개의 비밀번호가 일치하지 않을 때
+      setSameRePwd(false);
+      return;
+    } else {
+      // 2개의 비밀번호가 일치할 때
+      setSameRePwd(true);
+      return;
+    }
+  }
+
+  const handleMatchPwdBlur = () => {
+    checkMatchPwd();
+    return;
+  };
+
+  // 회워가입 버튼 클릭시 핸들링
+  const handleSignup = () => {
+    
+    // input창의 모든 조건이 충족될 때
+    // 회원가입 요청을 보냄
+    if (isVaildEamil && isNewEamil && isVaildPwd && isSameRePwd && isVaildNickname && isMoreThen3Length) {
       axios
         .post(
           `${process.env.REACT_APP_API_URL}/user/signup`,
@@ -101,51 +215,106 @@ function Signup() {
         .then((res) => {
           console.log(res.status);
           if (res.status === 201) {
-            setErrorMsg("회원가입완료");
-            alert("회원가입완료");
-            history.push("/");
+            setSignUpOk(true);
+            setIsOpen(true);
+          } else {
+            setSignUpOk(false);
           }
         })
         .catch((err) => console.log(err));
-    }
+      return;
+    } 
+
+  };
+  
+  // 모달 핸들러
+  const openModalHandler = () => {
+    setIsOpen(false); // 회원가입 성공 메시지 창이 X버튼으로 닫히면 
+    history.push('/'); // 랜딩페이지로 감
   };
 
   return (
     <Container>
       <FormWrap>
+        <Icon to="/"><MissionLogo imgUrl={logo} alt="mission eco logo"/></Icon>
         <FormContent>
           <Form onSubmit={(e) => e.preventDefault()}>
-            <FormH1>회원가입</FormH1>
-            <FormLabel>이메일</FormLabel>
-            <FormInput type="text" onChange={handelFormValue("email")} />
-            <CheckButton onClick={checkEmail}>중복확인</CheckButton>
-            <FormLabel>비밀번호</FormLabel>
-            <FormInput
-              className="FormInput"
-              type="password"
-              placeholder="비밀번호 입력"
-              onChange={handelFormValue("password")}
-            ></FormInput>
-            <FormLabel>비밀번호확인</FormLabel>
-            <FormInput
-              className="FormInput"
-              type="password"
-              placeholder="비밀번호 확인"
-              onChange={handelFormValue("password2")}
-            ></FormInput>
-            <FormLabel className="FormLabel">닉네임</FormLabel>
-            <FormInput
-              className="FormInput"
-              type="text"
-              onChange={handelFormValue("nickname")}
-            ></FormInput>
-            <CheckButton onClick={checkNickname}>중복확인</CheckButton>
-            <Text>{errorMsg}</Text>
+            <JoinRow>
+              <FormLabel>이메일</FormLabel>
+              <FormInput 
+                type="text"
+                className="FormInput"
+                onBlur={e => handleEmailBlur(e)}
+                onChange={handelFormValue("email")} 
+              />
+              <div className={signupInfo.email.length === 0 ? "hide" : ""}>
+                {isVaildEamil ? 
+                  <div>
+                    {isNewEamil ?
+                    <span className="success-msg">사용 가능한 이메일입니다.</span> :
+                    <span className="fail-msg">이미 사용 중인 이메일입니다.</span>}
+                  </div> 
+                : <span className="fail-msg">올바른 이메일 형식이 아닙니다.</span>}
+              </div>
+            </JoinRow>
+            <JoinRow>
+              <FormLabel>비밀번호</FormLabel>
+              <FormInput
+                className="FormInput"
+                type="password"
+                onBlur={() => handleVaildPwdBlur()}
+                onChange={handelFormValue("password")}
+              ></FormInput>
+              <div className={signupInfo.password.length === 0 ? "hide" : ""}>
+                <div>
+                {isVaildPwd? 
+                  <span className="success-msg">사용 가능한 비밀번호입니다.</span> :
+                  <span className="fail-msg">8~16자 영문 대 소문자, 숫자, 특수문자를 사용해 주세요.</span>}
+                </div>
+              </div>
+              <FormLabel>비밀번호 재입력</FormLabel>
+              <FormInput
+                className="FormInput"
+                type="password"
+                onBlur={() => handleMatchPwdBlur()}
+                onChange={handelFormValue("password2")}
+              ></FormInput>
+              <div className={signupInfo.password2.length === 0 ? "hide" : ""}>
+                <div>
+                  {isSameRePwd ? 
+                  <span className="success-msg hide">비밀번호가 일치합니다.</span> :
+                  <span className="fail-msg hide">비밀번호가 일치하지 않습니다.</span>}
+                </div>
+              </div>
+            </JoinRow>
+            <JoinRow>
+              <FormLabel className="FormLabel">닉네임</FormLabel>
+              <FormInput
+                className="FormInput"
+                type="text"
+                onBlur={handleNickNameBlur}
+                onChange={handelFormValue("nickname")}
+              ></FormInput>
+              <div className={signupInfo.nickname.length === 0 ? "hide" : ""}>
+              {isMoreThen3Length ? 
+                <div>
+                  { isVaildNickname ?
+                  <span className="success-msg">사용가능한 닉네임입니다.</span> :
+                  <span className="fail-msg">이미 사용 중인 닉네임입니다.</span>}
+                </div> 
+                : <span className={signupInfo.nickname.length >= 3 ? "hide " : "fail-msg"}>
+                  닉네임은 3글자 이상이여야 합니다.
+                  </span>}
+              </div>
+            </JoinRow> 
             <FormButton onClick={handleSignup}>회원가입</FormButton>
           </Form>
         </FormContent>
       </FormWrap>
+      { isSignUpOk && isOpen ? 
+       <SignupModal openModalHandler={openModalHandler}/> : null}
     </Container>
+
   );
 }
 

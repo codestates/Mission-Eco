@@ -1,25 +1,50 @@
 import React from "react";
-import blackHeart from "../../imges/blackHeart.png";
-import colorHeart from "../../imges/colorHeart.png";
-import { Img } from "./LikeStyle";
 
-const Like = ({ isLogin, like, onClick }) => {
+import { ReactComponent as HeartAdd } from "../../imges/HeartAdd.svg";
+//import HeartDelete from "../../imges/HeartDelete.svg";
+import { LikeNum } from "./LikeStyle";
+
+const Like = ({ isLogin, like, onClick, likeNum }) => {
   return (
     <>
       {isLogin ? (
-        <div>
+        <>
           {like ? (
-            <Img src={colorHeart} onClick={onClick} alt="liked" />
+            <>
+              <HeartAdd
+                id="liked"
+                onClick={onClick}
+                alt="liked"
+                fill="#4E9F3D"
+              />
+              <LikeNum>{likeNum}</LikeNum>
+            </>
           ) : (
-            <Img src={blackHeart} onClick={onClick} alt="disliked" />
+            <>
+              <HeartAdd
+                id="disliked"
+                src={HeartAdd}
+                onClick={onClick}
+                alt="disliked"
+                fill="none"
+                strokeWidth="2"
+                stroke="#4E9F3D"
+              />
+              <LikeNum>{likeNum}</LikeNum>
+            </>
           )}
-          <h3>Eco Like!</h3>
-        </div>
+        </>
       ) : (
-        <div>
-          <Img src={blackHeart} onClick={onClick} alt="disliked" />
-          <h3>로그인시 이용가능</h3>
-        </div>
+        <>
+          <HeartAdd
+            onClick={onClick}
+            alt="disliked"
+            fill="none"
+            strokeWidth="2"
+            stroke="#4E9F3D"
+          />
+          <LikeNum>{likeNum}</LikeNum>
+        </>
       )}
     </>
   );

@@ -1,108 +1,71 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
 import Navbar from "../../components/Navbar/Navbar";
-// import CheckPassword from "../../components/MyInfo/CheckPassword/CheckPassword";
-// import MypageEdit from "../../components/MyInfo/MypageEdit/MypageEdit";
-import axios from "axios";
-import { getChallengeInfo, getPostcardInfo } from "../../Redux/actions";
 import {
   H1,
-  Btn,
+  H2,
+  H3,
+  MypageWrapper,
+  MypageBtn,
+  BtnLink,
+  LinkCheckPassword,
   MypageContainer,
   Container,
   Title,
   ListContainer,
   ListItem,
 } from "./MypageStyle";
+import LikeList from "../../components/MyInfo/MypageLIke/LikeList/LikeList";
+import MyLogList from "../../components/MyInfo/MypageLIke/MyLogList/MyLogList";
+// import blob1 from "../../imges/blob1.svg";
+import Footer from "../../components/Footer/Footer";
 
 const Mypage = () => {
-  // ! 현진 작성 부분 =============================================================================================
-  // Navbar에서 mypage탭 누르면 이동할 때 요청보내려고 Navbar에서 작성하다가 뭔가 Mypage에 작성해야하는 것 같아서 옮겨옴
-  // 별도의 action없이 이 컴포넌트 렌더링되는 순간 서버에 리스트 요청 보내려면? ---> useEffect?...
+  useEffect(() => {}, []);
 
-  // const dispatch = useDispatch();
-
-  const [errMsg, setErrMsg] = useState("");
-
-  // mypage탭 누르면 -> mypage로 이동과 동시에 리스트 요청 보내기 위해 만든 함수.
-  const listRequest = () => {
-    axios
-      .get(
-        `${process.env.REACT_APP_API_URL}/mypage/mylist`,
-        // "http://team-meetme.s3-website.ap-northeast-2.amazonaws.com/mypage/mylist/:userId",
-        { withCredentials: true }
-      )
-      .then((res) => {
-        // 리스트 받아옴
-        console.log("login", res.data);
-        if (res.status === 200) {
-          setErrMsg("success request");
-          // const challengeInfo = res.data;
-          // const postcardInfo = res.data;
-          // dispatch(getChallengeInfo(challengeInfo));
-          // dispatch(getPostcardInfo(postcardInfo));
-        } else if (res.status === 400) {
-          setErrMsg("Bad Request");
-        }
-      });
-  };
-
-  useEffect(() => {
-    listRequest();
-  }, []);
-
-  // ? 받아온 리스트에서 userId에 해당하는 아이템들만 필터링해주는 함수
-
-  // !==============================================================================================================
-
-  // const renderItems = items.return(
   return (
-    <div>
-      <Navbar />
+    <>
       <MypageContainer>
-        <Container>
-          {/* 자꾸 Navbar에 가려서 안보여서 밑으로 내려오게 하려고 3개 만든거임 원래 1개여야 함. */}
-          <H1>마이페이지</H1>
-          <Btn type="submit">수정하기✍🏻</Btn>
-        </Container>
-        {/* 어떻게 해야 Navbar랑 Container 위치가 안 겹치게 만들 수 있는가... */}
+        <MypageWrapper>
+          <H1>My Page</H1>
+          {/* mypage-top-container ( 페이지 타이틀, 마이페이지 수정버튼 ) */}
+          <MypageBtn>
+            <BtnLink to="/checkpassword">
+              <LinkCheckPassword>&nbsp; 수정하기 ✍🏻</LinkCheckPassword>
+            </BtnLink>
+          </MypageBtn>
 
-        <Container>
-          {/* filter된 리스트들은 */}
-          <Title>닉네임: 환경요정</Title>
-          <Title>에코뱃지: 7개</Title>
-        </Container>
-        <Container>
-          나의 에코뱃지
-          <ListContainer>
-            ul
-            <ListItem>li</ListItem>
-            <ListItem>li</ListItem>
-            <ListItem>li</ListItem>
-          </ListContainer>
-        </Container>
-        <Container>
-          나의 포스팅
-          <ListContainer>
-            ul
-            <ListItem>li</ListItem>
-            <ListItem>li</ListItem>
-            <ListItem>li</ListItem>
-          </ListContainer>
-        </Container>
-        <Container>
-          나의 좋아요
-          <ListContainer>
-            ul
-            <ListItem>li</ListItem>
-            <ListItem>li</ListItem>
-            <ListItem>li</ListItem>
-          </ListContainer>
-        </Container>
+          {/* mypage-1st-container (유저 닉네임, 이 유저가 획득한 뱃지 갯수) */}
+          <Container>
+            <Title>닉네임: 환경요정</Title>
+            <Title>에코뱃지: 7개</Title>
+          </Container>
+
+          {/* mypage-2nd-container ( 이 유저가 획득한 뱃지 이미지들 ) */}
+          <Container>
+            <H2>나의 에코뱃지</H2>
+            <ListContainer>
+              <ListItem>뱃지 리스트 들어올 예정</ListItem>
+            </ListContainer>
+          </Container>
+
+          {/* // * ================================================================================ */}
+          {/* res에서 challengeLikeList만 솎아서 */}
+          <Container>
+            <H2>내가 Like한 챌린지 List</H2>
+            <ListContainer>
+              <LikeList />
+            </ListContainer>
+          </Container>
+
+          <Container>
+            <H2>내가 작성한 챌린지Log List</H2>
+            <ListContainer>
+              <MyLogList />
+            </ListContainer>
+          </Container>
+        </MypageWrapper>
       </MypageContainer>
-      {/* <CheckPassword /> */}
-      {/* <MypageEdit /> */}
-    </div>
+    </>
   );
 };
 
