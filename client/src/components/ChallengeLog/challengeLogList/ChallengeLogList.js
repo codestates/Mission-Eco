@@ -10,7 +10,6 @@ import {
   Dropdown,
   ChallengeP,
   ChallengeSubbar,
-  Subbar,
   Select,
   Button,
   DropButton,
@@ -18,13 +17,20 @@ import {
   List,
   Img,
 } from "./ChallengeLogListStyle";
+
 require("dotenv").config();
 
 const ChallengeLogList = () => {
   const logList = useSelector((state) => state.infoReducer.challengeLogList);
   const dispatch = useDispatch();
   const { challengeList, challengeLogList } = logList;
-  const [listLog, setListLog] = useState([]);
+  const challengeLog =
+    challengeLogList &&
+    challengeLogList.sort(function (a, b) {
+      return b.id - a.id;
+    });
+  const [listLog, setListLog] = useState(challengeLog);
+  const [nodata, setNodata] = useState(false);
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
@@ -32,27 +38,36 @@ const ChallengeLogList = () => {
   }, [dispatch]);
 
   const dropBtnClick = () => {
-    setListLog(challengeLogList);
+    // setListLog(challengeLog);
     setIsActive(!isActive);
   };
   const handleRequsetLogList = (e) => {
     const log = e.target.value;
     if (Number(log) === 0) {
       setIsActive(false);
+      setListLog(challengeLog);
+      setNodata(false);
+    } else {
+      let logId = challengeLog.filter((el) => el.challenge_id === Number(log));
+      if (logId.length === 0) {
+        setNodata(true);
+      } else {
+        setListLog(logId);
+        setNodata(false);
+      }
+
+      console.log(logId);
     }
-    let logId = challengeLogList.filter(
-      (el) => el.challenge_id === Number(log)
-    );
-    setListLog(logId);
   };
 
   return (
     <ChallengeLogContiner id="services">
       <ChallengeLogH1>Mission Log</ChallengeLogH1>
+      <span>미션에 참여한 유저들의 로그를 확인해보세요!</span>
       <ChallengeSubbar>
         <Dropdown>
           <DropButton onClick={dropBtnClick}>
-            <span>클릭하면 목록이 주루룩~</span>
+            <ChallengeP>미션 선택</ChallengeP>
           </DropButton>
           <Dropdowncontent isActive={isActive}>
             <List onClick={(e) => handleRequsetLogList(e)}>All</List>
@@ -78,15 +93,14 @@ const ChallengeLogList = () => {
         </Select>
       </ChallengeSubbar>
       <ChallengeLogWrapper>
-        {!isActive
-          ? challengeLogList &&
-            challengeLogList.map((log, idx) => {
-              return <ChallengeLogItem log={log} key={idx} />;
-            })
-          : listLog &&
-            listLog.map((log, idx) => {
-              return <ChallengeLogItem log={log} key={idx} />;
-            })}
+        {listLog && nodata ? (
+          <ChallengeLogItem nodata={true} />
+        ) : (
+          listLog &&
+          listLog.map((log, idx) => {
+            return <ChallengeLogItem log={log} key={idx} />;
+          })
+        )}
       </ChallengeLogWrapper>
     </ChallengeLogContiner>
   );
