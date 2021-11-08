@@ -17,6 +17,9 @@ export const ServicesContiner = styled.div`
     //height: 1300px;
   }
 `;
+export const DeleteBtn = styled.div`
+  margin-left: 230px;
+`;
 
 export const ServicesWrapper = styled.div`
   max-width: 1000px;

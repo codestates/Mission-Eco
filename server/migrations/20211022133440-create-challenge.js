@@ -20,6 +20,9 @@ module.exports = {
       level: {
         type: Sequelize.INTEGER,
       },
+      upload: {
+        type: Sequelize.BOOLEAN,
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {

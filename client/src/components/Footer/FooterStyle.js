@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const ServicesContainer = styled.div`
   /* background-color: #5d8767; */
@@ -71,4 +72,11 @@ export const Position = styled.p`
 export const GithubBadge = styled.img`
   display: flex;
   align-items: center;
+`;
+export const AdminLogin = styled(Link)`
+  text-decoration: none;
+  color: black;
+  &:hover {
+    cursor: pointer;
+  }
 `;

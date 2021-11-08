@@ -9,20 +9,20 @@ module.exports = {
       const { userId, newNickname } = req.body;
       //유저 아이디 안 들어온 경우
       if (!userId) {
-        return res.status(400).send({ message: "Bad Request" });
+        return res.sendStatus(400);
       }
       const userInfo = await user.findByPk(userId);
       if (!userInfo) {
         //db에 같은 값의 유저가 없음
-        return res.status(401).send({ message: "Unauthorized User" });
+        return res.sendStatus(401);
       } else {
         //새로운 닉네임 들어오지 않은 경우
         if (!newNickname) {
-          return res.status(400).send({ message: "Bad Request" });
+          return res.sendStatus(400);
         } else {
           //새로운 닉네임 값 들어온 경우
           await userInfo.update({ nickname: newNickname });
-          return res.status(200).send({ message: "nickname chaged" });
+          return res.sendStatus(204);
         }
       }
     } catch (error) {
