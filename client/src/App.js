@@ -10,13 +10,14 @@ import Navbar from "./components/Navbar/Navbar";
 import Challenge from "./pages/challenge/Challenge";
 import ChallengeLog from "./pages/challengeLog/ChallengeLog";
 import ChallengeUpload from "./pages/challengeUpload/ChallengeUpload";
+import CheckPassword from "./components/MyInfo/CheckPassword/CheckPassword";
 import Sidebar from "./components/Sidebar/Sidebar";
 import AdminLogin from "./components/Admin/AdminLogin/AdminLogin";
 import AdminWrapper from "./components/Admin/AdminEdit/AdminWrapper/AdminWrapper";
-import Footer from "./components/Footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { isToggle } from "../src/Redux/actions";
 import ChallengeEdit from "./components/Admin/AdminEdit/ChallengeEdit/ChallengeEdit";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const Toggle = useSelector((state) => state.infoReducer.isToggle);
@@ -58,6 +59,9 @@ function App() {
           </Route>
           <Route exact path="/admin/challenge">
             <ChallengeEdit />
+          </Route>
+          <Route exact path="/checkpassword">
+            <CheckPassword />
           </Route>
         </>
       </Switch>

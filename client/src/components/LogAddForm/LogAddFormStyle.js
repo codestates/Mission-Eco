@@ -6,12 +6,15 @@ export const Form = styled.form`
   flex-wrap: wrap;
   //border-top: 1px solid black;
   //border-left: 1px solid black;
+
   margin: 2em;
   @media screen and (max-width: 768px) {
+    margin-top: 12em;
     width: 27em;
     height: 18em;
   }
   @media screen and (max-width: 480px) {
+    margin-top: 16em;
     width: 270px;
     height: 300px;
   }

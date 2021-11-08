@@ -49,15 +49,14 @@ export const Logs = styled.p`
   margin-bottom: 0.2em;
   font-size: 1.2rem;
 `;
-export const ServicesCard = styled.div`
+export const LogCardContatainer = styled.div`
   background: #fff;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
   border-radius: 0px;
-  width: 340px;
-  height: 520px;
+  width: 23em;
+  height: 27em;
   padding: 10px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
@@ -69,7 +68,7 @@ export const ServicesCard = styled.div`
   }
   @media screen and (max-width: 768px) {
     width: 340px;
-    height: 400px;
+    height: 450px;
   }
   @media screen and (max-width: 480px) {
     width: 280px;
@@ -77,9 +76,9 @@ export const ServicesCard = styled.div`
   }
 `;
 
-export const ServicesIcon = styled.img`
-  width: 320px;
-  height: 360px;
+export const LogImgContainer = styled.div`
+  max-width: 26.1rem;
+  height: 290px;
   margin-bottom: 15px;
   border: 1px solid #d8d8d8;
   background: ${(props) => props.background || "white"};
@@ -92,6 +91,12 @@ export const ServicesIcon = styled.img`
     width: 260px;
     height: 300px;
   }
+`;
+
+export const LogImg = styled.img`
+  width: 100%;
+  height: 100%;
+  background: #fff;
 `;
 
 export const ServicesH2 = styled.span`
@@ -120,6 +125,39 @@ export const Item = styled.li`
 
 export const Img = styled.img`
   background: transparent;
-  width: 300px;
-  height: 300px;
+  width: 100px;
+  height: 100px;
+`;
+
+export const LogContent = styled.div`
+  padding: 0 0.5em;
+`;
+
+export const LogH2 = styled.span`
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+  text-align: left;
+`;
+
+export const LogP = styled.p`
+  font-size: 0.8rem;
+  color: #010101;
+  &.time {
+    color: #9a9483;
+  }
+`;
+
+export const LogHashP = styled.p`
+  font-size: 1rem;
+  text-align: left;
+  margin-bottom: 1.4rem;
+  color: #234b68;
+  font-weight: 600;
+`;
+
+export const NameNtime = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1.5rem;
 `;

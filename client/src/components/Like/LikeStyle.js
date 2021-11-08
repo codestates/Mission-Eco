@@ -16,3 +16,9 @@ export const Img = styled.img`
   width: 20px;
   height: 20px;
 `;
+
+export const LikeNum = styled.span`
+  color: white;
+  font-weight: 500;
+  font-size: 1.1em;
+`;

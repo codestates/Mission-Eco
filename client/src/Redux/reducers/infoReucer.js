@@ -39,7 +39,7 @@ const infoReducer = (state = initialState, action) => {
     case IS_LOADING:
       return { ...newState, isLoading: action.payload.isLoading };
     case IS_OPEN_MODAL:
-      return { ...newState, isOpenModal: action.payload.isOpenModal };
+      return { ...newState, isOpenModal: action.payload };
     case CHALLENGE_INFO:
       return { ...newState, challengeInfo: action.payload };
       break;

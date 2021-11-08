@@ -11,7 +11,7 @@ export function validEmail(email) {
 
 export function validPassword(password) {
   const regExp =
-    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/;
   if (!regExp.test(password)) {
     return false;
   } else {

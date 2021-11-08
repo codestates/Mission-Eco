@@ -73,11 +73,10 @@ export function isToggle(boolean) {
 }
 
 export function isOpenModal(boolean) {
+  console.log(boolean);
   return {
     type: IS_OPEN_MODAL,
-    payload: {
-      isOpenModal: boolean,
-    },
+    payload: boolean,
   };
 }
 
@@ -102,7 +101,6 @@ export const addLike = (challengeId) => async (dispatch) => {
       }
     )
     .then((res) => {
-      console.log(res.data.challengeList);
       if (res.status === 201) {
         return res.data.challengeList;
       }
