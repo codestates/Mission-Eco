@@ -54,10 +54,13 @@ export default function CheckPassword() {
   return (
     <>
       <CheckPasswordContainer>
+        <Title>비밀번호 확인</Title>
+
         <FormContainer>
-          <Title>비밀번호 확인</Title>
           <InputPassword type="password" onChange={handleInputValue} />
+
           <ErrMsg>{errMsg}</ErrMsg>
+
           <SubmitBtn type="submit" onClick={loginRequestHandler}>
             비밀번호 확인
           </SubmitBtn>

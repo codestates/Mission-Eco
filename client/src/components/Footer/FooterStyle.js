@@ -6,7 +6,7 @@ export const ServicesContainer = styled.div`
   background-color: #3d6887;
   display: flex;
   /* margin: 20em auto 0; */
-  padding: 3em;
+  /* padding: 3em; */
   flex-direction: column;
   align-items: center;
   width: 100vw;
@@ -50,7 +50,7 @@ export const ServicesCard = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin: 0 5em;
+  margin: 0 2em;
   /* 
   @media screen and (max-width: 768px) {
   }
