@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { isOpenModal } from "../../Redux/actions";
+import { useSelector } from "react-redux";
 import Modal from "../../components/Modal/Modal";
 import imgUpload from "../../imges/imageUpload.png";
 import {
@@ -16,7 +15,9 @@ import {
 const LogAddForm = ({
   logs,
   addLog,
-
+  openModal,
+  setOpenModal,
+  closeModalHandler,
   resetLog,
   Img,
   results,
@@ -26,19 +27,17 @@ const LogAddForm = ({
 }) => {
   const isLogin = useSelector((state) => state.infoReducer.isLogin);
   //const openModal = useSelector((state) => state.infoReducer.isOpenModal);
-  const [openModal, setOpenModal] = useState(false);
+
   const userInfo = useSelector((state) => state.infoReducer.userInfo);
   const [selectMission, setSelectMission] = useState(false);
   const [addContents, setAddContents] = useState(false);
-  const [isUpload, setIsUpload] = useState(false);
+  const [uploadBtn, setUploadBtn] = useState("");
   const [errMsg, setErrMsg] = useState("위 항목을 먼저 입력해주세요.");
   const [modalMsg, setModalMsg] = useState("");
   const { challenge, contents } = logs;
   const { nickname } = userInfo;
-  const dispatch = useDispatch();
-  console.log("chaa", challenge);
+
   useEffect(() => {}, [logs, openModal, modalMsg]);
-  console.log(openModal, "modal");
 
   const onChange = (event) => {
     if (event.currentTarget === null) {
@@ -69,17 +68,21 @@ const LogAddForm = ({
       setModalMsg("로그인이 필요합니다.");
       setOpenModal(!openModal);
     } else {
+      if (results.length === 0) {
+        return;
+      }
       if (
         selectMission &&
         addContents &&
         selectedFile &&
+        results.length !== 0 &&
         challenge === results[0].label &&
         results[0].confidence > 0.8
       ) {
         setModalMsg(`해당 이미지는 ${results[0].label}, 
-        ${Math.floor(results[0].confidence * 100)}%이므로 업로드 가능합니다. `);
+        ${Math.floor(results[0].confidence * 100)}%로 업로드 가능합니다. `);
         setOpenModal(!openModal);
-        setIsUpload(true);
+        setUploadBtn("업로드 하기");
         setErrMsg("참여가능!");
       } else {
         setModalMsg(`해당 이미지는 ${results[0].label}, 
@@ -88,12 +91,8 @@ const LogAddForm = ({
         )}%이므로 업로드 할 수 없습니다. `);
         setOpenModal(!openModal);
         setErrMsg("참여불가!");
-        setIsUpload(false);
       }
     }
-  };
-  const closeModalHandler = () => {
-    setOpenModal(!openModal);
   };
 
   return (
@@ -102,7 +101,6 @@ const LogAddForm = ({
         name="challenge"
         placeholder={"challenge를 선택해주세요."}
         value={challenge || "challenge"}
-        //ref={challengeRef}
         onChange={onChange}
       >
         <option value="선택">챌린지 선택</option>
@@ -119,9 +117,6 @@ const LogAddForm = ({
         placeholder={nickname || "nickname"}
         readOnly
         value={nickname || "nickname"}
-
-        //ref={nicknameRef}
-        //onChange={onChange}
       />
       <Input
         name="contents"
@@ -156,17 +151,15 @@ const LogAddForm = ({
           ></FileInput>
         </ImgSelect>
       )}
-      {console.log(
-        isLogin,
-        selectMission,
-        openModal,
-        addContents,
-        selectedFile
-      )}
 
       <Button onClick={modalHandler}>{errMsg}</Button>
       {openModal ? (
-        <Modal msg={modalMsg} closeModalHandler={closeModalHandler} />
+        <Modal
+          msg={modalMsg}
+          closeModalHandler={closeModalHandler}
+          uploadBtn={uploadBtn}
+          fileUploadHandler={fileUploadHandler}
+        />
       ) : null}
     </Form>
   );

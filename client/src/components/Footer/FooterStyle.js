@@ -9,6 +9,7 @@ export const ServicesContainer = styled.div`
   padding: 3em;
   flex-direction: column;
   align-items: center;
+  width: 100vw;
 
   @media screen and (max-width: 768px) {
   }

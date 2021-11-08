@@ -71,7 +71,7 @@ const MypageEdit = () => {
           //console.log("nickname", res.data);
           if (res.status === 204) {
             setNick(true);
-            setErrMsg("사용가능한 닉네임입니다. ");
+            setErrMsg("변경성공!");
           }
         });
     }
@@ -163,37 +163,21 @@ const MypageEdit = () => {
           <Span>비밀번호</Span>
           <Input
             type="password"
-            placeholder="새 비밀번호를 입력하세요."
+            placeholder="비밀번호를 입력하세요."
             onChange={handlePwValue("password1")} // handleInputValue에 ("password") 하면 패스워드만 골라서 쓸 수 있음?
           />
           {/* <Span>{pwErrMsg}</Span> */}
           <Span>비밀번호 확인</Span>
           <Input
             type="password"
-            placeholder="새 비밀번호를 재입력하세요."
+            placeholder="비밀번호를 한 번 더 입력하세요."
             onChange={handlePwValue("password2")}
           />
           <Span>{pwErrMsg}</Span>
           <Btn type="submit" onClick={changePwRequestHandler}>
             비밀번호 변경
           </Btn>
-
-          {/* 회원탈퇴 */}
         </Wrapper>
-        {/* <Link to="../../Modal/Modal"> */}
-        {/* 왜 이동한 페이지에서 Modal컴포넌트 내용이 안뜨지? */}
-        {/* 회원 탈퇴 */}
-        {/* onClick={changeNickRequestHandler} */}
-        {/* </Link> */}
-        {/* <Modal /> */}
-
-        {/* <Btn onClick={() => {setShowModal(true);}}> */}
-        {/* 회원탈퇴 */}
-        {/* </Btn> */}
-        {/* {showModal === true ? <Modal /> : null} */}
-        {/* 회원탈퇴 누르면 모달창 뜨고 -> 모달컴포넌트에서 네 누르면 먹히는 것 까진 있는데, 
-        모달 컴포넌트에서 아니오 누르면 모달창이 닫혀야함.. */}
-
         <Btn onClick={userDeleteRequestHandler}>회원탈퇴</Btn>
       </Container>
     </>

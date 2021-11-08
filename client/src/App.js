@@ -11,9 +11,11 @@ import Challenge from "./pages/challenge/Challenge";
 import ChallengeLog from "./pages/challengeLog/ChallengeLog";
 import ChallengeUpload from "./pages/challengeUpload/ChallengeUpload";
 import CheckPassword from "./components/MyInfo/CheckPassword/CheckPassword";
+import MypageEdit from "./components/MyInfo/MypageEdit/MypageEdit";
 import Sidebar from "./components/Sidebar/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
 import { isToggle } from "../src/Redux/actions";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const Toggle = useSelector((state) => state.infoReducer.isToggle);
@@ -50,6 +52,9 @@ function App() {
           <Route exact path="/checkpassword">
             <CheckPassword />
           </Route>
+          <Route exact path="/mypage-edit">
+            <MypageEdit />
+          </Route>
           {/*<Route exact path="/admin">
           //관리자페이지
           <Navbar />
@@ -58,6 +63,7 @@ function App() {
         </Route> */}
         </>
       </Switch>
+      <Footer />
     </Router>
   );
 }
