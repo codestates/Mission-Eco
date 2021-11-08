@@ -78,6 +78,8 @@ export function isOpenModal(boolean) {
   };
 }
 
+// function이랑 const랑 어떤차이인지 본다음에
+// 로그 리스트를 지우는 fuction 만들기
 export function getChallengeInfo(challengeInfo) {
   return {
     type: CHALLENGE_INFO,
@@ -220,3 +222,15 @@ export const authSuccess = () => async (dispatch) => {
   //console.log("auth", res.data.data.userInfo);
   //isAuthenticated(res.data.data.userInfo);
 };
+
+// 클릭된 logId를 주고 myloglist에서 지우도록 서버에 요청
+export const deleteUserLog = (logId) => async (dispatch) => {
+  await axios
+  .delete(`${process.env.REACT_APP_API_URL}/challenge-log/${logId}`)
+  .then((res) => {
+    if(res.status === 204) {
+      return;
+    }
+  })
+  .catch((err) => console.log(err));
+}

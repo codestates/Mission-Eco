@@ -46,6 +46,7 @@ export const ServicesCard = styled.div`
   padding: 10px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
+  position: relative;
 
   &:hover {
     transform: scale(1.02);
@@ -59,6 +60,27 @@ export const ServicesCard = styled.div`
   @media screen and (max-width: 480px) {
     width: 340px;
     height: 400px;
+  }
+  
+  /* 수경님 휴지통 아이콘 */
+  > button {
+    display: block;
+    content:"";
+    position: absolute;
+    width:24px;
+    height: 24px;
+    top: 1.2rem;
+    right: 1.2rem;
+    border: 1px solid blue; // 완료 후 지우기
+    background-color: transparent;
+    cursor: pointer;
+
+    > img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      /* hover할 때 css 추가 */
+    }
   }
 `;
 
