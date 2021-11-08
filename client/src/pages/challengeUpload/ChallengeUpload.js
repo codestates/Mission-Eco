@@ -1,27 +1,26 @@
+/*eslint-disable */
 import React, { useEffect, useState } from "react";
 import { upload } from "../../utils/imgUploader";
 import { useSelector } from "react-redux";
-import Modal from "../../components/Modal/Modal";
 import axios from "axios";
 import {
   ChallengeUploadCT,
   Container,
   UploaderWrapper,
   Button,
-  Input,
   BtnWrapper,
-  UploadBtn,
-  InputBox,
   ServicesContiner,
 } from "./ChallengeUploadStyle";
 
 import Preview from "../../components/Preview/Preview";
 import LogAddForm from "../../components/LogAddForm/LogAddForm";
+import Modal from "../../components/Modal/Modal";
 
 function ChallengeUpload() {
   const userInfo = useSelector((state) => state.infoReducer.userInfo);
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploadFile, setUploadFile] = useState(null);
+  const [openModal, setOpenModal] = useState(false);
   const [isVideo, setIsVideo] = useState(false);
   const [results, setResults] = useState([]);
   const [isUpload, setIsUpload] = useState(false);
@@ -29,6 +28,10 @@ function ChallengeUpload() {
   const [logs, setLogs] = useState({});
 
   useEffect(() => {}, [isVideo, results]);
+
+  const closeModalHandler = () => {
+    setOpenModal(!openModal);
+  };
 
   const addLog = (log) => {
     setLogs(log);
@@ -54,12 +57,17 @@ function ChallengeUpload() {
     "https://teachablemachine.withgoogle.com/models/961H1RAK0/model.json";
 
   const fileSelectedHandler = (e) => {
-    setSelectedFile(URL.createObjectURL(e.target.files[0]));
-    setUploadFile(e.target.files[0]);
-    URL.revokeObjectURL(selectedFile);
+    if (e.target.files.length !== 0) {
+      setSelectedFile(URL.createObjectURL(e.target.files[0]));
+      setUploadFile(e.target.files[0]);
+      URL.revokeObjectURL(selectedFile);
+    } else {
+      return;
+    }
   };
 
   const fileUploadHandler = async () => {
+    closeModalHandler();
     setIsUpload(true);
     const uploaded = await upload(uploadFile);
     console.log(uploaded);
@@ -110,9 +118,17 @@ function ChallengeUpload() {
               selectedFile={selectedFile}
               fileSelectedHandler={fileSelectedHandler}
               fileUploadHandler={fileUploadHandler}
+              closeModalHandler={closeModalHandler}
+              openModal={openModal}
+              setOpenModal={setOpenModal}
             />
           </UploaderWrapper>
-          {isUpload ? <Modal msg={"참여완료!"} setState={false} /> : null}
+          {isUpload ? (
+            <Modal
+              msg={"미션참여 완료!"}
+              oncloseModalHandlerClick={closeModalHandler}
+            />
+          ) : null}
           {/**  <Uploader setImg={setImg} fileSelectedHandler={fileSelectedHandler} /><Classifier
           img={img}
           imageModelURL={imageModelURL}

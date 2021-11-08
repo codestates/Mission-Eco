@@ -103,7 +103,7 @@ export const NavBtnLink = styled(LinkR)`
   border-radius: 50px;
   background: #ffa928;
   white-space: nowrap;
-  padding: 10px 82px;
+  padding: 10px 38px;
   color: #010606;
   font-size: 16px;
   outline: none;

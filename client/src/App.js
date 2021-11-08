@@ -14,6 +14,7 @@ import CheckPassword from "./components/MyInfo/CheckPassword/CheckPassword";
 import Sidebar from "./components/Sidebar/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
 import { isToggle } from "../src/Redux/actions";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const Toggle = useSelector((state) => state.infoReducer.isToggle);
@@ -58,6 +59,7 @@ function App() {
         </Route> */}
         </>
       </Switch>
+      <Footer />
     </Router>
   );
 }

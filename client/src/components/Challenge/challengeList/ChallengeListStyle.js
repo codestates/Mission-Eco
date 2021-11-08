@@ -46,22 +46,18 @@ export const ChallengeSubbar = styled.div`
 
   // flex-direction: column;
   //align-items: center;
-  padding: 0 8.2rem;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
+  padding: 1em 5.2rem;
+  border-top: 1px solid #010101;
+  border-bottom: 1px solid #010101;
   color: rgb(100, 100, 100);
   margin-bottom: 4em;
 
   @media screen and (min-width: 768px) and (max-width: 980px) {
-    padding: 0 6rem;
+    padding: 1 6rem;
   }
 
   @media screen and (min-width: 481px) and (max-width: 767px) {
-    padding: 0 1.2rem;
-  }
-
-  @media screen and (max-width: 480px) {
-    padding: 0;
+    padding: 1 1.2rem;
   }
 `;
 

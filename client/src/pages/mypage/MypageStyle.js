@@ -4,7 +4,7 @@ import blob1 from "../../imges/blob1.svg";
 
 export const MypageContainer = styled.div`
   /* margin-top: 15em; */
-  padding-top: 10em;
+  //padding-top: 10em;
 
   @media screen and (max-width: 768px) {
     //height: 1100px;
@@ -27,10 +27,23 @@ export const MypageContainer = styled.div`
   background-attachment: fixed;
 `;
 
+export const MypageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 1000px;
+  margin: 0 auto;
+
+  z-index: -1;
+`;
+
 export const H1 = styled.h1`
   display: flex;
+  width: 100%;
+  margin-top: 4em;
   justify-content: center;
-  margin-bottom: 2em;
+  margin-bottom: 0.5em;
   font-size: 2.5em;
   @media screen and (max-width: 768px) {
   }
@@ -88,10 +101,12 @@ export const LinkCheckPassword = styled.div`
 
 export const Container = styled.div`
   background: whitesmoke;
+  width: 100%;
   margin: 15px;
   padding: 20px;
   border: 3px solid gray;
   border-radius: 10px;
+  overflow: hidden;
 `;
 
 export const Title = styled.p`
