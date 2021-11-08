@@ -7,16 +7,12 @@ export const MypageContainer = styled.div`
   padding-top: 10em;
 
   @media screen and (max-width: 768px) {
-    //height: 1100px;
   }
-
   @media screen and (max-width: 480px) {
-    //height: 1300px;
   }
 
   background-image: url(${blob1});
   height: 100%;
-  //min-height: 1800px;
   background-position: center;
   background-size: cover;
   -webkit-background-size: cover;
@@ -32,10 +28,6 @@ export const H1 = styled.h1`
   justify-content: center;
   margin-bottom: 2em;
   font-size: 2.5em;
-  @media screen and (max-width: 768px) {
-  }
-  @media screen and (max-width: 480px) {
-  }
 `;
 
 export const H2 = styled.h2`
@@ -58,8 +50,6 @@ export const MypageBtn = styled.div`
 `;
 
 export const BtnLink = styled(Link)`
-  /* position: relative; */
-  /* float: right; */
   text-decoration: none;
 `;
 export const LinkCheckPassword = styled.div`
