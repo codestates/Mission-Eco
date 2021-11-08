@@ -28,27 +28,30 @@ export default function CheckPassword() {
 
   const loginRequestHandler = () => {
     console.log("pwd", password);
-    if (!password) {
-      setErrMsg("비밀번호가 일치하지 않습니다.");
-    } else {
-      axios
-        .post(
-          `${process.env.REACT_APP_API_URL}/mypage/validation-password`,
-          { userId: state.userInfo.id, password },
-          { withCredentials: true }
-        )
-        .then((res) => {
-          //console.log("login", res.data.message);
-          if (res.status === 204) {
-            // MypageEdit 페이지로 이동
-            history.push("/mypage-edit");
-            // setErrMsg("비밀번호 ok.");
-          } else {
-            setErrMsg("비밀번호를 확인해주세요.");
-            // 팝업으로 에러메시지 띄우기
-          }
-        });
-    }
+
+    axios
+      .post(
+        `${process.env.REACT_APP_API_URL}/mypage/validation-password`,
+        { userId: state.userInfo.id, password },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        //console.log("login", res.data.message);
+        // if (res.status === 204) {
+        //   // MypageEdit 페이지로 이동
+        //   history.push("/mypage-edit");
+        //   // setErrMsg("비밀번호 ok.");
+        // } else if (res.status === 401) {
+        //   setErrMsg("비밀번호를 확인해주세요.");
+        //   // 팝업으로 에러메시지 띄우기
+        // }
+        if (res.status === 204) {
+          // MypageEdit 페이지로 이동
+          history.push("/mypage-edit");
+          // setErrMsg("비밀번호 ok.");
+        }
+      })
+      .catch((err) => setErrMsg("비밀번호를 확인해주세요."));
   };
 
   return (

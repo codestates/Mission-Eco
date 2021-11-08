@@ -74,8 +74,8 @@ const MypageEdit = () => {
             setErrMsg("변경성공!");
           }
         });
+      setErrMsg("이미 사용중인 닉네임입니다.");
     }
-    setErrMsg("이미 사용중인 닉네임입니다.");
   };
 
   const changePwRequestHandler = () => {
