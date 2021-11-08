@@ -1,6 +1,3 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { isOpenModal } from "../../Redux/actions";
 import { Link } from "react-router-dom";
 import checkd from "../../imges/checked.png";
 
@@ -15,12 +12,14 @@ import {
   BtnContainer,
 } from "./ModalStyle";
 
-const Modal = ({ msg, msg2, btnState, closeModalHandler }) => {
-  const dispatch = useDispatch();
-  const openModal = useSelector((state) => state.infoReducer.isOpenModal);
-  console.log("modal.js", openModal);
-  useEffect(() => {}, [openModal]);
-
+const Modal = ({
+  msg,
+  msg2,
+  link,
+  uploadBtn,
+  closeModalHandler,
+  fileUploadHandler,
+}) => {
   return (
     <ModalBackground>
       <ModalView>
@@ -29,36 +28,38 @@ const Modal = ({ msg, msg2, btnState, closeModalHandler }) => {
           <CheckdImg src={checkd} />
         </CheckdImgBox>
         <Msg>{msg}</Msg>
-        <BtnContainer>
-          {!btnState ? null : (
-            <>
-              <LinkBtn style={{ marginRight: "10px" }}>
-                <Link to="/" style={{ textDecoration: "none", color: "#333" }}>
-                  홈으로 가기
-                </Link>
+        {msg2 || uploadBtn ? (
+          <BtnContainer>
+            {uploadBtn ? (
+              <LinkBtn
+                style={{ marginRight: "10px" }}
+                onClick={fileUploadHandler}
+              >
+                {uploadBtn}
               </LinkBtn>
-              {msg2 ? (
-                <LinkBtn>
+            ) : (
+              <>
+                <LinkBtn style={{ marginRight: "10px" }}>
                   <Link
-                    to="/log"
-                    style={{ textDecoration: "none", color: "#333" }}
+                    to="/"
+                    style={{ textDecoration: "none", color: " #fff" }}
                   >
-                    {msg2}
+                    홈으로 가기
                   </Link>
                 </LinkBtn>
-              ) : (
+
                 <LinkBtn>
                   <Link
-                    to="/login"
-                    style={{ textDecoration: "none", color: "#333" }}
+                    to="/{link}"
+                    style={{ textDecoration: "none", color: "#fff" }}
                   >
-                    로그인 하러가기
+                    {!msg2 ? "로그보러가기" : msg2}
                   </Link>
                 </LinkBtn>
-              )}
-            </>
-          )}
-        </BtnContainer>
+              </>
+            )}
+          </BtnContainer>
+        ) : null}
       </ModalView>
     </ModalBackground>
   );

@@ -42,7 +42,7 @@ export const LinkBtn = styled.button`
   width: 140px;
   padding: 0.6rem;
   box-sizing: border-box;
-  background-color: #a5e464;
+  background-color: #ffa928;
   text-decoration: none;
   border: none;
   border-radius: 4px;

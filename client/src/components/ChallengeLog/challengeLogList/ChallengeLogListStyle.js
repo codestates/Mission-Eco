@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import blob1 from "../../../imges/blob1.svg";
 
 export const ChallengeLogContiner = styled.div`
   //height: 800px;
