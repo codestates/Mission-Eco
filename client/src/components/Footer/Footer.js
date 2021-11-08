@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   ServicesContainer,
   Title,
@@ -8,6 +9,7 @@ import {
   Name,
   Position,
   GithubBadge,
+  AdminLogin,
 } from "./FooterStyle";
 
 const Footer = () => {
@@ -15,6 +17,7 @@ const Footer = () => {
     <>
       <ServicesContainer>
         <Title>🌏 ABOUT US 🌳</Title>
+        <AdminLogin to="/admin-login">관리자 로그인</AdminLogin>
         {/* <Icon>깃헙 아이콘 img에 우리 깃헙 링크 🔗</Icon> */}
         {/* <Icon src="https://toppng.com/uploads/preview/see-all-open-source-repositories-github-logo-11563031735gubsot66ry.png" /> */}
         <i className="fab fa-github-square fa-2x">Mission-Eco</i>

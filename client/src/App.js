@@ -11,8 +11,12 @@ import Challenge from "./pages/challenge/Challenge";
 import ChallengeLog from "./pages/challengeLog/ChallengeLog";
 import ChallengeUpload from "./pages/challengeUpload/ChallengeUpload";
 import Sidebar from "./components/Sidebar/Sidebar";
+import AdminLogin from "./components/Admin/AdminLogin/AdminLogin";
+import AdminWrapper from "./components/Admin/AdminEdit/AdminWrapper/AdminWrapper";
+import Footer from "./components/Footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { isToggle } from "../src/Redux/actions";
+import ChallengeEdit from "./components/Admin/AdminEdit/ChallengeEdit/ChallengeEdit";
 
 function App() {
   const Toggle = useSelector((state) => state.infoReducer.isToggle);
@@ -46,15 +50,18 @@ function App() {
           <Route exact path="/upload">
             <ChallengeUpload />
           </Route>
-
-          {/*<Route exact path="/admin">
-          //관리자페이지
-          <Navbar />
-          <AdminWrapper />
-          <footer/>
-        </Route> */}
+          <Route exact path="/admin-login">
+            <AdminLogin />
+          </Route>
+          <Route exact path="/admin/log">
+            <AdminWrapper />
+          </Route>
+          <Route exact path="/admin/challenge">
+            <ChallengeEdit />
+          </Route>
         </>
       </Switch>
+      <Footer />
     </Router>
   );
 }

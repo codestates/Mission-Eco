@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
       if (!adminInfo) {
         return res.status(401).send({ message: "일치하는 정보가 없습니다." });
       } else {
-        if (adminInfo.admin !== 1) {
+        if (!adminInfo.admin) {
           return res.status(401).send({ message: "관리자 권한이 필요합니다." });
         } else {
           const match = await bcrypt.compare(password, adminInfo.password);

@@ -1,49 +1,35 @@
 import React, { useEffect, useState } from "react";
-import ChallengeEdit from "../ChallengeEdit/ChallengeEdit";
 import LogEdit from "../LogEdit/LogEdit";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  getChallengeList,
-  getChallengeLogList,
-} from "../../../../Redux/actions";
+import { useDispatch } from "react-redux";
+import { adminList } from "../../../../Redux/actions";
 import LoadingIndicator from "../../../Loading/LoadingIndicator";
-
+import { Container, Title1, Title2, TitleWrapper } from "./AdminWrapperStyle";
 const AdminWrapper = (props) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
-  const List = useSelector((state) => state.infoReducer.challengeLogList);
-  const { challengeLogList, challengeList } = List;
 
+  //로그 삭제 시 다시 리로드되게 하는 방법을 찾아보자
   useEffect(() => {
     setIsLoading(true);
-    dispatch(getChallengeList())
-      .then(() => dispatch(getChallengeLogList()))
-      .then(() => setIsLoading(false));
+    dispatch(adminList()).then(() => setIsLoading(false));
   }, [dispatch]);
 
-  useEffect(() => {}, [challengeList]);
-
   return (
-    <div>
+    <>
       {isLoading ? (
-        <div>
+        <Container>
           <LoadingIndicator />
-        </div>
+        </Container>
       ) : (
-        <div>
-          <div>1</div>
-          <div>1</div>
-          <div>1</div>
-          <div>1</div>
-          <div>1</div>
-          <div>1</div>
-          <h1>Log 관리</h1>
-          <LogEdit logList={challengeLogList} />
-          <h1>Challenge 관리</h1>
-          <ChallengeEdit challengeList={challengeList} />
-        </div>
+        <Container>
+          <TitleWrapper>
+            <Title1 to="/admin/log">Log 관리</Title1>
+            <Title2 to="/admin/challenge">Challenge 관리</Title2>
+          </TitleWrapper>
+          <LogEdit />
+        </Container>
       )}
-    </div>
+    </>
   );
 };
 

@@ -64,7 +64,7 @@ const LogAddForm = ({
         type="text"
         name="nickname"
         placeholder={nickname || "nickname"}
-        readonly
+        readOnly
         defaultValue={nickname || ""}
         //ref={nicknameRef}
         //onChange={onChange}
