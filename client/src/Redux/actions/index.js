@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const IS_LOGIN = "IS_LOGIN";
+export const IS_TOGGLE = "IS_TOGGLE";
 export const USER_SIGNIN = "USER_SIGNIN";
 export const USER_SIGNOUT = "USER_SIGNOUT";
 export const USER_INFO = "USER_INFO";
@@ -13,6 +14,8 @@ export const CHALLENGE_LOG_LIST = "CHALLENGE_LOG_LIST";
 export const USER_LIKE_LIST = "USER_LIKE_LIST";
 export const IS_LIKE = "IS_LIKE";
 export const AUTH_SUCCESS = "AUTH_SUCCESS";
+export const ADMIN_LOG = "ADMIN_LOG";
+export const ADMIN_CHALLENGE = "ADMIN_CHALLENGE";
 
 export function isLogin(boolean) {
   return {
@@ -56,6 +59,15 @@ export function isLoading(boolean) {
     type: IS_LOADING,
     payload: {
       isLoading: boolean,
+    },
+  };
+}
+
+export function isToggle(boolean) {
+  return {
+    type: IS_TOGGLE,
+    payload: {
+      isToggle: boolean,
     },
   };
 }
@@ -154,6 +166,63 @@ export function getUserLikeList(likeList) {
     },
   };
 }
+export const adminSignin = (loginInfo) => async (dispatch) => {
+  try {
+    const { email, password } = loginInfo;
+    const data = await axios
+      .post(
+        `${process.env.REACT_APP_API_URL}/admin/signin`,
+        { email, password },
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        if (res.status === 204) {
+          return true;
+        }
+        return false;
+      });
+    dispatch({ type: IS_LOGIN, payload: data });
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const adminList = () => async (dispatch) => {
+  try {
+    const adminListData = await axios
+      .get(`${process.env.REACT_APP_API_URL}/admin/list`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          return res.data;
+        }
+      });
+    dispatch({ type: ADMIN_LOG, payload: adminListData.logList });
+    dispatch({ type: ADMIN_CHALLENGE, payload: adminListData.challengeList });
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const deleteLog = (id) => async (dispatch) => {
+  try {
+    const deleteLogData = await axios
+      .delete(`${process.env.REACT_APP_API_URL}/admin/challenge-log/${id}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          return res.data.logList;
+        }
+      });
+    dispatch({ type: ADMIN_LOG, payload: deleteLogData });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const userSignin = (loginInfo) => async (dispatch) => {
   const { email, password } = loginInfo;

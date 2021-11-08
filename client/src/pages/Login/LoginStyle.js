@@ -33,7 +33,6 @@ export const Container = styled.div`
   @media screen and (max-width: 980px) {
     width: 100%;
   }
-
   @media screen and (max-width: 750px) {
     width: 100%;
   }
@@ -46,7 +45,6 @@ export const LeftTxt = styled.p`
   top: 30%;
   font-family: "Cormorant Garamond", serif;
   font-weight: 500;
-
   @media screen and (max-width: 1350px) {
     font-size: 1.6rem;
   }
@@ -145,7 +143,6 @@ export const FormButton = styled.button`
   color: #fff;
   font-weight: bold;
   border-radius: 4px;
-
   &:hover {
     transition: 1s;
     color: #fff;

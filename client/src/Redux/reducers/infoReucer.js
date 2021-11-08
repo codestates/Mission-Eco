@@ -11,6 +11,9 @@ import {
   CHALLENGE_LOG_LIST,
   USER_LIKE_LIST,
   IS_LIKE,
+  IS_TOGGLE,
+  ADMIN_LOG,
+  ADMIN_CHALLENGE,
 } from "../actions/index";
 
 import { initialState } from "./initialState";
@@ -24,6 +27,9 @@ const infoReducer = (state = initialState, action) => {
     case IS_LOGIN:
       return { ...newState, isLogin: action.payload };
       break;
+    case IS_TOGGLE:
+      return { ...newState, isToggle: action.payload.isToggle };
+      break;
     case USER_INFO:
       return { ...newState, userInfo: action.payload };
       break;
@@ -32,10 +38,8 @@ const infoReducer = (state = initialState, action) => {
       break;
     case IS_LOADING:
       return { ...newState, isLoading: action.payload.isLoading };
-      break;
     case IS_OPEN_MODAL:
       return { ...newState, isOpenModal: action.payload.isOpenModal };
-      break;
     case CHALLENGE_INFO:
       return { ...newState, challengeInfo: action.payload };
       break;
@@ -51,7 +55,12 @@ const infoReducer = (state = initialState, action) => {
     case IS_LIKE:
       return { ...newState, isLike: action.payload };
       break;
-
+    case ADMIN_LOG:
+      return { ...newState, adminLogList: action.payload };
+      break;
+    case ADMIN_CHALLENGE:
+      return { ...newState, adminChallengeList: action.payload };
+      break;
     default:
       return state;
   }

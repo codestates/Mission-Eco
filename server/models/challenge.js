@@ -27,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       contents: DataTypes.STRING,
       level: DataTypes.INTEGER,
+      upload: DataTypes.BOOLEAN,
     },
     {
       sequelize,

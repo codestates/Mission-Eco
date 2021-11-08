@@ -1,6 +1,7 @@
 export const initialState = {
   userSignin: {},
   isLogin: false,
+  isToggle: false,
   userInfo: {},
   isLoading: {
     isLoading: false,
@@ -24,4 +25,6 @@ export const initialState = {
   },
 
   isLike: [],
+  adminLogList: [],
+  adminChallengeList: [],
 };

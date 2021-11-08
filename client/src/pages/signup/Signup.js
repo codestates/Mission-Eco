@@ -2,18 +2,20 @@ import React, { useState } from "react";
 import { validEmail, validPassword } from "../../utils/validation";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import SignupModal from "./SignupModal";
+import { CheckButton } from "./SignupStyle";
 import {
   Container,
   FormWrap,
   FormContent,
   Form,
-  FormH1,
+  Icon,
   FormLabel,
   FormInput,
   FormButton,
   Text,
 } from "../Login/LoginStyle";
-import { CheckButton } from "./SignupStyle";
+
 
 function Signup() {
   const history = useHistory();
@@ -27,6 +29,8 @@ function Signup() {
   const [errorMsg, setErrorMsg] = useState("");
   const [isEmail, setIsEmail] = useState(false);
   const [isNickname, setIsNickname] = useState(false);
+  const [ isOpen, setIsOpen ] = useState(false);
+  const [ isSignUpOk, setSignUpOk ] = useState(false);
 
   const handelFormValue = (key) => (e) => {
     SetSignupInfo({ ...signupInfo, [key]: e.target.value });
@@ -101,24 +105,35 @@ function Signup() {
         .then((res) => {
           console.log(res.status);
           if (res.status === 201) {
-            setErrorMsg("회원가입완료");
-            alert("회원가입완료");
-            history.push("/");
+            setSignUpOk(true);
+            setIsOpen(true);
+          } else {
+            setSignUpOk(false);
           }
         })
         .catch((err) => console.log(err));
     }
   };
+  
+  // 모달 x버튼이 클릭되면 창이 닫힌다
+  const openModalHandler = () => {
+    setIsOpen(false); // 회원가입 성공 메시지 창이 X버튼으로 닫히면 
+    history.push('/'); // 랜딩페이지로 감
+  };
+
+  console.log('is open이 상태가 다 변하는지???', isOpen)
 
   return (
     <Container>
       <FormWrap>
+        <Icon to="/"></Icon>
         <FormContent>
           <Form onSubmit={(e) => e.preventDefault()}>
-            <FormH1>회원가입</FormH1>
+            {/* <FormH1>회원가입</FormH1> */}
             <FormLabel>이메일</FormLabel>
             <FormInput type="text" onChange={handelFormValue("email")} />
             <CheckButton onClick={checkEmail}>중복확인</CheckButton>
+
             <FormLabel>비밀번호</FormLabel>
             <FormInput
               className="FormInput"
@@ -126,7 +141,7 @@ function Signup() {
               placeholder="비밀번호 입력"
               onChange={handelFormValue("password")}
             ></FormInput>
-            <FormLabel>비밀번호확인</FormLabel>
+            <FormLabel>비밀번호 재확인</FormLabel>
             <FormInput
               className="FormInput"
               type="password"
@@ -145,7 +160,10 @@ function Signup() {
           </Form>
         </FormContent>
       </FormWrap>
+      { isSignUpOk && isOpen ? 
+       <SignupModal openModalHandler={openModalHandler}/> : null}
     </Container>
+
   );
 }
 

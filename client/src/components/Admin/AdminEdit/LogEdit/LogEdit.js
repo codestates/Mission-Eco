@@ -1,10 +1,26 @@
 import React, { useEffect, useState } from "react";
 import LogItem from "../LogItem/LogItem";
-const LogEdit = ({ logList }) => {
+import { useSelector, useDispatch } from "react-redux";
+import { deleteLog } from "../../../../Redux/actions";
+import {
+  LogContainer,
+  Wrapper,
+  InputContainer,
+  Input,
+  Btn,
+} from "./LogEditStyle";
+
+const LogEdit = () => {
+  const dispatch = useDispatch();
+  const logList = useSelector((state) => state.infoReducer.adminLogList);
+
   const [logs, setLogs] = useState(logList);
-  console.log("logs--", logs);
   const [condition, setCondition] = useState("");
   const [filter, setFilter] = useState("");
+
+  useEffect(() => {
+    setLogs(logList);
+  }, [logList]);
 
   useEffect(() => {
     const result = getLogs(filter);
@@ -20,17 +36,31 @@ const LogEdit = ({ logList }) => {
   const handleFilter = () => {
     setFilter(condition);
   };
+  const deleteHandler = (id) => {
+    //모달도 켜지게 해야함
+    dispatch(deleteLog(id));
+  };
+
   return (
-    <div>
-      <input type="text" value={condition} onChange={handleChange}></input>
-      <button onClick={handleFilter}>검색</button>
-      <div>
+    <Wrapper>
+      <InputContainer>
+        <Input
+          type="text"
+          placeholder="검색하세요..."
+          value={condition}
+          onChange={handleChange}
+        />
+        <Btn onClick={handleFilter}>검색</Btn>
+      </InputContainer>
+      <LogContainer>
         {logs &&
           logs.map((log, idx) => {
-            return <LogItem key={idx} log={log} />;
+            return (
+              <LogItem key={idx} log={log} deleteHandler={deleteHandler} />
+            );
           })}
-      </div>
-    </div>
+      </LogContainer>
+    </Wrapper>
   );
 };
 
