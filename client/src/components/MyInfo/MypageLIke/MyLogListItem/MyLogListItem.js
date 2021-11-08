@@ -3,23 +3,24 @@ import React from "react";
 import {
   ServicesCard,
   ServicesIcon,
-  // ServicesH2,
   ServicesP,
 } from "./MyLogListItemStyle";
 
 // svg 아이콘으로 변경하기
-import TrashIcon from "../../../../imges/trash.png"
+import { ReactComponent as TrashIcon } from "../../../../imges/iconmonstr-trash-can-1.svg"
 
 const MyLogListItem = ({ list, HandleDeleteLog }) => {
   const { id, img, challengelog_contents, user_id } = list;
   
   return (
     <>
-      <ServicesCard TrashIcon={TrashIcon}>
+      <ServicesCard>
         <button
         onClick={() => HandleDeleteLog(id)}
         >
-          <img src={TrashIcon} alt="휴지통 아이콘"/>
+          <TrashIcon 
+          fill="#333"
+          />
         </button>
         {/* <ServicesIcon>{list.img}</ServicesIcon> */}
         <ServicesIcon background={img} />
