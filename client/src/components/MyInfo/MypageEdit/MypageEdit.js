@@ -43,7 +43,7 @@ const MypageEdit = () => {
 
   useEffect(() => {}, [state.userInfo]);
 
-  // * handle Input Value 함수 - Nick
+  // !* handle Input Value 함수 - Nick
   const handleNickValue = (key) => (e) => {
     setNick({ ...nick, [key]: e.target.value });
   };
@@ -53,31 +53,56 @@ const MypageEdit = () => {
     setPwInfo({ ...pwInfo, [key]: e.target.value });
   };
 
-  // ** handler - 닉네임
+  // ** handler - 닉네임 중복확인
   const { nickname } = nick;
-  const changeNickRequestHandler = () => {
-    if (!nickname) {
-      setErrMsg("닉네임을 입력하세요.");
-    } else {
-      axios
-        .get(
-          `${process.env.REACT_APP_API_URL}/user/validation/nickname/${nickname}`,
+  const checkNickRequestHandler = () => {
+    console.log(nickname);
 
-          {
-            withCredentials: true,
-          }
-        )
-        .then((res) => {
-          //console.log("nickname", res.data);
-          if (res.status === 204) {
-            setNick(true);
-            setErrMsg("변경성공!");
-          }
-        });
-      setErrMsg("이미 사용중인 닉네임입니다.");
-    }
+    axios
+      .get(
+        `${process.env.REACT_APP_API_URL}/user/validation/nickname/${nickname}`,
+
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        //console.log("nickname", res.data);
+        if (res.status === 204) {
+          setNick(true);
+          setErrMsg("사용 가능한 닉네임입니다.");
+        }
+      })
+      .catch((err) => setErrMsg("이미 사용중인 닉네임입니다."));
+    // catch로 처리해보기
+    // setErrMsg("이미 사용중인 닉네임입니다.");
   };
 
+  // ! handler - 닉네임 변경 (패스워드 변경 함수 참고)
+  // 성공 === 204
+  const { userId, newNickname } = req.body; // 뭐로 받아와야 되지?
+  // const { userId, newNickname } =
+  const changeNickRequestHandler = () => {
+    console.log(userId, newNickname);
+    axios
+      .patch(
+        `${process.env.REACT_APP_API_URL}/mypage/userinfo/nickname`,
+        { userId: state.userInfo.id, newNickname: state.userInfo.newNickname },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        console.log(res.status);
+        if (res.status === 204) {
+          setErrMsg("닉네임 변경완료!");
+        } else {
+          setErrMsg("닉네임 변경실패");
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+  // !
+
+  // * handler - 비밀번호 변경 함수
   const changePwRequestHandler = () => {
     const { password1, password2 } = pwInfo;
     console.log(password1);
@@ -91,31 +116,23 @@ const MypageEdit = () => {
     } else {
       axios
         .patch(
-          `${process.env.REACT_APP_API_URL}/mypage/userinfo/password`, // 여기에 /mypage/userinfo/password 엔드포인트 쓰는거? 일케 쓰는 거 맞음?,
+          `${process.env.REACT_APP_API_URL}/mypage/userinfo/password`,
           { userId: state.userInfo.id, newPassword: password1 },
+          // ! 이 부분 참고해서 닉네임에 적용 { userId: state.userInfo.id, newNickname: ~~~ },
           { withCredentials: true }
         )
         .then((res) => {
           console.log(res.status);
           if (res.status === 204) {
-            setPwErrMsg("비밀번호가 변경완료");
-            // setPw(true);
-            // 로 해야하나?
+            setPwErrMsg("비밀번호 변경완료");
           }
         })
         .catch((err) => console.log(err));
     }
-    setPwErrMsg("비밀번호가 변경실패");
+    setPwErrMsg("비밀번호 변경실패");
   };
   //
   // ** handler 회원탈퇴 ---> 모달창 레이아웃부터 잡기
-  // 회원탈퇴 버튼을 누르면 "확인 모달창"이 뜬다.
-  // 모달창에서 "예" 버튼을 누르면 -> DB에서 내 정보가 삭제된다.
-  // 함수 만들어서 버튼 누르면 axios로 요청 보내기 코드 작성. delete메소드 --> 요청부분까지만 일단 작성해두기
-  // 응답--> 성공시 mypage-userInfo를 null로 바꿔야 한다. (리덕스) --> 같이
-
-  // const [showModal, setShowModal] = useState(false);
-
   const userDeleteRequestHandler = () => {
     axios
       .delete(`${process.env.REACT_APP_API_URL}/mypage/userinfo`, {
@@ -151,6 +168,9 @@ const MypageEdit = () => {
             onChange={handleNickValue("nickname")} // index.js에 nickname으로 들어가 있어서 이렇게적었는데 위의 state명 nick을 적어야 하나?
           ></Input>
           {/* <Btn onClick={changeInfoHandler}>닉네임 변경</Btn> */}
+          <Btn type="submit" onClick={checkNickRequestHandler}>
+            닉네임 중복확인
+          </Btn>
           <Btn type="submit" onClick={changeNickRequestHandler}>
             닉네임 변경
           </Btn>
