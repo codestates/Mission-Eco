@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-//import { userSignin, authSuccess } from "../../Redux/actions";
+import { adminSignin } from "../../../Redux/actions";
 import axios from "axios";
-import { validEmail } from "../../utils/validation";
+import { validEmail } from "../../../utils/validation";
 import {
   Container,
   FormWrap,
@@ -15,13 +15,13 @@ import {
   FormButton,
   GeneralLogin,
   Text,
-} from "./LoginStyle";
+} from "./AdminLoginStyle";
 
 axios.defaults.withCredentials = true;
 
 function Login() {
   const login = useSelector((state) => state.infoReducer.isLogin);
-  console.log("aaaaaaaadfsfsd", login);
+  //인풋창에 로그인 값 변경이 있으면 이 값이 계속 찍힘 확인 바람
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -39,10 +39,10 @@ function Login() {
   };
 
   const handleResponseSuccess = () => {
-    alert("로그인 성공");
     setErrMsg("ok.");
+    alert("로그인 성공");
 
-    history.push("/admin"); //관리자 페이지로 이동
+    history.push("/admin/log"); //관리자 페이지로 이동
     //isAuthenticated();
   };
 
@@ -55,19 +55,13 @@ function Login() {
     } else if (!validEmail(email)) {
       setErrMsg("이메일 형식이 아닙니다.");
     } else {
-      axios
-        .post(
-          `${process.env.REACT_APP_API_URL}/admin/signin`,
-          { email, password },
-          { "Content-Type": "application/json" }
-        )
-        .then((res) => {
-          if (res.status === 401) {
-            setErrMsg(res.message);
-          } else if (res.status === 204) {
-            handleResponseSuccess();
-          }
-        });
+      dispatch(adminSignin(loginInfo)).then((res) => {
+        if (!res) {
+          setErrMsg("관리자 권한이 필요한 페이지입니다.");
+        } else {
+          handleResponseSuccess();
+        }
+      });
     }
   };
 
