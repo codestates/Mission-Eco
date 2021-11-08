@@ -2,28 +2,26 @@ import styled from "styled-components";
 
 //
 export const JoinRow = styled.div`
-
   > div {
     font-size: 12px;
     text-align: left;
 
     > div {
-
       > span.success-msg {
         color: green;
       }
-    
+
       > span.fail-msg {
-        color: red;
+        color: #e02401;
       }
     }
-    
+
     > span.hide {
       display: none;
     }
 
     > span.fail-msg {
-      color: red;
+      color: #e02401;
     }
   }
 
