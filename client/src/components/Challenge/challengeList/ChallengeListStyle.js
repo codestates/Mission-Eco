@@ -6,16 +6,13 @@ export const ChallengeContiner = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   margin: 0 auto;
-
   z-index: -1;
-
+  min-height: 100%;
   //background-image: url(${blob1});
   @media screen and (max-width: 768px) {
     //height: 1100px;
   }
-
   @media screen and (max-width: 480px) {
     //height: 1300px;
   }
@@ -23,14 +20,12 @@ export const ChallengeContiner = styled.div`
 
 export const ChallengeWrapper = styled.div`
   max-width: 1000px;
-
   //margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   grid-gap: 16px;
   padding: 0 50px;
-
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr 1fr;
     padding: 0 20px;
@@ -43,38 +38,34 @@ export const ChallengeWrapper = styled.div`
 
 export const ChallengeSubbar = styled.div`
   display: flex;
-
+  height: 50px;
+  width: 900px;
   // flex-direction: column;
-  //align-items: center;
-  padding: 1em 5.2rem;
+  justify-content: center;
+  align-items: center;
+  padding: 1px 130px;
   border-top: 1px solid #010101;
   border-bottom: 1px solid #010101;
-  color: rgb(100, 100, 100);
-  margin-bottom: 4em;
-
-  @media screen and (min-width: 768px) and (max-width: 980px) {
-    padding: 1 6rem;
+  //background: #d8e3e7;
+  margin-bottom: 3em;
+  @media screen and (max-width: 768px) {
+    padding: 1px 50px;
+    height: 60px;
+    max-width: 1100px;
   }
-
-  @media screen and (min-width: 481px) and (max-width: 767px) {
-    padding: 1 1.2rem;
+  @media screen and (max-width: 480px) {
+    padding: 0;
+    height: 70px;
+    width: 370px;
   }
 `;
 
 export const ChallengeSelect = styled.li`
   list-style: none;
-  margin-right: 6rem;
-
-  @media screen and (min-width: 768px) and (max-width: 980px) {
-    margin-right: 4.4rem;
-  }
-
-  @media screen and (min-width: 481px) and (max-width: 767px) {
-    margin-right: 1.4rem;
-  }
-
-  @media screen and (max-width: 480px) {
-    margin-right: 0;
+  text-align: center;
+  margin: 1em;
+  &:hover {
+    border-bottom: 1px solid black;
   }
 `;
 
@@ -83,12 +74,10 @@ export const ChallengeH1 = styled.h1`
   font-size: 2.5rem;
   color: #010106;
   margin-bottom: 64px;
-
   @media screen and (max-width: 480px) {
-    font-size: 12px;
+    font-size: 2rem;
   }
 `;
-
 export const ServicesCardColor = styled.div`
   background: #fff;
   display: flex;
@@ -102,7 +91,6 @@ export const ServicesCardColor = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
   background-color: #a2d2ff;
-
   &:hover {
     transform: scale(1.02);
     transition: all 0.2s ease-in-out;
@@ -114,10 +102,8 @@ export const Button = styled.button`
   border: 0;
   outline: 0;
   font-size: 16px;
-
   background-color: transparent;
   cursor: pointer;
-
   @media screen and (max-width: 480px) {
     font-size: 12px;
   }

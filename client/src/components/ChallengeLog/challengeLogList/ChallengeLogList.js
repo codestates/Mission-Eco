@@ -29,13 +29,15 @@ const ChallengeLogList = () => {
     challengeLogList.sort(function (a, b) {
       return b.id - a.id;
     });
-  const [listLog, setListLog] = useState(challengeLog);
+  const [listLog, setListLog] = useState([]);
   const [nodata, setNodata] = useState(false);
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
     dispatch(getChallengeLogList());
   }, [dispatch]);
+
+  useEffect(() => {}, [logList]);
 
   const dropBtnClick = () => {
     // setListLog(challengeLog);
@@ -49,11 +51,12 @@ const ChallengeLogList = () => {
       setNodata(false);
     } else {
       let logId = challengeLog.filter((el) => el.challenge_id === Number(log));
-      if (logId.length === 0) {
-        setNodata(true);
-      } else {
+      if (logId.length !== 0) {
         setListLog(logId);
         setNodata(false);
+        setIsActive(!isActive);
+      } else {
+        setNodata(true);
       }
 
       console.log(logId);
@@ -63,7 +66,9 @@ const ChallengeLogList = () => {
   return (
     <ChallengeLogContiner id="services">
       <ChallengeLogH1>Mission Log</ChallengeLogH1>
-      <span>미션에 참여한 유저들의 로그를 확인해보세요!</span>
+      <ChallengeP className="subTitle">
+        미션에 참여한 유저들의 로그를 확인해보세요!
+      </ChallengeP>
       <ChallengeSubbar>
         <Dropdown>
           <DropButton onClick={dropBtnClick}>
@@ -93,14 +98,15 @@ const ChallengeLogList = () => {
         </Select>
       </ChallengeSubbar>
       <ChallengeLogWrapper>
-        {listLog && nodata ? (
-          <ChallengeLogItem nodata={true} />
-        ) : (
-          listLog &&
-          listLog.map((log, idx) => {
-            return <ChallengeLogItem log={log} key={idx} />;
-          })
-        )}
+        {!isActive
+          ? challengeLogList &&
+            challengeLogList.map((log, idx) => {
+              return <ChallengeLogItem log={log} key={idx} />;
+            })
+          : listLog &&
+            listLog.map((log, idx) => {
+              return <ChallengeLogItem log={log} key={idx} />;
+            })}
       </ChallengeLogWrapper>
     </ChallengeLogContiner>
   );

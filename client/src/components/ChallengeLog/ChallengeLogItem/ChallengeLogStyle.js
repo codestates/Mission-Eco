@@ -5,12 +5,14 @@ export const LogCardContatainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+
   //align-items: center;
-  //border-radius: 6px;
+  border-radius: 6px;
   //width: 280px;
   max-height: 420px; //왜 주석을 풀면 이미지크기가 달라질까?
   padding: 14px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  //box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   transition: all 0.2s ease-in-out;
   &:hover {
     transform: scale(1.02);
@@ -35,7 +37,10 @@ export const LogImgContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #11324d;
+  //  border: 1px solid #11324d;
+  border-radius: 6px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   //background: ${(props) => props.background || "white"};
   @media screen and (max-width: 768px) {
     height: 300px;
@@ -59,8 +64,9 @@ export const LogContent = styled.div`
 
 export const LogH2 = styled.span`
   font-size: 1rem;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.3rem;
   text-align: left;
+  font-weight: 500;
 `;
 
 export const LogP = styled.p`
@@ -74,7 +80,7 @@ export const LogP = styled.p`
 export const LogHashP = styled.p`
   font-size: 1rem;
   text-align: left;
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.2rem;
   color: #14279b;
   font-weight: 600;
 `;
@@ -83,7 +89,7 @@ export const NameNtime = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.4rem;
 `;
 
 export const Button = styled.button`

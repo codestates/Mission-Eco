@@ -5,15 +5,13 @@ export const ChallengeLogContiner = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   margin: 0 auto;
-
   z-index: -1;
+  min-height: 100%;
 
   @media screen and (max-width: 768px) {
     //height: 1100px;
   }
-
   @media screen and (max-width: 480px) {
     //height: 1300px;
   }
@@ -56,6 +54,10 @@ export const ChallengeP = styled.p`
   font-size: 1rem;
   text-align: center;
   color: black;
+  &.subTitle {
+    font-size: 1.2rem;
+    margin-bottom: 1.4em;
+  }
 `;
 export const Button = styled.button`
   border: 0;
@@ -77,7 +79,8 @@ export const ChallengeSubbar = styled.div`
   padding: 1px 20px;
   border-top: 1px solid #99a799;
   border-bottom: 1px solid #99a799;
-  //background: #d8e3e7;
+  //border-radius: 10px;
+  //  background: #6f69ac;
   margin-bottom: 3em;
   @media screen and (max-width: 768px) {
     padding: 1px 20px;
@@ -111,6 +114,15 @@ export const Subbar = styled.div`
 export const Dropdown = styled.div`
   //position: fixed;
   display: flex;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  @media screen and (max-width: 480px) {
+    text-align: center;
+  }
   //justify-content: center;
 `;
 
@@ -127,7 +139,8 @@ export const DropButton = styled.button`
   text-align: left;
   cursor: pointer;
   font-size: 12px;
-  margin-right: 10em;
+  margin-right: 3em;
+
   @media screen and (max-width: 768px) {
     margin-right: 1em;
   }
@@ -143,25 +156,25 @@ export const Dropdowncontent = styled.div`
   font-weight: 400;
   background-color: #dbe6fd;
   width: 34em;
-  height: 7em;
+  height: 5em;
   //padding: 1em;
   //height: 300px;
-  overflow: hidden;
+  overflow: auto;
   //margin-left: 3em;
   border-radius: 10px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  overflow: auto;
+  ::-webkit-scrollbar {
+    /* 스크롤바 전체 영역 */
+    width: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    /*  스크롤  */
+    background-color: #8facc0;
+    border-radius: 20px;
+  }
 
   @media screen and (max-width: 768px) {
-    overflow: auto;
-    ::-webkit-scrollbar {
-      /* 스크롤바 전체 영역 */
-      width: 10px;
-    }
-    ::-webkit-scrollbar-thumb {
-      /*  스크롤  */
-      background-color: #8158fc;
-      border-radius: 20px;
-    }
   }
   @media screen and (max-width: 480px) {
     display: ${(props) => (props.isActive ? `block` : `none`)};
@@ -174,7 +187,7 @@ export const Dropdowncontent = styled.div`
 
 export const List = styled.li`
   display: flex;
-  float: left;
+  float: none;
 
   text-decoration: none;
   color: rgb(37, 37, 37);
