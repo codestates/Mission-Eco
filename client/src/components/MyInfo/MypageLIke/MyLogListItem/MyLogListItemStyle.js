@@ -62,25 +62,15 @@ export const ServicesCard = styled.div`
     height: 400px;
   }
   
-  /* 수경님 휴지통 아이콘 */
   > button {
-    display: block;
-    content:"";
     position: absolute;
     width:24px;
     height: 24px;
     top: 1.2rem;
     right: 1.2rem;
-    border: 1px solid blue; // 완료 후 지우기
-    background-color: transparent;
     cursor: pointer;
-
-    > img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      /* hover할 때 css 추가 */
-    }
+    border: none;
+    background-color: transparent;
   }
 `;
 
