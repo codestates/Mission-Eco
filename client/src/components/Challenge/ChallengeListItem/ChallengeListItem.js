@@ -4,7 +4,7 @@ import Like from "../../Like/Like";
 import { addLike, deleteLike } from "../../../Redux/actions";
 import {
   ChallengeCard,
-  ChallengeH2,
+  ChallengeH3,
   ChallengeP,
   CardContainer,
   LikeConatainer,
@@ -13,11 +13,11 @@ import {
   ChallengeImg,
 } from "./ChallengeListItemStyle";
 
-const ChallengeListItem = ({ list, userId, isLogin }) => {
+const ChallengeListItem = ({ list, userId, isLogin, setIsOpenModal }) => {
   const dispatch = useDispatch();
   const [like, setlike] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
-  const [isOpenModal, setIsOpenModal] = useState(false);
+
   const challengeId = list.id;
   const likeNum = list.challengelikes.length;
 
@@ -37,6 +37,7 @@ const ChallengeListItem = ({ list, userId, isLogin }) => {
       setIsOpenModal(true);
     } else if (Alt === "disliked") {
       dispatch(addLike(challengeId));
+      setlike(true);
     } else {
       dispatch(deleteLike(challengeId));
       setlike(false);
@@ -53,7 +54,6 @@ const ChallengeListItem = ({ list, userId, isLogin }) => {
           {!isFlipped ? (
             <ChallengeCard background={list.img}>
               <ChallengeImg src={list.img} />
-
               <LikeConatainer>
                 <Like
                   onClick={toggleLike}
@@ -66,11 +66,8 @@ const ChallengeListItem = ({ list, userId, isLogin }) => {
             </ChallengeCard>
           ) : (
             <DetailCard background={list.img}>
-              <ChallengeH2>{list.name}</ChallengeH2>
-              <ChallengeP>
-                전 세계에서 삭제 되지 않은 스팸 메일로 인해 매년 330억 kW의
-                전기가 소모되고 있습니다. 읽지 않은 이메일을 삭제 해보세요.
-              </ChallengeP>
+              <ChallengeH3>{list.name}</ChallengeH3>
+              <ChallengeP>{list.contents}</ChallengeP>
               <LikeConatainer>
                 <Like
                   onClick={toggleLike}
@@ -83,75 +80,6 @@ const ChallengeListItem = ({ list, userId, isLogin }) => {
             </DetailCard>
           )}
         </CardInner>
-        {/*!isFlipped ? (
-        <ServicesCard
-          background={list.img}
-          onMouseEnter={() => setIsFlipped(true)}
-          onMouseLeave={() => {
-            setIsFlipped(false);
-          }}
-        >
-          <ServicesH2>{list.name}</ServicesH2>
-          <ServicesP>dfdsfs</ServicesP>
-          {isOpenModal ? (
-            <LikeConatainer>
-              <Like
-                onClick={toggleLike}
-                list={list}
-                like={like}
-                isLogin={isLogin}
-              />
-              "로그인이 필요합니다 모달창 ."
-            </LikeConatainer>
-          ) : (
-            <LikeConatainer>
-              <Like
-                onClick={toggleLike}
-                list={list}
-                like={like}
-                isLogin={isLogin}
-                likeNum={likeNum}
-              />
-            </LikeConatainer>
-          )}
-        </ServicesCard>
-      ) : (
-        <ServicesCard
-          //className={isFlipped ? "flipped" : ""}
-          onMouseEnter={() => setIsFlipped(true)}
-          onMouseLeave={() => {
-            setIsFlipped(false);
-          }}
-        >
-          <h2>{list.name}</h2>
-          <p>
-            Provident consectetur natus voluptatem quis tenetur sed beatae eius
-            sint.
-          </p>
-          <ServicesP>{list.contents}</ServicesP>
-          {isOpenModal ? (
-            <LikeConatainer>
-              <Like
-                onClick={toggleLike}
-                list={list}
-                like={like}
-                isLogin={isLogin}
-              />
-              "로그인이 필요합니다 모달창 ."
-            </LikeConatainer>
-          ) : (
-            <LikeConatainer>
-              <Like
-                onClick={toggleLike}
-                list={list}
-                like={like}
-                isLogin={isLogin}
-                likeNum={likeNum}
-              />
-            </LikeConatainer>
-          )}
-        </ServicesCard>
-          )*/}
       </CardContainer>
     </>
   );

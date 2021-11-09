@@ -1,16 +1,6 @@
 import styled from "styled-components";
 
 export const CardContainer = styled.div`
-  /** display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 0;
-  &.flipped {
-    transition: all 0.5s ease-in-out;
-    cursor: pointer;
-    transform: rotateY(180deg);
-  }*/
   display: flex;
   flex-direction: column;
   transition: z-index 500ms, transform 500ms;
@@ -40,7 +30,6 @@ export const ChallengeCard = styled.div`
   background: #fff;
   display: flex;
   flex-direction: column;
-  //justify-content: flex-start;
   justify-content: center;
   align-items: center;
   border-radius: 0px;
@@ -78,8 +67,8 @@ export const ServicesH1 = styled.h1`
   }
 `;
 
-export const ChallengeH2 = styled.h2`
-  font-size: 3rem;
+export const ChallengeH3 = styled.h3`
+  font-size: 1.5rem;
   margin-bottom: 10px;
   color: #fff;
 `;
@@ -101,7 +90,7 @@ export const LikeConatainer = styled.div`
 `;
 
 export const DetailCard = styled.div`
-  background: bisque;
+  background: #dbe6fd;
   display: flex;
   flex-direction: column;
   //justify-content: flex-start;
