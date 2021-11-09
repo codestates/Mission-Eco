@@ -7,16 +7,13 @@ export const MypageContainer = styled.div`
   //padding-top: 10em;
 
   @media screen and (max-width: 768px) {
-    //height: 1100px;
   }
 
   @media screen and (max-width: 480px) {
-    //height: 1300px;
   }
 
   background-image: url(${blob1});
   height: 100%;
-  //min-height: 1800px;
   background-position: center;
   background-size: cover;
   -webkit-background-size: cover;
@@ -71,8 +68,6 @@ export const MypageBtn = styled.div`
 `;
 
 export const BtnLink = styled(Link)`
-  /* position: relative; */
-  /* float: right; */
   text-decoration: none;
 `;
 export const LinkCheckPassword = styled.div`
@@ -80,10 +75,10 @@ export const LinkCheckPassword = styled.div`
   border-radius: 50px;
   background: #5d8767;
   white-space: nowrap;
-  padding: 5px 20px;
+  padding: 5px 17px;
   color: #fff;
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 550;
   outline: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
@@ -93,8 +88,8 @@ export const LinkCheckPassword = styled.div`
     transition: all 0.2s ease-in-out;
     background: #fff;
     color: #5d8767;
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 550;
     border: solid #5d8767;
   }
 `;
@@ -117,7 +112,6 @@ export const Title = styled.p`
 `;
 
 export const ListContainer = styled.ul`
-  /* background: brown; */
   display: flex;
   flex-direction: row;
   padding: 20px;
@@ -129,7 +123,6 @@ export const ListContainer = styled.ul`
 `;
 
 export const ListItem = styled.li`
-  /* background: midnightblue; */
   @media screen and (max-width: 768px) {
   }
   @media screen and (max-width: 480px) {

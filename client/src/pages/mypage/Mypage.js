@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../../components/Navbar/Navbar";
 import {
   H1,
   H2,
@@ -30,7 +29,7 @@ const Mypage = () => {
           {/* mypage-top-container ( 페이지 타이틀, 마이페이지 수정버튼 ) */}
           <MypageBtn>
             <BtnLink to="/checkpassword">
-              <LinkCheckPassword>&nbsp; 수정하기 ✍🏻</LinkCheckPassword>
+              <LinkCheckPassword>수정하기 ✍🏻</LinkCheckPassword>
             </BtnLink>
           </MypageBtn>
 

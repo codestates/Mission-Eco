@@ -5,6 +5,15 @@ export const FooterContainer = styled.div`
   /* background-color: #5d8767; */
   /* background-color: #9dbfa5; */
   background-color: #3d6887;
+  /* // * Accept Current Change */
+  display: flex;
+  /* margin: 20em auto 0; */
+  /* padding: 3em; */
+
+  /* flex-direction: column;
+  align-items: center;
+  width: 100vw; */
+  /* //* */
 
   @media screen and (max-width: 768px) {
   }
@@ -77,6 +86,16 @@ export const Title = styled.h1`
 export const Icon = styled.img`
   display: flex;
   align-items: center;
+
+  /* //* Accept Current Change */
+  /* flex-direction: column;
+  margin: 0 2em; */
+  /* 
+  @media screen and (max-width: 768px) {
+  }
+  @media screen and (max-width: 480px) {
+  } */
+  /* //* */
 `;
 
 export const Name = styled.p`

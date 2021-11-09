@@ -6,21 +6,35 @@ import { userSignout, deleteUserInfo } from "../../../Redux/actions";
 import { validPassword } from "../../../utils/validation";
 import axios from "axios";
 import {
-  Container,
+  MypageEditContainer,
+  MypageEditWrap,
   TitleH1,
   Wrapper,
-  TitleH3,
-  Input,
+  TitleH2,
+  FormInput,
   Span,
+  FormLabel,
+  DelUserBtnWrapper,
   Btn,
+  DelUserBtn,
 } from "./MypageEditStyle";
 
 axios.defaults.withCredentials = true;
 
 const MypageEdit = () => {
-  const isLogin = useSelector((state) => state.infoReducer.isLogin);
+  // * Accept Current Change
   const state = useSelector((state) => state.infoReducer.userInfo);
+<<<<<<< HEAD
   //console.log(isLogin, "edit");
+=======
+  console.log(state);
+  // *
+  // *Accept Incoming Change
+  // const isLogin = useSelector((state) => state.infoReducer.isLogin);
+  // const state = useSelector((state) => state.infoReducer.userInfo);
+  // console.log(isLogin, "edit");
+  // *
+>>>>>>> e92b1574af389a6cd3080fb38ff60d7f4ae733e7
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -127,6 +141,7 @@ const MypageEdit = () => {
     const { password1, password2 } = pwInfo;
     console.log(password1);
     console.log(password2);
+    console.log(state);
     if (!password1 || !password2) {
       setPwErrMsg("모든 항목은 필수입니다.");
     } else if (!validPassword(password1)) {
@@ -137,7 +152,7 @@ const MypageEdit = () => {
       axios
         .patch(
           `${process.env.REACT_APP_API_URL}/mypage/userinfo/password`,
-          { userId: state.userInfo.id, newPassword: password1 },
+          { userId: state.id, newPassword: password1 },
           // ! 이 부분 참고해서 닉네임에 적용 { userId: state.userInfo.id, newNickname: ~~~ },
           { withCredentials: true }
         )
@@ -161,54 +176,53 @@ const MypageEdit = () => {
 
   return (
     <>
-      <Container>
-        <TitleH1>마이페이지</TitleH1>
+      {/* // * Accept Current Change */}
+      <MypageEditContainer>
+        <TitleH1>나의 정보 수정</TitleH1>
+        <MypageEditWrap>
+          <Wrapper>
+            <TitleH2>닉네임 변경하기</TitleH2>
+            <FormLabel>새 닉네임</FormLabel>
+            <FormInput
+              type="text"
+              // placeholder="새 닉네임을 입력하세요."
+              onChange={handleNickValue("newNickname")} // index.js에 nickname으로 들어가 있어서 이렇게적었는데 위의 state명 nick을 적어야 하나?
+            ></FormInput>
+            <Span>{errMsg}</Span>
+            <Btn type="submit" onClick={checkNickRequestHandler}>
+              닉네임 중복확인
+            </Btn>
+            <Btn type="submit" onClick={changeNickRequestHandler}>
+              닉네임 변경
+            </Btn>
+          </Wrapper>
 
-        {/* 닉네임 변경 */}
-        <Wrapper>
-          <TitleH3>닉네임 변경하기</TitleH3>
-          <Span>새 닉네임</Span>
-          <Input
-            type="text"
-            placeholder="새 닉네임을 입력하세요."
-            onChange={handleNickValue("newNickname")} // index.js에 nickname으로 들어가 있어서 이렇게적었는데 위의 state명 nick을 적어야 하나?
-          ></Input>
-          <Btn type="submit" onClick={checkNickRequestHandler}>
-            닉네임 중복확인
-          </Btn>
+          <Wrapper>
+            <TitleH2>비밀번호 변경하기</TitleH2>
+            <FormLabel>비밀번호</FormLabel>
+            <FormInput
+              type="password"
+              // placeholder="비밀번호를 입력하세요."
+              onChange={handlePwValue("password1")} // handleInputValue에 ("password") 하면 패스워드만 골라서 쓸 수 있음?
+            />
+            {/* <Span>{pwErrMsg}</Span> */}
+            <FormLabel>비밀번호 확인</FormLabel>
+            <FormInput
+              type="password"
+              // placeholder="비밀번호를 한 번 더 입력하세요."
+              onChange={handlePwValue("password2")}
+            />
+            <Span>{pwErrMsg}</Span>
+            <Btn type="submit" onClick={changePwRequestHandler}>
+              비밀번호 변경
+            </Btn>
+          </Wrapper>
 
-          {/* //! 닉네임 변경 버튼 새로 만듬*/}
-          <Btn type="submit" onClick={changeNickRequestHandler}>
-            닉네임 변경
-          </Btn>
-          {/* //! */}
-
-          <Span>{errMsg}</Span>
-        </Wrapper>
-
-        {/* 패스워드 변경 */}
-        <Wrapper>
-          <TitleH3>비밀번호 변경하기</TitleH3>
-          <Span>비밀번호</Span>
-          <Input
-            type="password"
-            placeholder="비밀번호를 입력하세요."
-            onChange={handlePwValue("password1")} // handleInputValue에 ("password") 하면 패스워드만 골라서 쓸 수 있음?
-          />
-          {/* <Span>{pwErrMsg}</Span> */}
-          <Span>비밀번호 확인</Span>
-          <Input
-            type="password"
-            placeholder="비밀번호를 한 번 더 입력하세요."
-            onChange={handlePwValue("password2")}
-          />
-          <Span>{pwErrMsg}</Span>
-          <Btn type="submit" onClick={changePwRequestHandler}>
-            비밀번호 변경
-          </Btn>
-        </Wrapper>
-        <Btn onClick={userDeleteRequestHandler}>회원탈퇴</Btn>
-      </Container>
+          <DelUserBtnWrapper>
+            <DelUserBtn onClick={userDeleteRequestHandler}>회원탈퇴</DelUserBtn>
+          </DelUserBtnWrapper>
+        </MypageEditWrap>
+      </MypageEditContainer>
     </>
   );
 };

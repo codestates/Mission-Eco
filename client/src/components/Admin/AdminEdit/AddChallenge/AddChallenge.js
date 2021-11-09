@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { upload } from "../../../../utils/imgUploader";
 import axios from "axios";
+import Modal from "../../../Modal/Modal";
 import {
   Container,
   Title,
@@ -23,6 +24,7 @@ const AddChallenge = (props) => {
   const [chContents, setChContents] = useState(null);
   const [chLevel, setChLevel] = useState(null);
   const [chUpload, setChUpload] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const history = useHistory();
 
   const changeNameHandler = (e) => {
@@ -35,7 +37,6 @@ const AddChallenge = (props) => {
       return;
     }
   };
-  console.log("ing--", selectImg);
   const changeContentsHandler = (e) => {
     setChContents(e.target.value);
   };
@@ -43,21 +44,19 @@ const AddChallenge = (props) => {
     setChLevel(Number(e.target.value));
   };
   const changeUploadHandler = (e) => {
-    if (e.target.value === "true") {
-      setChUpload(true);
-    } else {
-      setChUpload(false);
-    }
+    setChUpload(e.target.value);
+  };
+  const openModalHandler = () => {
+    setOpenModal(!openModal);
   };
   const fileUploadHandler = async () => {
-    console.log("img--", selectImg);
     const uploaded = await upload(selectImg);
-    console.log("uploaded--", uploaded);
-    /**axios
+    console.log("uploaded--", uploaded, chUpload);
+    axios
       .post(
         `${process.env.REACT_APP_API_URL}/challenge`,
         {
-          img: `${uploaded.url}`,
+          img: `${uploaded.secure_url}`,
           name: chName,
           contents: chContents,
           level: chLevel,
@@ -69,12 +68,12 @@ const AddChallenge = (props) => {
         if (res.status === 201) {
           history.push("/admin/log");
         }
-      }); */
+      });
   };
   return (
     <Container>
       <Title>챌린지 추가</Title>
-      <Form>
+      <Form onSubmit={(e) => e.preventDefault()}>
         <TitleWrapper>
           <TitleInput
             type="text"
@@ -120,9 +119,17 @@ const AddChallenge = (props) => {
             <option value="false">불가능</option>
           </select>
         </SelectWrapper>
-        <Btn name="Add" onClick={fileUploadHandler}>
+        <Btn name="Add" onClick={openModalHandler}>
           챌린지 업로드
         </Btn>
+        {openModal ? (
+          <Modal
+            msg={`${chName} 챌린지를 추가하시겠습니까?`}
+            uploadBtn="Yes"
+            fileUploadHandler={fileUploadHandler}
+            closeModalHandler={openModalHandler}
+          />
+        ) : null}
       </Form>
     </Container>
   );
