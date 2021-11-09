@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import LogItem from "../LogItem/LogItem";
+import Modal from "../../../Modal/Modal";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteLog } from "../../../../Redux/actions";
 import {
@@ -17,6 +18,8 @@ const LogEdit = () => {
   const [logs, setLogs] = useState(logList);
   const [condition, setCondition] = useState("");
   const [filter, setFilter] = useState("");
+  const [openModal, setOpenModal] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
 
   useEffect(() => {
     setLogs(logList);
@@ -36,9 +39,19 @@ const LogEdit = () => {
   const handleFilter = () => {
     setFilter(condition);
   };
-  const deleteHandler = (id) => {
+  const openModalHandler = (id) => {
+    setOpenModal(!openModal);
+    setDeleteId(id);
+  };
+  const deleteHandler = () => {
     //모달도 켜지게 해야함
-    dispatch(deleteLog(id));
+    dispatch(deleteLog(deleteId));
+    setOpenModal(!openModal);
+    setDeleteId(null);
+  };
+  const closeModalHandler = () => {
+    setOpenModal(!openModal);
+    setDeleteId(null);
   };
 
   return (
@@ -56,10 +69,22 @@ const LogEdit = () => {
         {logs &&
           logs.map((log, idx) => {
             return (
-              <LogItem key={idx} log={log} deleteHandler={deleteHandler} />
+              <LogItem
+                key={idx}
+                log={log}
+                openModalHandler={openModalHandler}
+              />
             );
           })}
       </LogContainer>
+      {openModal ? (
+        <Modal
+          msg={"해당 로그를 삭제하시겠습니까?"}
+          closeModalHandler={closeModalHandler}
+          uploadBtn={"Yes"}
+          fileUploadHandler={deleteHandler}
+        />
+      ) : null}
     </Wrapper>
   );
 };

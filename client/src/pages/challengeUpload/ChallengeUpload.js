@@ -1,7 +1,8 @@
 /*eslint-disable */
 import React, { useEffect, useState } from "react";
 import { upload } from "../../utils/imgUploader";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getChallengeLogList } from "../../Redux/actions";
 import axios from "axios";
 import {
   ChallengeUploadCT,
@@ -18,16 +19,20 @@ import Modal from "../../components/Modal/Modal";
 
 function ChallengeUpload() {
   const userInfo = useSelector((state) => state.infoReducer.userInfo);
+  const dispatch = useDispatch();
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploadFile, setUploadFile] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const [isVideo, setIsVideo] = useState(false);
   const [results, setResults] = useState([]);
   const [isUpload, setIsUpload] = useState(false);
+  const [missionId, setMissionId] = useState("");
   const [img, setImg] = useState("");
   const [logs, setLogs] = useState({});
 
-  useEffect(() => {}, [isVideo, results]);
+  useEffect(() => {
+    dispatch(getChallengeLogList());
+  }, [isVideo, results]);
 
   const closeModalHandler = () => {
     setOpenModal(!openModal);
@@ -67,6 +72,9 @@ function ChallengeUpload() {
   };
 
   const fileUploadHandler = async () => {
+    const missionName = log.challenge.split(",");
+    setMissionId(missionName[1]);
+    //console.log("dddd", missionName[1]);
     closeModalHandler();
     setIsUpload(true);
     const uploaded = await upload(uploadFile);
@@ -77,8 +85,8 @@ function ChallengeUpload() {
         `${process.env.REACT_APP_API_URL}/challenge-log`,
         {
           userId: userInfo.id,
-          challengeId: 1,
-          img: `${uploaded.url}`,
+          challengeId: missionId,
+          img: `${uploaded.secure_url}`,
           contents: `${logs.contents}`,
         },
         { "Content-Type": "multipart/form-data" }
@@ -89,8 +97,29 @@ function ChallengeUpload() {
         setResults([]);
         resetLog();
         setIsUpload(false);
+        requsetBadgeHandler();
       });
   };
+
+  const requsetBadgeHandler = () => {
+    axios
+      .post(
+        `${process.env.REACT_APP_API_URL}/badge`,
+        {
+          missionId,
+        },
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        if (res.status === 201) {
+          return;
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <ChallengeUploadCT>
       <ServicesContiner>

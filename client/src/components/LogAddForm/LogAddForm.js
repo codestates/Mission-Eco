@@ -27,7 +27,8 @@ const LogAddForm = ({
 }) => {
   const isLogin = useSelector((state) => state.infoReducer.isLogin);
   //const openModal = useSelector((state) => state.infoReducer.isOpenModal);
-
+  const logList = useSelector((state) => state.infoReducer.challengeLogList);
+  const { challengeList } = logList;
   const userInfo = useSelector((state) => state.infoReducer.userInfo);
   const [selectMission, setSelectMission] = useState(false);
   const [addContents, setAddContents] = useState(false);
@@ -43,8 +44,9 @@ const LogAddForm = ({
     if (event.currentTarget === null) {
       return;
     }
-    event.preventDefault();
+    if (challengeList) event.preventDefault();
     addLog({ ...logs, [event.currentTarget.name]: event.currentTarget.value });
+
     setSelectMission(true);
   };
 
@@ -103,13 +105,14 @@ const LogAddForm = ({
         value={challenge || "challenge"}
         onChange={onChange}
       >
-        <option value="선택">챌린지 선택</option>
-        <option value="플로깅">플로깅</option>
-        <option value="용기내">용기내</option>
-        <option value="캔뿌셔">캔뿌셔</option>
-        <option value="천연 수세미">천연 수세미</option>
-        <option value="텀블러">텀블러</option>
-        <option value="찌그러진 캔">찌그러진 캔</option>
+        {challengeList &&
+          challengeList.map((mission) => {
+            return (
+              <option value={[mission.name, mission.id]} key={mission.id}>
+                {mission.name}
+              </option>
+            );
+          })}
       </Select>
       <Input
         type="text"

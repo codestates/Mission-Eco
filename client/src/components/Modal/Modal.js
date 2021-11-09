@@ -50,7 +50,7 @@ const Modal = ({
 
                 <LinkBtn>
                   <Link
-                    to="/{link}"
+                    to={link}
                     style={{ textDecoration: "none", color: "#fff" }}
                   >
                     {!msg2 ? "로그보러가기" : msg2}
