@@ -45,6 +45,8 @@ const Navbar = ({ togglehandler }) => {
       window.addEventListener("scroll", changeNav);
     };
   }, []);
+
+  useEffect(() => {}, [isLogin]);
   const toggleHome = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };

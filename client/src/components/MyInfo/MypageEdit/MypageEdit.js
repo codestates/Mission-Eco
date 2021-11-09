@@ -165,6 +165,7 @@ const MypageEdit = () => {
   //
   // ** handler 회원탈퇴 ---> 모달창 레이아웃부터 잡기
   const userDeleteRequestHandler = () => {
+    console.log("회원탈퇴");
     dispatch(userSignout());
     dispatch(deleteUserInfo(null));
     history.push("/");
