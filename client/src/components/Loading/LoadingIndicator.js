@@ -10,8 +10,8 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 700px;
-  height: 700px;
+  width: 200px;
+  height: 200px;
 `;
 
 const LoadingIndicator = ({ loaded }) => {
