@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { adminSignin } from "../../../Redux/actions";
 import axios from "axios";
@@ -20,7 +20,6 @@ import {
 axios.defaults.withCredentials = true;
 
 function Login() {
-  const login = useSelector((state) => state.infoReducer.isLogin);
   //인풋창에 로그인 값 변경이 있으면 이 값이 계속 찍힘 확인 바람
   const dispatch = useDispatch();
   const history = useHistory();

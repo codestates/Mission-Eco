@@ -12,11 +12,11 @@ module.exports = {
       console.log("req.body--", req.body);
       const { img, name, contents, level, upload } = req.body;
       //body 값으로 하나라도 안 들어오면 return
-      if (!img || !name || !contents || !level || !upload) {
+      if (!img || !name || !contents || !level) {
         return res.sendStatus(400);
       } else {
-        const findChallenge = await findOne({
-          where: name,
+        const findChallenge = await challenge.findOne({
+          where: { name },
         });
         if (findChallenge) {
           return res

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ChallengeLogItem from "../ChallengeLogItem/ChallengeLogItem";
 import { getChallengeLogList } from "../../../Redux/actions";
-
+import Nodata from "../../Nodata/Nodata";
 import {
   ChallengeLogContiner,
   ChallengeLogH1,
@@ -17,8 +17,8 @@ import {
   Dropdowncontent,
   List,
   Img,
+  NodataWrapper,
 } from "./ChallengeLogListStyle";
-import Nodata from "../../Nodata/Nodata";
 
 require("dotenv").config();
 
@@ -100,9 +100,9 @@ const ChallengeLogList = () => {
         </Select>
       </ChallengeSubbar>
       {nodata ? (
-        <ChallengeLogWrapper>
+        <NodataWrapper>
           <Nodata />
-        </ChallengeLogWrapper>
+        </NodataWrapper>
       ) : (
         <ChallengeLogWrapper>
           {!isActive
