@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { isLogin, deleteUserInfo } from "../../../Redux/actions";
+import { userSignout, deleteUserInfo } from "../../../Redux/actions";
 import { validPassword } from "../../../utils/validation";
 import axios from "axios";
 import {
@@ -165,22 +165,10 @@ const MypageEdit = () => {
   //
   // ** handler 회원탈퇴 ---> 모달창 레이아웃부터 잡기
   const userDeleteRequestHandler = () => {
-    axios
-      .delete(`${process.env.REACT_APP_API_URL}/mypage/userinfo`, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log(res.status);
-        if (res.status === 204) {
-          dispatch(deleteUserInfo(null));
-          dispatch(isLogin(false));
-          history.push("/");
-          console.log("회원탈퇴 완료");
-        } else {
-          console.log("회원탈퇴 실패");
-        }
-      })
-      .catch((err) => console.log(err));
+    console.log("회원탈퇴");
+    dispatch(userSignout());
+    dispatch(deleteUserInfo(null));
+    history.push("/");
   };
 
   return (

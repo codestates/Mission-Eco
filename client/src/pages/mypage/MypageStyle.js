@@ -29,10 +29,15 @@ export const MypageWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 1000px;
+  max-width: 1000px;
   margin: 0 auto;
 
   z-index: -1;
+  @media screen and (max-width: 768px) {
+  }
+  @media screen and (max-width: 480px) {
+    //max-width: 480px;
+  }
 `;
 
 export const H1 = styled.h1`
@@ -50,6 +55,7 @@ export const H1 = styled.h1`
 
 export const H2 = styled.h2`
   display: flex;
+  margin: 15px 10px;
 `;
 
 export const H3 = styled.h3``;
@@ -61,6 +67,7 @@ export const MypageBtn = styled.div`
   margin: 2em;
   @media screen and (max-width: 768px) {
     width: 600px;
+    justify-content: center;
   }
   @media screen and (max-width: 480px) {
     width: 300;
@@ -102,6 +109,13 @@ export const Container = styled.div`
   border: 3px solid gray;
   border-radius: 10px;
   overflow: hidden;
+
+  @media screen and (max-width: 768px) {
+    padding: 0px;
+    // width: 90%;
+  }
+  @media screen and (max-width: 480px) {
+  }
 `;
 
 export const Title = styled.p`
@@ -111,14 +125,23 @@ export const Title = styled.p`
   }
 `;
 
-export const ListContainer = styled.ul`
-  display: flex;
-  flex-direction: row;
-  padding: 20px;
-
+export const ListContainer = styled.div`
+  max-width: 1000px;
+  max-height: 350px;
+  overflow-y: auto;
+  //margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  grid-gap: 16px;
+  padding: 0 10px;
   @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    padding: 0;
   }
   @media screen and (max-width: 480px) {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
   }
 `;
 

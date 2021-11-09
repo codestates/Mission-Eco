@@ -3,23 +3,29 @@
 // ! LikeListItem용으로 수정해야함 (style.js도)
 import React from "react";
 import {
+  CardContainer,
+  ChallengeCard,
+  CardInner,
+  ChallengeImg,
+  LikeConatainer,
   ServicesCard,
   ServicesIcon,
   ServicesH2,
   ServicesP,
-} from "./LikeListItemStyle";
+} from "../../.././Challenge/ChallengeListItem/ChallengeListItemStyle";
 
 const LikeListItem = ({ list }) => {
   console.log(list);
   return (
     <>
-      <ServicesCard>
-        {/* <p>나는 좋아요 한 애들이야</p> */}
-        <ServicesIcon background={list.img} />
-        <ServicesH2>{list.name}</ServicesH2>
-        <ServicesP>{list.level}</ServicesP>
-        <ServicesP>{list.contents}</ServicesP>
-      </ServicesCard>
+      <CardContainer>
+        <CardInner>
+          <ChallengeCard background={list.img}>
+            <ChallengeImg src={list.img} />
+            <LikeConatainer></LikeConatainer>
+          </ChallengeCard>
+        </CardInner>
+      </CardContainer>
     </>
   );
 };
