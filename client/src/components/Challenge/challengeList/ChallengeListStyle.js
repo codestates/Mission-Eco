@@ -36,33 +36,6 @@ export const ChallengeWrapper = styled.div`
   }
 `;
 
-{
-  /**
-   export const ChallengeSubbar = styled.div`
-  display: flex;
-  height: 50px;
-  width: 900px;
-  // flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 1px 130px;
-  border-top: 1px solid #010101;
-  border-bottom: 1px solid #010101;
-  //background: #d8e3e7;
-  margin-bottom: 3em;
-  @media screen and (max-width: 768px) {
-    padding: 1px 50px;
-    height: 60px;
-    max-width: 1100px;
-  }
-  @media screen and (max-width: 480px) {
-    padding: 0;
-    height: 70px;
-    width: 370px;
-  }
-`;
-   */
-}
 export const ChallengeSubbar = styled.div`
   display: flex;
   height: 8em;

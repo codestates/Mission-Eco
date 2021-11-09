@@ -4,7 +4,7 @@ import { getChallengeList } from "../../../Redux/actions";
 import ChallengeListItem from "../ChallengeListItem/ChallengeListItem";
 import LoadingIndicator from "../../Loading/LoadingIndicator";
 import Modal from "../../Modal/Modal";
-import blobMenu from "../../../imges/blobMenu.svg";
+
 import {
   ChallengeContiner,
   ChallengeH1,
