@@ -78,7 +78,7 @@ export const LinkCheckPassword = styled.div`
   padding: 5px 17px;
   color: #fff;
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 550;
   outline: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
@@ -89,7 +89,7 @@ export const LinkCheckPassword = styled.div`
     background: #fff;
     color: #5d8767;
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 550;
     border: solid #5d8767;
   }
 `;

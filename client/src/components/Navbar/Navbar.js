@@ -84,7 +84,7 @@ const Navbar = ({ togglehandler }) => {
             </NavItem>
             <NavItem>
               <NavLinks
-                to="challenge"
+                to="/challenge"
                 // smooth={true}
                 duration={500}
                 //  spy={true}

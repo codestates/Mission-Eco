@@ -5,9 +5,7 @@ export const CardContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   z-index: 0;
-
   &.flipped {
     transition: all 0.5s ease-in-out;
     cursor: pointer;
@@ -20,7 +18,6 @@ export const CardContainer = styled.div`
   -webkit-perspective: 1000px;
   perspective: 1000px;
   transform-style: preserve-3d;
-
   &.flipped {
     z-index: 1;
   }
@@ -34,7 +31,6 @@ export const CardInner = styled.div`
   transition: transform 0.6s;
   transform-style: preserve-3d;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-
   &.flipped {
     transform: rotateY(180deg);
   }
@@ -56,7 +52,6 @@ export const ChallengeCard = styled.div`
   background: ${(props) => props.background || "white"};
   z-index: 0;
   transform: rotateY(0deg);
-
   @media screen and (max-width: 768px) {
     width: 340px;
     height: 400px;
@@ -78,7 +73,6 @@ export const ServicesH1 = styled.h1`
   font-size: 2.8rem;
   color: #010106;
   margin-bottom: 64px;
-
   @media screen and (max-width: 480px) {
     font-size: 2rem;
   }
@@ -122,7 +116,6 @@ export const DetailCard = styled.div`
   //background: ${(props) => props.background || "white"};
   z-index: 1;
   transform: rotateY(180deg); //translate(100%, 0);
-
   @media screen and (max-width: 768px) {
     width: 340px;
     height: 400px;

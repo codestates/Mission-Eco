@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import {
   CheckPasswordContainer,
+  CheckPasswordWrap,
   Title,
   FormContainer,
   InputPassword,
@@ -57,17 +58,19 @@ export default function CheckPassword() {
   return (
     <>
       <CheckPasswordContainer>
-        <Title>비밀번호 확인</Title>
+        <CheckPasswordWrap>
+          <Title>비밀번호 확인</Title>
 
-        <FormContainer>
-          <InputPassword type="password" onChange={handleInputValue} />
+          <FormContainer>
+            <InputPassword type="password" onChange={handleInputValue} />
 
-          <ErrMsg>{errMsg}</ErrMsg>
+            <ErrMsg>{errMsg}</ErrMsg>
 
-          <SubmitBtn type="submit" onClick={loginRequestHandler}>
-            비밀번호 확인
-          </SubmitBtn>
-        </FormContainer>
+            <SubmitBtn type="submit" onClick={loginRequestHandler}>
+              비밀번호 확인
+            </SubmitBtn>
+          </FormContainer>
+        </CheckPasswordWrap>
       </CheckPasswordContainer>
     </>
   );
