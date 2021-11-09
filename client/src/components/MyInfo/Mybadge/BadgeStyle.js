@@ -30,7 +30,8 @@ text-align: center;
 
 > div.colorOff {
     padding:2rem;
-    background-color: grey;
+    /* background-color: grey; */
+    filter: grayscale(1);
 }
 
 > span {

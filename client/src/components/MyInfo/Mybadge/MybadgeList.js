@@ -13,15 +13,17 @@ function MybadgeList() {
     
     // 전체 뱃지 리스트
     const [ badgeLists, setBadgeLists ] = useState([]);
+    console.log('전체 뱃지 리스트 badgeLists', badgeLists)
 
     // 유저 뱃지 리스트
     const [ myBadgeList, setMyBadgeList ] = useState([]);
+    console.log('유저 뱃지 리스트 myBadgeList', myBadgeList)
     
     // 유저가 획득한 뱃지들의 아이디만 축출
     const myBadgeIdList = myBadgeList.map(bg => bg.badge_id);
     
     // 회원가입시 제공 뱃지는 기본값으로 저장 <==뱃지 아이디(11) 수정하기
-    myBadgeIdList.push(11);
+    myBadgeIdList.push(1);
 
     useEffect(() => {
       // 전체 뱃지리스트 저장

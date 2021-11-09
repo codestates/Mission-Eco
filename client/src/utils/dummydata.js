@@ -20,3 +20,7 @@ export const challengeState = [
   { id: 18, img: "../img/challenge/019.png" },
   { id: 19, img: "../img/challenge/020.png" },
 ];
+
+export const badgeImg = [
+  { id: 0, img: "../img/badge/나는야 고체세제왕.png" },
+]

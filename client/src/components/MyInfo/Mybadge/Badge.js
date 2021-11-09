@@ -1,18 +1,14 @@
 import React from "react";
 import { 
-    BadgeContainer,
-    ImgBox
+    BadgeContainer
  } from "./BadgeStyle"
 
 function Badge({ badgeList, myBadgeIdList }) {
   const { id, name, img } = badgeList;
-  console.log('idididid', id)
+  console.log(' 뱃지 페이지: badgeList img url', img)
 
   // 내가 가진 뱃지라면 true 아니면 false
   const isMyBadge = myBadgeIdList.includes(id);
-
-  // 첫번째 이미지는 무조건 칼라로 변경하기!!
-  // 그외의 이미지는 myBadgeIdsdml 에 있는 아이디면 칼라로 아니면 흑백으로 한다
  
   return (
     <BadgeContainer>
