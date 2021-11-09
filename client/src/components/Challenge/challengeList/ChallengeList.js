@@ -17,13 +17,13 @@ import {
 
 const ChallengeList = () => {
   const dispatch = useDispatch();
+  const challengeList = useSelector((state) => state.infoReducer.challengeList);
   const isLogin = useSelector((state) => state.infoReducer.isLogin);
   const userInfo = useSelector((state) => state.infoReducer.userInfo);
   const [listItems, setListItems] = useState([]);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [all, setAll] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
-  const challengeList = useSelector((state) => state.infoReducer.challengeList);
 
   useEffect(() => {
     setIsLoading(true);

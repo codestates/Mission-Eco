@@ -14,7 +14,7 @@ import {
 const Sidebar = ({ togglehandler }) => {
   const isToggle = useSelector((state) => state.infoReducer.isToggle);
 
-  console.log(isToggle);
+  //console.log(isToggle);
 
   return (
     <SidebarContainer isToggle={isToggle}>
