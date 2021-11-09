@@ -6,7 +6,7 @@ module.exports = {
       const challengeLogList = await challengelog.findAll({
         include: [
           { model: user, attributes: ["nickname"] },
-          { model: challenge, attributes: ["name"] },
+          { model: challenge, attributes: ["name", "level"] },
         ],
       });
       const challengeList = await challenge.findAll({

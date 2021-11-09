@@ -18,23 +18,19 @@ const ChallengeListItem = ({ log, nodata }) => {
 
   return (
     <>
-      {!nodata ? (
-        <LogCardContatainer background={log.img}>
-          <LogImgContainer>
-            <LogImg src={log.img} />
-          </LogImgContainer>
-          <LogContent>
-            <LogHashP> {log.challenge.name}</LogHashP>
-            <NameNtime>
-              <LogP>닉네임:{log.user.nickname}</LogP>
-              <LogP className="time">{log.createdAt.substring(0, 10)}</LogP>
-            </NameNtime>
-            <LogH2>{log.challengelog_contents}</LogH2>
-          </LogContent>
-        </LogCardContatainer>
-      ) : (
-        <Nodata />
-      )}
+      <LogCardContatainer background={log.img}>
+        <LogImgContainer>
+          <LogImg src={log.img} />
+        </LogImgContainer>
+        <LogContent>
+          <LogHashP> {log.challenge.name}</LogHashP>
+          <NameNtime>
+            <LogP>닉네임:{log.user.nickname}</LogP>
+            <LogP className="time">{log.createdAt.substring(0, 10)}</LogP>
+          </NameNtime>
+          <LogH2>{log.challengelog_contents}</LogH2>
+        </LogContent>
+      </LogCardContatainer>
     </>
   );
 };

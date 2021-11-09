@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import AddChallenge from "../AddChallenge/AddChallenge";
 import ChallengeItem from "../ChallengeItem/ChallengeItem";
 import { useSelector } from "react-redux";
