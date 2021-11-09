@@ -33,6 +33,8 @@ const Preview = ({
   const { challenge, contents } = logs;
   const { nickname } = userInfo;
 
+  const missionName = challenge && challenge.split(",");
+  console.log(missionName);
   //비디오 결과가 바뀔때 마다 결과 리셋 video ? setResults([])
 
   const classifyImg = () => {
@@ -68,7 +70,7 @@ const Preview = ({
                 </LogImgContainer>
                 <LogContent>
                   <LogHashP>
-                    # {challenge ? challenge : "챌린지를 선택하세요."}
+                    {missionName ? missionName[0] : "챌린지를 선택하세요."}
                   </LogHashP>
                   <NameNtime>
                     <LogP>닉네임:{nickname ? nickname : "nickname"}</LogP>

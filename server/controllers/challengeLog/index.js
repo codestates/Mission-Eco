@@ -11,6 +11,7 @@ module.exports = {
       });
       const challengeList = await challenge.findAll({
         attributes: ["id", "name"],
+        where: { upload: 1 },
       });
       res.status(200).send({ challengeLogList, challengeList });
     } catch (error) {

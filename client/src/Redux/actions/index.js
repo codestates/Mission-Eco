@@ -285,11 +285,11 @@ export const authSuccess = () => async (dispatch) => {
 // 클릭된 logId를 주고 myloglist에서 지우도록 서버에 요청
 export const deleteUserLog = (logId) => async (dispatch) => {
   await axios
-  .delete(`${process.env.REACT_APP_API_URL}/challenge-log/${logId}`)
-  .then((res) => {
-    if(res.status === 204) {
-      return;
-    }
-  })
-  .catch((err) => console.log(err));
-}
+    .delete(`${process.env.REACT_APP_API_URL}/challenge-log/${logId}`)
+    .then((res) => {
+      if (res.status === 204) {
+        return;
+      }
+    })
+    .catch((err) => console.log(err));
+};
