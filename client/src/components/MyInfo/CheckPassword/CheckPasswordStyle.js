@@ -4,7 +4,7 @@ import styled from "styled-components";
 import blob1 from "../../../imges/blob1.svg";
 
 export const CheckPasswordContainer = styled.div`
-  padding-top: 10em;
+  padding: 10em 0;
 
   @media screen and (max-width: 768px) {
   }
@@ -30,14 +30,18 @@ export const CheckPasswordWrap = styled.div`
   border: 3px solid gray;
   border-radius: 10px;
 
-  padding: 20px;
-  margin: 50px;
+  padding: 100px;
+  margin: 50px 300px 0 300px;
 `;
 
 // export const Icon = styled(Link);
 
 export const Title = styled.h1`
   padding: 0 0 1em 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const FormContainer = styled.div`
@@ -52,10 +56,13 @@ export const InputPassword = styled.input`
   text-align: center;
 `;
 
-export const ErrMsg = styled.small``;
+export const ErrMsg = styled.small`
+  padding: 20px;
+  text-align: center;
+`;
 
 export const SubmitBtn = styled.button`
-  margin: 5em 0 0 0;
+  /* margin: 2em 0 0 0; */
   padding: 10px;
   border: solid #5d8767;
   border-radius: 50px;
