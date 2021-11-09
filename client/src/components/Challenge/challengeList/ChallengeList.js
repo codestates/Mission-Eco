@@ -17,19 +17,17 @@ import {
 
 const ChallengeList = () => {
   const dispatch = useDispatch();
+  const challengeList = useSelector((state) => state.infoReducer.challengeList);
   const isLogin = useSelector((state) => state.infoReducer.isLogin);
   const userInfo = useSelector((state) => state.infoReducer.userInfo);
   const [listItems, setListItems] = useState([]);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [all, setAll] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
-  const challengeList = useSelector((state) => state.infoReducer.challengeList);
 
   useEffect(() => {
     setIsLoading(true);
     dispatch(getChallengeList()).then(() => setIsLoading(false));
-
-    //setImgData(...challengeList);
   }, [dispatch]);
 
   useEffect(() => {}, [challengeList]);
@@ -86,39 +84,45 @@ const ChallengeList = () => {
           <Button>미션후기작성</Button>
         </ChallengeSelect>
       </ChallengeSubbar>
-      <ChallengeWrapper>
-        {challengeList && all
-          ? challengeList.map((list, idx) => {
-              return (
-                <ChallengeListItem
-                  list={list}
-                  key={idx}
-                  userId={userInfo.id}
-                  isLogin={isLogin}
-                  setIsOpenModal={setIsOpenModal}
-                />
-              );
-            })
-          : listItems.map((list, idx) => {
-              return (
-                <ChallengeListItem
-                  list={list}
-                  key={idx}
-                  userId={userInfo.id}
-                  isLogin={isLogin}
-                  setIsOpenModal={setIsOpenModal}
-                />
-              );
-            })}
-        {isOpenModal ? (
-          <Modal
-            msg={"로그인이 필요합니다."}
-            msg2={"로그인"}
-            link={"/login"}
-            closeModalHandler={closeModalHandler}
-          />
-        ) : null}
-      </ChallengeWrapper>
+      {isLoading ? (
+        <ChallengeWrapper>
+          <LoadingIndicator />
+        </ChallengeWrapper>
+      ) : (
+        <ChallengeWrapper>
+          {challengeList && all
+            ? challengeList.map((list, idx) => {
+                return (
+                  <ChallengeListItem
+                    list={list}
+                    key={idx}
+                    userId={userInfo.id}
+                    isLogin={isLogin}
+                    setIsOpenModal={setIsOpenModal}
+                  />
+                );
+              })
+            : listItems.map((list, idx) => {
+                return (
+                  <ChallengeListItem
+                    list={list}
+                    key={idx}
+                    userId={userInfo.id}
+                    isLogin={isLogin}
+                    setIsOpenModal={setIsOpenModal}
+                  />
+                );
+              })}
+          {isOpenModal ? (
+            <Modal
+              msg={"로그인이 필요합니다."}
+              msg2={"로그인"}
+              link={"/login"}
+              closeModalHandler={closeModalHandler}
+            />
+          ) : null}
+        </ChallengeWrapper>
+      )}
     </ChallengeContiner>
   );
 };

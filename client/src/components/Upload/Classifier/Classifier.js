@@ -55,7 +55,7 @@ const Classifier = ({ imageModelURL }) => {
 
   const classifyImg = () => {
     setIsLoading(true);
-    console.log(isLoading, classifier, start);
+    //console.log(isLoading, classifier, start);
     if (classifier && start) {
       classifier
         .predict(videoRef.current, (err, classifiedResults) => {

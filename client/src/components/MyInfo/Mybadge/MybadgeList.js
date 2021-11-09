@@ -21,8 +21,9 @@ function MybadgeList() {
     
     // 유저가 획득한 뱃지들의 아이디만 축출
     const myBadgeIdList = myBadgeList.map(bg => bg.badge_id);
+    console.log(myBadgeIdList, 'myBadgeIdListmyBadgeIdList')
     
-    // 회원가입시 제공 뱃지는 기본값으로 저장 <==뱃지 아이디(11) 수정하기
+    // 회원가입시 제공 뱃지(나는야 에코새싹왕, 뱃지아이디 1)는 기본값으로 저장
     myBadgeIdList.push(1);
 
     useEffect(() => {

@@ -29,6 +29,14 @@ export const ChallengeLogWrapper = styled.div`
   }
 `;
 
+export const NodataWrapper = styled.div`
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const ChallengeLogH1 = styled.h1`
   margin-top: 150px;
   font-size: 2.5rem;

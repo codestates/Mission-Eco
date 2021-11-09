@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import Navbar from "../../components/Navbar/Navbar";
+import React, { useState, useEffect } from "react";
 import {
   H1,
   H2,
@@ -12,6 +11,7 @@ import {
   Container,
   Title,
   ListContainer,
+  ListBadgeContainer,
   ListItem,
 } from "./MypageStyle";
 import LikeList from "../../components/MyInfo/MypageLIke/LikeList/LikeList";
@@ -31,7 +31,7 @@ const Mypage = () => {
           {/* mypage-top-container ( 페이지 타이틀, 마이페이지 수정버튼 ) */}
           <MypageBtn>
             <BtnLink to="/checkpassword">
-              <LinkCheckPassword>&nbsp; 수정하기 ✍🏻</LinkCheckPassword>
+              <LinkCheckPassword>수정하기 ✍🏻</LinkCheckPassword>
             </BtnLink>
           </MypageBtn>
 
@@ -44,9 +44,9 @@ const Mypage = () => {
           {/* mypage-2nd-container ( 이 유저가 획득한 뱃지 이미지들 ) */}
           <Container>
             <H2>나의 에코뱃지</H2>
-            <ListContainer>
+            <ListBadgeContainer>
                <MybadgeList />
-            </ListContainer>
+            </ListBadgeContainer>
           </Container>
 
           {/* // * ================================================================================ */}

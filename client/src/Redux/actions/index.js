@@ -285,7 +285,7 @@ export const userSignin = (loginInfo) => async (dispatch) => {
   return data;
 };
 
-export const userSignout = () => async (dispatch) => {
+export const userLogout = () => async (dispatch) => {
   const data = await axios
     .post(`${process.env.REACT_APP_API_URL}/user/logout`, {
       withCredentials: true,
@@ -298,6 +298,22 @@ export const userSignout = () => async (dispatch) => {
   console.log(data);
   dispatch({ type: IS_LOGIN, payload: data });
 };
+
+export const userSignout = () => async (dispatch) => {
+  const data = await axios
+    .delete(`${process.env.REACT_APP_API_URL}/mypage/userinfo`, {
+      withCredentials: true,
+    })
+    .then((res) => {
+      console.log(res.status);
+      if (res.status === 204) {
+        return false;
+      }
+    })
+    .catch((err) => console.log(err));
+  dispatch({ type: IS_LOGIN, payload: data });
+};
+
 export const authSuccess = () => async (dispatch) => {
   const data = await axios
     .get(`${process.env.REACT_APP_API_URL}/mypage/auth`, {

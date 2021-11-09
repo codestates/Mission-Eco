@@ -7,16 +7,13 @@ export const MypageContainer = styled.div`
   //padding-top: 10em;
 
   @media screen and (max-width: 768px) {
-    //height: 1100px;
   }
 
   @media screen and (max-width: 480px) {
-    //height: 1300px;
   }
 
   background-image: url(${blob1});
   height: 100%;
-  //min-height: 1800px;
   background-position: center;
   background-size: cover;
   -webkit-background-size: cover;
@@ -32,10 +29,15 @@ export const MypageWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 1000px;
+  max-width: 1000px;
   margin: 0 auto;
 
   z-index: -1;
+  @media screen and (max-width: 768px) {
+  }
+  @media screen and (max-width: 480px) {
+    //max-width: 480px;
+  }
 `;
 
 export const H1 = styled.h1`
@@ -53,6 +55,7 @@ export const H1 = styled.h1`
 
 export const H2 = styled.h2`
   display: flex;
+  margin: 15px 10px;
 `;
 
 export const H3 = styled.h3``;
@@ -64,6 +67,7 @@ export const MypageBtn = styled.div`
   margin: 2em;
   @media screen and (max-width: 768px) {
     width: 600px;
+    justify-content: center;
   }
   @media screen and (max-width: 480px) {
     width: 300;
@@ -71,8 +75,6 @@ export const MypageBtn = styled.div`
 `;
 
 export const BtnLink = styled(Link)`
-  /* position: relative; */
-  /* float: right; */
   text-decoration: none;
 `;
 export const LinkCheckPassword = styled.div`
@@ -80,10 +82,10 @@ export const LinkCheckPassword = styled.div`
   border-radius: 50px;
   background: #5d8767;
   white-space: nowrap;
-  padding: 5px 20px;
+  padding: 5px 17px;
   color: #fff;
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 550;
   outline: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
@@ -93,8 +95,8 @@ export const LinkCheckPassword = styled.div`
     transition: all 0.2s ease-in-out;
     background: #fff;
     color: #5d8767;
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 550;
     border: solid #5d8767;
   }
 `;
@@ -107,6 +109,13 @@ export const Container = styled.div`
   border: 3px solid gray;
   border-radius: 10px;
   overflow: hidden;
+
+  @media screen and (max-width: 768px) {
+    padding: 0px;
+    // width: 90%;
+  }
+  @media screen and (max-width: 480px) {
+  }
 `;
 
 export const Title = styled.p`
@@ -116,20 +125,44 @@ export const Title = styled.p`
   }
 `;
 
-export const ListContainer = styled.ul`
-  /* background: brown; */
-  display: flex;
-  flex-direction: row;
-  padding: 20px;
-
+export const ListContainer = styled.div`
+  max-width: 1000px;
+  max-height: 350px;
+  overflow-y: auto;
+  //margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  grid-gap: 16px;
+  padding: 0 10px;
   @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    padding: 0;
   }
   @media screen and (max-width: 480px) {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
+  }
+`;
+
+export const ListBadgeContainer = styled.div`
+  max-width: 1000px;
+  max-height: 350px;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  grid-gap: 16px;
+  padding: 0 10px;
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    padding: 0;
+  }
+  @media screen and (max-width: 480px) {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
   }
 `;
 
 export const ListItem = styled.li`
-  /* background: midnightblue; */
   @media screen and (max-width: 768px) {
   }
   @media screen and (max-width: 480px) {
