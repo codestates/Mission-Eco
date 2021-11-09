@@ -7,6 +7,7 @@ import { validPassword } from "../../../utils/validation";
 import axios from "axios";
 import {
   MypageEditContainer,
+  TitleWrap,
   MypageEditWrap,
   TitleH1,
   Wrapper,
@@ -15,6 +16,7 @@ import {
   Span,
   FormLabel,
   DelUserBtnWrapper,
+  BtnContainer,
   Btn,
   DelUserBtn,
 } from "./MypageEditStyle";
@@ -175,7 +177,9 @@ const MypageEdit = () => {
     <>
       {/* // * Accept Current Change */}
       <MypageEditContainer>
-        <TitleH1>나의 정보 수정</TitleH1>
+        <TitleWrap>
+          <TitleH1>나의 정보 수정</TitleH1>
+        </TitleWrap>
         <MypageEditWrap>
           <Wrapper>
             <TitleH2>닉네임 변경하기</TitleH2>
@@ -186,12 +190,14 @@ const MypageEdit = () => {
               onChange={handleNickValue("newNickname")} // index.js에 nickname으로 들어가 있어서 이렇게적었는데 위의 state명 nick을 적어야 하나?
             ></FormInput>
             <Span>{errMsg}</Span>
-            <Btn type="submit" onClick={checkNickRequestHandler}>
-              닉네임 중복확인
-            </Btn>
-            <Btn type="submit" onClick={changeNickRequestHandler}>
-              닉네임 변경
-            </Btn>
+            <BtnContainer>
+              <Btn type="submit" onClick={checkNickRequestHandler}>
+                닉네임 중복확인
+              </Btn>
+              <Btn type="submit" onClick={changeNickRequestHandler}>
+                닉네임 변경
+              </Btn>
+            </BtnContainer>
           </Wrapper>
 
           <Wrapper>
