@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import {
   H1,
@@ -16,6 +16,7 @@ import {
 } from "./MypageStyle";
 import LikeList from "../../components/MyInfo/MypageLIke/LikeList/LikeList";
 import MyLogList from "../../components/MyInfo/MypageLIke/MyLogList/MyLogList";
+import MybadgeList from "../../components/MyInfo/Mybadge/MybadgeList";
 // import blob1 from "../../imges/blob1.svg";
 import Footer from "../../components/Footer/Footer";
 
@@ -44,7 +45,7 @@ const Mypage = () => {
           <Container>
             <H2>나의 에코뱃지</H2>
             <ListContainer>
-              <ListItem>뱃지 리스트 들어올 예정</ListItem>
+               <MybadgeList />
             </ListContainer>
           </Container>
 
