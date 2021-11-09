@@ -18,19 +18,22 @@ function MybadgeList() {
     const [ myBadgeList, setMyBadgeList ] = useState([]);
     
     // 유저가 획득한 뱃지들의 아이디만 축출
-    const myBadgeIds = myBadgeList.map(bg => bg.badge_id);
+    const myBadgeIdList = myBadgeList.map(bg => bg.badge_id);
+    
+    // 회원가입시 제공 뱃지는 기본값으로 저장 <==뱃지 아이디(11) 수정하기
+    myBadgeIdList.push(11);
 
     useEffect(() => {
       // 전체 뱃지리스트 저장
       dispatch(getAllBadgeList()).then((res) => setBadgeLists(res));
-
+      
       // 현재 유저의 뱃지리트스트 저장
       dispatch(getMyBadgeList(userId)).then((res) => setMyBadgeList(res));
     }, []);
 
     return (
         <BadgeWrapper>
-          {badgeLists && badgeLists.map((badge) => <Badge key={badge.id} badge={badge} myBadgeIds={myBadgeIds}/>)}
+          {badgeLists && badgeLists.map((badge) => <Badge key={badge.id} badgeList={badge} myBadgeIdList={myBadgeIdList}/>)}
         </BadgeWrapper>
     )
 };
