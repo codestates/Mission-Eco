@@ -38,23 +38,29 @@ export const ChallengeWrapper = styled.div`
 
 export const ChallengeSubbar = styled.div`
   display: flex;
-  height: 50px;
+  height: 8em;
   width: 900px;
-  // flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  //justify-content: center;
   align-items: center;
-  padding: 1px 130px;
-  border-top: 1px solid #010101;
-  border-bottom: 1px solid #010101;
-  //background: #d8e3e7;
+  padding: 1px 30px;
+  position: relative;
+  //  border-top: 1px solid #99a799;
+  // border-bottom: 1px solid #99a799;
+  border-radius: 10px;
+  //border: 1px solid #234b68;
+  // background: #fff;
   margin-bottom: 3em;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
   @media screen and (max-width: 768px) {
-    padding: 1px 50px;
-    height: 60px;
+    padding: 1px 5px;
+
     max-width: 1100px;
+    width: 700px;
   }
   @media screen and (max-width: 480px) {
-    padding: 0;
+    padding: 0 10px 0 25px;
     height: 70px;
     width: 370px;
   }
@@ -106,5 +112,16 @@ export const Button = styled.button`
   cursor: pointer;
   @media screen and (max-width: 480px) {
     font-size: 12px;
+  }
+`;
+
+export const ChallengeP = styled.p`
+  font-size: 1rem;
+  text-align: center;
+  color: black;
+
+  &.subTitle {
+    font-size: 1.2rem;
+    margin-bottom: 1.4em;
   }
 `;
