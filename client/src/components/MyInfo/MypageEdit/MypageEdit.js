@@ -24,9 +24,6 @@ axios.defaults.withCredentials = true;
 const MypageEdit = () => {
   // * Accept Current Change
   const state = useSelector((state) => state.infoReducer.userInfo);
-<<<<<<< HEAD
-  //console.log(isLogin, "edit");
-=======
   console.log(state);
   // *
   // *Accept Incoming Change
@@ -34,7 +31,6 @@ const MypageEdit = () => {
   // const state = useSelector((state) => state.infoReducer.userInfo);
   // console.log(isLogin, "edit");
   // *
->>>>>>> e92b1574af389a6cd3080fb38ff60d7f4ae733e7
   const dispatch = useDispatch();
   const history = useHistory();
 
