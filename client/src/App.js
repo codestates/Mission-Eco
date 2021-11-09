@@ -11,6 +11,7 @@ import Challenge from "./pages/challenge/Challenge";
 import ChallengeLog from "./pages/challengeLog/ChallengeLog";
 import ChallengeUpload from "./pages/challengeUpload/ChallengeUpload";
 import CheckPassword from "./components/MyInfo/CheckPassword/CheckPassword";
+import MypageEdit from "./components/MyInfo/MypageEdit/MypageEdit";
 import Sidebar from "./components/Sidebar/Sidebar";
 import AdminLogin from "./components/Admin/AdminLogin/AdminLogin";
 import AdminWrapper from "./components/Admin/AdminEdit/AdminWrapper/AdminWrapper";
@@ -63,6 +64,15 @@ function App() {
           <Route exact path="/checkpassword">
             <CheckPassword />
           </Route>
+          <Route exact path="/mypage-edit">
+            <MypageEdit />
+          </Route>
+          {/*<Route exact path="/admin">
+          //관리자페이지
+          <Navbar />
+          <AdminWrapper />
+          <footer/>
+        </Route> */}
         </>
       </Switch>
       <Footer />
