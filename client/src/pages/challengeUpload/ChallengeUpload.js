@@ -1,7 +1,8 @@
 /*eslint-disable */
 import React, { useEffect, useState } from "react";
 import { upload } from "../../utils/imgUploader";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
 import axios from "axios";
 import {
   ChallengeUploadCT,
@@ -18,6 +19,7 @@ import Modal from "../../components/Modal/Modal";
 
 function ChallengeUpload() {
   const userInfo = useSelector((state) => state.infoReducer.userInfo);
+  const dispatch = useDispatch();
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploadFile, setUploadFile] = useState(null);
   const [openModal, setOpenModal] = useState(false);
@@ -89,8 +91,29 @@ function ChallengeUpload() {
         setResults([]);
         resetLog();
         setIsUpload(false);
+        requsetBadgeHandler();
       });
   };
+
+  const requsetBadgeHandler = () => {
+    axios
+      .post(
+        `${process.env.REACT_APP_API_URL}/badge`,
+        {
+          challengeId,
+        },
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        if (res.status === 201) {
+          return;
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <ChallengeUploadCT>
       <ServicesContiner>
