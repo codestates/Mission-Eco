@@ -46,6 +46,7 @@ export const ServicesCard = styled.div`
   padding: 10px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
+  position: relative;
 
   &:hover {
     transform: scale(1.02);
@@ -59,6 +60,17 @@ export const ServicesCard = styled.div`
   @media screen and (max-width: 480px) {
     width: 340px;
     height: 400px;
+  }
+  
+  > button {
+    position: absolute;
+    width:24px;
+    height: 24px;
+    top: 1.2rem;
+    right: 1.2rem;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
   }
 `;
 

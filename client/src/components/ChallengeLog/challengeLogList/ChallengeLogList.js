@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ChallengeLogItem from "../ChallengeLogItem/ChallengeLogItem";
 import { getChallengeLogList } from "../../../Redux/actions";
-import blobMenu from "../../../imges/blobMenu.svg";
+
 import {
   ChallengeLogContiner,
   ChallengeLogH1,
@@ -12,11 +12,13 @@ import {
   ChallengeSubbar,
   Select,
   Button,
+  ChallengeLink,
   DropButton,
   Dropdowncontent,
   List,
   Img,
 } from "./ChallengeLogListStyle";
+import Nodata from "../../Nodata/Nodata";
 
 require("dotenv").config();
 
@@ -92,22 +94,28 @@ const ChallengeLogList = () => {
         </Dropdown>
 
         <Select>
-          <Button>
+          <ChallengeLink to="/upload">
             <ChallengeP>미션후기작성</ChallengeP>
-          </Button>
+          </ChallengeLink>
         </Select>
       </ChallengeSubbar>
-      <ChallengeLogWrapper>
-        {!isActive
-          ? challengeLogList &&
-            challengeLogList.map((log, idx) => {
-              return <ChallengeLogItem log={log} key={idx} />;
-            })
-          : listLog &&
-            listLog.map((log, idx) => {
-              return <ChallengeLogItem log={log} key={idx} />;
-            })}
-      </ChallengeLogWrapper>
+      {nodata ? (
+        <ChallengeLogWrapper>
+          <Nodata />
+        </ChallengeLogWrapper>
+      ) : (
+        <ChallengeLogWrapper>
+          {!isActive
+            ? challengeLogList &&
+              challengeLogList.map((log, idx) => {
+                return <ChallengeLogItem log={log} key={idx} />;
+              })
+            : listLog &&
+              listLog.map((log, idx) => {
+                return <ChallengeLogItem log={log} key={idx} />;
+              })}
+        </ChallengeLogWrapper>
+      )}
     </ChallengeLogContiner>
   );
 };

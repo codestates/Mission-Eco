@@ -10,7 +10,7 @@ import {
   DeleteBtn,
 } from "./LogItemStyle";
 
-const LogItem = ({ log, deleteHandler }) => {
+const LogItem = ({ log, openModalHandler }) => {
   const { id, img, challengelog_contents, challenge, user, createdAt } = log;
   const userNickname = user.nickname;
   const challengeName = challenge.name;
@@ -18,7 +18,7 @@ const LogItem = ({ log, deleteHandler }) => {
   return (
     <ServicesCard>
       <DeleteBtn>
-        <Delete onClick={() => deleteHandler(id)} />
+        <Delete onClick={() => openModalHandler(id)} />
       </DeleteBtn>
       <ServicesIcon background={img} />
       <ServicesP>{challengeName}</ServicesP>

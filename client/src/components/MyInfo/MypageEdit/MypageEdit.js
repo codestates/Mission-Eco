@@ -19,8 +19,15 @@ import {
 axios.defaults.withCredentials = true;
 
 const MypageEdit = () => {
+  // * Accept Current Change
   const state = useSelector((state) => state.infoReducer.userInfo);
   console.log(state);
+  // *
+  // *Accept Incoming Change
+  // const isLogin = useSelector((state) => state.infoReducer.isLogin);
+  // const state = useSelector((state) => state.infoReducer.userInfo);
+  // console.log(isLogin, "edit");
+  // *
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -174,6 +181,7 @@ const MypageEdit = () => {
 
   return (
     <>
+      {/* // * Accept Current Change */}
       <MypageEditContainer>
         <MypageEditWrap>
           <TitleH1>마이페이지</TitleH1>
@@ -224,6 +232,52 @@ const MypageEdit = () => {
           <Btn onClick={userDeleteRequestHandler}>회원탈퇴</Btn>
         </MypageEditWrap>
       </MypageEditContainer>
+      // * // * Accept Incoming Change
+      {/* 
+      <Container>
+        <TitleH1>마이페이지</TitleH1>
+
+        <Wrapper>
+          <TitleH3>닉네임 변경하기</TitleH3>
+          <Span>새 닉네임</Span>
+          <Input
+            type="text"
+            placeholder="새 닉네임을 입력하세요."
+            onChange={handleNickValue("newNickname")} // index.js에 nickname으로 들어가 있어서 이렇게적었는데 위의 state명 nick을 적어야 하나?
+          ></Input>
+          <Btn type="submit" onClick={checkNickRequestHandler}>
+            닉네임 중복확인
+          </Btn>
+
+          <Btn type="submit" onClick={changeNickRequestHandler}>
+            닉네임 변경
+          </Btn>
+
+          <Span>{errMsg}</Span>
+        </Wrapper>
+
+        <Wrapper>
+          <TitleH3>비밀번호 변경하기</TitleH3>
+          <Span>비밀번호</Span>
+          <Input
+            type="password"
+            placeholder="비밀번호를 입력하세요."
+            onChange={handlePwValue("password1")} // handleInputValue에 ("password") 하면 패스워드만 골라서 쓸 수 있음?
+          />
+          <Span>비밀번호 확인</Span>
+          <Input
+            type="password"
+            placeholder="비밀번호를 한 번 더 입력하세요."
+            onChange={handlePwValue("password2")}
+          />
+          <Span>{pwErrMsg}</Span>
+          <Btn type="submit" onClick={changePwRequestHandler}>
+            비밀번호 변경
+          </Btn>
+        </Wrapper>
+        <Btn onClick={userDeleteRequestHandler}>회원탈퇴</Btn>
+      </Container> */}
+      //*
     </>
   );
 };

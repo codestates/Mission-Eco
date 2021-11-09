@@ -78,7 +78,7 @@ function ChallengeUpload() {
         {
           userId: userInfo.id,
           challengeId: 1,
-          img: `${uploaded.url}`,
+          img: `${uploaded.secure_url}`,
           contents: `${logs.contents}`,
         },
         { "Content-Type": "multipart/form-data" }

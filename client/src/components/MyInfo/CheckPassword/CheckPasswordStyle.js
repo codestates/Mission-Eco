@@ -31,7 +31,7 @@ export const CheckPasswordWrap = styled.div`
   border-radius: 10px;
 
   padding: 20px;
-  margin: 5px;
+  margin: 50px;
 `;
 
 // export const Icon = styled(Link);
