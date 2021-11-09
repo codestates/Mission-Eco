@@ -164,6 +164,14 @@ module.exports = {
         level: 3,
         upload: true,
       },
+      {
+        img: "../img/challenge/020.png",
+        name: "미션 1등급가전",
+        contents:
+          "에너지소비효율 1등급 제품은 다른 제품에 비해 에너지절약 효과가 월등하여 상당한 에너지 절약 효과를 볼 수 있습니다. 에너지 소비효율을 확인해보세요.",
+        level: 3,
+        upload: true,
+      },
     ]);
   },
 
