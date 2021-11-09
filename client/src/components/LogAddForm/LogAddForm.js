@@ -37,15 +37,16 @@ const LogAddForm = ({
   const [modalMsg, setModalMsg] = useState("");
   const { challenge, contents } = logs;
   const { nickname } = userInfo;
-  console.log(logList);
+
   useEffect(() => {}, [logs, openModal, modalMsg]);
 
   const onChange = (event) => {
     if (event.currentTarget === null) {
       return;
     }
-    event.preventDefault();
+    if (challengeList) event.preventDefault();
     addLog({ ...logs, [event.currentTarget.name]: event.currentTarget.value });
+
     setSelectMission(true);
   };
 
@@ -106,7 +107,11 @@ const LogAddForm = ({
       >
         {challengeList &&
           challengeList.map((mission) => {
-            return <option value={mission.name}>{mission.name}</option>;
+            return (
+              <option value={[mission.name, mission.id]} key={mission.id}>
+                {mission.name}
+              </option>
+            );
           })}
       </Select>
       <Input

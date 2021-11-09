@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { upload } from "../../utils/imgUploader";
 import { useSelector, useDispatch } from "react-redux";
-
+import { getChallengeLogList } from "../../Redux/actions";
 import axios from "axios";
 import {
   ChallengeUploadCT,
@@ -26,10 +26,13 @@ function ChallengeUpload() {
   const [isVideo, setIsVideo] = useState(false);
   const [results, setResults] = useState([]);
   const [isUpload, setIsUpload] = useState(false);
+  const [missionId, setMissionId] = useState("");
   const [img, setImg] = useState("");
   const [logs, setLogs] = useState({});
 
-  useEffect(() => {}, [isVideo, results]);
+  useEffect(() => {
+    dispatch(getChallengeLogList());
+  }, [isVideo, results]);
 
   const closeModalHandler = () => {
     setOpenModal(!openModal);
@@ -69,6 +72,9 @@ function ChallengeUpload() {
   };
 
   const fileUploadHandler = async () => {
+    const missionName = log.challenge.split(",");
+    setMissionId(missionName[1]);
+    //console.log("dddd", missionName[1]);
     closeModalHandler();
     setIsUpload(true);
     const uploaded = await upload(uploadFile);
@@ -79,7 +85,7 @@ function ChallengeUpload() {
         `${process.env.REACT_APP_API_URL}/challenge-log`,
         {
           userId: userInfo.id,
-          challengeId: 1,
+          challengeId: missionId,
           img: `${uploaded.secure_url}`,
           contents: `${logs.contents}`,
         },
@@ -100,7 +106,7 @@ function ChallengeUpload() {
       .post(
         `${process.env.REACT_APP_API_URL}/badge`,
         {
-          challengeId,
+          missionId,
         },
         {
           withCredentials: true,
