@@ -28,7 +28,7 @@ const LogAddForm = ({
   const isLogin = useSelector((state) => state.infoReducer.isLogin);
   //const openModal = useSelector((state) => state.infoReducer.isOpenModal);
   const logList = useSelector((state) => state.infoReducer.challengeLogList);
-  const { challengeLogList } = logList;
+  const { challengeList } = logList;
   const userInfo = useSelector((state) => state.infoReducer.userInfo);
   const [selectMission, setSelectMission] = useState(false);
   const [addContents, setAddContents] = useState(false);
@@ -44,8 +44,9 @@ const LogAddForm = ({
     if (event.currentTarget === null) {
       return;
     }
-    event.preventDefault();
+    if (challengeList) event.preventDefault();
     addLog({ ...logs, [event.currentTarget.name]: event.currentTarget.value });
+
     setSelectMission(true);
   };
 
@@ -104,9 +105,13 @@ const LogAddForm = ({
         value={challenge || "challenge"}
         onChange={onChange}
       >
-        {challengeLogList &&
-          challengeLogList.map((mission) => {
-            return <option value="선택">{mission.name}</option>;
+        {challengeList &&
+          challengeList.map((mission) => {
+            return (
+              <option value={[mission.name, mission.id]} key={mission.id}>
+                {mission.name}
+              </option>
+            );
           })}
       </Select>
       <Input
