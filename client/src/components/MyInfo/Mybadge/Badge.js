@@ -5,7 +5,6 @@ import {
 
 function Badge({ badgeList, myBadgeIdList }) {
   const { id, name, img } = badgeList;
-  //console.log(' 뱃지 페이지: badgeList img url', img)
   
   // 내가 가진 뱃지라면 true 아니면 false
   const isMyBadge = myBadgeIdList.includes(id);
