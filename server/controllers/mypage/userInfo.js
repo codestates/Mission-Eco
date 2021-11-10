@@ -1,4 +1,9 @@
-const { user } = require("../../models");
+const {
+  user,
+  challengelog,
+  challengelike,
+  userbadge,
+} = require("../../models");
 const { isAuthorized } = require("../tokenFunctions/index");
 const bcrypt = require("bcrypt");
 
@@ -68,6 +73,17 @@ module.exports = {
         res.sendStatus(400);
       } else {
         const { id } = accessTokenData;
+
+        await challengelog.destroy({
+          where: { user_id: id },
+        });
+        await challengelike.destroy({
+          where: { user_id: id },
+        });
+        await userbadge.destroy({
+          where: { user_id: id },
+        });
+
         const deleteUser = await user.findByPk(id);
         if (!deleteUser) {
           res.sendStatus(404);

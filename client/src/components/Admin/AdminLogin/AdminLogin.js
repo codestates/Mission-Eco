@@ -16,6 +16,7 @@ import {
   GeneralLogin,
   Text,
 } from "./AdminLoginStyle";
+import Modal from "../../Modal/Modal";
 
 axios.defaults.withCredentials = true;
 
@@ -30,11 +31,14 @@ function Login() {
   });
 
   const [errMsg, setErrMsg] = useState("");
-
+  const [openModal, setOpenModal] = useState(false);
   //useState(() => {}, []);
 
   const handleInputValue = (key) => (e) => {
     SetLoginInfo({ ...loginInfo, [key]: e.target.value });
+  };
+  const closeModalHandler = () => {
+    setOpenModal(!openModal);
   };
 
   const handleResponseSuccess = () => {
@@ -56,7 +60,7 @@ function Login() {
     } else {
       dispatch(adminSignin(loginInfo)).then((res) => {
         if (!res) {
-          setErrMsg("관리자 권한이 필요한 페이지입니다.");
+          setOpenModal(!openModal);
         } else {
           handleResponseSuccess();
         }
@@ -66,31 +70,42 @@ function Login() {
 
   return (
     <Container>
-      {/* <FormH1>로그인</FormH1> */}
-      <FormWrap>
-        <Icon to="/"></Icon>
-        <FormContent>
-          <Form onSubmit={(e) => e.preventDefault()}>
-            <GeneralLogin>
-              <div>
-                <FormLabel htmlFor="for">이메일</FormLabel>
-                <FormInput type="email" onChange={handleInputValue("email")} />
-              </div>
-              <div>
-                <FormLabel htmlFor="for">비밀번호</FormLabel>
-                <FormInput
-                  type="password"
-                  onChange={handleInputValue("password")}
-                />
-              </div>
-              <Text>{errMsg}</Text>
-              <FormButton type="submit" onClick={loginRequestHandler}>
-                관리자 로그인
-              </FormButton>
-            </GeneralLogin>
-          </Form>
-        </FormContent>
-      </FormWrap>
+      {openModal ? (
+        <Modal
+          msg="관리자 권한이 필요한 페이지입니다."
+          msg2="user 로그인"
+          closeModalHandler={closeModalHandler}
+          link="/login"
+        />
+      ) : (
+        <FormWrap>
+          <Icon to="/"></Icon>
+          <FormContent>
+            <Form onSubmit={(e) => e.preventDefault()}>
+              <GeneralLogin>
+                <div>
+                  <FormLabel htmlFor="for">이메일</FormLabel>
+                  <FormInput
+                    type="email"
+                    onChange={handleInputValue("email")}
+                  />
+                </div>
+                <div>
+                  <FormLabel htmlFor="for">비밀번호</FormLabel>
+                  <FormInput
+                    type="password"
+                    onChange={handleInputValue("password")}
+                  />
+                </div>
+                <Text>{errMsg}</Text>
+                <FormButton type="submit" onClick={loginRequestHandler}>
+                  관리자 로그인
+                </FormButton>
+              </GeneralLogin>
+            </Form>
+          </FormContent>
+        </FormWrap>
+      )}
     </Container>
   );
 }
