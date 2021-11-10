@@ -137,3 +137,7 @@ export const UploadBtn = styled.button`
     opacity: 0.8;
   }
 `;
+
+export const UploadH2 = styled.h2`
+  margin-bottom: 1em;
+`;

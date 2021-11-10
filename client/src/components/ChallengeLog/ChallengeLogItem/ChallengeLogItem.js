@@ -1,6 +1,4 @@
 import React from "react";
-import { useEffect } from "react";
-import Nodata from "../../Nodata/Nodata";
 import {
   LogCardContatainer,
   LogH2,
@@ -13,12 +11,9 @@ import {
 } from "./ChallengeLogStyle";
 
 const ChallengeListItem = ({ log, nodata }) => {
-  // const state = useSelector((state) => state.infoReducer);
-  // console.log("log확인", log);
-
   return (
     <>
-      <LogCardContatainer background={log.img}>
+      <LogCardContatainer>
         <LogImgContainer>
           <LogImg src={log.img} />
         </LogImgContainer>

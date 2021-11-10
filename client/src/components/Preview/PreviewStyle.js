@@ -10,12 +10,11 @@ export const PreviewCT = styled.div`
   //flex-direction: column;
   @media screen and (max-width: 768px) {
     border: none;
-    width: 27em;
-    height: 24em;
+    //width: 27em;
+    //height: 24em;
   }
   @media screen and (max-width: 480px) {
-    width: 270px;
-    height: 300px;
+    margin: 0.5em;
   }
 `;
 export const Title = styled.h3`
@@ -54,13 +53,18 @@ export const LogCardContatainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  border-radius: 0px;
-  width: 23em;
-  height: 27em;
-  padding: 10px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  transition: all 0.2s ease-in-out;
 
+  //align-items: center;
+  border-radius: 6px;
+  //width: 280px;
+  max-height: 400px; //왜 주석을 풀면 이미지크기가 달라질까?
+  padding-bottom: 14px;
+  overflow: hidden;
+  //box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  transition: all 0.2s ease-in-out;
   &:hover {
     transform: scale(1.02);
     transition: all 0.2s ease-in-out;
@@ -68,27 +72,31 @@ export const LogCardContatainer = styled.div`
   }
   @media screen and (max-width: 768px) {
     width: 340px;
-    height: 450px;
+    height: 420px;
   }
   @media screen and (max-width: 480px) {
-    width: 280px;
-    height: 400px;
+    width: 320px;
+    height: 460px;
   }
 `;
 
 export const LogImgContainer = styled.div`
-  max-width: 26.1rem;
-  height: 290px;
-  margin-bottom: 15px;
-  border: 1px solid #d8d8d8;
-  background: ${(props) => props.background || "white"};
+  width: 340px;
+  min-height: 280px;
+  margin-bottom: 1em;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 
   @media screen and (max-width: 768px) {
     height: 300px;
-    width: 320px;
+    width: 340px;
   }
   @media screen and (max-width: 480px) {
-    width: 260px;
+    width: auto;
     height: 300px;
   }
 `;
@@ -99,9 +107,9 @@ export const LogImg = styled.img`
   background: #fff;
 `;
 
-export const ServicesH2 = styled.span`
+export const ServicesS = styled.span`
   font-size: 1rem;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
 `;
 
 export const ServicesP = styled.p`
@@ -115,12 +123,34 @@ export const Button = styled.button`
   flex-direction: column;
 `;
 
+export const ResultBox = styled.div`
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  @media screen and (max-width: 480px) {
+    flex-direction: column;
+    justify-content: left;
+    font-size: 16px;
+    text-align: left;
+    font-weight: 500;
+  }
+`;
+
 export const List = styled.ul`
   margin-top: 20px;
+
+  //display: flex;
+  text-align: left;
+  @media screen and (max-width: 480px) {
+    font-size: 16px;
+    text-align: left;
+    font-weight: 500;
+  }
 `;
 
 export const Item = styled.li`
   list-style-type: none;
+  margin-top: 0.6rem;
 `;
 
 export const Img = styled.img`

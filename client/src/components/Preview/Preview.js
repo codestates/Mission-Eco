@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import ml5 from "ml5";
 
@@ -13,7 +13,8 @@ import {
   LogCardContatainer,
   LogImgContainer,
   LogImg,
-  Button,
+  ResultBox,
+  ServicesS,
   List,
   Item,
   Img,
@@ -34,7 +35,7 @@ const Preview = ({
   const { nickname } = userInfo;
 
   const missionName = challenge && challenge.split(",");
-  console.log(missionName);
+
   //비디오 결과가 바뀔때 마다 결과 리셋 video ? setResults([])
 
   const classifyImg = () => {
@@ -55,14 +56,18 @@ const Preview = ({
         setLoading(false);
       });
   };
-  console.log(results[0]);
+  console.log(results);
   return (
-    <PreviewCT onSubmit={(e) => e.preventDefault()}>
+    <PreviewCT>
       <Container>
         {!selectedFile ? (
           <LogCardContatainer>
             {isVideo ? (
-              <Classifier imageModelURL={imageModelURL} />
+              <Classifier
+                imageModelURL={imageModelURL}
+                results={results}
+                setResults={setResults}
+              />
             ) : (
               <>
                 <LogImgContainer>
@@ -92,7 +97,9 @@ const Preview = ({
               />
             </LogImgContainer>
             <LogContent>
-              <LogHashP># {challenge}</LogHashP>
+              <LogHashP>
+                {missionName ? missionName[0] : "챌린지를 선택하세요."}
+              </LogHashP>
               <NameNtime>
                 <LogP>닉네임:{nickname}</LogP>
                 <LogP className="time">time</LogP>
@@ -107,29 +114,22 @@ const Preview = ({
         ) : (
           <List>
             {results.length !== 0 && (
-              <>
+              <ResultBox>
+                <ServicesS>이미지 예측결과</ServicesS>
                 <Item>
-                  {`예측결과 ${results[0].label}:
-                    ${Math.floor(results[0].confidence * 100)}%,
-                    ${results[1].label}:
-                    ${Math.floor(results[1].confidence * 100)}%,
-                    ${results[2].label}:
-                    ${Math.floor(results[2].confidence * 100)}`}
-                  %
+                  1.{results[0].label}
+                  {Math.floor(results[0].confidence * 100)}%
                 </Item>
-              </>
+                <Item>
+                  2.{results[1].label}
+                  {Math.floor(results[1].confidence * 100)}%
+                </Item>
+                <Item>
+                  3.{results[2].label}
+                  {Math.floor(results[2].confidence * 100)}%
+                </Item>
+              </ResultBox>
             )}
-            {/*results.length &&
-              results.map((result, index) => {
-                const { label, confidence } = result;
-                return (
-                  <Item key={index}>{`${
-                    index + 1
-                  }. Predictation : ${label} , ${Math.floor(
-                    confidence * 100
-                  )}%`}</Item>
-                );
-              })*/}
           </List>
         )}
       </Container>

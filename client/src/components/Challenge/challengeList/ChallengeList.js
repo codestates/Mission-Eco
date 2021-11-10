@@ -15,6 +15,7 @@ import {
   ChallengeSubbar,
   ChallengeSelect,
   Button,
+  ChallengeLink,
 } from "./ChallengeListStyle";
 
 const ChallengeList = () => {
@@ -36,18 +37,19 @@ const ChallengeList = () => {
     return () => dispatch(getChallengeList()).then(() => setIsLoading(false));
   }, [dispatch]);
 
-  useEffect(() => {}, [challengeList]);
+  useEffect(() => {
+    setResult(challengeList.slice(0, 6));
+    return () => setResult(challengeList.slice(0, 6));
+  }, [challengeList]);
 
   const [isFetch, setIsFetch] = UseScroll(requestChallengeList);
 
   function requestChallengeList() {
-    setTimeout(() => {
-      setMissionList(missionList + 6);
-      setResult(
-        result.concat(challengeList.slice(missionList + 6, missionList + 12))
-      );
-      setIsFetch(false);
-    }, 2000);
+    setMissionList(missionList + 6);
+    setResult(
+      result.concat(challengeList.slice(missionList + 6, missionList + 12))
+    );
+    setIsFetch(false);
   }
 
   const closeModalHandler = () => {
@@ -99,8 +101,10 @@ const ChallengeList = () => {
               Level 3
             </Button>
           </ChallengeSelect>
-          <ChallengeSelect>
-            <Button>미션후기작성</Button>
+          <ChallengeSelect className="upload">
+            <ChallengeLink to="/upload">
+              <ChallengeP>미션후기작성</ChallengeP>
+            </ChallengeLink>
           </ChallengeSelect>
         </ChallengeSubbar>
         {isLoading ? (
@@ -143,11 +147,8 @@ const ChallengeList = () => {
             ) : null}
           </ChallengeWrapper>
         )}
-        {isFetch
-          ? requestChallengeList()
-          : null && "Fetching more list items..."}
+        {isFetch ? requestChallengeList() : null}
       </ChallengeContiner>
-
       <ScrollTopBtn />
     </>
   );
