@@ -9,14 +9,16 @@ export const Form = styled.form`
 
   margin: 2em;
   @media screen and (max-width: 768px) {
-    margin-top: 12em;
-    width: 27em;
-    height: 18em;
+    margin-top: 1em;
+
+    width: 27.2em;
+    height: 360px;
   }
   @media screen and (max-width: 480px) {
-    margin-top: 16em;
-    width: 270px;
-    height: 300px;
+    margin-top: 1em;
+    margin: 0.5em;
+    width: 20.2em;
+    height: 400px;
   }
 `;
 export const Input = styled.input`
@@ -37,7 +39,7 @@ export const Select = styled.select`
   padding: 0.5em;
   border-bottom: 1px solid #234b68;
   //border-right: 1px solid black;
-  background: white;
+  background: #fff;
   opacity: 80%;
   //flex: 1 1 30%;
 `;
@@ -68,7 +70,8 @@ export const ClickImg = styled.img`
 `;
 
 export const Button = styled.button`
-  font-size: 0.8rem;
+  font-size: 1rem;
+  font-weight: 500;
   width: 100%;
   border: 0;
   padding: 0.5em;
@@ -80,7 +83,7 @@ export const Button = styled.button`
   :hover {
     background: #ffa928;
     color: #010606;
-    font-size: 14px;
+    font-size: 18px;
     outline: none;
   }
 `;

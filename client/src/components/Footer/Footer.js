@@ -1,5 +1,4 @@
 import React from "react";
-import { Route } from "react-router-dom";
 import {
   FooterContainer,
   FooterWrap,
@@ -49,7 +48,6 @@ const Footer = () => {
           <AdminLogin to="/admin-login">관리자 로그인</AdminLogin>
           <FooterItem>
             <a target="_blank" href="https://github.com/codestates/Mission-Eco">
-              {/* <img src="../../imges/github-logo-32px.png" alt="Our Github" /> */}
               <i className="fab fa-github-square fa-2x">Mission-Eco</i>
             </a>
           </FooterItem>

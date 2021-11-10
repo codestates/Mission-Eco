@@ -12,3 +12,8 @@ export const Contents = styled.div`
   width: 330px;
   font-size: 20px;
 `;
+
+export const NodataWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;

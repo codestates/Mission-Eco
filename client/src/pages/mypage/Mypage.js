@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import {
   H1,
   H2,
-  H3,
   MypageWrapper,
   MypageBtn,
   BtnLink,
@@ -13,24 +12,22 @@ import {
   Title,
   ListContainer,
   ListBadgeContainer,
-  ListItem,
 } from "./MypageStyle";
 import LikeList from "../../components/MyInfo/MypageLIke/LikeList/LikeList";
 import MyLogList from "../../components/MyInfo/MypageLIke/MyLogList/MyLogList";
 import MybadgeList from "../../components/MyInfo/Mybadge/MybadgeList";
 // import blob1 from "../../imges/blob1.svg";
-import Footer from "../../components/Footer/Footer";
 
 const Mypage = () => {
   useEffect(() => {}, []);
 
   const nickName = useSelector((state) => state.infoReducer.userInfo.nickname);
   // 뱃지 갯수 관리 상태
-  const [ myBadgeCount, setMyBadgeCount ] = useState(0);
+  const [myBadgeCount, setMyBadgeCount] = useState(0);
 
   const handleMyBadgeCount = (c) => {
-    setMyBadgeCount(c)
-  }
+    setMyBadgeCount(c);
+  };
 
   return (
     <>
@@ -54,7 +51,7 @@ const Mypage = () => {
           <Container>
             <H2>나의 에코뱃지</H2>
             <ListBadgeContainer>
-               <MybadgeList handleMyBadgeCount={handleMyBadgeCount}/>
+              <MybadgeList handleMyBadgeCount={handleMyBadgeCount} />
             </ListBadgeContainer>
           </Container>
 

@@ -8,14 +8,9 @@ import {
   CardInner,
   ChallengeImg,
   LikeConatainer,
-  ServicesCard,
-  ServicesIcon,
-  ServicesH2,
-  ServicesP,
 } from "../../.././Challenge/ChallengeListItem/ChallengeListItemStyle";
 
 const LikeListItem = ({ list }) => {
-  console.log(list);
   return (
     <>
       <CardContainer>

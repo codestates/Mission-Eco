@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import blob1 from "../../../imges/blob1.svg";
+import { Link as LinkR } from "react-router-dom";
 
 export const ChallengeContiner = styled.div`
   display: flex;
@@ -66,7 +67,6 @@ export const ChallengeSubbar = styled.div`
     width: 700px;
   }
   @media screen and (max-width: 480px) {
-    padding: 0 10px 0 25px;
     height: 70px;
     width: 370px;
   }
@@ -76,8 +76,11 @@ export const ChallengeSelect = styled.li`
   list-style: none;
   text-align: center;
   margin: 1em;
-  &:hover {
-    border-bottom: 1px solid black;
+
+  @media screen and (max-width: 480px) {
+    &.upload {
+      display: none;
+    }
   }
 `;
 
@@ -111,13 +114,29 @@ export const ServicesCardColor = styled.div`
 `;
 
 export const Button = styled.button`
+  text-decoration: none;
+  border-radius: 50px;
+  background: #fff;
+  white-space: nowrap;
+  padding: 14px 10px;
   border: 0;
-  outline: 0;
   font-size: 16px;
   background-color: transparent;
+  outline: none;
+  border: none;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    background: #dbe6fd;
+  }
+
   @media screen and (max-width: 480px) {
-    font-size: 12px;
+    font-size: 14px;
   }
 `;
 
@@ -129,5 +148,33 @@ export const ChallengeP = styled.p`
   &.subTitle {
     font-size: 1.2rem;
     margin-bottom: 1.4em;
+  }
+`;
+export const ChallengeLink = styled(LinkR)`
+  text-decoration: none;
+  border-radius: 50px;
+
+  background: #fff;
+  white-space: nowrap;
+  padding: 14px 10px;
+  color: #dbe6fd;
+  font-size: 20px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    background: #dbe6fd;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 10px 4px;
+  }
+  @media screen and (max-width: 480px) {
+    padding: 10px 4px;
   }
 `;
