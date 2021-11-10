@@ -14,11 +14,11 @@ import {
   AdminLoginContainer,
   AdminLogin,
 } from "./FooterStyle";
-import { ReactComponent as MissionEcoGithub } from "../../imges/github48.svg";
-// import { ReactComponent as  } from "../../imges/.svg";
-import { ReactComponent as Octocat } from "../../imges/OctocatOriginal.svg";
+import { ReactComponent as GithubGrayLogo } from "../../imges/github48.svg";
 import { ReactComponent as BlueOctocat } from "../../imges/blueOctocat.svg";
-import { ReactComponent as PurpleOctocat } from "../../imges/purpleOctocat.svg";
+import { ReactComponent as SquareLogo } from "../../imges/githubSquareS.svg";
+import { ReactComponent as TxtLogo } from "../../imges/githubtxtlogo.svg";
+import { ReactComponent as TxtLogoWhite } from "../../imges/githubtxtlogowhite.svg";
 
 const Footer = () => {
   return (
@@ -60,9 +60,15 @@ const Footer = () => {
           </FooterItemsWrapper>
           <MissionEcoGithubContainer>
             <a target="_blank" href="https://github.com/codestates/Mission-Eco">
-              <BlueOctocat />
+              {/* <BlueOctocat />
+              <TxtLogoWhite /> */}
+              <TxtLogoWhite />
+              {/* <SquareLogo />
+              <TxtLogo /> */}
             </a>
-            <MissionEcoTxt>Mission-Eco</MissionEcoTxt>
+            {/* <GithubGrayLogo />
+            </a>
+            <MissionEcoTxt>Mission-Eco</MissionEcoTxt> */}
           </MissionEcoGithubContainer>
           <AdminLoginContainer>
             <AdminLogin to="/admin-login">관리자로그인</AdminLogin>
