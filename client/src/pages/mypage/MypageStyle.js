@@ -3,6 +3,12 @@ import { Link } from "react-router-dom";
 import blob1 from "../../imges/blob1.svg";
 
 export const MypageContainer = styled.div`
+  /* margin-top: 15em; */
+  //padding-top: 10em;
+  @media screen and (max-width: 768px) {
+  }
+  @media screen and (max-width: 480px) {
+  }
   background-image: url(${blob1});
   height: 100%;
   background-position: center;
@@ -22,8 +28,12 @@ export const MypageWrapper = styled.div`
   align-items: center;
   max-width: 1000px;
   margin: 0 auto;
-
   z-index: -1;
+  @media screen and (max-width: 768px) {
+  }
+  @media screen and (max-width: 480px) {
+    //max-width: 480px;
+  }
 `;
 
 export const H1 = styled.h1`
@@ -33,21 +43,17 @@ export const H1 = styled.h1`
   justify-content: center;
   margin-bottom: 0.5em;
   font-size: 2.5em;
-  @media screen and (max-width: 768px) {
-  }
-  @media screen and (max-width: 480px) {
-  }
 `;
 
 export const H2 = styled.h2`
   display: flex;
-  margin: 15px 5px 35px 15px;
+  margin: 15px;
   @media screen and (max-width: 768px) {
+    margin-bottom: 20px;
   }
   @media screen and (max-width: 480px) {
-    margin-top: 30px;
-    display: flex;
     justify-content: center;
+    margin-bottom: 30px;
   }
 `;
 
@@ -56,6 +62,9 @@ export const MypageBtn = styled.div`
   justify-content: right;
   align-items: center;
   margin: 2em;
+  @media screen and (max-width: 1070px) {
+    margin: 1em;
+  }
   @media screen and (max-width: 768px) {
     width: 600px;
     justify-content: center;
@@ -81,7 +90,6 @@ export const LinkCheckPassword = styled.div`
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
-
   &:hover {
     transition: all 0.2s ease-in-out;
     background: #fff;
@@ -89,6 +97,37 @@ export const LinkCheckPassword = styled.div`
     font-size: 15px;
     font-weight: 550;
     border: solid #5d8767;
+  }
+`;
+
+export const TitleContainer = styled.div`
+  background: whitesmoke;
+  width: 100%;
+  margin: 15px;
+  padding: 50px;
+  border: 3px solid gray;
+  border-radius: 10px;
+  overflow: hidden;
+  @media screen and (max-width: 768px) {
+    padding: 30px;
+    margin: 5px;
+  }
+  @media screen and (max-width: 480px) {
+  }
+`;
+
+export const Title = styled.p`
+  font-size: 23px;
+  font-weight: bold;
+  padding: 15px 0;
+
+  @media screen and (max-width: 768px) {
+    font-size: 20px;
+  }
+  @media screen and (max-width: 480px) {
+    display: flex;
+    justify-content: center;
+    font-size: 19px;
   }
 `;
 
@@ -101,13 +140,8 @@ export const Container = styled.div`
   border-radius: 10px;
   overflow: hidden;
   @media screen and (max-width: 768px) {
-    margin: 5px;
-    padding: 15px;
-  }
-`;
-
-export const Title = styled.p`
-  @media screen and (max-width: 768px) {
+    padding: 10px;
+    margin: 5px 0;
   }
   @media screen and (max-width: 480px) {
   }
@@ -122,14 +156,13 @@ export const ListContainer = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   grid-gap: 16px;
-  padding: 0 20px;
-
-  @media screen and (max-width: 1200px) {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 0 10px;
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
   }
   @media screen and (max-width: 480px) {
     grid-template-columns: 1fr;
-    padding: 15px 45px;
+    padding: 0 45px;
   }
 `;
 
@@ -141,7 +174,7 @@ export const ListBadgeContainer = styled.div`
   grid-gap: 16px;
   padding: 0 10px;
   overflow-y: auto;
-  
+
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr 1fr;
     padding: 0;
