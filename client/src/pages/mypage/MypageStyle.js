@@ -3,15 +3,6 @@ import { Link } from "react-router-dom";
 import blob1 from "../../imges/blob1.svg";
 
 export const MypageContainer = styled.div`
-  /* margin-top: 15em; */
-  //padding-top: 10em;
-
-  @media screen and (max-width: 768px) {
-  }
-
-  @media screen and (max-width: 480px) {
-  }
-
   background-image: url(${blob1});
   height: 100%;
   background-position: center;
@@ -33,11 +24,6 @@ export const MypageWrapper = styled.div`
   margin: 0 auto;
 
   z-index: -1;
-  @media screen and (max-width: 768px) {
-  }
-  @media screen and (max-width: 480px) {
-    //max-width: 480px;
-  }
 `;
 
 export const H1 = styled.h1`
@@ -55,10 +41,15 @@ export const H1 = styled.h1`
 
 export const H2 = styled.h2`
   display: flex;
-  margin: 15px 10px;
+  margin: 15px 5px 35px 15px;
+  @media screen and (max-width: 768px) {
+  }
+  @media screen and (max-width: 480px) {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+  }
 `;
-
-export const H3 = styled.h3``;
 
 export const MypageBtn = styled.div`
   display: flex;
@@ -109,12 +100,9 @@ export const Container = styled.div`
   border: 3px solid gray;
   border-radius: 10px;
   overflow: hidden;
-
   @media screen and (max-width: 768px) {
-    padding: 0px;
-    // width: 90%;
-  }
-  @media screen and (max-width: 480px) {
+    margin: 5px;
+    padding: 15px;
   }
 `;
 
@@ -134,15 +122,14 @@ export const ListContainer = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   grid-gap: 16px;
-  padding: 0 10px;
-  
-  @media screen and (max-width: 768px) {
-    grid-template-columns: 1fr 1fr;
-    padding: 0;
+  padding: 0 20px;
+
+  @media screen and (max-width: 1200px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
   @media screen and (max-width: 480px) {
     grid-template-columns: 1fr;
-    padding: 0 20px;
+    padding: 15px 45px;
   }
 `;
 

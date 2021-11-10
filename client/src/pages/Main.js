@@ -9,11 +9,11 @@ import {
   homeObjOne,
   homeObjTwo,
   homeObjThree,
+  homeObjFour,
 } from "../components/InfoSection/Data";
 
 function Main() {
   const Toggle = useSelector((state) => state.infoReducer.isToggle);
-
 
   //const history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
@@ -34,6 +34,7 @@ function Main() {
       <MainInfo {...homeObjOne} />
       <MainInfo {...homeObjTwo} />
       <MainInfo {...homeObjThree} />
+      <MainInfo {...homeObjFour} />
     </div>
   );
 }

@@ -26,11 +26,11 @@ const Mypage = () => {
 
   const nickName = useSelector((state) => state.infoReducer.userInfo.nickname);
   // 뱃지 갯수 관리 상태
-  const [ myBadgeCount, setMyBadgeCount ] = useState(0);
+  const [myBadgeCount, setMyBadgeCount] = useState(0);
 
   const handleMyBadgeCount = (c) => {
-    setMyBadgeCount(c)
-  }
+    setMyBadgeCount(c);
+  };
 
   return (
     <>
@@ -54,7 +54,7 @@ const Mypage = () => {
           <Container>
             <H2>나의 에코뱃지</H2>
             <ListBadgeContainer>
-               <MybadgeList handleMyBadgeCount={handleMyBadgeCount}/>
+              <MybadgeList handleMyBadgeCount={handleMyBadgeCount} />
             </ListBadgeContainer>
           </Container>
 
