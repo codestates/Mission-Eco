@@ -17,6 +17,12 @@ export const Container = styled.div`
     //height: 1300px;
   }
 `;
+export const LoadingContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 13em 0 13em 0;
+`;
 export const TitleWrapper = styled.div`
   display: flex;
 `;

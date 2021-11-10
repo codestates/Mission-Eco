@@ -3,12 +3,17 @@ import LogEdit from "../LogEdit/LogEdit";
 import { useDispatch } from "react-redux";
 import { adminList } from "../../../../Redux/actions";
 import LoadingIndicator from "../../../Loading/LoadingIndicator";
-import { Container, Title1, Title2, TitleWrapper } from "./AdminWrapperStyle";
+import {
+  Container,
+  Title1,
+  Title2,
+  TitleWrapper,
+  LoadingContainer,
+} from "./AdminWrapperStyle";
 const AdminWrapper = (props) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
 
-  //로그 삭제 시 다시 리로드되게 하는 방법을 찾아보자
   useEffect(() => {
     setIsLoading(true);
     dispatch(adminList()).then(() => setIsLoading(false));
@@ -17,9 +22,9 @@ const AdminWrapper = (props) => {
   return (
     <>
       {isLoading ? (
-        <Container>
+        <LoadingContainer>
           <LoadingIndicator />
-        </Container>
+        </LoadingContainer>
       ) : (
         <Container>
           <TitleWrapper>

@@ -50,8 +50,6 @@ router.get("/myBadgeList/:userId", badgeCtrl.myBadgeList);
 router.post("/admin/signin", adminCtrl.signIn);
 router.post("/challenge", adminCtrl.challengePost);
 router.get("/admin/list", adminCtrl.getList);
-//router.patch("/challenge", adminCtrl.challengePatch);
-//router.delete("/challenge", adminCtrl.challengeDelete);
 router.delete("/admin/challenge-log/:logId", adminCtrl.adminLog);
 
 module.exports = router;
