@@ -19,11 +19,18 @@ const Modal = ({
   uploadBtn,
   closeModalHandler,
   fileUploadHandler,
+  userDeleteRequestHandler,
 }) => {
+  
   return (
     <ModalBackground>
       <ModalView>
-        <CloseBtn onClick={closeModalHandler}></CloseBtn>
+        {msg !== '회원탈퇴가 성공적으로 되었습니다.'? 
+          <CloseBtn onClick={closeModalHandler}></CloseBtn> : 
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <CloseBtn ></CloseBtn>
+          </Link>
+        }
         <CheckdImgBox>
           <CheckdImg src={checkd} />
         </CheckdImgBox>
@@ -59,7 +66,33 @@ const Modal = ({
               </>
             )}
           </BtnContainer>
-        ) : null}
+        ) 
+        : userDeleteRequestHandler ? 
+        <BtnContainer>
+        {msg === '회원탈퇴가 성공적으로 되었습니다.' ? (
+          <LinkBtn
+            style={{ marginRight: "10px" }}
+            onClick={fileUploadHandler}
+          >
+            <Link
+              to="/"
+              style={{ textDecoration: "none" }}
+            >
+              홈으로 가기
+            </Link>
+          </LinkBtn>
+        ) : (
+          <>
+            <LinkBtn onClick={userDeleteRequestHandler} style={{ marginRight: "10px" }}>
+              예
+            </LinkBtn>
+            <LinkBtn onClick={closeModalHandler}> 
+              아니오
+            </LinkBtn>
+          </>
+        )}
+      </BtnContainer>
+        : null}
       </ModalView>
     </ModalBackground>
   );
