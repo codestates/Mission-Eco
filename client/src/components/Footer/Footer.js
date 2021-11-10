@@ -1,5 +1,4 @@
 import React from "react";
-import { Route } from "react-router-dom";
 import {
   FooterContainer,
   FooterWrap,
@@ -60,7 +59,7 @@ const Footer = () => {
             </FooterItem>
           </FooterItemsWrapper>
           <MissionEcoGithubContainer>
-            <a target="_blank" href="https://github.com/HYO00">
+            <a target="_blank" href="https://github.com/codestates/Mission-Eco">
               <BlueOctocat />
             </a>
             <MissionEcoTxt>Mission-Eco</MissionEcoTxt>

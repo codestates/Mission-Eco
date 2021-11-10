@@ -18,7 +18,6 @@ export const AUTH_SUCCESS = "AUTH_SUCCESS";
 export const ADMIN_LOG = "ADMIN_LOG";
 export const ADMIN_CHALLENGE = "ADMIN_CHALLENGE";
 
-
 export function isLogin(boolean) {
   return {
     type: IS_LOGIN,
@@ -231,33 +230,30 @@ export const deleteLog = (id) => async (dispatch) => {
 export const getAllBadgeList = () => async (dispatch) => {
   try {
     return await axios
-    .get(`${process.env.REACT_APP_API_URL}/badge`)
-    .then((res) => {
-      // console.log("리덕스에 뱃지리스트", res.data.badgeList);
-      return res.data.badgeList;
-    })
-
+      .get(`${process.env.REACT_APP_API_URL}/badge`)
+      .then((res) => {
+        // console.log("리덕스에 뱃지리스트", res.data.badgeList);
+        return res.data.badgeList;
+      });
   } catch (err) {
     return console.log(err);
   }
-}
+};
 
 export const getMyBadgeList = (userId) => async (dispatch) => {
   try {
     return await axios
-    .get(
-      `${process.env.REACT_APP_API_URL}/myBadgeList/${userId}`,
-      { withCredentials: true }
-    )
-    .then((res) => {
-      //  console.log('리덕스에 마이뱃지 리스트', res.data.myBadge)
-       return res.data.myBadge;
-    })
+      .get(`${process.env.REACT_APP_API_URL}/myBadgeList/${userId}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        //  console.log('리덕스에 마이뱃지 리스트', res.data.myBadge)
+        return res.data.myBadge;
+      });
   } catch (err) {
     return console.log(err);
   }
-
-} 
+};
 
 export const userSignin = (loginInfo) => async (dispatch) => {
   const { email, password } = loginInfo;
@@ -315,20 +311,22 @@ export const userSignout = () => async (dispatch) => {
 };
 
 export const authSuccess = () => async (dispatch) => {
-  const data = await axios
+  await axios
     .get(`${process.env.REACT_APP_API_URL}/mypage/auth`, {
       withCredentials: true,
     })
     .then((res) => {
-      console.log(res);
       if (res.status === 200) {
-        return res.data.userInfo;
+        dispatch({ type: USER_INFO, payload: res.data.userInfo });
       }
-      console.log(res.data.userInfo);
+    })
+    .then(() => {
+      dispatch({ type: IS_LOGIN, payload: true });
+    })
+    .catch((err) => {
+      return;
     });
-  dispatch({ type: IS_LOGIN, payload: true });
-  dispatch({ type: USER_INFO, payload: data });
-  return data;
+
   //console.log("auth", res.data.data.userInfo);
   //isAuthenticated(res.data.data.userInfo);
 };

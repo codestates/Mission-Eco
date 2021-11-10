@@ -13,13 +13,11 @@ import {
   Title,
   ListContainer,
   ListBadgeContainer,
-  ListItem,
 } from "./MypageStyle";
 import LikeList from "../../components/MyInfo/MypageLIke/LikeList/LikeList";
 import MyLogList from "../../components/MyInfo/MypageLIke/MyLogList/MyLogList";
 import MybadgeList from "../../components/MyInfo/Mybadge/MybadgeList";
 // import blob1 from "../../imges/blob1.svg";
-import Footer from "../../components/Footer/Footer";
 
 const Mypage = () => {
   useEffect(() => {}, []);

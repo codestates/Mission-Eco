@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from "react";
-
-import { useSelector } from "react-redux";
-
-//import { useHistory } from "react-router-dom"
+import React from "react";
 import HeroSection from "../components/HeroSection/HeroSection";
 import MainInfo from "../components/InfoSection/MainInfo";
+import { ScrollTopBtn } from "../components/ScrollTop/ScrollTopBtn";
 import {
   homeObjOne,
   homeObjTwo,
@@ -13,21 +10,6 @@ import {
 } from "../components/InfoSection/Data";
 
 function Main() {
-  const Toggle = useSelector((state) => state.infoReducer.isToggle);
-
-  //const history = useHistory();
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    return setIsOpen(false);
-  }, []);
-  console.log(Toggle);
-
-  //sidebar
-  //navbar
-  //<heroSection>
-  //<infosection>
-
   return (
     <div>
       <HeroSection />

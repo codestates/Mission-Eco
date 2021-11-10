@@ -11,6 +11,7 @@ import {
   Button,
   BtnWrapper,
   ServicesContiner,
+  UploadH2,
 } from "./ChallengeUploadStyle";
 
 import Preview from "../../components/Preview/Preview";
@@ -26,7 +27,6 @@ function ChallengeUpload() {
   const [isVideo, setIsVideo] = useState(false);
   const [results, setResults] = useState([]);
   const [isUpload, setIsUpload] = useState(false);
-  const [missionId, setMissionId] = useState("");
   const [img, setImg] = useState("");
   const [logs, setLogs] = useState({});
 
@@ -59,33 +59,29 @@ function ChallengeUpload() {
   };
 
   const imageModelURL =
-    "https://teachablemachine.withgoogle.com/models/961H1RAK0/model.json";
-
+    "https://teachablemachine.withgoogle.com/models/LqVCsScNs/model.json";
   const fileSelectedHandler = (e) => {
     if (e.target.files.length !== 0) {
       setSelectedFile(URL.createObjectURL(e.target.files[0]));
       setUploadFile(e.target.files[0]);
-      URL.revokeObjectURL(selectedFile);
+      // URL.revokeObjectURL(selectedFile);
     } else {
       return;
     }
   };
 
   const fileUploadHandler = async () => {
-    const missionName = log.challenge.split(",");
-    setMissionId(missionName[1]);
-    //console.log("dddd", missionName[1]);
+    const missionName = logs.challenge.split(",");
     closeModalHandler();
     setIsUpload(true);
     const uploaded = await upload(uploadFile);
-    console.log(uploaded);
-    //fd.append("img", selectedFile, selectedFile.name, fd);
+
     axios
       .post(
         `${process.env.REACT_APP_API_URL}/challenge-log`,
         {
           userId: userInfo.id,
-          challengeId: missionId,
+          challengeId: missionName[1],
           img: `${uploaded.secure_url}`,
           contents: `${logs.contents}`,
         },
@@ -97,34 +93,32 @@ function ChallengeUpload() {
         setResults([]);
         resetLog();
         setIsUpload(false);
-        requsetBadgeHandler();
-      });
-  };
-
-  const requsetBadgeHandler = () => {
-    axios
-      .post(
-        `${process.env.REACT_APP_API_URL}/badge`,
-        {
-          missionId,
-        },
-        {
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        if (res.status === 201) {
-          return;
-        }
       })
-      .catch((err) => console.log(err));
+      .then(async () => {
+        await axios
+          .post(
+            `${process.env.REACT_APP_API_URL}/badge`,
+            {
+              challengeId: missionName[1],
+            },
+            {
+              withCredentials: true,
+            }
+          )
+          .then((res) => {
+            if (res.status === 201) {
+              return;
+            }
+          })
+          .catch((err) => console.log(err));
+      });
   };
 
   return (
     <ChallengeUploadCT>
       <ServicesContiner>
         <Container>
-          <h2>챌린지 업로드 미리보기</h2>
+          <UploadH2>챌린지 업로드 미리보기</UploadH2>
           <BtnWrapper>
             <Button onClick={clickVideoHandler}>Video Click!</Button>
             <Button onClick={clickImgHandler}>Image Click!</Button>
@@ -158,11 +152,6 @@ function ChallengeUpload() {
               oncloseModalHandlerClick={closeModalHandler}
             />
           ) : null}
-          {/**  <Uploader setImg={setImg} fileSelectedHandler={fileSelectedHandler} /><Classifier
-          img={img}
-          imageModelURL={imageModelURL}
-          selectedFile={selectedFile}
-        /> */}
         </Container>
       </ServicesContiner>
     </ChallengeUploadCT>
