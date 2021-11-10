@@ -6,6 +6,7 @@ import {
   homeObjOne,
   homeObjTwo,
   homeObjThree,
+  homeObjFour,
 } from "../components/InfoSection/Data";
 
 function Main() {
@@ -15,7 +16,7 @@ function Main() {
       <MainInfo {...homeObjOne} />
       <MainInfo {...homeObjTwo} />
       <MainInfo {...homeObjThree} />
-      <ScrollTopBtn />
+      <MainInfo {...homeObjFour} />
     </div>
   );
 }
