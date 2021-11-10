@@ -153,7 +153,8 @@ export const ListBadgeContainer = styled.div`
   align-items: center;
   grid-gap: 16px;
   padding: 0 10px;
-
+  overflow-y: auto;
+  
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr 1fr;
     padding: 0;

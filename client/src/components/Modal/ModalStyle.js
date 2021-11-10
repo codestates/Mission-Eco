@@ -24,6 +24,10 @@ export const ModalView = styled.div`
   border-radius: 6px;
   background-color: #efefef;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+  @media screen and (max-width: 480px) {
+    width: 70%;
+  }
 `;
 
 export const Msg = styled.h1`
@@ -31,7 +35,10 @@ export const Msg = styled.h1`
   font-size: 20px;
   margin-bottom: 2.8rem;
   text-align: center;
-  /* line-height: 2rem; */
+
+  @media screen and (max-width: 480px) {
+    font-size: 16px;
+  }
 `;
 export const BtnContainer = styled.div`
   display: flex;
@@ -47,8 +54,15 @@ export const LinkBtn = styled.button`
   border: none;
   border-radius: 4px;
   justify-content: center;
+  
   &:hover {
+    transition: .6s;
+    color: #333;
     background-color: #fff;
+  }
+
+  @media screen and (max-width: 480px) {
+    width: 30%;
   }
 `;
 

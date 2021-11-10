@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { userSignout, deleteUserInfo } from "../../../Redux/actions";
 import { validPassword } from "../../../utils/validation";
 import axios from "axios";
+import Modal from "../../Modal/Modal";
 import {
   MypageEditContainer,
   TitleWrap,
@@ -60,6 +61,15 @@ const MypageEdit = () => {
     password1: "",
     password2: "",
   });
+
+  // * 모달 상태
+  const [ isOpenModal, setIsOpenModal ] = useState(false)
+  const [ deleteUserMsg, setDeletedUserMsg ] = useState("정말로 회원탈퇴 하시겠습니까?");
+  const [ isDeletedUser, setDeletedUser ] = useState(false);
+
+  const closeModalHandler = () => {
+    setIsOpenModal(!isOpenModal);
+  }
 
   useEffect(() => {}, [state.userInfo]);
 
@@ -170,7 +180,8 @@ const MypageEdit = () => {
     console.log("회원탈퇴");
     dispatch(userSignout());
     dispatch(deleteUserInfo(null));
-    history.push("/");
+    setDeletedUserMsg("회원탈퇴가 성공적으로 되었습니다.");
+    setDeletedUser(true);
   };
 
   return (
@@ -222,9 +233,18 @@ const MypageEdit = () => {
           </Wrapper>
 
           <DelUserBtnWrapper>
-            <DelUserBtn onClick={userDeleteRequestHandler}>회원탈퇴</DelUserBtn>
+            <DelUserBtn onClick={closeModalHandler}>회원탈퇴</DelUserBtn>
           </DelUserBtnWrapper>
         </MypageEditWrap>
+        {isOpenModal ? 
+          <Modal 
+            msg={deleteUserMsg}
+            userDeleteRequestHandler={userDeleteRequestHandler}
+            closeModalHandler={closeModalHandler}
+            isDeletedUser={isDeletedUser}
+          /> :
+           null 
+        }
       </MypageEditContainer>
     </>
   );
