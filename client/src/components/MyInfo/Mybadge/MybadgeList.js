@@ -12,15 +12,12 @@ function MybadgeList({ handleMyBadgeCount }) {
 
   // 전체 뱃지 리스트
   const [badgeLists, setBadgeLists] = useState([]);
-  //console.log('전체 뱃지 리스트 badgeLists', badgeLists)
 
   // 유저 뱃지 리스트
   const [myBadgeList, setMyBadgeList] = useState([]);
-  //console.log('유저 뱃지 리스트 myBadgeList', myBadgeList)
 
   // 유저가 획득한 뱃지들의 아이디만 축출
   const myBadgeIdList = myBadgeList && myBadgeList.map((bg) => bg.badge_id);
-  //console.log(myBadgeIdList, 'myBadgeIdListmyBadgeIdList')
 
   // 회원가입시 제공 뱃지(나는야 에코새싹왕, 뱃지아이디 1)는 기본값으로 저장
   myBadgeList && myBadgeIdList.push(1);
