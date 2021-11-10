@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import {
   H1,
   H2,
@@ -23,6 +24,14 @@ import Footer from "../../components/Footer/Footer";
 const Mypage = () => {
   useEffect(() => {}, []);
 
+  const nickName = useSelector((state) => state.infoReducer.userInfo.nickname);
+  // 뱃지 갯수 관리 상태
+  const [ myBadgeCount, setMyBadgeCount ] = useState(0);
+
+  const handleMyBadgeCount = (c) => {
+    setMyBadgeCount(c)
+  }
+
   return (
     <>
       <MypageContainer>
@@ -37,15 +46,15 @@ const Mypage = () => {
 
           {/* mypage-1st-container (유저 닉네임, 이 유저가 획득한 뱃지 갯수) */}
           <Container>
-            <Title>닉네임: 환경요정</Title>
-            <Title>에코뱃지: 7개</Title>
+            <Title>닉네임: {nickName}</Title>
+            <Title>에코뱃지: {myBadgeCount} 개</Title>
           </Container>
 
           {/* mypage-2nd-container ( 이 유저가 획득한 뱃지 이미지들 ) */}
           <Container>
             <H2>나의 에코뱃지</H2>
             <ListBadgeContainer>
-               <MybadgeList />
+               <MybadgeList handleMyBadgeCount={handleMyBadgeCount}/>
             </ListBadgeContainer>
           </Container>
 

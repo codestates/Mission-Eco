@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Badge from "./Badge";
 import { BadgeWrapper } from "./BadgeStyle";
 
-function MybadgeList() {
+function MybadgeList({ handleMyBadgeCount }) {
 
     const dispatch = useDispatch();
 
@@ -31,7 +31,10 @@ function MybadgeList() {
       dispatch(getAllBadgeList()).then((res) => setBadgeLists(res));
       
       // 현재 유저의 뱃지리트스트 저장
-      dispatch(getMyBadgeList(userId)).then((res) => setMyBadgeList(res));
+      dispatch(getMyBadgeList(userId)).then((res) => {
+        setMyBadgeList(res);
+        handleMyBadgeCount(myBadgeIdList.length);
+      });
     }, []);
 
     return (
