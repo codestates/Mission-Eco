@@ -52,7 +52,6 @@ function Login() {
   };
 
   const handleResponseSuccess = () => {
-    alert("로그인 성공");
     setErrMsg("ok.");
 
     history.push("/");

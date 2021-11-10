@@ -94,6 +94,7 @@ export const ChallengeH3 = styled.h3`
 export const ChallengeP = styled.p`
   font-size: 1rem;
   text-align: center;
+  color: #333;
 `;
 
 export const LikeConatainer = styled.div`

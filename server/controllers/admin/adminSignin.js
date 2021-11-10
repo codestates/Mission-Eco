@@ -18,7 +18,6 @@ module.exports = async (req, res) => {
       const adminInfo = await user.findOne({
         where: { email },
       });
-      console.log("adminInfo--", adminInfo);
       //DB에 일치하는 유저가 없는 경우
       if (!adminInfo) {
         return res.status(401).send({ message: "일치하는 정보가 없습니다." });

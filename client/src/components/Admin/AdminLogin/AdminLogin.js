@@ -32,7 +32,6 @@ function Login() {
 
   const [errMsg, setErrMsg] = useState("");
   const [openModal, setOpenModal] = useState(false);
-  //useState(() => {}, []);
 
   const handleInputValue = (key) => (e) => {
     SetLoginInfo({ ...loginInfo, [key]: e.target.value });
@@ -43,10 +42,8 @@ function Login() {
 
   const handleResponseSuccess = () => {
     setErrMsg("ok.");
-    alert("로그인 성공");
 
     history.push("/admin/log"); //관리자 페이지로 이동
-    //isAuthenticated();
   };
 
   const loginRequestHandler = async (e) => {
