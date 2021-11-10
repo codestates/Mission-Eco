@@ -15,6 +15,7 @@ import {
   ChallengeSubbar,
   ChallengeSelect,
   Button,
+  LoadingeWrapper,
 } from "./ChallengeListStyle";
 
 const ChallengeList = () => {
@@ -104,9 +105,9 @@ const ChallengeList = () => {
           </ChallengeSelect>
         </ChallengeSubbar>
         {isLoading ? (
-          <ChallengeWrapper>
+          <LoadingeWrapper>
             <LoadingIndicator />
-          </ChallengeWrapper>
+          </LoadingeWrapper>
         ) : (
           <ChallengeWrapper>
             {result && all
