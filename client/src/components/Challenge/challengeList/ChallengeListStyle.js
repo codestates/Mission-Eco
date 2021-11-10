@@ -37,6 +37,12 @@ export const ChallengeWrapper = styled.div`
   }
 `;
 
+export const LoadingeWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const ChallengeSubbar = styled.div`
   display: flex;
   height: 8em;

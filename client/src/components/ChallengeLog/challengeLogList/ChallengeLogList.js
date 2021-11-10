@@ -44,6 +44,7 @@ const ChallengeLogList = () => {
     // setListLog(challengeLog);
     setIsActive(!isActive);
   };
+  
   const handleRequsetLogList = (e) => {
     const log = e.target.value;
     if (Number(log) === 0) {

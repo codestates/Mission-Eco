@@ -3,13 +3,11 @@ const { challenge, challengelike } = require("../../models");
 module.exports = {
   post: async (req, res) => {
     try {
-      //res.send("challenge 추가 성공");
       /**
        * body 값으로 하나라도 안 들어오면 빠꾸
        * 같은 이름의 challenge가 db에 있으면 빠꾸
        * 생성
        */
-      console.log("req.body--", req.body);
       const { img, name, contents, level, upload } = req.body;
       //body 값으로 하나라도 안 들어오면 return
       if (!img || !name || !contents || !level) {

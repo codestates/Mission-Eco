@@ -24,13 +24,20 @@ export const ModalView = styled.div`
   border-radius: 6px;
   background-color: #efefef;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+  @media screen and (max-width: 480px) {
+    width: 70%;
+  }
+
 `;
 
 export const Msg = styled.h1`
   color: #333;
   font-size: 20px;
   margin-bottom: 2.8rem;
-  /* line-height: 2rem; */
+  @media screen and (max-width: 480px) {
+    font-size: 16px;
+  }
 `;
 
 export const LinkBtn = styled.button`
@@ -44,6 +51,10 @@ export const LinkBtn = styled.button`
   border-radius: 4px;
   &:hover {
     background-color: #fff;
+  }
+
+  @media screen and (max-width: 480px) {
+    width: 30%;
   }
 `;
 

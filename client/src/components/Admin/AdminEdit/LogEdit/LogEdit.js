@@ -45,7 +45,6 @@ const LogEdit = () => {
     setDeleteId(id);
   };
   const deleteHandler = () => {
-    //모달도 켜지게 해야함
     dispatch(deleteLog(deleteId));
     setOpenModal(!openModal);
     setDeleteId(null);

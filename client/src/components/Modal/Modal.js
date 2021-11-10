@@ -19,11 +19,19 @@ const Modal = ({
   uploadBtn,
   closeModalHandler,
   fileUploadHandler,
+  userDeleteRequestHandler,
+  isDeletedUser
 }) => {
+
   return (
     <ModalBackground>
       <ModalView>
-        <CloseBtn onClick={closeModalHandler}></CloseBtn>
+        {!isDeletedUser ? 
+          <CloseBtn onClick={closeModalHandler}></CloseBtn> : 
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <CloseBtn ></CloseBtn>
+          </Link>
+        }
         <CheckdImgBox>
           <CheckdImg src={checkd} />
         </CheckdImgBox>
@@ -42,7 +50,7 @@ const Modal = ({
                 <LinkBtn style={{ marginRight: "10px" }}>
                   <Link
                     to="/"
-                    style={{ textDecoration: "none", color: " #fff" }}
+                    style={{ textDecoration: "none" }}
                   >
                     홈으로 가기
                   </Link>
@@ -51,7 +59,7 @@ const Modal = ({
                 <LinkBtn>
                   <Link
                     to={link}
-                    style={{ textDecoration: "none", color: "#fff" }}
+                    style={{ textDecoration: "none" }}
                   >
                     {!msg2 ? "로그보러가기" : msg2}
                   </Link>
@@ -59,7 +67,33 @@ const Modal = ({
               </>
             )}
           </BtnContainer>
-        ) : null}
+        ) 
+        : userDeleteRequestHandler ? 
+        <BtnContainer>
+        {isDeletedUser ? (
+          <LinkBtn
+            style={{ marginRight: "10px" }}
+            onClick={fileUploadHandler}
+          >
+            <Link
+              to="/"
+              style={{ textDecoration: "none" }}
+            >
+              홈으로 가기
+            </Link>
+          </LinkBtn>
+        ) : (
+          <>
+            <LinkBtn onClick={userDeleteRequestHandler} style={{ marginRight: "10px" }}>
+              예
+            </LinkBtn>
+            <LinkBtn onClick={closeModalHandler}> 
+              아니오
+            </LinkBtn>
+          </>
+        )}
+      </BtnContainer>
+        : null}
       </ModalView>
     </ModalBackground>
   );
