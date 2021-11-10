@@ -59,7 +59,6 @@ export const FooterItemsWrapper = styled.div`
 `;
 
 export const FooterItem = styled.div`
-  /* color: black; */
   display: flex;
   justify-content: center;
   flex-direction: column;
