@@ -6,7 +6,7 @@ module.exports = {
       {
         name: "나는야 에코새싹왕",
         img: "../img/badge/나는야 에코새싹왕.png",
-        challenge_id: 20,
+        challenge_id: 2,
       },
       {
         name: "나는야 노라벨왕",
@@ -44,8 +44,8 @@ module.exports = {
         challenge_id: 14,
       },
       {
-        name: "나는야 쇼핑왕",
-        img: "../img/badge/나는야 쇼핑왕.png",
+        name: "나는야 에코쇼핑왕",
+        img: "../img/badge/나는야 에코쇼핑왕.png",
         challenge_id: 16,
       },
       {
@@ -62,6 +62,11 @@ module.exports = {
         name: "나는야 친환경왕",
         img: "../img/badge/나는야 친환경왕.png",
         challenge_id: 19,
+      },
+      {
+        name: "나는야 마일리지왕",
+        img: "../img/badge/나는야 마일리지왕.png",
+        challenge_id: 20,
       },
     ]);
   },
