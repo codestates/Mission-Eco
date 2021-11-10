@@ -52,7 +52,6 @@ const Navbar = ({ togglehandler }) => {
   };
 
   const handleLogout = async () => {
-    alert("로그아웃버튼");
     //일반유저 로그아웃
     dispatch(userLogout());
     // dispatch(isLogin(false));

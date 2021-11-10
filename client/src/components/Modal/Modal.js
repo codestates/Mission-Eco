@@ -42,7 +42,7 @@ const Modal = ({
                 <LinkBtn style={{ marginRight: "10px" }}>
                   <Link
                     to="/"
-                    style={{ textDecoration: "none", color: " #fff" }}
+                    style={{ textDecoration: "none" }}
                   >
                     홈으로 가기
                   </Link>
@@ -51,7 +51,7 @@ const Modal = ({
                 <LinkBtn>
                   <Link
                     to={link}
-                    style={{ textDecoration: "none", color: "#fff" }}
+                    style={{ textDecoration: "none" }}
                   >
                     {!msg2 ? "로그보러가기" : msg2}
                   </Link>
