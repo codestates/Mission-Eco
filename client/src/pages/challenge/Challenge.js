@@ -20,7 +20,7 @@ const ChallengeContainer = styled.div`
 function Challenge() {
   return (
     <ChallengeContainer>
-      <ChallengeList />;
+      <ChallengeList />
     </ChallengeContainer>
   );
 }

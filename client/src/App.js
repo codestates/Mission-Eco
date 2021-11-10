@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { isToggle } from "../src/Redux/actions";
 import ChallengeEdit from "./components/Admin/AdminEdit/ChallengeEdit/ChallengeEdit";
 import Footer from "./components/Footer/Footer";
+import ScrollTop from "./components/ScrollTop/ScrollTop";
 
 function App() {
   const Toggle = useSelector((state) => state.infoReducer.isToggle);
@@ -30,6 +31,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollTop />
       <Sidebar togglehandler={togglehandler} />
       <Navbar togglehandler={togglehandler} />
       <Switch>
