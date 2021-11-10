@@ -12,6 +12,11 @@ export const BadgeContainer = styled.div`
     box-sizing: border-box;
     text-align: center; 
     
+    @media screen and (max-width: 1020px) {
+        margin: .7em .2rem 1rem;
+        padding: 0;
+    }
+
     > div {
         width: 100%;
 
@@ -33,6 +38,14 @@ export const BadgeContainer = styled.div`
         font-size: .9rem;
         font-weight: bold;
         color: #333;
+        
+        @media screen and (max-width: 768px) {
+           font-size: .6rem;
+        }
+
+        @media screen and (max-width: 568px) {
+           display: none;
+        }
     }
 
     > span.colorOn {
