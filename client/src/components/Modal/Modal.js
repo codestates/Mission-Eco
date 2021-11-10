@@ -20,12 +20,13 @@ const Modal = ({
   closeModalHandler,
   fileUploadHandler,
   userDeleteRequestHandler,
+  isDeletedUser
 }) => {
-  
+
   return (
     <ModalBackground>
       <ModalView>
-        {msg !== '회원탈퇴가 성공적으로 되었습니다.'? 
+        {!isDeletedUser ? 
           <CloseBtn onClick={closeModalHandler}></CloseBtn> : 
           <Link to="/" style={{ textDecoration: "none" }}>
             <CloseBtn ></CloseBtn>
@@ -69,7 +70,7 @@ const Modal = ({
         ) 
         : userDeleteRequestHandler ? 
         <BtnContainer>
-        {msg === '회원탈퇴가 성공적으로 되었습니다.' ? (
+        {isDeletedUser ? (
           <LinkBtn
             style={{ marginRight: "10px" }}
             onClick={fileUploadHandler}

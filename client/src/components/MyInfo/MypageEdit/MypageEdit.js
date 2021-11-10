@@ -64,7 +64,8 @@ const MypageEdit = () => {
 
   // * 모달 상태
   const [ isOpenModal, setIsOpenModal ] = useState(false)
-  const [ deleteAcountMsg, setDeleteAcountMsg ] = useState("정말로 회원탈퇴 하시겠습니까?");
+  const [ deleteUserMsg, setDeleteUserMsg ] = useState("정말로 회원탈퇴 하시겠습니까?");
+  const [ isDeletedUser, setDeleteUser ] = useState(false);
 
   const closeModalHandler = () => {
     setIsOpenModal(!isOpenModal);
@@ -179,7 +180,8 @@ const MypageEdit = () => {
     console.log("회원탈퇴");
     dispatch(userSignout());
     dispatch(deleteUserInfo(null));
-    setDeleteAcountMsg("회원탈퇴가 성공적으로 되었습니다.")
+    setDeleteUserMsg("회원탈퇴가 성공적으로 되었습니다.");
+    setDeleteUser(true);
   };
 
   return (
@@ -236,9 +238,10 @@ const MypageEdit = () => {
         </MypageEditWrap>
         {isOpenModal ? 
           <Modal 
-            msg={deleteAcountMsg}
+            msg={deleteUserMsg}
             userDeleteRequestHandler={userDeleteRequestHandler}
             closeModalHandler={closeModalHandler}
+            isDeletedUser={isDeletedUser}
           /> :
            null 
         }
