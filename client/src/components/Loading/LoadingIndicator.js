@@ -17,7 +17,7 @@ export const Container = styled.div`
 const LoadingIndicator = ({ loaded }) => {
   return (
     <Container>
-      <Img alt="now loading" src="/gif/ms.gif" />
+      <Img alt="now loading" src="/gif/msms.gif" />
     </Container>
   );
 };

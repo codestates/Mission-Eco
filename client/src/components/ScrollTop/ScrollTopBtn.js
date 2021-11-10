@@ -11,14 +11,14 @@ const ScrollBtn = styled.button`
   // position: fixed;
   position: fixed;
   opacity: 0;
-  bottom: 2rem;
+  bottom: 20rem;
   right: 3rem;
   z-index: -10;
   width: 50px;
   height: 50px;
   border-radius: 100%;
   border: 0 none;
-  background: #ecefa4;
+  background: #c1ffd7;
   color: blueviolet;
   letter-spacing: -0.06em;
   box-shadow: 1px 1px 6px 3px rgba(0, 0, 0, 0.3);
