@@ -14,6 +14,7 @@ import {
 } from "./ChallengeListItemStyle";
 
 const ChallengeListItem = ({ list, userId, isLogin, setIsOpenModal }) => {
+  console.log('챌린지 페이지: list img url----', list.img)
   const dispatch = useDispatch();
   const [like, setlike] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);

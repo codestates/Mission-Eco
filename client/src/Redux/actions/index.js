@@ -13,9 +13,11 @@ export const CHALLENGE_LIST = "CHALLENGE_LIST";
 export const CHALLENGE_LOG_LIST = "CHALLENGE_LOG_LIST";
 export const USER_LIKE_LIST = "USER_LIKE_LIST";
 export const IS_LIKE = "IS_LIKE";
+export const BADGE_LIST = "BADGE_LIST";
 export const AUTH_SUCCESS = "AUTH_SUCCESS";
 export const ADMIN_LOG = "ADMIN_LOG";
 export const ADMIN_CHALLENGE = "ADMIN_CHALLENGE";
+
 
 export function isLogin(boolean) {
   return {
@@ -166,6 +168,7 @@ export function getUserLikeList(likeList) {
     },
   };
 }
+
 export const adminSignin = (loginInfo) => async (dispatch) => {
   try {
     const { email, password } = loginInfo;
@@ -207,6 +210,7 @@ export const adminList = () => async (dispatch) => {
     console.log(error);
   }
 };
+
 export const deleteLog = (id) => async (dispatch) => {
   try {
     const deleteLogData = await axios
@@ -223,6 +227,37 @@ export const deleteLog = (id) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const getAllBadgeList = () => async (dispatch) => {
+  try {
+    return await axios
+    .get(`${process.env.REACT_APP_API_URL}/badge`)
+    .then((res) => {
+      // console.log("리덕스에 뱃지리스트", res.data.badgeList);
+      return res.data.badgeList;
+    })
+
+  } catch (err) {
+    return console.log(err);
+  }
+}
+
+export const getMyBadgeList = (userId) => async (dispatch) => {
+  try {
+    return await axios
+    .get(
+      `${process.env.REACT_APP_API_URL}/myBadgeList/${userId}`,
+      { withCredentials: true }
+    )
+    .then((res) => {
+      //  console.log('리덕스에 마이뱃지 리스트', res.data.myBadge)
+       return res.data.myBadge;
+    })
+  } catch (err) {
+    return console.log(err);
+  }
+
+} 
 
 export const userSignin = (loginInfo) => async (dispatch) => {
   const { email, password } = loginInfo;

@@ -145,6 +145,23 @@ export const ListContainer = styled.div`
   }
 `;
 
+export const ListBadgeContainer = styled.div`
+  max-width: 1000px;
+  max-height: 350px;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  grid-gap: 16px;
+  padding: 0 10px;
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    padding: 0;
+  }
+  @media screen and (max-width: 480px) {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
+  }
+`;
+
 export const ListItem = styled.li`
   @media screen and (max-width: 768px) {
   }
