@@ -22,7 +22,8 @@ export const homeObjTwo = {
   lightText: false,
   lightTextDesc: false,
   topLine: "Mission Eco",
-  headline: "미션 참여 방법이 궁금하신가요?!",
+  headline: `머신러닝으로 학습 시킨
+  이미지 인식을 경험해 보세요.`,
   description:
     "미션에 참여하기 위해 거쳐야 하는 관문이 있습니다! 해당 이미지가 미션에 적합한지 확인 후 에코로그를 남겨보세요.",
   buttonLabel: "Learn More",
@@ -40,12 +41,12 @@ export const homeObjThree = {
   lightText: true,
   lightTextDesc: true,
   topLine: "Mission Eco",
-  headline: "미션 참여 방법이 궁금하신가요?!",
+  headline: "머신러닝을 학습시킨 이미지 인식을 경험해 보세요.",
   description:
     "미션에 참여하기 위해 거쳐야 하는 관문이 있습니다! 해당 이미지가 미션에 적합한지 확인 후 에코로그를 남겨보세요.",
   buttonLabel: "Learn More",
   imgStart: false,
-  img: "/gif/main3.gif",
+  img: require("../../imges/svg-3.svg").default,
   alt: "eco",
   dark: true,
   primary: true,

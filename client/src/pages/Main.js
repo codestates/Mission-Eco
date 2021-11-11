@@ -8,15 +8,18 @@ import {
   homeObjThree,
   homeObjFour,
 } from "../components/InfoSection/Data";
+import MainInfo2 from "../components/InfoSection/MainInfo2";
 
 function Main() {
   return (
     <div>
       <HeroSection />
       <MainInfo {...homeObjOne} />
-      <MainInfo {...homeObjTwo} />
+
+      <MainInfo2 {...homeObjTwo} />
       <MainInfo {...homeObjThree} />
       <MainInfo {...homeObjFour} />
+      <ScrollTopBtn />
     </div>
   );
 }

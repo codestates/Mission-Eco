@@ -2,22 +2,21 @@ import React, { useState, useEffect } from "react";
 import MyLogListItem from "../MyLogListItem/MyLogListItem";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { deleteUserLog } from "../../../../Redux/actions"
+import { deleteUserLog } from "../../../../Redux/actions";
 
 const MyLogList = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [myLogLists, setMyLogLists] = useState([]);
-  
+
   useEffect(() => {
     LikeAndLogListRequest();
   }, []);
-  
 
   // myLogList 불러오기
   const LikeAndLogListRequest = async () => {
     await axios
       .get(
-        `https://localhost:4000/mypage/mylist`,
+        `${process.env.REACT_APP_API_URL}/mypage/mylist`,
         // "http://team-meetme.s3-website.ap-northeast-2.amazonaws.com/mypage/mylist/:userId",
         { withCredentials: true }
       )
@@ -37,7 +36,6 @@ const MyLogList = () => {
 
   // 현재 선택된 log id를 받아, 해당 log를 서버와 클라이언트에서 모두 삭제
   const HandleDeleteLog = async (logId) => {
-
     // 클릭된 아이디 값을 가진 로그를 클라에서 지우기
     const removedList = myLogLists.filter((log) => log.id !== logId);
 
@@ -50,7 +48,13 @@ const MyLogList = () => {
       {/* //? ChallengeLog를 보여주기 위한 맵을 돌린다. */}
       {myLogLists.map((list, idx) => {
         // ? <myLogListItem디렉토리 안에 LikeListItem처럼 컴포넌트 만들어서 여기서 쓰3></myLogListItem디렉토리>
-        return <MyLogListItem list={list} HandleDeleteLog={HandleDeleteLog} key={idx}></MyLogListItem>;
+        return (
+          <MyLogListItem
+            list={list}
+            HandleDeleteLog={HandleDeleteLog}
+            key={idx}
+          ></MyLogListItem>
+        );
       })}
     </>
   );
