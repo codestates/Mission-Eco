@@ -148,6 +148,12 @@ export const MissionEcoGithubContainer = styled.div`
   }
 `;
 
+export const LogoContainer = styled.span`
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
+`;
+
 export const MissionEcoTxt = styled.p`
   text-decoration-line: none;
   color: #fff;

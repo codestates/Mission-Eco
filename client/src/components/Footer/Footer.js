@@ -10,6 +10,7 @@ import {
   Position,
   GithubBadge,
   MissionEcoGithubContainer,
+  LogoContainer,
   MissionEcoTxt,
   AdminLoginContainer,
   AdminLogin,
@@ -60,9 +61,11 @@ const Footer = () => {
           </FooterItemsWrapper>
           <MissionEcoGithubContainer>
             <a target="_blank" href="https://github.com/codestates/Mission-Eco">
-              {/* <BlueOctocat />
-              <TxtLogoWhite /> */}
+              <LogoContainer>
+                <BlueOctocat />
+              </LogoContainer>
               <TxtLogoWhite />
+              {/* <TxtLogoWhite /> */}
               {/* <SquareLogo />
               <TxtLogo /> */}
             </a>
