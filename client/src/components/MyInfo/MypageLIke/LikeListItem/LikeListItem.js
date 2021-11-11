@@ -13,9 +13,11 @@ import {
 const LikeListItem = ({ list }) => {
   return (
     <>
+      {/* // * 여기가 문제 */}
       <CardContainer>
         <CardInner>
           <ChallengeCard background={list.img}>
+            {/* //* 요 위에까지가 문제. ChallengeImg 사이즈랑 일치시켜라 */}
             <ChallengeImg src={list.img} />
             <LikeConatainer></LikeConatainer>
           </ChallengeCard>

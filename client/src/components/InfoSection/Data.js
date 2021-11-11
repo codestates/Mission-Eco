@@ -64,7 +64,7 @@ export const homeObjFour = {
     "현재 참여할 수 있는 챌린지가 30가지 이상있습니다. 우리의 작은 실천이 지구를 살립니다.",
   buttonLabel: "Learn More",
   imgStart: true,
-  img: require("../../imges/svg-2.svg").default,
+  img: "/gif/mypage-test.gif",
   alt: "eco",
   dark: false,
   primary: false,

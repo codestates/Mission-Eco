@@ -52,8 +52,8 @@ export const ChallengeCard = styled.div`
 `;
 
 export const ChallengeImg = styled.img`
-  height: 100%;
-  width: 100%;
+  /* height: 100%;
+  width: 100%; */
   //margin-bottom: 10px;
 `;
 
