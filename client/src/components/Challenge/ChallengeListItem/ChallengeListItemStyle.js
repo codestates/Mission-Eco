@@ -11,6 +11,8 @@ export const CardContainer = styled.div`
   &.flipped {
     z-index: 1;
   }
+  width: 340px;
+  height: 400px;
 `;
 
 export const CardInner = styled.div`
@@ -33,28 +35,19 @@ export const ChallengeCard = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 0px;
-  width: 280px;
-  height: 340px;
+  width: 340px;
+  height: 400px;
   //padding: 30px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
   background: ${(props) => props.background || "white"};
   z-index: 0;
   transform: rotateY(0deg);
-  @media screen and (max-width: 768px) {
-    width: 340px;
-    height: 400px;
-  }
-  @media screen and (max-width: 480px) {
-    width: 340px;
-    height: 400px;
-  }
 `;
 
 export const ChallengeImg = styled.img`
   height: 100%;
   width: 100%;
-  //margin-bottom: 10px;
 `;
 
 export const ServicesH1 = styled.h1`
@@ -98,19 +91,14 @@ export const DetailCard = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 0px;
-  width: 280px;
-  height: 340px;
+  width: 340px;
+  height: 400px;
   padding: 30px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
-  //background: ${(props) => props.background || "white"};
   z-index: 1;
-  transform: rotateY(180deg); //translate(100%, 0);
+  transform: rotateY(180deg);
   @media screen and (max-width: 768px) {
-    width: 340px;
-    height: 400px;
-  }
-  @media screen and (max-width: 480px) {
     width: 340px;
     height: 400px;
   }

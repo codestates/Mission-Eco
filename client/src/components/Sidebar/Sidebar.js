@@ -1,6 +1,6 @@
 import React from "react";
 import { ReactComponent as CloseBtn } from "../../imges/close.svg";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   SidebarContainer,
   Icon,

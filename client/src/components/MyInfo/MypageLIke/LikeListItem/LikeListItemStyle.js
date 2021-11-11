@@ -1,4 +1,3 @@
-// ! LikeListItem용으로 수정해야함
 import styled from "styled-components";
 
 export const ServicesContiner = styled.div`
@@ -9,14 +8,6 @@ export const ServicesContiner = styled.div`
 
   margin: 0 auto;
   background: #fff;
-
-  @media screen and (max-width: 768px) {
-    //height: 1100px;
-  }
-
-  @media screen and (max-width: 480px) {
-    //height: 1300px;
-  }
 `;
 
 export const ServicesWrapper = styled.div`
@@ -77,10 +68,6 @@ export const ServicesIcon = styled.img`
 
 export const Subbar = styled.div`
   display: flex;
-
-  // flex-direction: column;
-  //justify-content: center;
-  //align-items: center;
   padding: 1px 280px;
   border-top: 1px solid green;
   border-bottom: 1px solid green;

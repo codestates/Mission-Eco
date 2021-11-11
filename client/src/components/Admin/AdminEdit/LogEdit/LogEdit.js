@@ -1,3 +1,4 @@
+/*eslint-disable */
 import React, { useEffect, useState } from "react";
 import LogItem from "../LogItem/LogItem";
 import Modal from "../../../Modal/Modal";

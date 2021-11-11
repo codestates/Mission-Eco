@@ -6,9 +6,8 @@ import { deleteUserInfo, userLogout, isToggle } from "../../Redux/actions";
 import logo from "../../imges/logo.png";
 import { ReactComponent as Menubar } from "../../imges/menubar.svg";
 
-import axios from "axios";
 //import { FaBars } from "react-icons/fa";
-//import { animateScroll as scroll } from "react-scroll";
+
 import {
   Nav,
   NavContainer,
@@ -26,9 +25,7 @@ require("dotenv").config();
 const Navbar = ({ togglehandler }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  //const state = useSelector((state) => state.infoReducer.isLogin);
   const isLogin = useSelector((state) => state.infoReducer.isLogin);
-  //console.log(isLogin, "nav");
   const [scrollnav, setScrollNav] = useState(0);
 
   const changeNav = () => {
@@ -54,9 +51,7 @@ const Navbar = ({ togglehandler }) => {
   const handleLogout = async () => {
     //일반유저 로그아웃
     dispatch(userLogout());
-    // dispatch(isLogin(false));
     dispatch(deleteUserInfo(null));
-    //dispatch(getUserLikeList(null));
     history.push("/challenge");
   };
 
@@ -72,21 +67,6 @@ const Navbar = ({ togglehandler }) => {
             <Menubar />
           </MobileIcon>
           <NavMenu>
-            <NavItem>
-              <NavLinks
-                to="/"
-                // smooth={true}
-                duration={500}
-                // spy={true}
-                exact="true"
-                offset={-80}
-                activeclass="active"
-                scrollnav={scrollnav}
-                disabled
-              >
-                About
-              </NavLinks>
-            </NavItem>
             <NavItem>
               <NavLinks
                 to="/challenge"
