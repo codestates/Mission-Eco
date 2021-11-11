@@ -6,9 +6,6 @@ export const FooterContainer = styled.div`
   display: flex;
   height: 400px;
 
-  @media screen and (max-width: 768px) {
-    height: 300px;
-  }
   @media screen and (max-width: 570px) {
     height: 500px;
   }
@@ -55,6 +52,7 @@ export const FooterItemsWrapper = styled.div`
     align-items: center;
     box-sizing: border-box;
     color: #fff;
+    /* margin: 20px 30px 20px 30px; */
   }
   @media screen and (max-width: 570px) {
     flex-direction: column;
@@ -143,9 +141,16 @@ export const MissionEcoGithubContainer = styled.div`
   @media screen and (max-width: 870px) {
   }
   @media screen and (max-width: 768px) {
-    margin: 5px 0 0 0;
+    margin: 20px 30px 0 30px;
   }
   @media screen and (max-width: 480px) {
+    margin: 10px 30px 0 30px;
+  }
+`;
+
+export const LogoContainer = styled.span`
+  @media screen and (max-width: 480px) {
+    display: none;
   }
 `;
 
@@ -188,21 +193,20 @@ export const AdminLogin = styled(Link)`
   right: 0px;
   bottom: 0px;
   color: #34373b;
-  font-weight: bolder;
+  font-size: 12px;
+  font-weight: bold;
   margin: 1em 0 0 0;
 
   &:hover {
     cursor: pointer;
   }
-  @media screen and (max-width: 870px) {
-    margin: 0.5em 1em;
-  }
+
   @media screen and (max-width: 768px) {
-    margin: 0.2em 0 0 0;
+    margin: 20px 30px 0 30px;
     font-size: 12px;
   }
   @media screen and (max-width: 480px) {
-    margin: 0;
+    margin: 10px 0 0 0;
     font-size: 12px;
   }
 `;
