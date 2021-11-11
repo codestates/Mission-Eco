@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
-import { Timeline, Tween } from "react-gsap";
+import { Tween } from "react-gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import {
@@ -19,7 +19,7 @@ import {
   Img,
 } from "./MainInfoStyle";
 
-const MainInfo = ({
+const MainInfo4 = ({
   lightBg,
   id,
   imgStart,
@@ -46,7 +46,7 @@ const MainInfo = ({
               <Tween
                 from={{
                   x: "300px",
-                  y: "-300px",
+                  y: "300px",
                   scrollTrigger: {
                     trigger: ".textWrapper",
                     start: "-400px center",
@@ -90,4 +90,4 @@ const MainInfo = ({
   );
 };
 
-export default MainInfo;
+export default MainInfo4;
