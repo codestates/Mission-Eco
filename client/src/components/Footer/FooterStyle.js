@@ -149,7 +149,7 @@ export const MissionEcoGithubContainer = styled.div`
 `;
 
 export const LogoContainer = styled.span`
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 768px) {
     display: none;
   }
 `;
