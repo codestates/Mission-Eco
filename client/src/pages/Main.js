@@ -1,6 +1,7 @@
 import React from "react";
 import HeroSection from "../components/HeroSection/HeroSection";
 import MainInfo from "../components/InfoSection/MainInfo";
+import MainInfo4 from "../components/InfoSection/MainInfo";
 import { ScrollTopBtn } from "../components/ScrollTop/ScrollTopBtn";
 import {
   homeObjOne,
@@ -16,7 +17,7 @@ function Main() {
       <MainInfo {...homeObjOne} />
       <MainInfo {...homeObjTwo} />
       <MainInfo {...homeObjThree} />
-      <MainInfo {...homeObjFour} />
+      <MainInfo4 {...homeObjFour} />
     </div>
   );
 }
