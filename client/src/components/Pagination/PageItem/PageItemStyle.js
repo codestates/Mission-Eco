@@ -5,5 +5,6 @@ export const LIST = styled.li`
 
   &:hover {
     cursor: pointer;
+    color: white;
   }
 `;
