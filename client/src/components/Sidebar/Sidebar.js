@@ -23,9 +23,6 @@ const Sidebar = ({ togglehandler }) => {
       </Icon>
       <SidebarWrapper>
         <SidebarMenu>
-          <SidebarLink to="about" onClick={togglehandler}>
-            About
-          </SidebarLink>
           <SidebarLink to="challenge" onClick={togglehandler}>
             Challenge
           </SidebarLink>
@@ -38,9 +35,12 @@ const Sidebar = ({ togglehandler }) => {
           <SidebarLink to="signup" onClick={togglehandler}>
             Signup
           </SidebarLink>
+          <SidebarLink to="mypage" onClick={togglehandler}>
+            Mypage
+          </SidebarLink>
         </SidebarMenu>
         <SideBtnWrap>
-          <SidebarRoute to="/signin">Sign In</SidebarRoute>
+          <SidebarRoute to="/login">Sign In</SidebarRoute>
         </SideBtnWrap>
       </SidebarWrapper>
     </SidebarContainer>
