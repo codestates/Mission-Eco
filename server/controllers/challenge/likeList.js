@@ -1,21 +1,7 @@
 const { challengelike } = require("../../models");
 const { isAuthorized } = require("../tokenFunctions/index");
-const sequelize = require("sequelize");
+
 module.exports = {
-  likeList: async (req, res) => {
-    try {
-      const likeCount = await challengelike.findAll({
-        group: ["challenge_id"],
-        attributes: [
-          "challenge_id",
-          [sequelize.fn("COUNT", "challenge_id"), "likeCount"],
-        ],
-      });
-      return res.status(200).send({ likeCount });
-    } catch (error) {
-      console.log(error);
-    }
-  },
   userLike: async (req, res) => {
     try {
       const accessTokenData = isAuthorized(req);
