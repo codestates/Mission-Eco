@@ -6,11 +6,12 @@ module.exports = {
       const challengeLogList = await challengelog.findAll({
         include: [
           { model: user, attributes: ["nickname"] },
-          { model: challenge, attributes: ["name"] },
+          { model: challenge, attributes: ["name", "level"] },
         ],
       });
       const challengeList = await challenge.findAll({
         attributes: ["id", "name"],
+        where: { upload: 1 },
       });
       res.status(200).send({ challengeLogList, challengeList });
     } catch (error) {

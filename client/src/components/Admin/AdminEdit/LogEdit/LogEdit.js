@@ -1,10 +1,30 @@
+/*eslint-disable */
 import React, { useEffect, useState } from "react";
 import LogItem from "../LogItem/LogItem";
-const LogEdit = ({ logList }) => {
+import Modal from "../../../Modal/Modal";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteLog } from "../../../../Redux/actions";
+import {
+  LogContainer,
+  Wrapper,
+  InputContainer,
+  Input,
+  Btn,
+} from "./LogEditStyle";
+
+const LogEdit = () => {
+  const dispatch = useDispatch();
+  const logList = useSelector((state) => state.infoReducer.adminLogList);
+
   const [logs, setLogs] = useState(logList);
-  console.log("logs--", logs);
   const [condition, setCondition] = useState("");
   const [filter, setFilter] = useState("");
+  const [openModal, setOpenModal] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
+
+  useEffect(() => {
+    setLogs(logList);
+  }, [logList]);
 
   useEffect(() => {
     const result = getLogs(filter);
@@ -20,17 +40,52 @@ const LogEdit = ({ logList }) => {
   const handleFilter = () => {
     setFilter(condition);
   };
+  const openModalHandler = (id) => {
+    setOpenModal(!openModal);
+    setDeleteId(id);
+  };
+  const deleteHandler = () => {
+    dispatch(deleteLog(deleteId));
+    setOpenModal(!openModal);
+    setDeleteId(null);
+  };
+  const closeModalHandler = () => {
+    setOpenModal(!openModal);
+    setDeleteId(null);
+  };
+
   return (
-    <div>
-      <input type="text" value={condition} onChange={handleChange}></input>
-      <button onClick={handleFilter}>검색</button>
-      <div>
+    <Wrapper>
+      <InputContainer>
+        <Input
+          type="text"
+          placeholder="검색하세요..."
+          value={condition}
+          onChange={handleChange}
+        />
+        <Btn onClick={handleFilter}>검색</Btn>
+      </InputContainer>
+      <LogContainer>
         {logs &&
           logs.map((log, idx) => {
-            return <LogItem key={idx} log={log} />;
+            return (
+              <LogItem
+                key={idx}
+                log={log}
+                openModalHandler={openModalHandler}
+              />
+            );
           })}
-      </div>
-    </div>
+      </LogContainer>
+      {openModal ? (
+        <Modal
+          msg={"해당 로그를 삭제하시겠습니까?"}
+          closeModalHandler={closeModalHandler}
+          uploadBtn={"Yes"}
+          fileUploadHandler={deleteHandler}
+        />
+      ) : null}
+    </Wrapper>
   );
 };
 

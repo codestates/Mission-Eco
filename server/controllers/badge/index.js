@@ -22,7 +22,7 @@ module.exports = {
         res.sendStatus(401);
       } else {
         const { id } = accessTokenData; //userId값 받아오기
-        const challengeId = req.body;
+        const { challengeId } = req.body;
         const findBadge = await badge.findOne({
           where: { challenge_id: challengeId },
         });

@@ -18,19 +18,16 @@ module.exports = async (req, res) => {
       const adminInfo = await user.findOne({
         where: { email },
       });
-      console.log("adminInfo--", adminInfo);
       //DB에 일치하는 유저가 없는 경우
       if (!adminInfo) {
-        return res.status(401).send({ message: "일치하는 정보가 없습니다." });
+        return res.sendStatus(401);
       } else {
-        if (adminInfo.admin !== 1) {
-          return res.status(401).send({ message: "관리자 권한이 필요합니다." });
+        if (!adminInfo.admin) {
+          return res.sendStatus(401);
         } else {
           const match = await bcrypt.compare(password, adminInfo.password);
           if (!match) {
-            return res
-              .status(401)
-              .send({ message: "비밀번호가 일치하지 않습니다." });
+            return res.sendStatus(401);
           } else {
             const payload = adminInfo.dataValues;
             delete payload.password;

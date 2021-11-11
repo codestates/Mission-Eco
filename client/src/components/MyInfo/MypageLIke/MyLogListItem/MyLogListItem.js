@@ -1,24 +1,43 @@
 // ! MyLogListItem용으로 수정해야함 (style.js도)
 import React from "react";
 import {
-  ServicesCard,
-  ServicesIcon,
-  // ServicesH2,
-  ServicesP,
+  LogCardContatainer,
+  LogImg,
+  LogImgContainer,
+  NameNtime,
+  LogHashP,
+  LogContent,
+  Button,
+  LogH2,
+  LogP,
 } from "./MyLogListItemStyle";
 
-const MyLogListItem = ({ list }) => {
-  console.log({ list });
+// svg 아이콘으로 변경하기
+import { ReactComponent as TrashIcon } from "../../../../imges/iconmonstr-trash-can-1.svg";
+
+const MyLogListItem = ({ list, HandleDeleteLog }) => {
+  const { id, img, challengelog_contents, user_id, name, createdAt } = list;
+
   return (
     <>
-      <ServicesCard>
-        <p>나는 작성한 애들이야</p>
+      <LogCardContatainer>
+        <Button onClick={() => HandleDeleteLog(id)}>
+          <TrashIcon fill="#333" />
+        </Button>
         {/* <ServicesIcon>{list.img}</ServicesIcon> */}
-        <ServicesIcon background={list.img} />
+        <LogImgContainer>
+          <LogImg src={img} />
+        </LogImgContainer>
+        <LogContent>
+          <LogHashP> {name}</LogHashP>
+          <NameNtime>
+            <LogP>닉네임:{user_id}</LogP>
+            <LogP className="time">{createdAt.substring(0, 10)}</LogP>
+          </NameNtime>
+          <LogH2>{challengelog_contents}</LogH2>
+        </LogContent>
         {/* ⬆ 이거 주석해제 하면 에러남 && styled문서 가서 보면, props.background 부분에 background 못 읽는 것으로 추정됨  */}
-        <ServicesP>{list.challengelog_contents}</ServicesP>
-        <ServicesP>{list.user_id}</ServicesP>
-      </ServicesCard>
+      </LogCardContatainer>
     </>
   );
 };

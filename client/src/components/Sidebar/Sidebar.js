@@ -1,6 +1,6 @@
 import React from "react";
 import { ReactComponent as CloseBtn } from "../../imges/close.svg";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   SidebarContainer,
   Icon,
@@ -14,7 +14,7 @@ import {
 const Sidebar = ({ togglehandler }) => {
   const isToggle = useSelector((state) => state.infoReducer.isToggle);
 
-  console.log(isToggle);
+  //console.log(isToggle);
 
   return (
     <SidebarContainer isToggle={isToggle}>
@@ -23,9 +23,6 @@ const Sidebar = ({ togglehandler }) => {
       </Icon>
       <SidebarWrapper>
         <SidebarMenu>
-          <SidebarLink to="about" onClick={togglehandler}>
-            About
-          </SidebarLink>
           <SidebarLink to="challenge" onClick={togglehandler}>
             Challenge
           </SidebarLink>
@@ -38,9 +35,12 @@ const Sidebar = ({ togglehandler }) => {
           <SidebarLink to="signup" onClick={togglehandler}>
             Signup
           </SidebarLink>
+          <SidebarLink to="mypage" onClick={togglehandler}>
+            Mypage
+          </SidebarLink>
         </SidebarMenu>
         <SideBtnWrap>
-          <SidebarRoute to="/signin">Sign In</SidebarRoute>
+          <SidebarRoute to="/login">Sign In</SidebarRoute>
         </SideBtnWrap>
       </SidebarWrapper>
     </SidebarContainer>

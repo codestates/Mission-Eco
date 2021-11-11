@@ -1,53 +1,83 @@
 import React from "react";
 import {
-  ServicesContainer,
+  FooterContainer,
+  FooterWrap,
+  FooterItemsWrapper,
+  FooterItem,
+  // FooterLinksContainer,
   Title,
-  Icon,
-  ServicesWrapper,
-  ServicesCard,
   Name,
   Position,
   GithubBadge,
+  MissionEcoGithubContainer,
+  LogoContainer,
+  MissionEcoTxt,
+  AdminLoginContainer,
+  AdminLogin,
 } from "./FooterStyle";
+import { ReactComponent as GithubGrayLogo } from "../../imges/github48.svg";
+import { ReactComponent as BlueOctocat } from "../../imges/blueOctocat.svg";
+import { ReactComponent as SquareLogo } from "../../imges/githubSquareS.svg";
+import { ReactComponent as TxtLogo } from "../../imges/githubtxtlogo.svg";
+import { ReactComponent as TxtLogoWhite } from "../../imges/githubtxtlogowhite.svg";
 
 const Footer = () => {
   return (
     <>
-      <ServicesContainer>
-        <Title>🌏 ABOUT US 🌳</Title>
-        {/* <Icon>깃헙 아이콘 img에 우리 깃헙 링크 🔗</Icon> */}
-        {/* <Icon src="https://toppng.com/uploads/preview/see-all-open-source-repositories-github-logo-11563031735gubsot66ry.png" /> */}
+      <FooterContainer>
+        <FooterWrap>
+          {/* <FooterLinksContainer> */}
+          <Title>🌏 ABOUT US 🌳</Title>
 
-        <ServicesWrapper>
-          <ServicesCard>
-            <i className="fab fa-github-square fa-2x">Mission-Eco</i>
-          </ServicesCard>
-          <ServicesCard>
-            <Name>김수경</Name>
-            <Position>Back-end</Position>
-            {/* <GithubBadge>여기엔 깃헙뱃지img🏞 에 개인 깃헙 링크 🔗 </GithubBadge> */}
-            <GithubBadge src="https://img.shields.io/badge/Github-eden0514-1E3C13?style=for-the-badge&logo=GitHub/" />
-          </ServicesCard>
-
-          <ServicesCard>
-            <Name>김양현</Name>
-            <Position>Back-end</Position>
-            <GithubBadge src="https://img.shields.io/badge/Github-loocia1910-F3FCEE?style=for-the-badge&logo=GitHub/" />
-          </ServicesCard>
-
-          <ServicesCard>
-            <Name>김효영</Name>
-            <Position>Front-end</Position>
-            <GithubBadge src="https://img.shields.io/badge/Github-HYO00-59A13F?style=for-the-badge&logo=GitHub/" />
-          </ServicesCard>
-
-          <ServicesCard>
-            <Name>조현진</Name>
-            <Position>Front-end</Position>
-            <GithubBadge src="https://img.shields.io/badge/Github-chohyeonjin-FFFBCE?style=for-the-badge&logo=GitHub/" />
-          </ServicesCard>
-        </ServicesWrapper>
-      </ServicesContainer>
+          <FooterItemsWrapper>
+            <FooterItem>
+              <Name>김수경</Name>
+              <Position>Back-end</Position>
+              <a target="_blank" href="https://github.com/eden0514">
+                <GithubBadge src="https://img.shields.io/badge/Github-ㅤeden0514ㅤ-F3FCEE?style=for-the-badge&logo=GitHub/" />
+              </a>
+            </FooterItem>
+            <FooterItem>
+              <Name>김양현</Name>
+              <Position>Back-end</Position>
+              <a target="_blank" href="https://github.com/loocia1910">
+                <GithubBadge src="https://img.shields.io/badge/Github-loocia1910-F3FCEE?style=for-the-badge&logo=GitHub/" />
+              </a>
+            </FooterItem>
+            <FooterItem>
+              <Name>김효영</Name>
+              <Position>Front-end</Position>
+              <a target="_blank" href="https://github.com/HYO00">
+                <GithubBadge src="https://img.shields.io/badge/Github-ㅤㅤHYO00ㅤㅤㅤ-F3FCEE?style=for-the-badge&logo=GitHub/" />
+              </a>
+            </FooterItem>
+            <FooterItem>
+              <Name>조현진</Name>
+              <Position>Front-end</Position>
+              <a target="_blank" href="https://github.com/cho-hyeonjin">
+                <GithubBadge src="https://img.shields.io/badge/Github-chohyeonjin-F3FCEE?style=for-the-badge&logo=GitHub/" />
+              </a>
+            </FooterItem>
+          </FooterItemsWrapper>
+          <MissionEcoGithubContainer>
+            <a target="_blank" href="https://github.com/codestates/Mission-Eco">
+              <LogoContainer>
+                <BlueOctocat />
+              </LogoContainer>
+              <TxtLogoWhite />
+              {/* <TxtLogoWhite /> */}
+              {/* <SquareLogo />
+              <TxtLogo /> */}
+            </a>
+            {/* <GithubGrayLogo />
+            </a>
+            <MissionEcoTxt>Mission-Eco</MissionEcoTxt> */}
+          </MissionEcoGithubContainer>
+          <AdminLoginContainer>
+            <AdminLogin to="/admin-login">관리자로그인</AdminLogin>
+          </AdminLoginContainer>
+        </FooterWrap>
+      </FooterContainer>
     </>
   );
 };

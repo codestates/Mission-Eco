@@ -1,39 +1,26 @@
-import React, { useEffect, useState } from "react";
-
-import { useSelector } from "react-redux";
-
-//import { useHistory } from "react-router-dom"
+/*eslint-disable */
+import React from "react";
 import HeroSection from "../components/HeroSection/HeroSection";
-import MainInfo from "../components/InfoSection/MainInfo";
+import MainInfo1 from "../components/InfoSection/MainInfo1";
+import MainInfo4 from "../components/InfoSection/MainInfo4";
+import MainInfo3 from "../components/InfoSection/MainInfo3";
+import { ScrollTopBtn } from "../components/ScrollTop/ScrollTopBtn";
 import {
   homeObjOne,
   homeObjTwo,
-  homeObjThree,
+  homeObjFour,
 } from "../components/InfoSection/Data";
+import MainInfo2 from "../components/InfoSection/MainInfo2";
 
 function Main() {
-  const Toggle = useSelector((state) => state.infoReducer.isToggle);
-
-
-  //const history = useHistory();
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    return setIsOpen(false);
-  }, []);
-  console.log(Toggle);
-
-  //sidebar
-  //navbar
-  //<heroSection>
-  //<infosection>
-
   return (
     <div>
       <HeroSection />
-      <MainInfo {...homeObjOne} />
-      <MainInfo {...homeObjTwo} />
-      <MainInfo {...homeObjThree} />
+      <MainInfo1 {...homeObjOne} />
+      <MainInfo2 {...homeObjTwo} />
+      <MainInfo3 />
+      <MainInfo4 {...homeObjFour} />
+      <ScrollTopBtn />
     </div>
   );
 }
