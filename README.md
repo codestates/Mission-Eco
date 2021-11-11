@@ -12,10 +12,11 @@ Mission Eco? give it a try!
 - 또한 자신이 경험한 챌린지를 사람들과 **공유**를 하며 연대감을 쌓을 수 있습니다. 
 - 챌린지 경험을 공유할 때 올리는 인증 사진의 경우 **teachable machine**을 이용해 머신 러닝으로 스스로 적합한 사진인지 여부를 **확인**할 수 있습니다. 
 - 챌린지를 하나씩 성공할 때마다 **뱃지**가 수여되어 뱃지를 모으는 **재미** 또한 느낄 수 있습니다.
+
+### 배포링크 https://mission-eco.co.kr/
+
 # LOGO
 <img src="https://cdn.discordapp.com/attachments/840550010826915841/907992075474190376/e3e0c0f231097f0e.png" width="200" height="200"/>
-
-# 배포링크 https://mission-eco.co.kr/
 
 # FEATURE
 
