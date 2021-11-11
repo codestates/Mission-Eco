@@ -19,7 +19,7 @@ import {
   Img,
 } from "./MainInfoStyle";
 
-const MainInfo = ({
+const MainInfo4 = ({
   lightBg,
   id,
   imgStart,
@@ -90,4 +90,4 @@ const MainInfo = ({
   );
 };
 
-export default MainInfo;
+export default MainInfo4;

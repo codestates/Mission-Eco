@@ -17,7 +17,7 @@ const LikeList = () => {
   const LikeAndLogListRequest = async () => {
     await axios
       .get(
-        `https://localhost:4000/mypage/mylist`,
+        `${process.env.REACT_APP_API_URL}/mypage/mylist`,
         // "http://team-meetme.s3-website.ap-northeast-2.amazonaws.com/mypage/mylist/:userId",
         { withCredentials: true }
       )
