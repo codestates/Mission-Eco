@@ -1,7 +1,8 @@
 /*eslint-disable */
 import React, { useEffect, useState } from "react";
 import { upload } from "../../utils/imgUploader";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getChallengeLogList } from "../../Redux/actions";
 import axios from "axios";
 import {
   ChallengeUploadCT,
@@ -10,6 +11,7 @@ import {
   Button,
   BtnWrapper,
   ServicesContiner,
+  UploadH2,
 } from "./ChallengeUploadStyle";
 
 import Preview from "../../components/Preview/Preview";
@@ -18,6 +20,7 @@ import Modal from "../../components/Modal/Modal";
 
 function ChallengeUpload() {
   const userInfo = useSelector((state) => state.infoReducer.userInfo);
+  const dispatch = useDispatch();
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploadFile, setUploadFile] = useState(null);
   const [openModal, setOpenModal] = useState(false);
@@ -27,7 +30,9 @@ function ChallengeUpload() {
   const [img, setImg] = useState("");
   const [logs, setLogs] = useState({});
 
-  useEffect(() => {}, [isVideo, results]);
+  useEffect(() => {
+    dispatch(getChallengeLogList());
+  }, [isVideo, results]);
 
   const closeModalHandler = () => {
     setOpenModal(!openModal);
@@ -54,31 +59,30 @@ function ChallengeUpload() {
   };
 
   const imageModelURL =
-    "https://teachablemachine.withgoogle.com/models/961H1RAK0/model.json";
-
+    "https://teachablemachine.withgoogle.com/models/LqVCsScNs/model.json";
   const fileSelectedHandler = (e) => {
     if (e.target.files.length !== 0) {
       setSelectedFile(URL.createObjectURL(e.target.files[0]));
       setUploadFile(e.target.files[0]);
-      URL.revokeObjectURL(selectedFile);
+      // URL.revokeObjectURL(selectedFile);
     } else {
       return;
     }
   };
 
   const fileUploadHandler = async () => {
+    const missionName = logs.challenge.split(",");
     closeModalHandler();
     setIsUpload(true);
     const uploaded = await upload(uploadFile);
-    console.log(uploaded);
-    //fd.append("img", selectedFile, selectedFile.name, fd);
+
     axios
       .post(
         `${process.env.REACT_APP_API_URL}/challenge-log`,
         {
           userId: userInfo.id,
-          challengeId: 1,
-          img: `${uploaded.url}`,
+          challengeId: missionName[1],
+          img: `${uploaded.secure_url}`,
           contents: `${logs.contents}`,
         },
         { "Content-Type": "multipart/form-data" }
@@ -89,13 +93,32 @@ function ChallengeUpload() {
         setResults([]);
         resetLog();
         setIsUpload(false);
+      })
+      .then(async () => {
+        await axios
+          .post(
+            `${process.env.REACT_APP_API_URL}/badge`,
+            {
+              challengeId: missionName[1],
+            },
+            {
+              withCredentials: true,
+            }
+          )
+          .then((res) => {
+            if (res.status === 201) {
+              return;
+            }
+          })
+          .catch((err) => console.log(err));
       });
   };
+
   return (
     <ChallengeUploadCT>
       <ServicesContiner>
         <Container>
-          <h2>챌린지 업로드 미리보기</h2>
+          <UploadH2>챌린지 업로드 미리보기</UploadH2>
           <BtnWrapper>
             <Button onClick={clickVideoHandler}>Video Click!</Button>
             <Button onClick={clickImgHandler}>Image Click!</Button>
@@ -129,11 +152,6 @@ function ChallengeUpload() {
               oncloseModalHandlerClick={closeModalHandler}
             />
           ) : null}
-          {/**  <Uploader setImg={setImg} fileSelectedHandler={fileSelectedHandler} /><Classifier
-          img={img}
-          imageModelURL={imageModelURL}
-          selectedFile={selectedFile}
-        /> */}
         </Container>
       </ServicesContiner>
     </ChallengeUploadCT>

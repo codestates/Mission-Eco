@@ -5,40 +5,37 @@ import ml5 from "ml5";
 import { Img } from "../../Loading/LoadingIndicator";
 
 const Container = styled.div`
+  //display: flex;
+
   position: relative;
 `;
 
 const Button = styled.button`
-  padding: 10px;
+  padding: 20px;
   background: #ffa928;
+
   border: none;
   border-radius: 5px;
+
   cursor: pointer;
   :hover {
     background-color: #e7e7e7;
   }
 `;
 
-const List = styled.ul`
-  margin-top: 50px;
-`;
-
-const Item = styled.li`
-  list-style-type: none;
-`;
-
-const H3 = styled.h3`
-  text-align: center;
+const BtnBox = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 let classifier;
 
-const Classifier = ({ imageModelURL }) => {
+const Classifier = ({ imageModelURL, setResults }) => {
   const videoRef = useRef();
   const [start, setStart] = useState(false);
-  const [results, setResults] = useState([]);
+  //const [results, setResults] = useState([]);
   const [loaded, setLoaded] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  //const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     classifier = ml5.imageClassifier(imageModelURL, () => {
@@ -48,14 +45,14 @@ const Classifier = ({ imageModelURL }) => {
           videoRef.current.srcObject = stream;
           videoRef.current.play();
           setLoaded(true);
-          setIsLoading(true);
+          // setIsLoading(true);
         });
     });
-  }, []);
+  }, [imageModelURL]);
 
   const classifyImg = () => {
-    setIsLoading(true);
-    console.log(isLoading, classifier, start);
+    // setIsLoading(true);
+    //console.log(isLoading, classifier, start);
     if (classifier && start) {
       classifier
         .predict(videoRef.current, (err, classifiedResults) => {
@@ -63,7 +60,7 @@ const Classifier = ({ imageModelURL }) => {
         })
         .then((classifiedResults) => {
           setStart(!start);
-          setIsLoading(false);
+          //  setIsLoading(false);
           setResults(classifiedResults);
         });
     }
@@ -74,39 +71,34 @@ const Classifier = ({ imageModelURL }) => {
     classifyImg();
     setResults([]);
   };
+  console.log(videoRef);
 
   return (
     <>
-      <Container>
+      {!videoRef.current ? (
         <Img
           alt="now loading"
           src="gif/ms.gif"
-          width="200px"
-          height="200px"
+          width="100px"
+          height="100px"
           loaded={loaded}
         />
+      ) : null}
+
+      <Container>
         <video
           ref={videoRef}
           style={{ transform: "scale(-1, 1)" }}
-          width="300"
-          height="350"
+          width="100%"
+          height="300px"
         />
         {loaded && (
-          <Button onClick={() => toggle()}>
-            {start ? "확인하기" : "캡쳐하기"}
-          </Button>
+          <BtnBox>
+            <Button onClick={() => toggle()}>
+              <p>{start ? "확인하기" : "캡쳐하기"}</p>
+            </Button>
+          </BtnBox>
         )}
-        {results.length !== 0 ? (
-          <List>
-            {`예측결과 ${results[0].label}:
-                    ${Math.floor(results[0].confidence * 100)}%,
-                    ${results[1].label}:
-                    ${Math.floor(results[1].confidence * 100)}%,
-                    ${results[2].label}:
-                    ${Math.floor(results[2].confidence * 100)}`}
-            %
-          </List>
-        ) : null}
       </Container>
     </>
   );

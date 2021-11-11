@@ -2,23 +2,38 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { isLogin, deleteUserInfo } from "../../../Redux/actions";
+import { userSignout, deleteUserInfo } from "../../../Redux/actions";
 import { validPassword } from "../../../utils/validation";
 import axios from "axios";
+import Modal from "../../Modal/Modal";
 import {
-  Container,
+  MypageEditContainer,
+  TitleWrap,
+  MypageEditWrap,
   TitleH1,
   Wrapper,
-  TitleH3,
-  Input,
+  TitleH2,
+  FormInput,
   Span,
+  FormLabel,
+  DelUserBtnWrapper,
+  BtnContainer,
   Btn,
+  DelUserBtn,
 } from "./MypageEditStyle";
 
 axios.defaults.withCredentials = true;
 
 const MypageEdit = () => {
-  const state = useSelector((state) => state.infoReducer);
+  // * Accept Current Change
+  const state = useSelector((state) => state.infoReducer.userInfo);
+  console.log(state);
+  // *
+  // *Accept Incoming Change
+  // const isLogin = useSelector((state) => state.infoReducer.isLogin);
+  // const state = useSelector((state) => state.infoReducer.userInfo);
+  // console.log(isLogin, "edit");
+  // *
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -30,10 +45,16 @@ const MypageEdit = () => {
   const [errMsg, setErrMsg] = useState("");
   const [pwErrMsg, setPwErrMsg] = useState("");
 
-  // * 닉네임 state
-  const [nick, setNick] = useState({
-    nickname: "",
+  // // * 닉네임 state
+  // const [nick, setNick] = useState({
+  //   nickname: "",
+  // });
+  // ! 닉네임 state 수정
+  const [nickInfo, setNickInfo] = useState({
+    userId: state.id,
+    newNickname: "",
   });
+  // !
 
   // * 패스워드 state
   const [pwInfo, setPwInfo] = useState({
@@ -41,47 +62,94 @@ const MypageEdit = () => {
     password2: "",
   });
 
+  // * 모달 상태
+  const [ isOpenModal, setIsOpenModal ] = useState(false)
+  const [ deleteUserMsg, setDeletedUserMsg ] = useState("정말로 회원탈퇴 하시겠습니까?");
+  const [ isDeletedUser, setDeletedUser ] = useState(false);
+
+  const closeModalHandler = () => {
+    setIsOpenModal(!isOpenModal);
+  }
+
   useEffect(() => {}, [state.userInfo]);
 
-  // * handle Input Value 함수 - Nick
+  // // !* handle Input Value 함수 - Nick
+  // const handleNickValue = (key) => (e) => {
+  //   setNick({ ...nick, [key]: e.target.value });
+  // };
+  // ! handle Input Nick 수정
   const handleNickValue = (key) => (e) => {
-    setNick({ ...nick, [key]: e.target.value });
+    setNickInfo({ ...nickInfo, [key]: e.target.value });
   };
+  // !
 
   // * handle Input Value함수 - PwInfo
   const handlePwValue = (key) => (e) => {
     setPwInfo({ ...pwInfo, [key]: e.target.value });
   };
 
-  // ** handler - 닉네임
-  const { nickname } = nick;
-  const changeNickRequestHandler = () => {
-    if (!nickname) {
-      setErrMsg("닉네임을 입력하세요.");
-    } else {
-      axios
-        .get(
-          `${process.env.REACT_APP_API_URL}/user/validation/nickname/${nickname}`,
+  // ** handler - 닉네임 중복확인
+  // const { nickname } = nick;
+  // ! nick --> nickInfo 수정
+  // const { nickname } = nickInfo;
+  const { userId, newNickname } = nickInfo;
+  // !
+  const checkNickRequestHandler = () => {
+    console.log(newNickname);
 
-          {
-            withCredentials: true,
-          }
-        )
-        .then((res) => {
-          //console.log("nickname", res.data);
-          if (res.status === 204) {
-            setNick(true);
-            setErrMsg("사용가능한 닉네임입니다. ");
-          }
-        });
-    }
-    setErrMsg("이미 사용중인 닉네임입니다.");
+    axios
+      .get(
+        `${process.env.REACT_APP_API_URL}/user/validation/nickname/${newNickname}`,
+
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        //console.log("nickname", res.data);
+        if (res.status === 204) {
+          // setNick(true);
+          // // !setNick-->setNickInfo 수정
+          // setNickInfo(true);
+          // // !
+          setErrMsg("사용 가능한 닉네임입니다.");
+        }
+      })
+      .catch((err) => setErrMsg("이미 사용중인 닉네임입니다."));
+    // catch로 처리해보기
+    // setErrMsg("이미 사용중인 닉네임입니다.");
   };
 
+  // ! handler - 닉네임 변경 (패스워드 변경 함수 참고)
+  // 성공 === 204
+  const changeNickRequestHandler = () => {
+    // const { userId, newNickname } = nickInfo;
+    console.log(userId, newNickname);
+    axios
+      .patch(
+        `${process.env.REACT_APP_API_URL}/mypage/userinfo/nickname`,
+        // { userId: userInfo.id, newNickname: userInfo.newNickname },
+        { userId, newNickname },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        console.log(res.status);
+        if (res.status === 204) {
+          setErrMsg("닉네임 변경완료!");
+        } else {
+          setErrMsg("닉네임 변경실패");
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+  // !
+
+  // * handler - 비밀번호 변경 함수
   const changePwRequestHandler = () => {
     const { password1, password2 } = pwInfo;
     console.log(password1);
     console.log(password2);
+    console.log(state);
     if (!password1 || !password2) {
       setPwErrMsg("모든 항목은 필수입니다.");
     } else if (!validPassword(password1)) {
@@ -91,111 +159,93 @@ const MypageEdit = () => {
     } else {
       axios
         .patch(
-          `${process.env.REACT_APP_API_URL}/mypage/userinfo/password`, // 여기에 /mypage/userinfo/password 엔드포인트 쓰는거? 일케 쓰는 거 맞음?,
-          { userId: state.userInfo.id, newPassword: password1 },
+          `${process.env.REACT_APP_API_URL}/mypage/userinfo/password`,
+          { userId: state.id, newPassword: password1 },
+          // ! 이 부분 참고해서 닉네임에 적용 { userId: state.userInfo.id, newNickname: ~~~ },
           { withCredentials: true }
         )
         .then((res) => {
           console.log(res.status);
           if (res.status === 204) {
-            setPwErrMsg("비밀번호가 변경완료");
-            // setPw(true);
-            // 로 해야하나?
+            setPwErrMsg("비밀번호 변경완료");
           }
         })
         .catch((err) => console.log(err));
     }
-    setPwErrMsg("비밀번호가 변경실패");
+    setPwErrMsg("비밀번호 변경실패");
   };
   //
   // ** handler 회원탈퇴 ---> 모달창 레이아웃부터 잡기
-  // 회원탈퇴 버튼을 누르면 "확인 모달창"이 뜬다.
-  // 모달창에서 "예" 버튼을 누르면 -> DB에서 내 정보가 삭제된다.
-  // 함수 만들어서 버튼 누르면 axios로 요청 보내기 코드 작성. delete메소드 --> 요청부분까지만 일단 작성해두기
-  // 응답--> 성공시 mypage-userInfo를 null로 바꿔야 한다. (리덕스) --> 같이
-
-  // const [showModal, setShowModal] = useState(false);
-
   const userDeleteRequestHandler = () => {
-    axios
-      .delete(`${process.env.REACT_APP_API_URL}/mypage/userinfo`, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log(res.status);
-        if (res.status === 204) {
-          dispatch(deleteUserInfo(null));
-          dispatch(isLogin(!isLogin));
-          history.push("/");
-          console.log("회원탈퇴 완료");
-        } else {
-          console.log("회원탈퇴 실패");
-        }
-      })
-      .catch((err) => console.log(err));
+    console.log("회원탈퇴");
+    dispatch(userSignout());
+    dispatch(deleteUserInfo(null));
+    setDeletedUserMsg("회원탈퇴가 성공적으로 되었습니다.");
+    setDeletedUser(true);
   };
 
   return (
     <>
-      <Container>
-        <TitleH1>마이페이지</TitleH1>
+      {/* // * Accept Current Change */}
+      <MypageEditContainer>
+        <TitleWrap>
+          <TitleH1>나의 정보 수정</TitleH1>
+        </TitleWrap>
+        <MypageEditWrap>
+          <Wrapper>
+            <TitleH2>닉네임 변경하기</TitleH2>
+            <FormLabel>새 닉네임</FormLabel>
+            <FormInput
+              type="text"
+              // placeholder="새 닉네임을 입력하세요."
+              onChange={handleNickValue("newNickname")} // index.js에 nickname으로 들어가 있어서 이렇게적었는데 위의 state명 nick을 적어야 하나?
+            ></FormInput>
+            <Span>{errMsg}</Span>
+            <BtnContainer>
+              <Btn type="submit" onClick={checkNickRequestHandler}>
+                닉네임 중복확인
+              </Btn>
+              <Btn type="submit" onClick={changeNickRequestHandler}>
+                닉네임 변경
+              </Btn>
+            </BtnContainer>
+          </Wrapper>
 
-        {/* 닉네임 변경 */}
-        <Wrapper>
-          <TitleH3>닉네임 변경하기</TitleH3>
-          {/* <div className="title">닉네임</div> */}
-          <Span>새 닉네임</Span>
-          <Input
-            type="text"
-            placeholder="새 닉네임을 입력하세요."
-            onChange={handleNickValue("nickname")} // index.js에 nickname으로 들어가 있어서 이렇게적었는데 위의 state명 nick을 적어야 하나?
-          ></Input>
-          {/* <Btn onClick={changeInfoHandler}>닉네임 변경</Btn> */}
-          <Btn type="submit" onClick={changeNickRequestHandler}>
-            닉네임 변경
-          </Btn>
-          <Span>{errMsg}</Span>
-        </Wrapper>
+          <Wrapper>
+            <TitleH2>비밀번호 변경하기</TitleH2>
+            <FormLabel>비밀번호</FormLabel>
+            <FormInput
+              type="password"
+              // placeholder="비밀번호를 입력하세요."
+              onChange={handlePwValue("password1")} // handleInputValue에 ("password") 하면 패스워드만 골라서 쓸 수 있음?
+            />
+            {/* <Span>{pwErrMsg}</Span> */}
+            <FormLabel>비밀번호 확인</FormLabel>
+            <FormInput
+              type="password"
+              // placeholder="비밀번호를 한 번 더 입력하세요."
+              onChange={handlePwValue("password2")}
+            />
+            <Span>{pwErrMsg}</Span>
+            <Btn type="submit" onClick={changePwRequestHandler}>
+              비밀번호 변경
+            </Btn>
+          </Wrapper>
 
-        {/* 패스워드 변경 */}
-        <Wrapper>
-          <TitleH3>비밀번호 변경하기</TitleH3>
-          <Span>비밀번호</Span>
-          <Input
-            type="password"
-            placeholder="새 비밀번호를 입력하세요."
-            onChange={handlePwValue("password1")} // handleInputValue에 ("password") 하면 패스워드만 골라서 쓸 수 있음?
-          />
-          {/* <Span>{pwErrMsg}</Span> */}
-          <Span>비밀번호 확인</Span>
-          <Input
-            type="password"
-            placeholder="새 비밀번호를 재입력하세요."
-            onChange={handlePwValue("password2")}
-          />
-          <Span>{pwErrMsg}</Span>
-          <Btn type="submit" onClick={changePwRequestHandler}>
-            비밀번호 변경
-          </Btn>
-
-          {/* 회원탈퇴 */}
-        </Wrapper>
-        {/* <Link to="../../Modal/Modal"> */}
-        {/* 왜 이동한 페이지에서 Modal컴포넌트 내용이 안뜨지? */}
-        {/* 회원 탈퇴 */}
-        {/* onClick={changeNickRequestHandler} */}
-        {/* </Link> */}
-        {/* <Modal /> */}
-
-        {/* <Btn onClick={() => {setShowModal(true);}}> */}
-        {/* 회원탈퇴 */}
-        {/* </Btn> */}
-        {/* {showModal === true ? <Modal /> : null} */}
-        {/* 회원탈퇴 누르면 모달창 뜨고 -> 모달컴포넌트에서 네 누르면 먹히는 것 까진 있는데, 
-        모달 컴포넌트에서 아니오 누르면 모달창이 닫혀야함.. */}
-
-        <Btn onClick={userDeleteRequestHandler}>회원탈퇴</Btn>
-      </Container>
+          <DelUserBtnWrapper>
+            <DelUserBtn onClick={closeModalHandler}>회원탈퇴</DelUserBtn>
+          </DelUserBtnWrapper>
+        </MypageEditWrap>
+        {isOpenModal ? 
+          <Modal 
+            msg={deleteUserMsg}
+            userDeleteRequestHandler={userDeleteRequestHandler}
+            closeModalHandler={closeModalHandler}
+            isDeletedUser={isDeletedUser}
+          /> :
+           null 
+        }
+      </MypageEditContainer>
     </>
   );
 };

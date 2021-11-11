@@ -1,6 +1,6 @@
 import React from "react";
 import { ReactComponent as CloseBtn } from "../../imges/close.svg";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   SidebarContainer,
   Icon,
@@ -14,7 +14,7 @@ import {
 const Sidebar = ({ togglehandler }) => {
   const isToggle = useSelector((state) => state.infoReducer.isToggle);
 
-  console.log(isToggle);
+  //console.log(isToggle);
 
   return (
     <SidebarContainer isToggle={isToggle}>

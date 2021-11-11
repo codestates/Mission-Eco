@@ -13,7 +13,10 @@ export const CHALLENGE_LIST = "CHALLENGE_LIST";
 export const CHALLENGE_LOG_LIST = "CHALLENGE_LOG_LIST";
 export const USER_LIKE_LIST = "USER_LIKE_LIST";
 export const IS_LIKE = "IS_LIKE";
+export const BADGE_LIST = "BADGE_LIST";
 export const AUTH_SUCCESS = "AUTH_SUCCESS";
+export const ADMIN_LOG = "ADMIN_LOG";
+export const ADMIN_CHALLENGE = "ADMIN_CHALLENGE";
 
 export function isLogin(boolean) {
   return {
@@ -78,6 +81,8 @@ export function isOpenModal(boolean) {
   };
 }
 
+// function이랑 const랑 어떤차이인지 본다음에
+// 로그 리스트를 지우는 fuction 만들기
 export function getChallengeInfo(challengeInfo) {
   return {
     type: CHALLENGE_INFO,
@@ -163,6 +168,93 @@ export function getUserLikeList(likeList) {
   };
 }
 
+export const adminSignin = (loginInfo) => async (dispatch) => {
+  try {
+    const { email, password } = loginInfo;
+    const data = await axios
+      .post(
+        `${process.env.REACT_APP_API_URL}/admin/signin`,
+        { email, password },
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        if (res.status === 204) {
+          return true;
+        }
+        return false;
+      });
+    dispatch({ type: IS_LOGIN, payload: data });
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const adminList = () => async (dispatch) => {
+  try {
+    const adminListData = await axios
+      .get(`${process.env.REACT_APP_API_URL}/admin/list`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          return res.data;
+        }
+      });
+    dispatch({ type: ADMIN_LOG, payload: adminListData.logList });
+    dispatch({ type: ADMIN_CHALLENGE, payload: adminListData.challengeList });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteLog = (id) => async (dispatch) => {
+  try {
+    const deleteLogData = await axios
+      .delete(`${process.env.REACT_APP_API_URL}/admin/challenge-log/${id}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          return res.data.logList;
+        }
+      });
+    dispatch({ type: ADMIN_LOG, payload: deleteLogData });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getAllBadgeList = () => async (dispatch) => {
+  try {
+    return await axios
+      .get(`${process.env.REACT_APP_API_URL}/badge`)
+      .then((res) => {
+        // console.log("리덕스에 뱃지리스트", res.data.badgeList);
+        return res.data.badgeList;
+      });
+  } catch (err) {
+    return console.log(err);
+  }
+};
+
+export const getMyBadgeList = (userId) => async (dispatch) => {
+  try {
+    return await axios
+      .get(`${process.env.REACT_APP_API_URL}/myBadgeList/${userId}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        //  console.log('리덕스에 마이뱃지 리스트', res.data.myBadge)
+        return res.data.myBadge;
+      });
+  } catch (err) {
+    return console.log(err);
+  }
+};
+
 export const userSignin = (loginInfo) => async (dispatch) => {
   const { email, password } = loginInfo;
   const data = await axios
@@ -189,7 +281,7 @@ export const userSignin = (loginInfo) => async (dispatch) => {
   return data;
 };
 
-export const userSignout = () => async (dispatch) => {
+export const userLogout = () => async (dispatch) => {
   const data = await axios
     .post(`${process.env.REACT_APP_API_URL}/user/logout`, {
       withCredentials: true,
@@ -202,21 +294,51 @@ export const userSignout = () => async (dispatch) => {
   console.log(data);
   dispatch({ type: IS_LOGIN, payload: data });
 };
-export const authSuccess = () => async (dispatch) => {
+
+export const userSignout = () => async (dispatch) => {
   const data = await axios
+    .delete(`${process.env.REACT_APP_API_URL}/mypage/userinfo`, {
+      withCredentials: true,
+    })
+    .then((res) => {
+      console.log(res.status);
+      if (res.status === 204) {
+        return false;
+      }
+    })
+    .catch((err) => console.log(err));
+  dispatch({ type: IS_LOGIN, payload: data });
+};
+
+export const authSuccess = () => async (dispatch) => {
+  await axios
     .get(`${process.env.REACT_APP_API_URL}/mypage/auth`, {
       withCredentials: true,
     })
     .then((res) => {
-      console.log(res);
       if (res.status === 200) {
-        return res.data.userInfo;
+        dispatch({ type: USER_INFO, payload: res.data.userInfo });
       }
-      console.log(res.data.userInfo);
+    })
+    .then(() => {
+      dispatch({ type: IS_LOGIN, payload: true });
+    })
+    .catch((err) => {
+      return;
     });
-  dispatch({ type: IS_LOGIN, payload: true });
-  dispatch({ type: USER_INFO, payload: data });
-  return data;
+
   //console.log("auth", res.data.data.userInfo);
   //isAuthenticated(res.data.data.userInfo);
+};
+
+// 클릭된 logId를 주고 myloglist에서 지우도록 서버에 요청
+export const deleteUserLog = (logId) => async (dispatch) => {
+  await axios
+    .delete(`${process.env.REACT_APP_API_URL}/challenge-log/${logId}`)
+    .then((res) => {
+      if (res.status === 204) {
+        return;
+      }
+    })
+    .catch((err) => console.log(err));
 };

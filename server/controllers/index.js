@@ -31,7 +31,6 @@ router.post("/mypage/validation-password", mypageCtrl.checkPwd);
 
 // challenge
 router.get("/challenge", challengeCtrl.showChallenge);
-router.get("/challenge/like", challengeCtrl.likeList);
 router.get("/challenge/userlike", challengeCtrl.userLike);
 router.post("/challenge/like", challengeCtrl.like);
 router.post("/challenge/unlike", challengeCtrl.unLike);
@@ -39,7 +38,7 @@ router.post("/challenge/unlike", challengeCtrl.unLike);
 // challenge-log
 router.get("/challenge-log", challengeLogCtrl.get);
 router.post("/challenge-log", challengeLogCtrl.post);
-router.delete("/challenge-log:logId", challengeLogCtrl.delete);
+router.delete("/challenge-log/:logId", challengeLogCtrl.delete);
 
 // badge
 router.get("/badge", badgeCtrl.badgeList);
@@ -49,8 +48,7 @@ router.get("/myBadgeList/:userId", badgeCtrl.myBadgeList);
 //admin
 router.post("/admin/signin", adminCtrl.signIn);
 router.post("/challenge", adminCtrl.challengePost);
-//router.patch("/challenge", adminCtrl.challengePatch);
-//router.delete("/challenge", adminCtrl.challengeDelete);
-router.delete("/admin/challenge-log:logId", adminCtrl.adminLog);
+router.get("/admin/list", adminCtrl.getList);
+router.delete("/admin/challenge-log/:logId", adminCtrl.adminLog);
 
 module.exports = router;

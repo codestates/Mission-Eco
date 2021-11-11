@@ -18,8 +18,6 @@ const LogAddForm = ({
   openModal,
   setOpenModal,
   closeModalHandler,
-  resetLog,
-  Img,
   results,
   fileUploadHandler,
   selectedFile,
@@ -27,7 +25,8 @@ const LogAddForm = ({
 }) => {
   const isLogin = useSelector((state) => state.infoReducer.isLogin);
   //const openModal = useSelector((state) => state.infoReducer.isOpenModal);
-
+  const logList = useSelector((state) => state.infoReducer.challengeLogList);
+  const { challengeList } = logList;
   const userInfo = useSelector((state) => state.infoReducer.userInfo);
   const [selectMission, setSelectMission] = useState(false);
   const [addContents, setAddContents] = useState(false);
@@ -36,15 +35,16 @@ const LogAddForm = ({
   const [modalMsg, setModalMsg] = useState("");
   const { challenge, contents } = logs;
   const { nickname } = userInfo;
-
+  const missionName = challenge && challenge.split(",");
   useEffect(() => {}, [logs, openModal, modalMsg]);
 
   const onChange = (event) => {
     if (event.currentTarget === null) {
       return;
     }
-    event.preventDefault();
+    if (challengeList) event.preventDefault();
     addLog({ ...logs, [event.currentTarget.name]: event.currentTarget.value });
+
     setSelectMission(true);
   };
 
@@ -76,20 +76,21 @@ const LogAddForm = ({
         addContents &&
         selectedFile &&
         results.length !== 0 &&
-        challenge === results[0].label &&
+        missionName[0] === results[0].label &&
         results[0].confidence > 0.8
       ) {
-        setModalMsg(`해당 이미지는 ${results[0].label}, 
+        setModalMsg(`해당 이미지는 ${results[0].label} 
         ${Math.floor(results[0].confidence * 100)}%로 업로드 가능합니다. `);
         setOpenModal(!openModal);
         setUploadBtn("업로드 하기");
         setErrMsg("참여가능!");
       } else {
-        setModalMsg(`해당 이미지는 ${results[0].label}, 
+        setModalMsg(`해당 이미지는 ${results[0].label}
         ${Math.floor(
           results[0].confidence * 100
         )}%이므로 업로드 할 수 없습니다. `);
         setOpenModal(!openModal);
+        setUploadBtn("");
         setErrMsg("참여불가!");
       }
     }
@@ -99,17 +100,21 @@ const LogAddForm = ({
     <Form onSubmit={(e) => e.preventDefault()}>
       <Select
         name="challenge"
-        placeholder={"challenge를 선택해주세요."}
+        placeholder={"challenge를 선택하세요."}
         value={challenge || "challenge"}
         onChange={onChange}
       >
-        <option value="선택">챌린지 선택</option>
-        <option value="플로깅">플로깅</option>
-        <option value="용기내">용기내</option>
-        <option value="캔뿌셔">캔뿌셔</option>
-        <option value="천연 수세미">천연 수세미</option>
-        <option value="텀블러">텀블러</option>
-        <option value="찌그러진 캔">찌그러진 캔</option>
+        <option value="" hidden>
+          challenge를 선택하세요.
+        </option>
+        {challengeList &&
+          challengeList.map((mission) => {
+            return (
+              <option value={[mission.name, mission.id]} key={mission.id}>
+                {mission.name ? mission.name : "미션 무라벨"}
+              </option>
+            );
+          })}
       </Select>
       <Input
         type="text"
@@ -144,11 +149,7 @@ const LogAddForm = ({
           <label htmlFor="file-input">
             <ClickImg src={imgUpload} alt="select img" />
           </label>
-          <FileInput
-            id="file-input"
-            // type="file"
-            accept="image/*"
-          ></FileInput>
+          <FileInput id="file-input" accept="image/*"></FileInput>
         </ImgSelect>
       )}
 
@@ -156,8 +157,10 @@ const LogAddForm = ({
       {openModal ? (
         <Modal
           msg={modalMsg}
+          msg2={isLogin ? null : "로그인"}
+          link={isLogin ? null : "/login"}
           closeModalHandler={closeModalHandler}
-          uploadBtn={uploadBtn}
+          uploadBtn={!uploadBtn ? null : uploadBtn}
           fileUploadHandler={fileUploadHandler}
         />
       ) : null}

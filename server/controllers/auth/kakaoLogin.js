@@ -43,7 +43,6 @@ module.exports = {
                   nickname: res2.data.properties.nickname,
                 },
               });
-              console.log("kakao--", kakaoUserInfo.dataValues);
               //userInfo에 카카오로 로그인 하려는 사람의 정보가 담김
               //이 유저 정보로 토큰을 발급해서 클라이언트로 전달하면 된다.
               delete kakaoUserInfo.dataValues.password;

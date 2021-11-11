@@ -5,18 +5,12 @@ import blob1 from "../../imges/blob1.svg";
 export const MypageContainer = styled.div`
   /* margin-top: 15em; */
   //padding-top: 10em;
-
   @media screen and (max-width: 768px) {
-    //height: 1100px;
   }
-
   @media screen and (max-width: 480px) {
-    //height: 1300px;
   }
-
   background-image: url(${blob1});
   height: 100%;
-  //min-height: 1800px;
   background-position: center;
   background-size: cover;
   -webkit-background-size: cover;
@@ -32,10 +26,14 @@ export const MypageWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 1000px;
+  max-width: 1000px;
   margin: 0 auto;
-
   z-index: -1;
+  @media screen and (max-width: 768px) {
+  }
+  @media screen and (max-width: 480px) {
+    //max-width: 480px;
+  }
 `;
 
 export const H1 = styled.h1`
@@ -45,25 +43,31 @@ export const H1 = styled.h1`
   justify-content: center;
   margin-bottom: 0.5em;
   font-size: 2.5em;
-  @media screen and (max-width: 768px) {
-  }
-  @media screen and (max-width: 480px) {
-  }
 `;
 
 export const H2 = styled.h2`
   display: flex;
+  margin: 15px;
+  @media screen and (max-width: 768px) {
+    margin-bottom: 20px;
+  }
+  @media screen and (max-width: 480px) {
+    justify-content: center;
+    margin-bottom: 30px;
+  }
 `;
-
-export const H3 = styled.h3``;
 
 export const MypageBtn = styled.div`
   display: flex;
   justify-content: right;
   align-items: center;
   margin: 2em;
+  @media screen and (max-width: 1070px) {
+    margin: 1em;
+  }
   @media screen and (max-width: 768px) {
     width: 600px;
+    justify-content: center;
   }
   @media screen and (max-width: 480px) {
     width: 300;
@@ -71,8 +75,6 @@ export const MypageBtn = styled.div`
 `;
 
 export const BtnLink = styled(Link)`
-  /* position: relative; */
-  /* float: right; */
   text-decoration: none;
 `;
 export const LinkCheckPassword = styled.div`
@@ -80,22 +82,52 @@ export const LinkCheckPassword = styled.div`
   border-radius: 50px;
   background: #5d8767;
   white-space: nowrap;
-  padding: 5px 20px;
+  padding: 5px 17px;
   color: #fff;
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 550;
   outline: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
-
   &:hover {
     transition: all 0.2s ease-in-out;
     background: #fff;
     color: #5d8767;
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 550;
     border: solid #5d8767;
+  }
+`;
+
+export const TitleContainer = styled.div`
+  background: whitesmoke;
+  width: 100%;
+  margin: 15px;
+  padding: 50px;
+  border: 3px solid gray;
+  border-radius: 10px;
+  overflow: hidden;
+  @media screen and (max-width: 768px) {
+    padding: 30px;
+    margin: 5px;
+  }
+  @media screen and (max-width: 480px) {
+  }
+`;
+
+export const Title = styled.p`
+  font-size: 23px;
+  font-weight: bold;
+  padding: 15px 0;
+
+  @media screen and (max-width: 768px) {
+    font-size: 20px;
+  }
+  @media screen and (max-width: 480px) {
+    display: flex;
+    justify-content: center;
+    font-size: 19px;
   }
 `;
 
@@ -107,29 +139,53 @@ export const Container = styled.div`
   border: 3px solid gray;
   border-radius: 10px;
   overflow: hidden;
-`;
-
-export const Title = styled.p`
   @media screen and (max-width: 768px) {
+    padding: 10px;
+    margin: 5px 0;
   }
   @media screen and (max-width: 480px) {
   }
 `;
 
-export const ListContainer = styled.ul`
-  /* background: brown; */
-  display: flex;
-  flex-direction: row;
-  padding: 20px;
-
+export const ListContainer = styled.div`
+  max-width: 1000px;
+  max-height: 350px;
+  overflow-y: auto;
+  //margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  grid-gap: 16px;
+  padding: 0 10px;
   @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
   }
   @media screen and (max-width: 480px) {
+    grid-template-columns: 1fr;
+    padding: 0 45px;
+  }
+`;
+
+export const ListBadgeContainer = styled.div`
+  max-width: 1000px;
+  max-height: 350px;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  grid-gap: 16px;
+  padding: 0 10px;
+  overflow-y: auto;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    padding: 0;
+  }
+  @media screen and (max-width: 480px) {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
   }
 `;
 
 export const ListItem = styled.li`
-  /* background: midnightblue; */
   @media screen and (max-width: 768px) {
   }
   @media screen and (max-width: 480px) {

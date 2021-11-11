@@ -11,7 +11,10 @@ import {
   CHALLENGE_LOG_LIST,
   USER_LIKE_LIST,
   IS_LIKE,
+  BADGE_LIST,
   IS_TOGGLE,
+  ADMIN_LOG,
+  ADMIN_CHALLENGE,
 } from "../actions/index";
 
 import { initialState } from "./initialState";
@@ -53,7 +56,12 @@ const infoReducer = (state = initialState, action) => {
     case IS_LIKE:
       return { ...newState, isLike: action.payload };
       break;
-
+    case ADMIN_LOG:
+      return { ...newState, adminLogList: action.payload };
+      break;
+    case ADMIN_CHALLENGE:
+      return { ...newState, adminChallengeList: action.payload };
+      break;
     default:
       return state;
   }
