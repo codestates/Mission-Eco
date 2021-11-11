@@ -5,8 +5,9 @@ export const FooterContainer = styled.div`
   background-color: #3d6887;
   display: flex;
   height: 400px;
-  @media screen and (max-width: 870px) {
-    height: 600px;
+
+  @media screen and (max-width: 570px) {
+    height: 500px;
   }
   @media screen and (max-width: 480px) {
     height: 450px;
@@ -14,7 +15,7 @@ export const FooterContainer = styled.div`
 `;
 
 export const FooterWrap = styled.div`
-  padding: 48px 24px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,13 +28,16 @@ export const Title = styled.h1`
   align-items: center;
   display: flex;
   color: #fff;
-  font-size: 1.5em;
-  margin-top: 1.5em;
+  font-size: 1.8em;
+  margin: 0 0 0.5em 0;
+  @media screen and (max-width: 870px) {
+    margin: 0.5em 1em;
+  }
   @media screen and (max-width: 768px) {
-    font-size: 1em;
+    font-size: 1.8em;
   }
   @media screen and (max-width: 480px) {
-    font-size: 0.8em;
+    margin-top: 0.5em;
   }
 `;
 
@@ -46,13 +50,13 @@ export const FooterItemsWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 30px 20px;
     box-sizing: border-box;
     color: #fff;
+    /* margin: 20px 30px 20px 30px; */
   }
-  @media screen and (max-width: 870px) {
+  @media screen and (max-width: 570px) {
     flex-direction: column;
-    margin: 20px;
+    margin: 0 20px;
   }
   @media screen and (max-width: 480px) {
   }
@@ -63,25 +67,21 @@ export const FooterItem = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin: 30px 70px;
+  margin: 0px 70px;
   box-sizing: border-box;
   color: #fff;
 
   @media screen and (max-width: 1200px) {
-    margin: 30px 50px;
+    margin: 0px 50px;
   }
   @media screen and (max-width: 1100px) {
-    margin: 30px;
+    margin: 0 30px;
   }
-  @media screen and (max-width: 950px) {
-    margin: 30px 20px;
-  }
-  @media screen and (max-width: 850px) {
-    margin: 0;
-  }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 570px) {
+    margin: 10px;
   }
   @media screen and (max-width: 480px) {
+    margin: 5px;
   }
 `;
 
@@ -93,40 +93,32 @@ export const Icon = styled.img`
 export const Name = styled.p`
   display: flex;
   align-items: center;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: bold;
   margin-bottom: 5px;
-  @media screen and (max-width: 1200px) {
-  }
-  @media screen and (max-width: 1100px) {
-  }
-  @media screen and (max-width: 950px) {
-  }
-  @media screen and (max-width: 850px) {
-  }
   @media screen and (max-width: 768px) {
+    font-size: 13px;
   }
-  @media screen and (max-width: 480px) {
-  }
+  /* @media screen and (max-width: 480px) {
+    font-size: 11px;
+  } */
 `;
 
 export const Position = styled.p`
   display: flex;
   align-items: center;
-  font-size: 15px;
   margin-bottom: 5px;
-  @media screen and (max-width: 1200px) {
-  }
-  @media screen and (max-width: 1100px) {
-  }
-  @media screen and (max-width: 950px) {
-  }
-  @media screen and (max-width: 850px) {
-  }
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 5px;
   @media screen and (max-width: 768px) {
+    font-size: 12px;
   }
-  @media screen and (max-width: 480px) {
-  }
+  /* @media screen and (max-width: 480px) {
+    font-size: 10px;
+  } */
 `;
 
 export const GithubBadge = styled.img`
@@ -134,19 +126,62 @@ export const GithubBadge = styled.img`
   align-items: center;
   border: 0.1px solid gray;
   border-radius: 10px;
-  /* width: 120px;
-  height: 20px; */
-  @media screen and (max-width: 1200px) {
+  width: 120px;
+  @media screen and (max-width: 768px) {
+    width: 100px;
   }
-  @media screen and (max-width: 1100px) {
-  }
-  @media screen and (max-width: 950px) {
-  }
-  @media screen and (max-width: 850px) {
-    width: 120px;
-    height: 20px;
+`;
+
+export const MissionEcoGithubContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 0 0;
+  text-decoration: none;
+  text-decoration-line: none;
+  @media screen and (max-width: 870px) {
   }
   @media screen and (max-width: 768px) {
+    margin: 20px 30px 0 30px;
+  }
+  @media screen and (max-width: 480px) {
+    margin: 10px 30px 0 30px;
+  }
+`;
+
+export const LogoContainer = styled.span`
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
+`;
+
+export const MissionEcoTxt = styled.p`
+  text-decoration-line: none;
+  color: #fff;
+  /* color: black; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 25px;
+  margin: 0 5px;
+  font-weight: bold;
+  @media screen and (max-width: 870px) {
+  }
+  @media screen and (max-width: 768px) {
+    /* display: none; */
+    font-size: 12px;
+  }
+  @media screen and (max-width: 480px) {
+  }
+`;
+
+export const AdminLoginContainer = styled.div`
+  display: flex;
+  justify-content: end;
+  margin: 20px 0 0 0;
+  @media screen and (max-width: 870px) {
+  }
+  @media screen and (max-width: 768px) {
+    margin: 5px 0 0 0;
   }
   @media screen and (max-width: 480px) {
   }
@@ -154,11 +189,24 @@ export const GithubBadge = styled.img`
 
 export const AdminLogin = styled(Link)`
   text-decoration: none;
-
   display: flex;
-  color: black;
-  margin-bottom: 2em;
+  right: 0px;
+  bottom: 0px;
+  color: #34373b;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 1em 0 0 0;
+
   &:hover {
     cursor: pointer;
+  }
+
+  @media screen and (max-width: 768px) {
+    margin: 20px 30px 0 30px;
+    font-size: 12px;
+  }
+  @media screen and (max-width: 480px) {
+    margin: 10px 0 0 0;
+    font-size: 12px;
   }
 `;

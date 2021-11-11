@@ -8,6 +8,7 @@ import {
   BtnLink,
   LinkCheckPassword,
   MypageContainer,
+  TitleContainer,
   Container,
   Title,
   ListContainer,
@@ -42,10 +43,10 @@ const Mypage = () => {
           </MypageBtn>
 
           {/* mypage-1st-container (유저 닉네임, 이 유저가 획득한 뱃지 갯수) */}
-          <Container>
-            <Title>닉네임: {nickName}</Title>
-            <Title>에코뱃지: {myBadgeCount} 개</Title>
-          </Container>
+          <TitleContainer>
+            <Title>닉네임 : {nickName}</Title>
+            <Title>에코뱃지 : {myBadgeCount}개</Title>
+          </TitleContainer>
 
           {/* mypage-2nd-container ( 이 유저가 획득한 뱃지 이미지들 ) */}
           <Container>
@@ -58,14 +59,14 @@ const Mypage = () => {
           {/* // * ================================================================================ */}
           {/* res에서 challengeLikeList만 솎아서 */}
           <Container>
-            <H2>내가 Like한 챌린지 List</H2>
+            <H2>내가 좋아한 챌린지</H2>
             <ListContainer>
               <LikeList />
             </ListContainer>
           </Container>
 
           <Container>
-            <H2>내가 작성한 챌린지Log List</H2>
+            <H2>나의 챌린지 기록</H2>
             <ListContainer>
               <MyLogList />
             </ListContainer>
