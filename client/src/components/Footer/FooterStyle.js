@@ -199,6 +199,8 @@ export const AdminLogin = styled(Link)`
 
   &:hover {
     cursor: pointer;
+    color: white;
+    font-weight: bolder;
   }
 
   @media screen and (max-width: 768px) {

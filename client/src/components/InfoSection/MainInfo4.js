@@ -85,32 +85,6 @@ const MainInfo = ({
             </Column2>
           </InfoRow>
         </InfoWrapper>
-        {/* //!테스트중 ================================================================================== */}
-        <ScrollTrigger
-          start="-200px center"
-          end="200px center"
-          scrub={0.5}
-          markers
-        >
-          <Tween
-            to={{
-              x: "300px",
-              scrollTrigger: {
-                trigger: ".square",
-                start: "-200px center",
-                end: "200px center",
-                scrub: 0.5,
-                markers: true,
-              },
-            }}
-          >
-            <div
-              className="square"
-              style={{ width: "100px", height: "100px", background: "#ccc" }}
-            />
-          </Tween>
-        </ScrollTrigger>
-        {/* //! ========================================================================================= */}
       </InfoContainer>
     </>
   );
