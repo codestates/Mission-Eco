@@ -170,7 +170,7 @@ const MainInfo3 = () => {
           x: "0px",
           scrollTrigger: {
             trigger: ".title",
-            start: "-150px center",
+            start: "-10px center",
             end: "30px center",
             scrub: 1,
             ease: "power4.out",
@@ -205,7 +205,7 @@ const MainInfo3 = () => {
               <Tween
                 from={{
                   opacity: 0,
-                  duration: 2,
+                  duration: 1,
                   x: "-200px",
                   scrollTrigger: {
                     trigger: ".box",
