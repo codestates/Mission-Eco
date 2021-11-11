@@ -149,7 +149,7 @@ export const MissionEcoGithubContainer = styled.div`
 `;
 
 export const LogoContainer = styled.span`
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 768px) {
     display: none;
   }
 `;
@@ -199,6 +199,8 @@ export const AdminLogin = styled(Link)`
 
   &:hover {
     cursor: pointer;
+    color: white;
+    font-weight: bolder;
   }
 
   @media screen and (max-width: 768px) {
