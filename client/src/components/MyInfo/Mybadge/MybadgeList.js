@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Badge from "./Badge";
 import { BadgeWrapper } from "./BadgeStyle";
 
+/*eslint-disable */
 function MybadgeList({ handleMyBadgeCount }) {
   const dispatch = useDispatch();
 

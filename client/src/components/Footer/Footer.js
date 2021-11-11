@@ -11,14 +11,10 @@ import {
   GithubBadge,
   MissionEcoGithubContainer,
   LogoContainer,
-  MissionEcoTxt,
   AdminLoginContainer,
   AdminLogin,
 } from "./FooterStyle";
-import { ReactComponent as GithubGrayLogo } from "../../imges/github48.svg";
 import { ReactComponent as BlueOctocat } from "../../imges/blueOctocat.svg";
-import { ReactComponent as SquareLogo } from "../../imges/githubSquareS.svg";
-import { ReactComponent as TxtLogo } from "../../imges/githubtxtlogo.svg";
 import { ReactComponent as TxtLogoWhite } from "../../imges/githubtxtlogowhite.svg";
 
 const Footer = () => {
@@ -33,34 +29,54 @@ const Footer = () => {
             <FooterItem>
               <Name>김수경</Name>
               <Position>Back-end</Position>
-              <a target="_blank" href="https://github.com/eden0514">
+              <a
+                target="_blank"
+                href="https://github.com/eden0514"
+                rel="noreferrer noopener"
+              >
                 <GithubBadge src="https://img.shields.io/badge/Github-ㅤeden0514ㅤ-F3FCEE?style=for-the-badge&logo=GitHub/" />
               </a>
             </FooterItem>
             <FooterItem>
               <Name>김양현</Name>
               <Position>Back-end</Position>
-              <a target="_blank" href="https://github.com/loocia1910">
+              <a
+                target="_blank"
+                href="https://github.com/loocia1910"
+                rel="noreferrer noopener"
+              >
                 <GithubBadge src="https://img.shields.io/badge/Github-loocia1910-F3FCEE?style=for-the-badge&logo=GitHub/" />
               </a>
             </FooterItem>
             <FooterItem>
               <Name>김효영</Name>
               <Position>Front-end</Position>
-              <a target="_blank" href="https://github.com/HYO00">
+              <a
+                target="_blank"
+                href="https://github.com/HYO00"
+                rel="noreferrer noopener"
+              >
                 <GithubBadge src="https://img.shields.io/badge/Github-ㅤㅤHYO00ㅤㅤㅤ-F3FCEE?style=for-the-badge&logo=GitHub/" />
               </a>
             </FooterItem>
             <FooterItem>
               <Name>조현진</Name>
               <Position>Front-end</Position>
-              <a target="_blank" href="https://github.com/cho-hyeonjin">
+              <a
+                target="_blank"
+                href="https://github.com/cho-hyeonjin"
+                rel="noreferrer noopener"
+              >
                 <GithubBadge src="https://img.shields.io/badge/Github-chohyeonjin-F3FCEE?style=for-the-badge&logo=GitHub/" />
               </a>
             </FooterItem>
           </FooterItemsWrapper>
           <MissionEcoGithubContainer>
-            <a target="_blank" href="https://github.com/codestates/Mission-Eco">
+            <a
+              target="_blank"
+              href="https://github.com/codestates/Mission-Eco"
+              rel="noreferrer noopener"
+            >
               <LogoContainer>
                 <BlueOctocat />
               </LogoContainer>
