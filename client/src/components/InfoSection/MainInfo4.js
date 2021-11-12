@@ -2,6 +2,7 @@ import React from "react";
 import { gsap } from "gsap";
 import { Tween } from "react-gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Button } from "./MainInfo1Style";
 
 import {
   InfoContainer,
@@ -61,8 +62,9 @@ const MainInfo4 = ({
                   <Heading lightText={lightText}>{headline}</Heading>
                   <Subtitle darkText={darkText}>{description}</Subtitle>
                   <BtnWrap>
-                    <ButtonR
-                      to="/signup"
+                    <Button
+                      style={{ textDecoration: "none" }}
+                      to="/mypage"
                       //smooth={true}
                       duration={500}
                       // spy={true}
@@ -73,7 +75,7 @@ const MainInfo4 = ({
                       dark2={dark2 ? 1 : 0}
                     >
                       {buttonLabel}
-                    </ButtonR>
+                    </Button>
                   </BtnWrap>
                 </TextWrapper>
               </Tween>

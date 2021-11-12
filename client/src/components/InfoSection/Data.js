@@ -80,7 +80,7 @@ export const homeObjFour = {
   headline: "headline: ㅤㅤㅤ나만의 컬렉션이 완성됩니다.",
   description:
     "description:  ㅤㅤㅤ ㅤㅤㅤ ㅤㅤㅤ ㅤㅤㅤ ㅤㅤㅤ챌린지를 통해 획득한 에코뱃지 컬렉션, ㅤ ㅤ ㅤ내가 좋아한 챌린지와 내가 작성한 게시물을 한 눈에 볼 수 있어요.",
-  buttonLabel: "buttonLabel: Learn More",
+  buttonLabel: "buttonLabel",
   imgStart: true,
   img: "/gif/mypage-test.gif",
   alt: "eco",
