@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { adminSignin } from "../../../Redux/actions";
 import axios from "axios";
+import logo from "../../../imges/logo.png";
 import { validEmail } from "../../../utils/validation";
 import {
   Container,
@@ -15,6 +16,7 @@ import {
   FormButton,
   GeneralLogin,
   Text,
+  MissionLogo,
 } from "./AdminLoginStyle";
 import Modal from "../../Modal/Modal";
 
@@ -76,7 +78,9 @@ function Login() {
         />
       ) : (
         <FormWrap>
-          <Icon to="/"></Icon>
+          <Icon to="/">
+            <MissionLogo imgUrl={logo} alt="mission eco logo" />
+          </Icon>
           <FormContent>
             <Form onSubmit={(e) => e.preventDefault()}>
               <GeneralLogin>
