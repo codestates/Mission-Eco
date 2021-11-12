@@ -1,4 +1,3 @@
-// ! MyLogListItem용으로 수정해야함
 import styled from "styled-components";
 
 export const LogCardContatainer = styled.div`

@@ -45,7 +45,6 @@ export const ChallengeCard = styled.div`
   border-radius: 0px;
   width: 280px;
   height: 340px;
-  //padding: 30px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
   background: ${(props) => props.background || "white"};
@@ -99,7 +98,6 @@ export const DetailCard = styled.div`
   background: #dbe6fd;
   display: flex;
   flex-direction: column;
-  //justify-content: flex-start;
   justify-content: center;
   align-items: center;
   border-radius: 0px;

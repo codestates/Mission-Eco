@@ -1,4 +1,3 @@
-// ! MyLogListItem용으로 수정해야함 (style.js도)
 import React from "react";
 import {
   LogCardContatainer,
@@ -36,7 +35,6 @@ const MyLogListItem = ({ list, HandleDeleteLog }) => {
           </NameNtime>
           <LogH2>{challengelog_contents}</LogH2>
         </LogContent>
-        {/* ⬆ 이거 주석해제 하면 에러남 && styled문서 가서 보면, props.background 부분에 background 못 읽는 것으로 추정됨  */}
       </LogCardContatainer>
     </>
   );

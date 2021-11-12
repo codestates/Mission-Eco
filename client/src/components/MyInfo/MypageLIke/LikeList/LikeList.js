@@ -28,7 +28,6 @@ const LikeList = () => {
           // const { myLogList, challengeList } = res.data;
           const { challengeList } = res.data;
           console.log("✨ challengeList ✨", challengeList);
-          // ! 여기서 ChallengeList useState에 담았다!
           setChallengeLists(challengeList);
         } else if (res.status === 400) {
         }
@@ -40,10 +39,8 @@ const LikeList = () => {
 
   return (
     <>
-      {/* // ! ChallengeList보여주기 위한 맵 */}
       {challengeLists &&
         challengeLists.map((list, idx) => {
-          // ! LikeListItem으로 가기
           return <LikeListItem list={list} key={idx}></LikeListItem>;
         })}
     </>

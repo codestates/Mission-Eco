@@ -5,7 +5,7 @@ import styled from "styled-components";
 const ScrollBtnContainer = styled.div`
   position: relative;
   width: 50px;
-  height: 50px;
+  /* height: 50px; */
 `;
 const ScrollBtn = styled.button`
   // position: fixed;

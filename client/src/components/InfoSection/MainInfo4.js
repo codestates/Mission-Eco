@@ -17,7 +17,7 @@ import {
   BtnWrap,
   ImgWrap,
   Img,
-} from "./MainInfoStyle4";
+} from "./MainInfo4Style";
 
 const MainInfo4 = ({
   lightBg,
@@ -49,7 +49,7 @@ const MainInfo4 = ({
                   y: "-300px",
                   scrollTrigger: {
                     trigger: ".textWrapper",
-                    start: "-480px center",
+                    start: "-490px center",
                     end: "200px center",
                     scrub: 1,
                     // markers: true,
