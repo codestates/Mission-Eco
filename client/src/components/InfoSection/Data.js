@@ -6,7 +6,7 @@ export const homeObjOne = {
   headline1: "우리 지구를 위한",
   headline2: "ECO 챌린지를 확인해보세요.",
   description2: "우리의 작은 실천이 지구를 살립니다.",
-  buttonLabel: "See challenges",
+  buttonLabel: "챌린지로 Go!",
   imgStart: false,
   imgs: [
     "/img/challenge/001.png",
@@ -58,7 +58,7 @@ export const homeObjThree = {
   lightBg: false,
   lightText: true,
   lightTextDesc: true,
-  topLine: "Our Missions",
+  topLine: "Our Mission",
   headline: "환경을 위하는 우리, 우리의 이야기를 공유해요",
   description:
     "미션에 참여하기 위해 거쳐야 하는 관문이 있습니다! 해당 이미지가 미션에 적합한지 확인 후 에코로그를 남겨보세요.",
