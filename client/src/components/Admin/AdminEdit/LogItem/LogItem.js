@@ -20,7 +20,7 @@ const LogItem = ({ log, openModalHandler }) => {
       <DeleteBtn>
         <Delete onClick={() => openModalHandler(id)} />
       </DeleteBtn>
-      <ServicesIcon background={img} />
+      <ServicesIcon src={img} />
       <ServicesP>{challengeName}</ServicesP>
       <ServicesP>작성자 : {userNickname}</ServicesP>
       <ServicesP>{createdAt}</ServicesP>

@@ -237,8 +237,8 @@ const MainInfo3 = ({ topLine, headline, primary, dark, dark2 }) => {
                   x: "-200px",
                   scrollTrigger: {
                     trigger: ".textWrapper",
-                    start: "-1200px center",
-                    end: "-430px center",
+                    start: "200px center",
+                    end: "730px center",
                     scrub: 1,
                     //markers: true,
                   },
@@ -270,8 +270,8 @@ const MainInfo3 = ({ topLine, headline, primary, dark, dark2 }) => {
           x: "0px",
           scrollTrigger: {
             trigger: ".btn",
-            start: "-200em center",
-            end: "0em center",
+            start: "-150em center",
+            end: "-100em center",
             scrub: 1,
             //markers: true,
           },

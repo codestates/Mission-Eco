@@ -65,11 +65,10 @@ export const ServicesCard = styled.div`
 `;
 
 export const ServicesIcon = styled.img`
-  width: 260px;
-  height: 240px;
+  width: 250px;
+  height: 220px;
   margin-bottom: 10px;
   border: 1px solid #d8d8d8;
-  background: ${(props) => props.background || "white"};
 
   @media screen and (max-width: 768px) {
     height: 300px;
