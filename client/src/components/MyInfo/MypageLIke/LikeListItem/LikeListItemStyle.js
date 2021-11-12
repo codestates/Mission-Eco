@@ -1,87 +1,64 @@
 import styled from "styled-components";
 
-export const ServicesContiner = styled.div`
+export const CardContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-
-  margin: 0 auto;
-  background: #fff;
-`;
-
-export const ServicesWrapper = styled.div`
-  max-width: 1000px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  align-items: center;
-  grid-gap: 16px;
-  padding: 0 50px;
-
+  flex-direction: column;
+  transition: z-index 500ms, transform 500ms;
+  z-index: 0;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  &.flipped {
+    z-index: 1;
+  }
+  width: 280px;
+  height: 340px;
   @media screen and (max-width: 768px) {
-    grid-template-columns: 1fr;
-    padding: 0 20px;
+    width: 340px;
+    height: 400px;
   }
 `;
 
-export const ServicesCard = styled.div`
+export const CardInner = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  &.flipped {
+    transform: rotateY(180deg);
+  }
+  @media screen and (max-width: 768px) {
+    width: 340px;
+    height: 400px;
+  }
+`;
+
+export const ChallengeCard = styled.div`
   background: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   border-radius: 0px;
   width: 280px;
   height: 340px;
-  padding: 10px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
-
-  &:hover {
-    transform: scale(1.02);
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-  }
-  @media screen and (max-width: 768px) {
-    width: 340px;
-    height: 400px;
-  }
-  @media screen and (max-width: 480px) {
-    width: 340px;
-    height: 400px;
-  }
-`;
-
-export const ServicesIcon = styled.img`
-  width: 260px;
-  height: 240px;
-  margin-bottom: 10px;
-  border: 1px solid #d8d8d8;
   background: ${(props) => props.background || "white"};
-
+  z-index: 0;
+  transform: rotateY(0deg);
   @media screen and (max-width: 768px) {
-    height: 300px;
-    width: 320px;
+    width: 340px;
+    height: 400px;
   }
 `;
 
-export const Subbar = styled.div`
-  display: flex;
-  padding: 1px 280px;
-  border-top: 1px solid green;
-  border-bottom: 1px solid green;
-  color: rgb(100, 100, 100);
-  margin-bottom: 3em;
-
-  @media screen and (max-width: 480px) {
-    padding: 1px 50px;
-  }
-`;
-
-export const Select = styled.li`
-  list-style: none;
-  margin: 1em;
+export const ChallengeImg = styled.img`
+  height: 100%;
+  width: 100%;
 `;
 
 export const ServicesH1 = styled.h1`
@@ -89,25 +66,50 @@ export const ServicesH1 = styled.h1`
   font-size: 2.8rem;
   color: #010106;
   margin-bottom: 64px;
-
   @media screen and (max-width: 480px) {
     font-size: 2rem;
   }
 `;
 
-export const ServicesH2 = styled.span`
-  font-size: 1rem;
+export const ChallengeH3 = styled.h3`
+  font-size: 1.5rem;
   margin-bottom: 10px;
+  color: #fff;
 `;
 
-export const ServicesP = styled.p`
-  font-size: 0.8rem;
-  text-align: right;
+export const ChallengeP = styled.p`
+  font-size: 1rem;
+  text-align: center;
+  color: #333;
 `;
 
-export const Button = styled.button`
-  border: 0;
-  outline: 0;
-  background-color: transparent;
+export const LikeConatainer = styled.div`
   cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: -0.5rem;
+  display: flex;
+  text-align: right;
+  padding: 0.8em;
+  margin-right: 0.5rem;
+`;
+
+export const DetailCard = styled.div`
+  background: #dbe6fd;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0px;
+  width: 280px;
+  height: 340px;
+  padding: 30px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+  z-index: 1;
+  transform: rotateY(180deg);
+  @media screen and (max-width: 768px) {
+    width: 280px;
+    height: 340px;
+  }
 `;
