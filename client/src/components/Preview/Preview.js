@@ -56,7 +56,7 @@ const Preview = ({
         setLoading(false);
       });
   };
-  console.log(results);
+
   return (
     <PreviewCT>
       <Container>

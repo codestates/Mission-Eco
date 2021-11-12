@@ -16,18 +16,13 @@ const LikeList = () => {
   // mypage탭 누르면 -> mypage로 이동과 동시에 리스트 요청 보내기 위해 만든 함수.
   const LikeAndLogListRequest = async () => {
     await axios
-      .get(
-        `${process.env.REACT_APP_API_URL}/mypage/mylist`,
-        // "http://team-meetme.s3-website.ap-northeast-2.amazonaws.com/mypage/mylist/:userId",
-        { withCredentials: true }
-      )
+      .get(`${process.env.REACT_APP_API_URL}/mypage/mylist`, {
+        withCredentials: true,
+      })
       .then((res) => {
-        console.log("login", res.data);
-
         if (res.status === 200) {
           // const { myLogList, challengeList } = res.data;
           const { challengeList } = res.data;
-          console.log("✨ challengeList ✨", challengeList);
           // ! 여기서 ChallengeList useState에 담았다!
           setChallengeLists(challengeList);
         } else if (res.status === 400) {

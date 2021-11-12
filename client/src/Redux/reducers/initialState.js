@@ -25,4 +25,6 @@ export const initialState = {
   isLike: [],
   adminLogList: [],
   adminChallengeList: [],
+  badgeList: [],
+  myBadge: [],
 };

@@ -17,9 +17,9 @@ const ChallengeListItem = ({ list, userId, isLogin, setIsOpenModal }) => {
   const dispatch = useDispatch();
   const [like, setlike] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
-
+  const [likeNum, setLikeNum] = useState(list.challengelikes.length);
   const challengeId = list.id;
-  const likeNum = list.challengelikes.length;
+  //let likeNum = list.challengelikes.length;
 
   useEffect(() => {
     const liked = list.challengelikes.map((el) => el.user_id);
@@ -38,9 +38,11 @@ const ChallengeListItem = ({ list, userId, isLogin, setIsOpenModal }) => {
     } else if (Alt === "disliked") {
       dispatch(addLike(challengeId));
       setlike(true);
+      setLikeNum(likeNum + 1);
     } else {
       dispatch(deleteLike(challengeId));
       setlike(false);
+      setLikeNum(likeNum - 1);
     }
   };
 
