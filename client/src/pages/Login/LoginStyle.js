@@ -43,7 +43,7 @@ export const LeftTxt = styled.p`
   color: #cbddd0;
   font-size: 2.4rem;
   top: 34%;
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Nanum Gothic", sans-serif;
   font-weight: 500;
   @media screen and (max-width: 1350px) {
     font-size: 1.6rem;
@@ -63,7 +63,7 @@ export const RightTxt = styled.p`
   text-align: left;
   color: #cbddd0;
   font-size: 2.4rem;
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Nanum Gothic", sans-serif;
   font-weight: 500;
   @media screen and (max-width: 1200px) {
     font-size: 1.6rem;
