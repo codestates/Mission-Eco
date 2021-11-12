@@ -2,7 +2,7 @@ import React from "react";
 import { gsap } from "gsap";
 import { Tween } from "react-gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Button } from "./MainInfo1Style";
+import { Button } from "../Button/ButtonStyle";
 
 import {
   InfoContainer,
