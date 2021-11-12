@@ -91,7 +91,7 @@ const MainInfo4 = ({
                   x: "-300px",
                   scrollTrigger: {
                     trigger: ".imgWrapper",
-                    start: "100px center",
+                    start: "1100px center",
                     end: "1500px center",
                     scrub: 1,
                     ease: "power4.out",

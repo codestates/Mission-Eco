@@ -11,12 +11,10 @@ export const ServicesContiner = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: white;
-
+  background-color: #fff;
   @media screen and (max-width: 768px) {
     height: 1500px;
   }
-
   @media screen and (max-width: 480px) {
     height: 1800px;
   }
@@ -30,7 +28,6 @@ export const ServicesWrapper = styled.div`
   align-items: center;
   grid-gap: 16px;
   padding: 0 50px;
-
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
     padding: 0 20px;
@@ -41,7 +38,6 @@ export const ServicesH1 = styled.h1`
   font-size: 2.5rem;
   color: black;
   margin-bottom: 40px;
-
   @media screen and (max-width: 480px) {
     font-size: 2rem;
   }
@@ -56,7 +52,6 @@ export const LogCardContatainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-
   //align-items: center;
   border-radius: 6px;
   //width: 280px;
@@ -89,10 +84,8 @@ export const LogImgContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-
   //background: ${(props) => props.background || "white"};
   @media screen and (max-width: 768px) {
     height: 300px;
@@ -163,7 +156,6 @@ export const Button = styled(LinkR)`
   align-items: center;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
-
   &:hover {
     transition: all 0.2s ease-in-out;
     background: ${({ primary }) => (primary ? "#fff" : "#01BF71")};
@@ -198,53 +190,37 @@ const MainInfo3 = ({ topLine, headline, primary, dark, dark2 }) => {
           x: "0px",
           scrollTrigger: {
             trigger: ".title",
-            start: "-200px center",
+            start: "-600px center",
             end: "30px center",
             scrub: 1,
             ease: "power4.out",
-            //markers: 1,
+            // markers: 1,
           },
         }}
       >
         <ServicesH1 className="title">{topLine}</ServicesH1>
+        <SubH2 className="title">{headline}</SubH2>
       </Tween>
       <Tween
         from={{
           opacity: 0,
-          duration: 1,
-          x: "0px",
+          duration: 2,
+          x: "-300px",
           scrollTrigger: {
-            trigger: ".sub",
-            start: "-200px center",
-            end: "30px center",
-            scrub: 1,
+            trigger: ".wrapper",
+            start: "-600px center",
+            end: "-300px center",
+            scrub: 2.5,
             ease: "power4.out",
             // markers: true,
           },
         }}
       >
-        <SubH2 className="sub">{headline}</SubH2>
-      </Tween>
-      <ServicesWrapper className="wrapper">
-        {challengeLogs &&
-          challengeLogs.map((log, idx) => {
-            return (
-              <Tween
-                key={idx}
-                from={{
-                  opacity: 0,
-                  duration: 1,
-                  x: "-200px",
-                  scrollTrigger: {
-                    trigger: ".textWrapper",
-                    start: "200px center",
-                    end: "730px center",
-                    scrub: 1,
-                    // markers: true,
-                  },
-                }}
-              >
-                <LogCardContatainer className="box">
+        <ServicesWrapper className="wrapper">
+          {challengeLogs &&
+            challengeLogs.map((log, idx) => {
+              return (
+                <LogCardContatainer className="box" key={idx}>
                   <LogImgContainer>
                     <LogImg src={log.img} />
                   </LogImgContainer>
@@ -259,10 +235,10 @@ const MainInfo3 = ({ topLine, headline, primary, dark, dark2 }) => {
                     <LogH2>{log.challengelog_contents}</LogH2>
                   </LogContent>
                 </LogCardContatainer>
-              </Tween>
-            );
-          })}
-      </ServicesWrapper>
+              );
+            })}
+        </ServicesWrapper>
+      </Tween>
       <Tween
         from={{
           opacity: 0,
@@ -270,10 +246,10 @@ const MainInfo3 = ({ topLine, headline, primary, dark, dark2 }) => {
           x: "0px",
           scrollTrigger: {
             trigger: ".btn",
-            start: "-150em center",
-            end: "-100em center",
+            start: "-600px center",
+            end: "-300px center",
             scrub: 1,
-            //markers: true,
+            // markers: true,
           },
         }}
       >

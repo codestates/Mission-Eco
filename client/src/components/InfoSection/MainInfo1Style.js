@@ -1,7 +1,9 @@
 import styled, { keyframes } from "styled-components";
 import { Link as LinkR } from "react-router-dom";
 
-export const InfoContainer = styled.div``;
+export const InfoContainer = styled.div`
+  background-color: #fff;
+`;
 
 export const InfoWrapper = styled.div`
   width: 1100px;
@@ -89,12 +91,12 @@ export const Subtitle = styled.p`
 `;
 
 export const BtnWrap = styled.div`
-padding: 2rem 0 6rem;
+  padding: 2rem 0 6rem;
 `;
 
 export const Button = styled(LinkR)`
   border-radius: 50px;
-  background: ${({ primary }) => (primary ? "#01BF71" : "#0106")};
+  background: ${({ primary }) => (primary ? "#9dbfa5" : "#0106")};
   padding: 14px 38px;
   color: ${({ dark }) => (dark ? "#010606" : "#fff")};
   font-size: ${({ fontBig }) => (fontBig ? "20px" : "16px")};
@@ -106,6 +108,6 @@ export const Button = styled(LinkR)`
   &:hover {
     transition: all 0.2s ease-in-out;
     background: ${({ primary }) => (primary ? "#fff" : "#01BF71")};
+    border: 2px solid #9dbfa5;
   }
 `;
-

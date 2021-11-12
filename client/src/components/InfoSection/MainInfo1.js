@@ -17,7 +17,7 @@ import {
   Button,
   Img
 } from "./MainInfo1Style";
-
+//
 const MainInfo1 = ({
   lightBg,
   id,
@@ -78,7 +78,7 @@ const MainInfo1 = ({
             <BtnWrap>
                 <Button
                   style={{ textDecoration: "none" }}
-                  to="/signup"
+                  to="/challenge"
                   //smooth={true}
                   duration={500}
                   // spy={true}

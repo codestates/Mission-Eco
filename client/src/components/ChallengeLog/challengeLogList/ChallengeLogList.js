@@ -44,7 +44,7 @@ const ChallengeLogList = () => {
     // setListLog(challengeLog);
     setIsActive(!isActive);
   };
-  
+
   const handleRequsetLogList = (e) => {
     const log = e.target.value;
     if (Number(log) === 0) {
@@ -60,8 +60,6 @@ const ChallengeLogList = () => {
       } else {
         setNodata(true);
       }
-
-      console.log(logId);
     }
   };
 
