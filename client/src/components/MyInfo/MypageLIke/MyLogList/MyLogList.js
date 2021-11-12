@@ -45,9 +45,7 @@ const MyLogList = () => {
 
   return (
     <>
-      {/* //? ChallengeLog를 보여주기 위한 맵을 돌린다. */}
       {myLogLists.map((list, idx) => {
-        // ? <myLogListItem디렉토리 안에 LikeListItem처럼 컴포넌트 만들어서 여기서 쓰3></myLogListItem디렉토리>
         return (
           <MyLogListItem
             list={list}
