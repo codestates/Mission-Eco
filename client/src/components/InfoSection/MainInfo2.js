@@ -38,14 +38,8 @@ const MainInfo2 = ({
   dark,
   dark2,
 }) => {
-  let tl = gsap.timeline({ delay: 0.5 });
+  gsap.registerPlugin(ScrollTrigger);
 
-  tl.from(".logo", {
-    y: -40,
-    opacity: 0,
-    duration: 2,
-    ease: "power4",
-  });
   return (
     <>
       <InfoContainer lightBg={lightBg} id={id}>
@@ -54,43 +48,26 @@ const MainInfo2 = ({
             <Column1>
               <Tween
                 from={{
-                  x: "200px",
+                  opacity: 0,
+                  duration: 1,
+                  x: "300px",
+                  y: "-300px",
                   scrollTrigger: {
                     trigger: ".textWrapper",
-                    start: "-300px center",
-                    end: "-200px center",
-                    scrub: 0.5,
-                    ease: "power4",
+                    start: "-400px center",
+                    end: "200px center",
+                    scrub: 1,
                     // markers: true,
                   },
                 }}
               >
-                <TextWrapper>
+                <TextWrapper className="textWrapper">
                   <TopLine>{topLine}</TopLine>
-                  <Tween
-                    from={{
-                      x: -40,
-                      opacity: 0,
-                      duration: 3,
-
-                      scrollTrigger: {
-                        trigger: ".logo",
-                        ease: "power4",
-                        scrub: 0.5,
-                        start: "-300px center",
-                        end: "-200px center",
-                        // markers: true,
-                      },
-                    }}
-                  >
-                    <Heading className="logo" lightText={lightText}>
-                      {headline}
-                    </Heading>
-                  </Tween>
+                  <Heading lightText={lightText}>{headline}</Heading>
                   <Subtitle darkText={darkText}>{description}</Subtitle>
                   <BtnWrap>
                     <Button
-                      to="/signup"
+                      to="/upload"
                       //smooth={true}
                       duration={500}
                       // spy={true}
@@ -110,20 +87,20 @@ const MainInfo2 = ({
               <Tween
                 from={{
                   opacity: 0,
-                  duration: 3,
-                  y: "200px",
+                  duration: 1,
+                  x: "-300px",
                   scrollTrigger: {
                     trigger: ".imgWrapper",
-                    start: "-500px center",
-                    end: "-200px center",
-                    scrub: 0.5,
-                    //   markers: true,
-                    ease: "power4",
+                    start: "-400px center",
+                    end: "100px center",
+                    scrub: 1,
+                    ease: "power4.out",
+                    //markers: true,
                   },
                 }}
               >
                 <ImgWrap className="imgWrapper">
-                  <Img1 src={img} alt={alt} />
+                  <Img src={img} alt={alt} />
                 </ImgWrap>
               </Tween>
             </Column2>

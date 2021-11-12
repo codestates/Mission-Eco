@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { userSignin, authSuccess } from "../../Redux/actions";
 import axios from "axios";
@@ -33,8 +33,8 @@ import {
 axios.defaults.withCredentials = true;
 
 function Login() {
-  const login = useSelector((state) => state.infoReducer.isLogin);
-  console.log("aaaaaaaadfsfsd", login);
+  //const login = useSelector((state) => state.infoReducer.isLogin);
+
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -73,7 +73,6 @@ function Login() {
   };
 
   const loginRequestHandler = async (e) => {
-    console.log("eee");
     e.preventDefault();
     const { email, password } = loginInfo;
 
@@ -116,7 +115,9 @@ function Login() {
         Earth
       </RightTxt>
       <FormWrap>
-        <Icon to="/"><MissionLogo imgUrl={logo} alt="mission eco logo"/></Icon>
+        <Icon to="/">
+          <MissionLogo imgUrl={logo} alt="mission eco logo" />
+        </Icon>
         <FormContent>
           <Form onSubmit={(e) => e.preventDefault()}>
             <GeneralLogin>
