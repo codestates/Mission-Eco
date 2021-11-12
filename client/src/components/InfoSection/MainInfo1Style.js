@@ -1,7 +1,9 @@
 import styled, { keyframes } from "styled-components";
 import { Link as LinkR } from "react-router-dom";
 
-export const InfoContainer = styled.div``;
+export const InfoContainer = styled.div`
+  background-color: #fff;
+`;
 
 export const InfoWrapper = styled.div`
   width: 1100px;
@@ -89,7 +91,7 @@ export const Subtitle = styled.p`
 `;
 
 export const BtnWrap = styled.div`
-padding: 2rem 0 6rem;
+  padding: 2rem 0 6rem;
 `;
 
 export const Button = styled(LinkR)`
@@ -108,4 +110,3 @@ export const Button = styled(LinkR)`
     background: ${({ primary }) => (primary ? "#fff" : "#01BF71")};
   }
 `;
-

@@ -11,7 +11,7 @@ export const ServicesContiner = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: white;
+  background-color: #fff;
 
   @media screen and (max-width: 768px) {
     height: 1500px;
@@ -198,53 +198,37 @@ const MainInfo3 = ({ topLine, headline, primary, dark, dark2 }) => {
           x: "0px",
           scrollTrigger: {
             trigger: ".title",
-            start: "-200px center",
+            start: "-600px center",
             end: "30px center",
             scrub: 1,
             ease: "power4.out",
-            //markers: 1,
+            // markers: 1,
           },
         }}
       >
         <ServicesH1 className="title">{topLine}</ServicesH1>
+        <SubH2 className="title">{headline}</SubH2>
       </Tween>
       <Tween
         from={{
           opacity: 0,
-          duration: 1,
-          x: "0px",
+          duration: 2,
+          x: "-300px",
           scrollTrigger: {
-            trigger: ".sub",
-            start: "-200px center",
-            end: "30px center",
-            scrub: 1,
+            trigger: ".wrapper",
+            start: "-600px center",
+            end: "-300px center",
+            scrub: 2.5,
             ease: "power4.out",
-            //markers: 1,
+            // markers: true,
           },
         }}
       >
-        <SubH2 className="sub">{headline}</SubH2>
-      </Tween>
-      <ServicesWrapper className="wrapper">
-        {challengeLogs &&
-          challengeLogs.map((log, idx) => {
-            return (
-              <Tween
-                key={idx}
-                from={{
-                  opacity: 0,
-                  duration: 1,
-                  x: "-200px",
-                  scrollTrigger: {
-                    trigger: ".textWrapper",
-                    start: "200px center",
-                    end: "730px center",
-                    scrub: 1,
-                    markers: true,
-                  },
-                }}
-              >
-                <LogCardContatainer className="box">
+        <ServicesWrapper className="wrapper">
+          {challengeLogs &&
+            challengeLogs.map((log, idx) => {
+              return (
+                <LogCardContatainer className="box" key={idx}>
                   <LogImgContainer>
                     <LogImg src={log.img} />
                   </LogImgContainer>
@@ -259,10 +243,10 @@ const MainInfo3 = ({ topLine, headline, primary, dark, dark2 }) => {
                     <LogH2>{log.challengelog_contents}</LogH2>
                   </LogContent>
                 </LogCardContatainer>
-              </Tween>
-            );
-          })}
-      </ServicesWrapper>
+              );
+            })}
+        </ServicesWrapper>
+      </Tween>
       <Tween
         from={{
           opacity: 0,
@@ -270,10 +254,10 @@ const MainInfo3 = ({ topLine, headline, primary, dark, dark2 }) => {
           x: "0px",
           scrollTrigger: {
             trigger: ".btn",
-            start: "-150em center",
-            end: "-100em center",
+            start: "-600px center",
+            end: "-300px center",
             scrub: 1,
-            //markers: true,
+            markers: true,
           },
         }}
       >
