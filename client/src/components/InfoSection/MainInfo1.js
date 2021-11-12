@@ -17,7 +17,7 @@ import {
   Button,
   Img
 } from "./MainInfo1Style";
-
+//
 const MainInfo1 = ({
   lightBg,
   id,
