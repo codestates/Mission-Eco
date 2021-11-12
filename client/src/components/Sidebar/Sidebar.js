@@ -13,7 +13,7 @@ import {
 
 const Sidebar = ({ togglehandler }) => {
   const isToggle = useSelector((state) => state.infoReducer.isToggle);
-
+  const isLogin = useSelector((state) => state.infoReducer.isLogin);
   //console.log(isToggle);
 
   return (
@@ -35,12 +35,16 @@ const Sidebar = ({ togglehandler }) => {
           <SidebarLink to="signup" onClick={togglehandler}>
             Signup
           </SidebarLink>
-          <SidebarLink to="mypage" onClick={togglehandler}>
-            Mypage
-          </SidebarLink>
+          {isLogin ? (
+            <SidebarLink to="mypage" onClick={togglehandler}>
+              Mypage
+            </SidebarLink>
+          ) : null}
         </SidebarMenu>
         <SideBtnWrap>
-          <SidebarRoute to="/login">Sign In</SidebarRoute>
+          <SidebarRoute to="/login" onClick={togglehandler}>
+            Sign In
+          </SidebarRoute>
         </SideBtnWrap>
       </SidebarWrapper>
     </SidebarContainer>

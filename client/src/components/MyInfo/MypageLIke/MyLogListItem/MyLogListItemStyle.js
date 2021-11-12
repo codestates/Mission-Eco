@@ -50,7 +50,7 @@ export const LogImg = styled.img`
 
 export const LogImgContainer = styled.div`
   width: 300px;
-  min-height: 200px;
+  min-height: 240px;
   margin-bottom: 1em;
   overflow: hidden;
   display: flex;
