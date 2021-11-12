@@ -249,7 +249,7 @@ const MainInfo3 = ({ topLine, headline, primary, dark, dark2 }) => {
             start: "-600px center",
             end: "-300px center",
             scrub: 1,
-            markers: true,
+            // markers: true,
           },
         }}
       >
