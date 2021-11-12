@@ -11,14 +11,10 @@ import {
   GithubBadge,
   MissionEcoGithubContainer,
   LogoContainer,
-  MissionEcoTxt,
   AdminLoginContainer,
   AdminLogin,
 } from "./FooterStyle";
-import { ReactComponent as GithubGrayLogo } from "../../imges/github48.svg";
 import { ReactComponent as BlueOctocat } from "../../imges/blueOctocat.svg";
-import { ReactComponent as SquareLogo } from "../../imges/githubSquareS.svg";
-import { ReactComponent as TxtLogo } from "../../imges/githubtxtlogo.svg";
 import { ReactComponent as TxtLogoWhite } from "../../imges/githubtxtlogowhite.svg";
 
 const Footer = () => {

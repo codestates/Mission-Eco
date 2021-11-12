@@ -25,25 +25,24 @@ function Signup() {
     password2: "",
     nickname: "",
   });
-  
 
   // 모달 상태 훅
-  const [ isOpen, setIsOpen ] = useState(false);
-  const [ isSignUpOk, setSignUpOk ] = useState(false);
-  
+  const [isOpen, setIsOpen] = useState(false);
+  const [isSignUpOk, setSignUpOk] = useState(false);
+
   // 유저 정보 유효성 검사 상태 훅
   // 이메일
-  const [ isVaildEamil, setVaildEamil ] = useState(false);
-  const [ isNewEamil, setIsNewEamil ] = useState(false);
+  const [isVaildEamil, setVaildEamil] = useState(false);
+  const [isNewEamil, setIsNewEamil] = useState(false);
 
   // 패스워드
-  const [ isVaildPwd, setVaildPwd ] = useState(false);
-  const [ isSameRePwd, setSameRePwd ] = useState(false);
+  const [isVaildPwd, setVaildPwd] = useState(false);
+  const [isSameRePwd, setSameRePwd] = useState(false);
 
   // 닉네임
-  const [ isVaildNickname, setVaildNickname ] = useState(false);
-  const [ isMoreThen3Length, setMoreThen3Length ] = useState(false);
-  
+  const [isVaildNickname, setVaildNickname] = useState(false);
+  const [isMoreThen3Length, setMoreThen3Length] = useState(false);
+
   // input입력창에 따른 유저정보 값 저장
   const handelFormValue = (key) => (e) => {
     SetSignupInfo({ ...signupInfo, [key]: e.target.value });
@@ -51,32 +50,32 @@ function Signup() {
     // 각각의 input창이 아무값이 없을 때("" 일 때)
     // 새로운 요청을 위해 이전의 값을 초기화한다
 
-    if(key === "email" && signupInfo.email.length === 0) {
+    if (key === "email" && signupInfo.email.length === 0) {
       setVaildEamil(false);
       setIsNewEamil(false);
     }
 
-    if(key === "nickname" && signupInfo.nickname.length === 0) {
+    if (key === "nickname" && signupInfo.nickname.length === 0) {
       setVaildNickname(false);
       setMoreThen3Length(false);
     }
 
-    if(key === "password" && signupInfo.password.length === 0) {
+    if (key === "password" && signupInfo.password.length === 0) {
       setVaildPwd(false);
     }
 
-    if(key === "password2" && signupInfo.password2.length === 0) {
+    if (key === "password2" && signupInfo.password2.length === 0) {
       setSameRePwd(false);
     }
   };
-  
+
   // 이메일 유효성검사와 중복검사
   const checkEmail = async () => {
     const { email } = signupInfo;
     // 새로운 요청을 위해 이전의 값을 초기화한다
     setVaildEamil(false);
     setIsNewEamil(false);
-    
+
     // 1.이메일 형식이 맞는지 확인
     if (!validEmail(email)) {
       // 1-1.이메일 형식이 맞지 않는 경우
@@ -86,7 +85,8 @@ function Signup() {
       setVaildEamil(true);
       // 1-2.이메일 형식이 맞는 경우
       // 2. 사용가능한 이메일인지 확인
-      await axios.get(
+      await axios
+        .get(
           `${process.env.REACT_APP_API_URL}/user/validation/email/${email}`,
           {
             withCredentials: true,
@@ -104,14 +104,14 @@ function Signup() {
           }
         })
         .catch((err) => console.log(err));
-      }
+    }
   };
-  
+
   const handleEmailBlur = async () => {
     await checkEmail();
     return;
   };
-  
+
   // 닉네임 길이 확인과 중복검사
   const checkNickname = async () => {
     //유효성 검사 nickname 형식이 맞는지 , 이미 유효한 nickname 확인
@@ -150,20 +150,20 @@ function Signup() {
         .catch((err) => console.log(err));
     }
   };
-  
+
   const handleNickNameBlur = async () => {
     await checkNickname();
     return;
-  }
-  
+  };
+
   // 비밀번호 유효성 검사
   const checkVaildPwd = () => {
     const { password } = signupInfo;
-    
-    // 1.비밀번호 유효성 검사 
+
+    // 1.비밀번호 유효성 검사
     // 비밀번호 조건: 8~16자 영문 대 소문자, 숫자, 특수문자를 사용
     // 1-1. 비밀번호 조건에 부합하지 않을 때
-    if (!validPassword(password) ) {
+    if (!validPassword(password)) {
       setVaildPwd(false);
       return;
     } else {
@@ -171,9 +171,8 @@ function Signup() {
       setVaildPwd(true);
       return;
     }
-    
-  }
-  
+  };
+
   const handleVaildPwdBlur = () => {
     checkVaildPwd();
     return;
@@ -184,7 +183,7 @@ function Signup() {
     const { password, password2 } = signupInfo;
 
     // 비밀번호 일치여부
-    if(password !== password2) {
+    if (password !== password2) {
       // 2개의 비밀번호가 일치하지 않을 때
       setSameRePwd(false);
       return;
@@ -193,7 +192,7 @@ function Signup() {
       setSameRePwd(true);
       return;
     }
-  }
+  };
 
   const handleMatchPwdBlur = () => {
     checkMatchPwd();
@@ -201,19 +200,24 @@ function Signup() {
   };
 
   // 회워가입 버튼 클릭시 핸들링
-  const handleSignup = () => {
-    
+  const handleSignup = async () => {
     // input창의 모든 조건이 충족될 때
     // 회원가입 요청을 보냄
-    if (isVaildEamil && isNewEamil && isVaildPwd && isSameRePwd && isVaildNickname && isMoreThen3Length) {
-      axios
+    if (
+      isVaildEamil &&
+      isNewEamil &&
+      isVaildPwd &&
+      isSameRePwd &&
+      isVaildNickname &&
+      isMoreThen3Length
+    ) {
+      await axios
         .post(
           `${process.env.REACT_APP_API_URL}/user/signup`,
           { signupInfo },
           { withCredentials: true }
         )
         .then((res) => {
-          console.log(res.status);
           if (res.status === 201) {
             setSignUpOk(true);
             setIsOpen(true);
@@ -223,38 +227,49 @@ function Signup() {
         })
         .catch((err) => console.log(err));
       return;
-    } 
-
+    }
   };
-  
+
   // 모달 핸들러
   const openModalHandler = () => {
-    setIsOpen(false); // 회원가입 성공 메시지 창이 X버튼으로 닫히면 
-    history.push('/'); // 랜딩페이지로 감
+    setIsOpen(false); // 회원가입 성공 메시지 창이 X버튼으로 닫히면
+    history.push("/"); // 랜딩페이지로 감
   };
 
   return (
     <Container>
       <FormWrap>
-        <Icon to="/"><MissionLogo imgUrl={logo} alt="mission eco logo"/></Icon>
+        <Icon to="/">
+          <MissionLogo imgUrl={logo} alt="mission eco logo" />
+        </Icon>
         <FormContent>
           <Form onSubmit={(e) => e.preventDefault()}>
             <JoinRow>
               <FormLabel>이메일</FormLabel>
-              <FormInput 
+              <FormInput
                 type="text"
                 className="FormInput"
-                onBlur={e => handleEmailBlur(e)}
-                onChange={handelFormValue("email")} 
+                onBlur={(e) => handleEmailBlur(e)}
+                onChange={handelFormValue("email")}
               />
               <div className={signupInfo.email.length === 0 ? "hide" : ""}>
-                {isVaildEamil ? 
+                {isVaildEamil ? (
                   <div>
-                    {isNewEamil ?
-                    <span className="success-msg">사용 가능한 이메일입니다.</span> :
-                    <span className="fail-msg">이미 사용 중인 이메일입니다.</span>}
-                  </div> 
-                : <span className="fail-msg">올바른 이메일 형식이 아닙니다.</span>}
+                    {isNewEamil ? (
+                      <span className="success-msg">
+                        사용 가능한 이메일입니다.
+                      </span>
+                    ) : (
+                      <span className="fail-msg">
+                        이미 사용 중인 이메일입니다.
+                      </span>
+                    )}
+                  </div>
+                ) : (
+                  <span className="fail-msg">
+                    올바른 이메일 형식이 아닙니다.
+                  </span>
+                )}
               </div>
             </JoinRow>
             <JoinRow>
@@ -267,9 +282,15 @@ function Signup() {
               ></FormInput>
               <div className={signupInfo.password.length === 0 ? "hide" : ""}>
                 <div>
-                {isVaildPwd? 
-                  <span className="success-msg">사용 가능한 비밀번호입니다.</span> :
-                  <span className="fail-msg">8~16자 영문 대 소문자, 숫자, 특수문자를 사용해 주세요.</span>}
+                  {isVaildPwd ? (
+                    <span className="success-msg">
+                      사용 가능한 비밀번호입니다.
+                    </span>
+                  ) : (
+                    <span className="fail-msg">
+                      8~16자 영문 대 소문자, 숫자, 특수문자를 사용해 주세요.
+                    </span>
+                  )}
                 </div>
               </div>
               <FormLabel>비밀번호 재입력</FormLabel>
@@ -281,9 +302,15 @@ function Signup() {
               ></FormInput>
               <div className={signupInfo.password2.length === 0 ? "hide" : ""}>
                 <div>
-                  {isSameRePwd ? 
-                  <span className="success-msg hide">비밀번호가 일치합니다.</span> :
-                  <span className="fail-msg hide">비밀번호가 일치하지 않습니다.</span>}
+                  {isSameRePwd ? (
+                    <span className="success-msg hide">
+                      비밀번호가 일치합니다.
+                    </span>
+                  ) : (
+                    <span className="fail-msg hide">
+                      비밀번호가 일치하지 않습니다.
+                    </span>
+                  )}
                 </div>
               </div>
             </JoinRow>
@@ -296,25 +323,37 @@ function Signup() {
                 onChange={handelFormValue("nickname")}
               ></FormInput>
               <div className={signupInfo.nickname.length === 0 ? "hide" : ""}>
-              {isMoreThen3Length ? 
-                <div>
-                  { isVaildNickname ?
-                  <span className="success-msg">사용가능한 닉네임입니다.</span> :
-                  <span className="fail-msg">이미 사용 중인 닉네임입니다.</span>}
-                </div> 
-                : <span className={signupInfo.nickname.length >= 3 ? "hide " : "fail-msg"}>
-                  닉네임은 3글자 이상이여야 합니다.
-                  </span>}
+                {isMoreThen3Length ? (
+                  <div>
+                    {isVaildNickname ? (
+                      <span className="success-msg">
+                        사용가능한 닉네임입니다.
+                      </span>
+                    ) : (
+                      <span className="fail-msg">
+                        이미 사용 중인 닉네임입니다.
+                      </span>
+                    )}
+                  </div>
+                ) : (
+                  <span
+                    className={
+                      signupInfo.nickname.length >= 3 ? "hide " : "fail-msg"
+                    }
+                  >
+                    닉네임은 3글자 이상이여야 합니다.
+                  </span>
+                )}
               </div>
-            </JoinRow> 
+            </JoinRow>
             <FormButton onClick={handleSignup}>회원가입</FormButton>
           </Form>
         </FormContent>
       </FormWrap>
-      { isSignUpOk && isOpen ? 
-       <SignupModal openModalHandler={openModalHandler}/> : null}
+      {isSignUpOk && isOpen ? (
+        <SignupModal openModalHandler={openModalHandler} />
+      ) : null}
     </Container>
-
   );
 }
 

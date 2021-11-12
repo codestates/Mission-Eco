@@ -15,6 +15,7 @@ import {
   IS_TOGGLE,
   ADMIN_LOG,
   ADMIN_CHALLENGE,
+  MY_BADGE_LIST,
 } from "../actions/index";
 
 import { initialState } from "./initialState";
@@ -61,6 +62,12 @@ const infoReducer = (state = initialState, action) => {
       break;
     case ADMIN_CHALLENGE:
       return { ...newState, adminChallengeList: action.payload };
+      break;
+    case BADGE_LIST:
+      return { ...newState, badgeList: action.payload };
+      break;
+    case MY_BADGE_LIST:
+      return { ...newState, myBadge: action.payload };
       break;
     default:
       return state;
