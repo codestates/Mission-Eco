@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { getAllBadgeList, getMyBadgeList } from "../../../Redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import Badge from "./Badge";
