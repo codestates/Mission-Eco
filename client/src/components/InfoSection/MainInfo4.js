@@ -1,7 +1,4 @@
 import React from "react";
-import { gsap } from "gsap";
-import { Tween } from "react-gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Button } from "../Button/ButtonStyle";
 
 import {
@@ -18,7 +15,12 @@ import {
   BtnWrap,
   ImgWrap,
   Img,
-} from "./MainInfo4Style";
+} from "./MainInfoStyle";
+
+import { gsap } from "gsap";
+import { Tween } from "react-gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 const MainInfo4 = ({
   lightBg,
@@ -46,12 +48,14 @@ const MainInfo4 = ({
             <Column1>
               <Tween
                 from={{
+                  opacity: 0,
+                  duration: 1,
                   x: "300px",
-                  y: "-300px",
+                  y: "-200px",
                   scrollTrigger: {
                     trigger: ".textWrapper",
-                    start: "-490px center",
-                    end: "200px center",
+                    start: "1000px center",
+                    end: "1500px center",
                     scrub: 1,
                     // markers: true,
                   },
@@ -63,7 +67,6 @@ const MainInfo4 = ({
                   <Subtitle darkText={darkText}>{description}</Subtitle>
                   <BtnWrap>
                     <Button
-                      style={{ textDecoration: "none" }}
                       to="/mypage"
                       //smooth={true}
                       duration={500}
@@ -81,9 +84,25 @@ const MainInfo4 = ({
               </Tween>
             </Column1>
             <Column2>
-              <ImgWrap>
-                <Img src={img} alt={alt} />
-              </ImgWrap>
+              <Tween
+                from={{
+                  opacity: 0,
+                  duration: 1,
+                  x: "-300px",
+                  scrollTrigger: {
+                    trigger: ".imgWrapper",
+                    start: "100px center",
+                    end: "1500px center",
+                    scrub: 1,
+                    ease: "power4.out",
+                    // markers: true,
+                  },
+                }}
+              >
+                <ImgWrap className="imgWrapper">
+                  <Img src={img} alt={alt} />
+                </ImgWrap>
+              </Tween>
             </Column2>
           </InfoRow>
         </InfoWrapper>
