@@ -4,15 +4,15 @@ import styled from "styled-components";
 
 const ScrollBtnContainer = styled.div`
   position: relative;
-  width: 50px;
-  height: 50px;
+  //width: 50px;
+  //height: 50px;
 `;
 const ScrollBtn = styled.button`
   // position: fixed;
   position: fixed;
   opacity: 0;
   bottom: 20rem;
-  right: 3rem;
+  right: 1rem;
   z-index: -10;
   width: 50px;
   height: 50px;

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Tween } from "react-gsap";
 import { useDispatch, useSelector } from "react-redux";
 import { getChallengeLogList } from "../../Redux/actions";
+import { Link as LinkR } from "react-router-dom";
 
 export const ServicesContiner = styled.div`
   height: 800px;
@@ -10,14 +11,12 @@ export const ServicesContiner = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #d6d3ce;
-
+  background-color: #fff;
   @media screen and (max-width: 768px) {
-    height: 1100px;
+    height: 1500px;
   }
-
   @media screen and (max-width: 480px) {
-    height: 1300px;
+    height: 1800px;
   }
 `;
 
@@ -29,7 +28,6 @@ export const ServicesWrapper = styled.div`
   align-items: center;
   grid-gap: 16px;
   padding: 0 50px;
-
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
     padding: 0 20px;
@@ -38,15 +36,14 @@ export const ServicesWrapper = styled.div`
 
 export const ServicesH1 = styled.h1`
   font-size: 2.5rem;
-  color: #fff;
+  color: black;
   margin-bottom: 40px;
-
   @media screen and (max-width: 480px) {
     font-size: 2rem;
   }
 `;
 export const SubH2 = styled.h2`
-  color: white;
+  color: black;
   font-size: 1rem;
   margin-bottom: 40px;
 `;
@@ -55,7 +52,6 @@ export const LogCardContatainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-
   //align-items: center;
   border-radius: 6px;
   //width: 280px;
@@ -88,12 +84,9 @@ export const LogImgContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  //  border: 1px solid #11324d;
-
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-
-  background: ${(props) => props.background || "white"};
+  //background: ${(props) => props.background || "white"};
   @media screen and (max-width: 768px) {
     height: 300px;
     width: 340px;
@@ -142,8 +135,35 @@ export const NameNtime = styled.div`
   width: 100%;
   margin-bottom: 1.4rem;
 `;
+export const BtnWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3em;
+`;
+export const Button = styled(LinkR)`
+  border-radius: 50px;
+  background: ${({ primary }) => (primary ? "#9dbfa5" : "#0106")};
+  white-space: nowrap;
+  padding: ${({ big }) => (big ? "14px 48px" : "12px 30px")};
+  color: ${({ dark }) => (dark ? "#010606" : "#fff")};
+  font-size: ${({ fontBig }) => (fontBig ? "20px" : "16px")};
+  outline: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    background: ${({ primary }) => (primary ? "#fff" : "#01BF71")};
+    border: 2px solid #9dbfa5;
+  }
+`;
 
-const MainInfo3 = () => {
+const MainInfo3 = ({ topLine, headline, primary, dark, dark2 }) => {
   const logList = useSelector((state) => state.infoReducer.challengeLogList);
   const dispatch = useDispatch();
   const { challengeLogList } = logList;
@@ -170,55 +190,39 @@ const MainInfo3 = () => {
           x: "0px",
           scrollTrigger: {
             trigger: ".title",
-            start: "-150px center",
+            start: "-600px center",
             end: "30px center",
             scrub: 1,
             ease: "power4.out",
+            // markers: 1,
           },
         }}
       >
-        <ServicesH1 className="title">Our Missions</ServicesH1>
+        <ServicesH1 className="title">{topLine}</ServicesH1>
+        <SubH2 className="title">{headline}</SubH2>
       </Tween>
       <Tween
         from={{
           opacity: 0,
-          duration: 1,
-          x: "0px",
+          duration: 2,
+          x: "-300px",
           scrollTrigger: {
-            trigger: ".sub",
-            start: "-100px center",
-            end: "30px center",
-            scrub: 1,
+            trigger: ".wrapper",
+            start: "-600px center",
+            end: "-300px center",
+            scrub: 2.5,
             ease: "power4.out",
+            // markers: true,
           },
         }}
       >
-        <SubH2 className="sub">
-          환경을 위하는 우리, 우리의 이야기를 공유해요
-        </SubH2>
-      </Tween>
-
-      <ServicesWrapper className="wrapper">
-        {challengeLogs &&
-          challengeLogs.map((log, idx) => {
-            return (
-              <Tween
-                from={{
-                  opacity: 0,
-                  duration: 2,
-                  x: "-200px",
-                  scrollTrigger: {
-                    trigger: ".box",
-                    start: "10px center",
-                    end: "150px center",
-                    scrub: 1,
-                    ease: "power4.out",
-                  },
-                }}
-              >
-                <LogCardContatainer className="box">
-                  <LogImgContainer background={log.img}>
-                    <LogImg />
+        <ServicesWrapper className="wrapper">
+          {challengeLogs &&
+            challengeLogs.map((log, idx) => {
+              return (
+                <LogCardContatainer className="box" key={idx}>
+                  <LogImgContainer>
+                    <LogImg src={log.img} />
                   </LogImgContainer>
                   <LogContent>
                     <LogHashP> {log.challenge.name}</LogHashP>
@@ -231,10 +235,40 @@ const MainInfo3 = () => {
                     <LogH2>{log.challengelog_contents}</LogH2>
                   </LogContent>
                 </LogCardContatainer>
-              </Tween>
-            );
-          })}
-      </ServicesWrapper>
+              );
+            })}
+        </ServicesWrapper>
+      </Tween>
+      <Tween
+        from={{
+          opacity: 0,
+          duration: 1,
+          x: "0px",
+          scrollTrigger: {
+            trigger: ".btn",
+            start: "-600px center",
+            end: "-300px center",
+            scrub: 1,
+            // markers: true,
+          },
+        }}
+      >
+        <BtnWrap className="btn">
+          <Button
+            to="/log"
+            //smooth={true}
+            duration={500}
+            // spy={true}
+            exact="true"
+            offset={-80}
+            primary={primary ? 1 : 0}
+            dark={dark ? 1 : 0}
+            dark2={dark2 ? 1 : 0}
+          >
+            Log 보러가기
+          </Button>
+        </BtnWrap>
+      </Tween>
     </ServicesContiner>
   );
 };

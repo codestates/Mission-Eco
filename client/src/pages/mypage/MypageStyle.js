@@ -156,7 +156,7 @@ export const ListContainer = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   grid-gap: 16px;
-  padding: 0 10px;
+  padding: 15px;
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr 1fr;
   }

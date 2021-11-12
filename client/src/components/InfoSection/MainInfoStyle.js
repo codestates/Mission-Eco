@@ -45,6 +45,7 @@ export const Column2 = styled.div`
   margin-bottom: 15px;
   padding: 0 15px;
   grid-area: col2;
+  border-radius: 10px;
 `;
 
 export const TextWrapper = styled.div`
@@ -54,7 +55,7 @@ export const TextWrapper = styled.div`
 `;
 
 export const TopLine = styled.p`
-  color: #01bf71;
+  color: #234b68;
   font-size: 16px;
   line-height: 16px;
   font-weight: 700;
@@ -65,8 +66,8 @@ export const TopLine = styled.p`
 
 export const Heading = styled.h1`
   margin-bottom: 24px;
-  font-size: 48px;
-  line-height: 1.1;
+  //font-size: 48px;
+  line-height: 2.6rem;
   font-weight: 600;
   color: ${({ lightText }) => (lightText ? "#010606" : "#f7f8fa")};
 
@@ -91,12 +92,17 @@ export const ButtonR = styled(Link)``;
 export const ImgWrap = styled.div`
   max-width: 555px;
   height: 100%;
+  border-radius: 20px;
 `;
 
 export const Img = styled.img`
   width: 100%;
   margin: 0 0 10px 0;
   padding-right: 0;
+
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   border-radius: 10px;
 `;
 

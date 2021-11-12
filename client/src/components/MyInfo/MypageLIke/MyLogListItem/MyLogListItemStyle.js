@@ -1,4 +1,3 @@
-// ! MyLogListItem용으로 수정해야함
 import styled from "styled-components";
 
 export const LogCardContatainer = styled.div`
@@ -10,9 +9,9 @@ export const LogCardContatainer = styled.div`
   max-height: 340px;
   padding-bottom: 14px;
   overflow: hidden;
-
   position: relative;
-
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   @media screen and (max-width: 768px) {
     width: 340px;
     height: 420px;
@@ -50,12 +49,14 @@ export const LogImg = styled.img`
 
 export const LogImgContainer = styled.div`
   width: 300px;
-  min-height: 200px;
+  min-height: 240px;
   margin-bottom: 1em;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  /* background-color: black; */
+  background-color: #ededed;
 
   @media screen and (max-width: 768px) {
     height: 300px;

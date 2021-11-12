@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button } from "../Button/ButtonStyle";
 import Video from "../../videos/video.mp4";
 
 import {
@@ -9,7 +10,6 @@ import {
   HeroH1,
   HeroP,
   HeroBtnWrapper,
-  Button,
 } from "./HeroSectionStyle";
 
 const HeroSection = (props) => {
@@ -34,7 +34,7 @@ const HeroSection = (props) => {
             to="signup"
             onMouseEnter={onHover}
             onMouseLeave={onHover}
-            primary="true"
+            // primary="1"
             dark="true"
             //smooth={true}
             duration={500}
