@@ -8,6 +8,7 @@ import { ScrollTopBtn } from "../components/ScrollTop/ScrollTopBtn";
 import {
   homeObjOne,
   homeObjTwo,
+  homeObjThree,
   homeObjFour,
 } from "../components/InfoSection/Data";
 import MainInfo2 from "../components/InfoSection/MainInfo2";
@@ -18,7 +19,7 @@ function Main() {
       <HeroSection />
       <MainInfo1 {...homeObjOne} />
       <MainInfo2 {...homeObjTwo} />
-      <MainInfo3 />
+      <MainInfo3 {...homeObjThree} />
       <MainInfo4 {...homeObjFour} />
       <ScrollTopBtn />
     </div>
