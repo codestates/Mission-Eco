@@ -75,7 +75,7 @@ export const FormButton = styled.button`
   display: block;
   width: 100%;
   height: 50px;
-  background-color: #a5e464;
+  background-color: #9dbfa5;
   border: none;
   color: #fff;
   font-weight: bold;
@@ -83,9 +83,10 @@ export const FormButton = styled.button`
 
   &:hover {
     transition: 1s;
-    color: #fff;
+    color: black;
     cursor: pointer;
-    background-color: #74c025;
+    background-color: white;
+    border: 2px solid #9dbfa5;
   }
 `;
 
@@ -94,4 +95,13 @@ export const Text = styled.span``;
 export const GeneralLogin = styled.div`
   text-align: left;
   margin-bottom: 4rem;
+`;
+export const MissionLogo = styled.div`
+  width: 100%;
+  height: 100%;
+  background: center/220% no-repeat url(${(props) => props.imgUrl});
+
+  @media screen and (max-width: 480px) {
+    /* margin-left: 16px; */
+  }
 `;

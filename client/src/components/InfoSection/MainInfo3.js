@@ -12,11 +12,9 @@ export const ServicesContiner = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #fff;
-
   @media screen and (max-width: 768px) {
     height: 1500px;
   }
-
   @media screen and (max-width: 480px) {
     height: 1800px;
   }
@@ -30,7 +28,6 @@ export const ServicesWrapper = styled.div`
   align-items: center;
   grid-gap: 16px;
   padding: 0 50px;
-
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
     padding: 0 20px;
@@ -41,7 +38,6 @@ export const ServicesH1 = styled.h1`
   font-size: 2.5rem;
   color: black;
   margin-bottom: 40px;
-
   @media screen and (max-width: 480px) {
     font-size: 2rem;
   }
@@ -56,7 +52,6 @@ export const LogCardContatainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-
   //align-items: center;
   border-radius: 6px;
   //width: 280px;
@@ -89,10 +84,8 @@ export const LogImgContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-
   //background: ${(props) => props.background || "white"};
   @media screen and (max-width: 768px) {
     height: 300px;
@@ -163,7 +156,6 @@ export const Button = styled(LinkR)`
   align-items: center;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
-
   &:hover {
     transition: all 0.2s ease-in-out;
     background: ${({ primary }) => (primary ? "#fff" : "#01BF71")};
