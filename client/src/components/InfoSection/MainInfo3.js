@@ -11,7 +11,7 @@ export const ServicesContiner = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
+  background-color: #f8f8f8;
   @media screen and (max-width: 768px) {
     height: 1500px;
   }

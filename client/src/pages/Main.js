@@ -16,7 +16,7 @@ import MainInfo2 from "../components/InfoSection/MainInfo2";
 import styled from "styled-components";
 
 const MainCotainer = styled.div`
-  background-color: #fff;
+  background-color: #fbf3e4;
 `;
 function Main() {
   return (
