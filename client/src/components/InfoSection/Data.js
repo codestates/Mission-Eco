@@ -80,9 +80,9 @@ export const homeObjFour = {
   headline: "나만의 컬렉션이 완성됩니다.",
   description:
     "마이페이지에서는 챌린지를 통해 획득한 에코뱃지, 내가 좋아한 챌린지, 내가 작성한 게시물을 컬렉션으로 모아 볼 수 있어요.",
-  buttonLabel: "나의 컬렉션 확인",
+  buttonLabel: "로그인하러 가기",
   imgStart: true,
-  img: "/gif/mypage-test.gif",
+  img: "/gif/MainInfo4.gif",
   alt: "eco",
   dark: false,
   primary: false,
