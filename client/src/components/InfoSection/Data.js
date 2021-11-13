@@ -58,8 +58,8 @@ export const homeObjThree = {
   lightBg: false,
   lightText: true,
   lightTextDesc: true,
-  topLine: "Our Mission",
-  headline: "환경을 위하는 우리, 우리의 이야기를 공유해요",
+  topLine: "Our Mission Log",
+  headline: "지구를 위한 우리의 날갯짓, 우리의 경험을 공유해요",
   description:
     "미션에 참여하기 위해 거쳐야 하는 관문이 있습니다! 해당 이미지가 미션에 적합한지 확인 후 에코로그를 남겨보세요.",
   buttonLabel: "Log 보러가기",
