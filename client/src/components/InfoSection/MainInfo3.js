@@ -11,7 +11,7 @@ export const ServicesContiner = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
+  background-color: #fefbf3;
   @media screen and (max-width: 768px) {
     height: 1500px;
   }
@@ -36,15 +36,15 @@ export const ServicesWrapper = styled.div`
 
 export const ServicesH1 = styled.h1`
   font-size: 2.5rem;
-  color: black;
-  margin-bottom: 40px;
+  color: #2b2b2b;
+  margin-bottom: 20px;
   @media screen and (max-width: 480px) {
     font-size: 2rem;
   }
 `;
-export const SubH2 = styled.h2`
-  color: black;
-  font-size: 1rem;
+export const SubH2 = styled.p`
+  color: #555;
+  //font-size: 1rem;
   margin-bottom: 40px;
 `;
 export const LogCardContatainer = styled.div`

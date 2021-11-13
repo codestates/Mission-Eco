@@ -2,7 +2,7 @@ import styled, { keyframes } from "styled-components";
 import { Link as LinkR } from "react-router-dom";
 
 export const InfoContainer = styled.div`
-  background-color: #fff;
+  background-color: #fefbf3;
 `;
 
 export const InfoWrapper = styled.div`

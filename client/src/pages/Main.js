@@ -1,6 +1,5 @@
 /*eslint-disable */
-import React from "react";
-import style from "styled-components";
+import React, { useEffect, useState } from "react";
 import HeroSection from "../components/HeroSection/HeroSection";
 import MainInfo1 from "../components/InfoSection/MainInfo1";
 import MainInfo4 from "../components/InfoSection/MainInfo4";
@@ -14,20 +13,34 @@ import {
 } from "../components/InfoSection/Data";
 import MainInfo2 from "../components/InfoSection/MainInfo2";
 import styled from "styled-components";
-
+import LandingLoad from "../components/Loading/LandingLoad";
 const MainCotainer = styled.div`
-  background-color: #fff;
+  background-color: #fbf3e4;
 `;
 function Main() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  }, []);
+
   return (
-    <MainCotainer>
-      <HeroSection />
-      <MainInfo1 {...homeObjOne} />
-      <MainInfo2 {...homeObjTwo} />
-      <MainInfo3 {...homeObjThree} />
-      <MainInfo4 {...homeObjFour} />
-      <ScrollTopBtn />
-    </MainCotainer>
+    <>
+      {isLoading ? (
+        <LandingLoad />
+      ) : (
+        <MainCotainer>
+          <HeroSection />
+          <MainInfo1 {...homeObjOne} />
+          <MainInfo2 {...homeObjTwo} />
+          <MainInfo3 {...homeObjThree} />
+          <MainInfo4 {...homeObjFour} />
+          <ScrollTopBtn />
+        </MainCotainer>
+      )}
+    </>
   );
 }
 
