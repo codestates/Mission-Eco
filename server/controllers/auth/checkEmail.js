@@ -3,7 +3,7 @@ const nodemailer = require("nodemailer");
 module.exports = {
   checkEmail: async (req, res) => {
     try {
-      console.log("body", req.body);
+      // console.log("body", req.body);
       function generateRandomCode(n) {
         let str = "";
         for (let i = 0; i < n; i++) {

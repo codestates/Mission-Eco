@@ -51,7 +51,7 @@ const AddChallenge = (props) => {
   };
   const fileUploadHandler = async () => {
     const uploaded = await upload(selectImg);
-    console.log("uploaded--", uploaded, chUpload);
+    //console.log("uploaded--", uploaded, chUpload);
     axios
       .post(
         `${process.env.REACT_APP_API_URL}/challenge`,

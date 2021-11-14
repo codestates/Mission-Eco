@@ -59,17 +59,7 @@ function Login() {
   };
 
   const isAuthenticated = () => {
-    //유저 정보 찾아줌
     dispatch(authSuccess());
-    /*axios
-      .get(`${process.env.REACT_APP_API_URL}/mypage/auth`, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        dispatch(getUserInfo(res.data.userInfo));
-        console.log(res.data.userInfo);
-      })
-      .catch((err) => console.log(err));*/
   };
 
   const loginRequestHandler = async (e) => {
@@ -82,7 +72,7 @@ function Login() {
       setErrMsg("이메일 형식이 아닙니다.");
     } else {
       dispatch(userSignin(loginInfo)).then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res) {
           handleResponseSuccess();
         } else {

@@ -27,7 +27,7 @@ axios.defaults.withCredentials = true;
 const MypageEdit = () => {
   // * Accept Current Change
   const state = useSelector((state) => state.infoReducer.userInfo);
-  console.log(state);
+  //console.log(state);
   // *
   // *Accept Incoming Change
   // const isLogin = useSelector((state) => state.infoReducer.isLogin);
@@ -63,13 +63,15 @@ const MypageEdit = () => {
   });
 
   // * 모달 상태
-  const [ isOpenModal, setIsOpenModal ] = useState(false)
-  const [ deleteUserMsg, setDeletedUserMsg ] = useState("정말로 회원탈퇴 하시겠습니까?");
-  const [ isDeletedUser, setDeletedUser ] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [deleteUserMsg, setDeletedUserMsg] = useState(
+    "정말로 회원탈퇴 하시겠습니까?"
+  );
+  const [isDeletedUser, setDeletedUser] = useState(false);
 
   const closeModalHandler = () => {
     setIsOpenModal(!isOpenModal);
-  }
+  };
 
   useEffect(() => {}, [state.userInfo]);
 
@@ -95,7 +97,7 @@ const MypageEdit = () => {
   const { userId, newNickname } = nickInfo;
   // !
   const checkNickRequestHandler = () => {
-    console.log(newNickname);
+    // console.log(newNickname);
 
     axios
       .get(
@@ -124,7 +126,7 @@ const MypageEdit = () => {
   // 성공 === 204
   const changeNickRequestHandler = () => {
     // const { userId, newNickname } = nickInfo;
-    console.log(userId, newNickname);
+    //(userId, newNickname);
     axios
       .patch(
         `${process.env.REACT_APP_API_URL}/mypage/userinfo/nickname`,
@@ -133,7 +135,7 @@ const MypageEdit = () => {
         { withCredentials: true }
       )
       .then((res) => {
-        console.log(res.status);
+        // console.log(res.status);
         if (res.status === 204) {
           setErrMsg("닉네임 변경완료!");
         } else {
@@ -236,15 +238,14 @@ const MypageEdit = () => {
             <DelUserBtn onClick={closeModalHandler}>회원탈퇴</DelUserBtn>
           </DelUserBtnWrapper>
         </MypageEditWrap>
-        {isOpenModal ? 
-          <Modal 
+        {isOpenModal ? (
+          <Modal
             msg={deleteUserMsg}
             userDeleteRequestHandler={userDeleteRequestHandler}
             closeModalHandler={closeModalHandler}
             isDeletedUser={isDeletedUser}
-          /> :
-           null 
-        }
+          />
+        ) : null}
       </MypageEditContainer>
     </>
   );
