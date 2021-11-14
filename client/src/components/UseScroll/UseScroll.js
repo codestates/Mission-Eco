@@ -9,7 +9,7 @@ const UseScroll = (props) => {
   const infiniteScroll = useCallback(() => {
     if (
       window.scrollY + document.documentElement.clientHeight >
-      document.documentElement.scrollHeight - 10
+      document.documentElement.scrollHeight - 30
     ) {
       setIsFetch(true);
       return;

@@ -28,13 +28,16 @@ export const ModalView = styled.div`
   @media screen and (max-width: 480px) {
     width: 70%;
   }
-
 `;
 
 export const Msg = styled.h1`
   color: #333;
   font-size: 20px;
   margin-bottom: 2.8rem;
+  &.check {
+    font-size: 14px;
+    margin-top: 1.5rem;
+  }
   @media screen and (max-width: 480px) {
     font-size: 16px;
   }
@@ -67,6 +70,12 @@ export const CheckdImgBox = styled.div`
   width: 30px;
   height: 30px;
   margin: 0 auto;
+`;
+
+export const CheckInput = styled.input`
+  width: 200px;
+  height: 30px;
+  margin-bottom: 20px;
 `;
 
 export const CloseBtn = styled.div`

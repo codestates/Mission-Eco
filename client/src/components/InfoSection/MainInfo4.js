@@ -11,7 +11,6 @@ import {
   TopLine,
   Heading,
   Subtitle,
-  ButtonR,
   BtnWrap,
   ImgWrap,
   Img,
@@ -67,7 +66,7 @@ const MainInfo4 = ({
                   <Subtitle darkText={darkText}>{description}</Subtitle>
                   <BtnWrap>
                     <Button
-                      to="/mypage"
+                      to="/login"
                       //smooth={true}
                       duration={500}
                       // spy={true}

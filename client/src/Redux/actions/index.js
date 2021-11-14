@@ -124,7 +124,7 @@ export const deleteLike = (challengeId) => async (dispatch) => {
       }
     )
     .then((res) => {
-      console.log(res);
+      //console.log(res);
       if (res.status === 200) {
         return res.data.challengeList;
       }
@@ -142,7 +142,6 @@ export const getChallengeList = () => async (dispatch) => {
         return res.data.data;
       }
     });
-
   return dispatch({ type: CHALLENGE_LIST, payload: list });
 };
 

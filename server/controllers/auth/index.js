@@ -3,4 +3,5 @@ module.exports = {
   kakaoCallback: require("./kakaoLogin").kakaoCallback,
   googleLogin: require("./googleLogin").googleLogin,
   googleCallback: require("./googleLogin").googleCallback,
+  checkEmail: require("./checkEmail").checkEmail,
 };

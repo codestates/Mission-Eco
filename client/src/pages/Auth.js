@@ -9,16 +9,7 @@ function Auth() {
 
   useEffect(() => {
     dispatch(authSuccess());
-    /*
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/mypage/auth`, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log(res.data.userInfo);
-      })
-      .catch((err) => console.log(err));
-*/
+
     history.push("/");
   }, []);
 

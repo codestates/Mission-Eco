@@ -5,21 +5,20 @@ import ml5 from "ml5";
 import { Img } from "../../Loading/LoadingIndicator";
 
 const Container = styled.div`
-  //display: flex;
-
   position: relative;
 `;
 
 const Button = styled.button`
   padding: 20px;
   background: #ffa928;
-
   border: none;
   border-radius: 5px;
-
   cursor: pointer;
-  :hover {
-    background-color: #e7e7e7;
+
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    background: #fff;
+    border: 2px solid #ffa928;
   }
 `;
 
@@ -30,14 +29,15 @@ const BtnBox = styled.div`
 
 let classifier;
 
+//user -> video click
 const Classifier = ({ imageModelURL, setResults }) => {
   const videoRef = useRef();
-  const [start, setStart] = useState(false);
-  //const [results, setResults] = useState([]);
+  const [start, setStart] = useState(true);
   const [loaded, setLoaded] = useState(false);
-  //const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    //step1 모델 가져오기
+    //모델이 로드되면 라이브 스트림에서 이미지를 수집할 수 있도록 웹캠 장치를 초기화
     classifier = ml5.imageClassifier(imageModelURL, () => {
       navigator.mediaDevices
         .getUserMedia({ video: true, audio: false })
@@ -45,33 +45,24 @@ const Classifier = ({ imageModelURL, setResults }) => {
           videoRef.current.srcObject = stream;
           videoRef.current.play();
           setLoaded(true);
-          // setIsLoading(true);
         });
     });
   }, [imageModelURL]);
 
   const classifyImg = () => {
-    // setIsLoading(true);
-    //console.log(isLoading, classifier, start);
-    if (classifier && start) {
-      classifier
-        .predict(videoRef.current, (err, classifiedResults) => {
-          return classifiedResults;
-        })
-        .then((classifiedResults) => {
-          setStart(!start);
-          //  setIsLoading(false);
-          setResults(classifiedResults);
-        });
-    }
+    classifier
+      .classify(videoRef.current, (err, classifiedResults) => {
+        return classifiedResults;
+      })
+      .then((classifiedResults) => {
+        setStart(!start);
+        setResults(classifiedResults);
+      });
   };
 
   const toggle = () => {
-    setStart(!start);
     classifyImg();
-    setResults([]);
   };
-  console.log(videoRef);
 
   return (
     <>
@@ -94,8 +85,8 @@ const Classifier = ({ imageModelURL, setResults }) => {
         />
         {loaded && (
           <BtnBox>
-            <Button onClick={() => toggle()}>
-              <p>{start ? "확인하기" : "캡쳐하기"}</p>
+            <Button onClick={toggle}>
+              <p>확인하기</p>
             </Button>
           </BtnBox>
         )}
