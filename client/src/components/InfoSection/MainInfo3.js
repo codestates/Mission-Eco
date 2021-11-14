@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getChallengeLogList } from "../../Redux/actions";
 import { Link as LinkR } from "react-router-dom";
 
-export const ServicesContiner = styled.div`
+export const InfoLogContainer = styled.div`
   height: 800px;
   display: flex;
   flex-direction: column;
@@ -20,7 +20,7 @@ export const ServicesContiner = styled.div`
   }
 `;
 
-export const ServicesWrapper = styled.div`
+export const InfoLogWrapper = styled.div`
   max-width: 1000px;
   margin: 0 auto;
   display: grid;
@@ -34,8 +34,8 @@ export const ServicesWrapper = styled.div`
   }
 `;
 
-export const ServicesH1 = styled.h1`
-  font-size: 2.5rem;
+export const InfoLogH1 = styled.h1`
+  line-height: 2.6rem;
   color: #2b2b2b;
   margin-bottom: 20px;
   @media screen and (max-width: 480px) {
@@ -182,7 +182,7 @@ const MainInfo3 = ({ topLine, headline, primary, dark, dark2 }) => {
   useEffect(() => {}, [logList]);
 
   return (
-    <ServicesContiner id="services">
+    <InfoLogContainer id="infoLog">
       <Tween
         from={{
           opacity: 0,
@@ -198,7 +198,7 @@ const MainInfo3 = ({ topLine, headline, primary, dark, dark2 }) => {
           },
         }}
       >
-        <ServicesH1 className="title">{topLine}</ServicesH1>
+        <InfoLogH1 className="title">{topLine}</InfoLogH1>
         <SubH2 className="title">{headline}</SubH2>
       </Tween>
       <Tween
@@ -216,7 +216,7 @@ const MainInfo3 = ({ topLine, headline, primary, dark, dark2 }) => {
           },
         }}
       >
-        <ServicesWrapper className="wrapper">
+        <InfoLogWrapper className="wrapper">
           {challengeLogs &&
             challengeLogs.map((log, idx) => {
               return (
@@ -237,7 +237,7 @@ const MainInfo3 = ({ topLine, headline, primary, dark, dark2 }) => {
                 </LogCardContatainer>
               );
             })}
-        </ServicesWrapper>
+        </InfoLogWrapper>
       </Tween>
       <Tween
         from={{
@@ -269,7 +269,7 @@ const MainInfo3 = ({ topLine, headline, primary, dark, dark2 }) => {
           </Button>
         </BtnWrap>
       </Tween>
-    </ServicesContiner>
+    </InfoLogContainer>
   );
 };
 

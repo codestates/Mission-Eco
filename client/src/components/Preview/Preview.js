@@ -40,18 +40,22 @@ const Preview = ({
 
   const classifyImg = () => {
     setLoading(true);
+    //step1 모델가져오기
     const classifier = ml5.imageClassifier(imageModelURL, modelLoaded);
+    //모델 부르고 요청
     function modelLoaded() {
       console.log("Model Loaded!");
     }
-
+    //step2 이미지 선택
     const image = document.querySelector("#image");
 
+    //step3 이미지 분류 예측결과 만들기
     classifier
-      .predict(image, 5, (err, classifiedResults) => {
+      .classify(image, (err, classifiedResults) => {
         return classifiedResults;
       })
       .then((classifiedResults) => {
+        //결과 state에 저장
         setResults(classifiedResults);
         setLoading(false);
       });

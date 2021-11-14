@@ -20,15 +20,9 @@ const MainCotainer = styled.div`
 function Main() {
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-  }, []);
-
   return (
     <>
-      {isLoading ? (
+      {!isLoading ? (
         <LandingLoad />
       ) : (
         <MainCotainer>

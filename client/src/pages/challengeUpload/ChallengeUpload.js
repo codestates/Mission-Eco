@@ -60,6 +60,7 @@ function ChallengeUpload() {
 
   const imageModelURL =
     "https://teachablemachine.withgoogle.com/models/LqVCsScNs/model.json";
+
   const fileSelectedHandler = (e) => {
     if (e.target.files.length !== 0) {
       setSelectedFile(URL.createObjectURL(e.target.files[0]));

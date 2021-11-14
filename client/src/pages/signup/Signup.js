@@ -84,7 +84,6 @@ function Signup() {
 
   // 이메일 유효성검사와 중복검사
   const checkEmail = async () => {
-    console.log("ssss", errMsg);
     const { email } = signupInfo;
     // 새로운 요청을 위해 이전의 값을 초기화한다
     setVaildEamil(false);
@@ -98,7 +97,6 @@ function Signup() {
       return;
     } else {
       setVaildEamil(true);
-      console.log("ssss", errMsg);
       // 1-2.이메일 형식이 맞는 경우
       // 2. 사용가능한 이메일인지 확인
       await axios
@@ -109,7 +107,6 @@ function Signup() {
           }
         )
         .then((res) => {
-          console.log(res);
           if (res.status === 204) {
             // 2-1.등록된 이메일이 없는 경우
             setIsNewEamil(true);
@@ -227,7 +224,8 @@ function Signup() {
       isVaildPwd &&
       isSameRePwd &&
       isVaildNickname &&
-      isMoreThen3Length
+      isMoreThen3Length &&
+      isCheckEmail
     ) {
       await axios
         .post(

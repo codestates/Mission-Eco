@@ -20,13 +20,13 @@ module.exports = {
         secure: false,
         requireTLS: true,
         auth: {
-          user: "mission.eco01@gmail.com",
-          pass: "d1569847..",
+          user: process.env.MAILID,
+          pass: process.env.MAILPW,
         },
       });
 
       const contents = await transporter.sendMail({
-        from: "mission.eco01@gmail.com",
+        from: process.env.MAILID,
         to: email,
         subject: "MISSIONECO 회원가입 인증 이메일",
         text: `이메일 인증번호 ${randomNum} 를 입력해주세요.`,

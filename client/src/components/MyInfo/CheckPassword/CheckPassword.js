@@ -18,7 +18,6 @@ axios.defaults.withCredentials = true;
 export default function CheckPassword() {
   const state = useSelector((state) => state.infoReducer);
   // const userInfo = useSelector((state) => state.infoReducer.userInfo);
-  console.log(state);
   const history = useHistory();
   const [password, setPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
