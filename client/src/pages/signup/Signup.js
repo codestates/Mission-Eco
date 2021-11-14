@@ -260,7 +260,7 @@ function Signup() {
     const { email } = signupInfo;
     e.preventDefault();
     setIsCheckEmail(false);
-    console.log(isNewEamil, isCheckEmail);
+    //console.log(isNewEamil, isCheckEmail);
     if (isNewEamil) {
       await axios
         .post(

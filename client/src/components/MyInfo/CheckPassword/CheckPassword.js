@@ -27,7 +27,7 @@ export default function CheckPassword() {
   };
 
   const loginRequestHandler = () => {
-    console.log("pwd", password);
+    // console.log("pwd", password);
 
     axios
       .post(

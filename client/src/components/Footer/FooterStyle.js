@@ -212,3 +212,11 @@ export const AdminLogin = styled(Link)`
     font-size: 12px;
   }
 `;
+export const AdminEmail = styled.span`
+  right: 0px;
+  bottom: 0px;
+  color: #fff;
+  font-size: 12px;
+  //font-weight: bold;
+  margin: 1em 0 0 0;
+`;
