@@ -20,7 +20,7 @@ const Uploader = ({ setImg, fileSelectedHandler }) => {
     e.preventDefault();
 
     const imgSrc = e.target.value;
-    console.log(imgSrc);
+    //console.log(imgSrc);
     setImg(imgSrc);
   };
 

@@ -75,7 +75,7 @@ export function isToggle(boolean) {
 }
 
 export function isOpenModal(boolean) {
-  console.log(boolean);
+  // console.log(boolean);
   return {
     type: IS_OPEN_MODAL,
     payload: boolean,
@@ -293,7 +293,7 @@ export const userLogout = () => async (dispatch) => {
         return false;
       }
     });
-  console.log(data);
+  // console.log(data);
   dispatch({ type: IS_LOGIN, payload: data });
 };
 

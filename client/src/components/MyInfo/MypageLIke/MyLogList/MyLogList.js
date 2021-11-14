@@ -22,11 +22,11 @@ const MyLogList = () => {
       )
 
       .then((res) => {
-        console.log("login", res.data);
+        //("login", res.data);
 
         if (res.status === 200) {
           const { myLogList } = res.data;
-          console.log("🌳myLogList🌳", myLogList);
+          // console.log("🌳myLogList🌳", myLogList);
           // ? 여기서 myLogList를 myLogLists (useState)에 담았다!
           setMyLogLists(myLogList);
         } else if (res.status === 400) {

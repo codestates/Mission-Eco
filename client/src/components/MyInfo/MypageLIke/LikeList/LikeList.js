@@ -23,7 +23,7 @@ const LikeList = () => {
         if (res.status === 200) {
           // const { myLogList, challengeList } = res.data;
           const { challengeList } = res.data;
-          console.log("✨ challengeList ✨", challengeList);
+          // console.log("✨ challengeList ✨", challengeList);
           setChallengeLists(challengeList);
         } else if (res.status === 400) {
         }

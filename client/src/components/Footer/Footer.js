@@ -13,6 +13,7 @@ import {
   LogoContainer,
   AdminLoginContainer,
   AdminLogin,
+  AdminEmail,
 } from "./FooterStyle";
 import { ReactComponent as BlueOctocat } from "../../imges/blueOctocat.svg";
 import { ReactComponent as TxtLogoWhite } from "../../imges/githubtxtlogowhite.svg";
@@ -24,7 +25,6 @@ const Footer = () => {
         <FooterWrap>
           {/* <FooterLinksContainer> */}
           <Title>🌏 ABOUT US 🌳</Title>
-
           <FooterItemsWrapper>
             <FooterItem>
               <Name>김수경</Name>
@@ -92,6 +92,7 @@ const Footer = () => {
           <AdminLoginContainer>
             <AdminLogin to="/admin-login">관리자로그인</AdminLogin>
           </AdminLoginContainer>
+          <AdminEmail>문의 mission.eco01@gmail.com</AdminEmail>
         </FooterWrap>
       </FooterContainer>
     </>
