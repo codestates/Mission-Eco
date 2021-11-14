@@ -5,8 +5,8 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  width: 100vh;
+  height: 100vh;
 `;
 export const Img = styled.img`
   width: 60%;

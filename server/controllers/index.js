@@ -20,6 +20,7 @@ router.get("/auth/kakao", authCtrl.kakaoLogin);
 router.get("/auth/kakaoCallback", authCtrl.kakaoCallback);
 router.get("/auth/google", authCtrl.googleLogin);
 router.get("/auth/googleCallback", authCtrl.googleCallback);
+router.post("/auth/checkEmail", authCtrl.checkEmail);
 
 // mypage
 router.patch("/mypage/userinfo/nickname", mypageCtrl.modifyNickname);

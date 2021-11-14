@@ -11,7 +11,6 @@ import {
   TopLine,
   Heading,
   Subtitle,
-  ButtonR,
   BtnWrap,
   ImgWrap,
   Img,

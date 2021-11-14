@@ -17,11 +17,11 @@ const ChallengeListItem = ({ list, userId, isLogin, setIsOpenModal }) => {
   const dispatch = useDispatch();
   const [like, setlike] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
-  const [likeNum, setLikeNum] = useState(list.challengelikes.length);
+  const [likeNum, setLikeNum] = useState(0);
   const challengeId = list.id;
-  //let likeNum = list.challengelikes.length;
 
   useEffect(() => {
+    setLikeNum(list.challengelikes.length);
     const liked = list.challengelikes.map((el) => el.user_id);
     if (liked.includes(userId)) {
       setlike(true);

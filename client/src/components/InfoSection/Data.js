@@ -6,7 +6,7 @@ export const homeObjOne = {
   headline1: "우리 지구를 위한",
   headline2: "ECO 챌린지를 확인해보세요.",
   description2: "우리의 작은 실천이 지구를 살립니다.",
-  buttonLabel: "챌린지로 Go!",
+  buttonLabel: "미션챌린지로 Go!",
   imgStart: false,
   imgs: [
     "/img/challenge/001.png",
@@ -41,7 +41,7 @@ export const homeObjTwo = {
   lightTextDesc: false,
   topLine: "Mission Eco",
   headline: `머신러닝으로 학습 시킨
-  이미지 인식을 경험해 보세요.`,
+  이미지 인식을 미션 참여를 통해 경험해 보세요.`,
   description:
     "미션에 참여하기 위해 거쳐야 하는 관문이 있습니다! 해당 이미지가 미션에 적합한지 확인 후 에코로그를 남겨보세요.",
   buttonLabel: "미션참여하기",
@@ -58,7 +58,7 @@ export const homeObjThree = {
   lightBg: false,
   lightText: true,
   lightTextDesc: true,
-  topLine: "Our Mission Log",
+  topLine: "우리의 미션참여 기록이 모여 지구를 살립니다.",
   headline: "지구를 위한 우리의 날갯짓, 우리의 경험을 공유해요",
   description:
     "미션에 참여하기 위해 거쳐야 하는 관문이 있습니다! 해당 이미지가 미션에 적합한지 확인 후 에코로그를 남겨보세요.",
@@ -72,15 +72,15 @@ export const homeObjThree = {
 };
 
 export const homeObjFour = {
-  id: "discover",
+  id: "login",
   lightBg: true,
   lightText: false,
   lightTextDesc: false,
   topLine: "Mission Eco",
-  headline: "나만의 컬렉션이 완성됩니다.",
+  headline: "미션에코를 마음껏 즐기셨나요? 이제 나만의 컬렉션을 확인해보세요",
   description:
     "마이페이지에서는 챌린지를 통해 획득한 에코뱃지, 내가 좋아한 챌린지, 내가 작성한 게시물을 컬렉션으로 모아 볼 수 있어요.",
-  buttonLabel: "로그인하러 가기",
+  buttonLabel: "컬렉션 만들러 Go!",
   imgStart: true,
   img: "/gif/MainInfo4.gif",
   alt: "eco",

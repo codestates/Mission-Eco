@@ -21,7 +21,14 @@ const HeroSection = (props) => {
   return (
     <HeroContainer id="home">
       <HeroBg>
-        <VideoBg autoPlay loop muted src={Video} type="video/mp4"></VideoBg>
+        <VideoBg
+          playsinline
+          autoPlay
+          loop
+          muted
+          src={Video}
+          type="video/mp4"
+        ></VideoBg>
       </HeroBg>
       <HeroContent>
         <HeroH1>지구를 위해 함께 실천해요!</HeroH1>
