@@ -21,6 +21,7 @@
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.2",
+    "nodemailer": "^6.7.0",
     "npm": "^8.1.0",
     "sequelize": "^6.7.0",
     "sequelize-cli": "^6.2.0"

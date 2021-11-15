@@ -14,9 +14,9 @@ import {
 // svg 아이콘으로 변경하기
 import { ReactComponent as TrashIcon } from "../../../../imges/iconmonstr-trash-can-1.svg";
 
-const MyLogListItem = ({ list, HandleDeleteLog }) => {
+const MyLogListItem = ({ list, HandleDeleteLog, nickName }) => {
   const { id, img, challengelog_contents, user_id, name, createdAt } = list;
-
+  console.log(list);
   return (
     <>
       <LogCardContatainer>
@@ -30,7 +30,7 @@ const MyLogListItem = ({ list, HandleDeleteLog }) => {
         <LogContent>
           <LogHashP> {name}</LogHashP>
           <NameNtime>
-            <LogP>닉네임:{user_id}</LogP>
+            <LogP>닉네임:{nickName}</LogP>
             <LogP className="time">{createdAt.substring(0, 10)}</LogP>
           </NameNtime>
           <LogH2>{challengelog_contents}</LogH2>

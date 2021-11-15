@@ -54,9 +54,11 @@ export const LinkBtn = styled.button`
   border: none;
   border-radius: 4px;
   justify-content: center;
-  
+
+  cursor: pointer;
+
   &:hover {
-    transition: .6s;
+    transition: 0.6s;
     color: #333;
     background-color: #fff;
   }
@@ -70,6 +72,13 @@ export const CheckdImg = styled.img`
   display: inline-block;
   width: 100%;
   height: 100%;
+`;
+
+export const LodingBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 export const CheckdImgBox = styled.div`
   width: 30px;
@@ -86,6 +95,9 @@ export const CloseBtn = styled.div`
   right: 0;
   top: -42px;
   /* X모양의 버튼 만들기 */
+  &.remove {
+    display: none;
+  }
   ::before {
     content: "";
     position: absolute;

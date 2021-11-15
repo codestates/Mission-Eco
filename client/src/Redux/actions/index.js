@@ -75,7 +75,7 @@ export function isToggle(boolean) {
 }
 
 export function isOpenModal(boolean) {
-  console.log(boolean);
+  // console.log(boolean);
   return {
     type: IS_OPEN_MODAL,
     payload: boolean,
@@ -124,7 +124,7 @@ export const deleteLike = (challengeId) => async (dispatch) => {
       }
     )
     .then((res) => {
-      console.log(res);
+      //console.log(res);
       if (res.status === 200) {
         return res.data.challengeList;
       }
@@ -142,7 +142,6 @@ export const getChallengeList = () => async (dispatch) => {
         return res.data.data;
       }
     });
-
   return dispatch({ type: CHALLENGE_LIST, payload: list });
 };
 
@@ -294,7 +293,7 @@ export const userLogout = () => async (dispatch) => {
         return false;
       }
     });
-  console.log(data);
+  // console.log(data);
   dispatch({ type: IS_LOGIN, payload: data });
 };
 

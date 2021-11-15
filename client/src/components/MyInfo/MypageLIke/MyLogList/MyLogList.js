@@ -4,7 +4,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { deleteUserLog } from "../../../../Redux/actions";
 
-const MyLogList = () => {
+const MyLogList = ({ nickName }) => {
   const dispatch = useDispatch();
   const [myLogLists, setMyLogLists] = useState([]);
 
@@ -22,11 +22,11 @@ const MyLogList = () => {
       )
 
       .then((res) => {
-        console.log("login", res.data);
+        //("login", res.data);
 
         if (res.status === 200) {
           const { myLogList } = res.data;
-          console.log("🌳myLogList🌳", myLogList);
+          // console.log("🌳myLogList🌳", myLogList);
           // ? 여기서 myLogList를 myLogLists (useState)에 담았다!
           setMyLogLists(myLogList);
         } else if (res.status === 400) {
@@ -51,6 +51,7 @@ const MyLogList = () => {
             list={list}
             HandleDeleteLog={HandleDeleteLog}
             key={idx}
+            nickName={nickName}
           ></MyLogListItem>
         );
       })}

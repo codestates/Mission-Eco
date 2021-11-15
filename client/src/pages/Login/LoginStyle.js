@@ -96,12 +96,12 @@ export const Icon = styled(Link)`
   @media screen and (max-width: 480px) {
     /* margin-left: 16px; */
   }
-  `;
+`;
 
 export const MissionLogo = styled.div`
   width: 100%;
   height: 100%;
-  background: center/220% no-repeat url(${props => props.imgUrl});
+  background: center/220% no-repeat url(${(props) => props.imgUrl});
 
   @media screen and (max-width: 480px) {
     /* margin-left: 16px; */
@@ -129,12 +129,27 @@ export const FormH1 = styled.h1`
   color: #333;
 `;
 
+export const EmailBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 export const FormLabel = styled.label`
   display: block;
   text-align: left;
   color: #ccc;
   margin-top: 1.6rem;
+`;
 
+export const EamilBtn = styled.button`
+  background: transparent;
+  border: 0;
+  font-size: 12px;
+  color: red;
+  cursor: pointer;
+  :hover {
+    color: #9dbfa5;
+  }
 `;
 
 export const FormInput = styled.input`
@@ -154,7 +169,7 @@ export const FormButton = styled.button`
   color: #fff;
   font-weight: bold;
   border-radius: 4px;
-  
+
   &:hover {
     transition: 1s;
     color: #555;
@@ -163,11 +178,10 @@ export const FormButton = styled.button`
     /* border: 2px solid; */
     background-color: #cbddd0;
   }
-
 `;
 
 export const Text = styled.span`
-color: red;
+  color: red;
 `;
 
 export const FormBtnBox = styled.div``;

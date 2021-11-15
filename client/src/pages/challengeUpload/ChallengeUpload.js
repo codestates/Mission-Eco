@@ -60,6 +60,7 @@ function ChallengeUpload() {
 
   const imageModelURL =
     "https://teachablemachine.withgoogle.com/models/LqVCsScNs/model.json";
+
   const fileSelectedHandler = (e) => {
     if (e.target.files.length !== 0) {
       setSelectedFile(URL.createObjectURL(e.target.files[0]));
@@ -148,7 +149,9 @@ function ChallengeUpload() {
           </UploaderWrapper>
           {isUpload ? (
             <Modal
-              msg={"미션참여 완료!"}
+              isUpload={isUpload}
+              msg={"미션참여완료!"}
+              msg3={"업로드중... 곧 모달창이 닫혀요!"}
               oncloseModalHandlerClick={closeModalHandler}
             />
           ) : null}

@@ -11,21 +11,21 @@ module.exports = {
 
     try {
       const { email, nickname, password } = req.body.signupInfo;
-      console.log("signUp 유저 정보: ", email, nickname, password);
+      //console.log("signUp 유저 정보: ", email, nickname, password);
 
       // DB에 동일한 이메일이 존재할 때
       const db_email = await user.findOne({ where: { email } });
       if (db_email) {
         return res.status(409).send(`${email} already exists.`);
       }
-      console.log("signUp db_email", db_email);
+      //console.log("signUp db_email", db_email);
 
       // DB에 동일한 닉네임이 존재할 때
       const db_nickname = await user.findOne({ where: { nickname } });
       if (db_nickname) {
         return res.status(409).send(`${nickname} already exists.`);
       }
-      console.log("signUp db_nickname", db_nickname);
+      //console.log("signUp db_nickname", db_nickname);
 
       // email, nickname, password 셋 중에 한 개라도 입력되지 않았을 때
       if (!email || !nickname || !password) {
@@ -45,7 +45,7 @@ module.exports = {
           email,
           password: hash,
         });
-        console.log("signup new_user: ", new_user);
+        //  console.log("signup new_user: ", new_user);
       });
 
       // 회원가입 성공

@@ -26,22 +26,21 @@ const ChallengeList = () => {
   const userInfo = useSelector((state) => state.infoReducer.userInfo);
   const [listItems, setListItems] = useState([]);
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const [all, setAll] = useState(true);
-  const [isLoading, setIsLoading] = useState(true);
+  const [clickLevel, setClickLevel] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [missionList, setMissionList] = useState(0);
-  const [result, setResult] = useState(challengeList.slice(0, 6));
+  const [result, setResult] = useState([]);
 
   useEffect(() => {
     setIsLoading(true);
-    dispatch(getChallengeList()).then(() => setIsLoading(false));
 
-    return () => dispatch(getChallengeList()).then(() => setIsLoading(false));
+    dispatch(getChallengeList()).then((res) => {
+      setResult(res.payload.slice(0, 6));
+      setIsLoading(false);
+    });
   }, [dispatch]);
 
-  useEffect(() => {
-    setResult(challengeList.slice(0, 6));
-    return () => setResult(challengeList.slice(0, 6));
-  }, [challengeList]);
+  useEffect(() => {}, [challengeList]);
 
   const [isFetch, setIsFetch] = UseScroll(requestChallengeList);
 
@@ -59,15 +58,17 @@ const ChallengeList = () => {
 
   const handleRequsetLevelList = (e) => {
     const level = e.target.value;
-    console.log(level);
+    //console.log(level);
     if (Number(level) === 0) {
-      setAll(true);
+      //setAll(true);
+      setListItems(challengeList);
     } else {
       const itemLevel = challengeList.filter(
         (el) => el.level === Number(level)
       );
       setListItems(itemLevel);
-      setAll(false);
+      setClickLevel(true);
+      //setAll(false);
     }
   };
 
@@ -114,7 +115,7 @@ const ChallengeList = () => {
           </LoadingeWrapper>
         ) : (
           <ChallengeWrapper>
-            {result && all
+            {challengeList && result && !clickLevel
               ? result.map((list, idx) => {
                   return (
                     <ChallengeListItem

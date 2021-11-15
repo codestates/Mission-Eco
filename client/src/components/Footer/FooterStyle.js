@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const FooterContainer = styled.div`
-  background-color: #3d6887;
+  background-color: #234b68;
   display: flex;
   height: 400px;
 
@@ -211,4 +211,12 @@ export const AdminLogin = styled(Link)`
     margin: 10px 0 0 0;
     font-size: 12px;
   }
+`;
+export const AdminEmail = styled.span`
+  right: 0px;
+  bottom: 0px;
+  color: #fff;
+  font-size: 12px;
+  //font-weight: bold;
+  margin: 1em 0 0 0;
 `;
