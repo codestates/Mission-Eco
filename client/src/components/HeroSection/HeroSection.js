@@ -22,12 +22,12 @@ const HeroSection = (props) => {
     <HeroContainer id="home">
       <HeroBg>
         <VideoBg
+          src={Video}
+          type="video/mp4"
           playsinline
           autoPlay
           loop
           muted
-          src={Video}
-          type="video/mp4"
         ></VideoBg>
       </HeroBg>
       <HeroContent>
