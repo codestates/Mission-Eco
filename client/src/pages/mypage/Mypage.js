@@ -70,7 +70,7 @@ const Mypage = () => {
           <Container>
             <H2>나의 챌린지 기록</H2>
             <ListContainer>
-              <MyLogList />
+              <MyLogList nickName={nickName} />
             </ListContainer>
           </Container>
         </MypageWrapper>

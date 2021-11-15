@@ -4,7 +4,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { deleteUserLog } from "../../../../Redux/actions";
 
-const MyLogList = () => {
+const MyLogList = ({ nickName }) => {
   const dispatch = useDispatch();
   const [myLogLists, setMyLogLists] = useState([]);
 
@@ -51,6 +51,7 @@ const MyLogList = () => {
             list={list}
             HandleDeleteLog={HandleDeleteLog}
             key={idx}
+            nickName={nickName}
           ></MyLogListItem>
         );
       })}

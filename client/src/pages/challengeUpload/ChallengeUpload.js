@@ -149,7 +149,9 @@ function ChallengeUpload() {
           </UploaderWrapper>
           {isUpload ? (
             <Modal
-              msg={"미션참여 완료! 업로드가 끝나면 모달창이 닫혀요!"}
+              isUpload={isUpload}
+              msg={"미션참여완료!"}
+              msg3={"업로드중... 곧 모달창이 닫혀요!"}
               oncloseModalHandlerClick={closeModalHandler}
             />
           ) : null}

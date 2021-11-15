@@ -56,7 +56,7 @@ const ChallengeLogList = () => {
       if (logId.length !== 0) {
         setListLog(logId);
         setNodata(false);
-        setIsActive(!isActive);
+        setIsActive(true);
       } else {
         setNodata(true);
       }

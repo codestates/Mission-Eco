@@ -252,16 +252,19 @@ function Signup() {
     history.push("/"); // 랜딩페이지로 감
   };
   const closeModalHandler = () => {
-    setIsOpen(false);
+    setEmailModal(false);
   };
 
   // 이메일 발송 핸들러
   const sendEmailHandler = async (e) => {
     const { email } = signupInfo;
+
     e.preventDefault();
     setIsCheckEmail(false);
     //console.log(isNewEamil, isCheckEmail);
+
     if (isNewEamil) {
+      setEmailModal(true);
       await axios
         .post(
           `${process.env.REACT_APP_API_URL}/auth/checkEmail`,
@@ -272,7 +275,6 @@ function Signup() {
         )
         .then((res) => {
           setRandomNum(res.data.randomNum);
-          setEmailModal(true);
         });
     } else {
       return;

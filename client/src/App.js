@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Main from "./pages/Main";
@@ -24,6 +24,7 @@ import ScrollTop from "./components/ScrollTop/ScrollTop";
 function App() {
   const Toggle = useSelector((state) => state.infoReducer.isToggle);
   const dispatch = useDispatch();
+  const [isHeader, setIsHeader] = useState(true);
 
   useEffect(() => {
     dispatch(authSuccess());
@@ -39,10 +40,12 @@ function App() {
     <Router>
       <ScrollTop />
       <Sidebar togglehandler={togglehandler} />
-      <Navbar togglehandler={togglehandler} />
+      {isHeader ? <Navbar togglehandler={togglehandler} /> : null}
       <Switch>
         <>
-          <Route exact path="/" component={Main} />
+          <Route exact path="/">
+            <Main setIsHeader={setIsHeader} />
+          </Route>
           <Route exact path="/oauth" component={Auth} />
           <Route exact path="/signup">
             <Signup />

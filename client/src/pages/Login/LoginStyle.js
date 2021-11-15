@@ -146,6 +146,7 @@ export const EamilBtn = styled.button`
   border: 0;
   font-size: 12px;
   color: red;
+  cursor: pointer;
   :hover {
     color: #9dbfa5;
   }

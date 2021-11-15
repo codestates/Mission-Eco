@@ -39,7 +39,7 @@ const Navbar = ({ togglehandler }) => {
   useEffect(() => {
     window.addEventListener("scroll", changeNav);
     return () => {
-      window.addEventListener("scroll", changeNav);
+      window.removeEventListener("scroll", changeNav);
     };
   }, []);
 
