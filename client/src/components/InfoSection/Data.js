@@ -64,7 +64,6 @@ export const homeObjThree = {
     "미션에 참여하기 위해 거쳐야 하는 관문이 있습니다! 해당 이미지가 미션에 적합한지 확인 후 에코로그를 남겨보세요.",
   buttonLabel: "Log 보러가기",
   imgStart: false,
-  img: require("../../imges/svg-3.svg").default,
   alt: "eco",
   dark: true,
   primary: true,
