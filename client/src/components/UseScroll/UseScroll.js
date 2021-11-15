@@ -8,8 +8,8 @@ const UseScroll = (props) => {
 
   const infiniteScroll = useCallback(() => {
     if (
-      window.scrollY + document.documentElement.clientHeight >
-      document.documentElement.scrollHeight - 30
+      window.pageYOffset + document.documentElement.clientHeight >
+      document.documentElement.scrollHeight - 500
     ) {
       setIsFetch(true);
       return;
@@ -21,7 +21,6 @@ const UseScroll = (props) => {
     return () => window.removeEventListener("scroll", infiniteScroll);
   }, [infiniteScroll]);
 
-  //console.log(missionList);
   return [isFetch, setIsFetch];
 };
 

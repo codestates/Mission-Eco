@@ -17,9 +17,20 @@ import LandingLoad from "../components/Loading/LandingLoad";
 const MainCotainer = styled.div`
   background-color: #fbf3e4;
 `;
-function Main() {
-  const [isLoading, setIsLoading] = useState(true);
+function Main({ setIsHeader }) {
+  const [isLoading, setIsLoading] = useState(false);
 
+  useEffect(() => {
+    setIsHeader(false);
+    let timer = setTimeout(() => {
+      setIsLoading(true);
+      setIsHeader(true);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
   return (
     <>
       {!isLoading ? (

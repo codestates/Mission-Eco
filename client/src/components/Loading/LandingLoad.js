@@ -7,9 +7,10 @@ export const Container = styled.div`
   align-items: center;
   width: 100vh;
   height: 100vh;
+  margin: 0 auto;
 `;
 export const Img = styled.img`
-  width: 60%;
+  width: 100%;
 `;
 
 const LandingLoad = (props) => {
