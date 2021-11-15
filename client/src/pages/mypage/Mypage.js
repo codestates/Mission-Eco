@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
+  MypageContainer,
   H1,
   H2,
   MypageWrapper,
   MypageBtn,
   BtnLink,
   LinkCheckPassword,
-  MypageContainer,
   TitleContainer,
   Container,
   Title,
