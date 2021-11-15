@@ -6,9 +6,10 @@ export const InfoContainer = styled.div`
 `;
 
 export const InfoWrapper = styled.div`
-  width: 1100px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 3rem 0 0;
+  align-items: center;
 
   @media screen and (max-width: 1120px) {
     width: 80%;
