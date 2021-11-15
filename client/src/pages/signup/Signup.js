@@ -258,7 +258,7 @@ function Signup() {
   // 이메일 발송 핸들러
   const sendEmailHandler = async (e) => {
     const { email } = signupInfo;
-    console.log("dd", email);
+
     e.preventDefault();
     setIsCheckEmail(false);
     //console.log(isNewEamil, isCheckEmail);
