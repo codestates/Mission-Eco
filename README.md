@@ -244,7 +244,7 @@ Loading 컴포넌트 생성 및 css 구현
 <ul>
 <li><a href=https://github.com/cho-hyeonjin><img src=https://img.shields.io/badge/Github-chohyeonjin-ee7f00?style=for-the-badge&logo=GitHub/></a></li>
   <li>Position: Front-end</li>
-  <li>Stack: </li>
+  <li>Stack: React, JavaScript, styled-components, axios, redux</li>
   <li><span>Contributions</span>
     <ul>
       <li></li>
