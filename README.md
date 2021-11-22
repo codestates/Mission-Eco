@@ -239,6 +239,7 @@ Loading 컴포넌트 생성 및 css 구현
     </ul>
   </li>
 </details>
+  
 <br>
 <details>
 <summary>조현진</summary>
@@ -247,9 +248,39 @@ Loading 컴포넌트 생성 및 css 구현
   <li>Position: Front-end</li>
   <li>Stack: React, JavaScript, styled-components, axios, redux</li>
   <li><span>Contributions</span>
-    <ul>
-      <li></li>
-    </ul>
+   <ul>  &nbsp;
+     <li>마이페이지(랜딩페이지)</li>
+     <p> - 컬렉션 파트 작성</p> &nbsp;
+     <li>마이페이지</li>
+     <p> - React hook, Redux를 이용한 상태관리</p>
+     <p> - Axios를 이용한 서버와의 통신 </p>
+     <p> - 내가 좋아한 챌린지 필터 기능 구현 </p>
+     <p> - 나의 챌린지 기록 필터 기능 구현 </p>
+     <p> - 내가 좋아한 챌린지 아이템 - UI 디자인 / 레이아웃 구현 </p>
+     <p> - 내가 좋아한 챌린지 아이템 - 반응형 CSS </p>
+     <p> - 나의 챌린지 기록 아이템 - UI 디자인 / 레이아웃 구현 </p>
+     <p> - 나의 챌린지 기록 아이템 컴포넌트 - 반응형 CSS </p>
+     <p> - 마이페이지 반응형 CSS </p> &nbsp;
+     <li>비밀번호 확인(본인 확인) 페이지</li>
+     <p> - UI 디자인 / 레이아웃  </p>
+     <p> - 유효성 검사  </p>
+     <p> - 반응형 CSS  </p>   &nbsp;
+     <li>나의 정보 수정 페이지 </p>
+     <p> - 닉네임 수정 유효성 검사 기능 구현 </p>
+     <p> - 닉네임 변경 기능 구현 </p>
+     <p> - 비밀번호 수정 유효성 검사 기능 구현 </p>
+     <p> - 비밀번호 변경 기능 구현 </p>
+     <p> - 회원 탈퇴 기능 구현 </p>
+     <p> - UI 디자인 / 레이아웃 구현 </p>
+     <p> - 반응형 CSS </p> &nbsp;
+     <li>Footer</li>
+     <p> - 외부링크 연결 기능 구현 </p>
+     <p> - 반응형 CSS </p>
+     <p> - UI 디자인 / 레이아웃 구현 </p> &nbsp;
+     <li>기술 외적인 부분 </p>
+     <p> - prototype 작성 </p>
+     <p> - 유튜브 썸네일, 노션 타이틀 이미지, PPT 제작 </p>
+   </ul>
   </li>
 </details>
-<br>
+    
