@@ -245,13 +245,13 @@ Loading 컴포넌트 생성 및 css 구현
 <summary>조현진</summary>
 <ul>
 <li><a href=https://github.com/cho-hyeonjin><img src=https://img.shields.io/badge/Github-chohyeonjin-ee7f00?style=for-the-badge&logo=GitHub/></a></li>
-  <li>Position: Front-end</li>
-  <li>Stack: React, JavaScript, styled-components, axios, redux</li>
-  <li><span>Contributions</span>
+  <li><p>Position: Front-end</p></li>
+  <li><p>Stack: React, JavaScript, styled-components, axios, redux</p></li>
+  <li><p>Contributions</p>
    <ul>  &nbsp;
-     <li>마이페이지(랜딩페이지)</li>
+     <li><p>마이페이지(랜딩페이지)</p></li>
      <p> - 컬렉션 파트 작성</p> &nbsp;
-     <li>마이페이지</li>
+     <li><p>마이페이지</p></li>
      <p> - React hook, Redux를 이용한 상태관리</p>
      <p> - Axios를 이용한 서버와의 통신 </p>
      <p> - 내가 좋아한 챌린지 필터 기능 구현 </p>
@@ -261,11 +261,11 @@ Loading 컴포넌트 생성 및 css 구현
      <p> - 나의 챌린지 기록 아이템 - UI 디자인 / 레이아웃 구현 </p>
      <p> - 나의 챌린지 기록 아이템 컴포넌트 - 반응형 CSS </p>
      <p> - 마이페이지 반응형 CSS </p> &nbsp;
-     <li>비밀번호 확인(본인 확인) 페이지</li>
+     <li><p>비밀번호 확인(본인 확인) 페이지</p></li>
      <p> - UI 디자인 / 레이아웃  </p>
      <p> - 유효성 검사  </p>
      <p> - 반응형 CSS  </p>   &nbsp;
-     <li>나의 정보 수정 페이지 </p>
+     <li><p>나의 정보 수정 페이지</p></li>
      <p> - 닉네임 수정 유효성 검사 기능 구현 </p>
      <p> - 닉네임 변경 기능 구현 </p>
      <p> - 비밀번호 수정 유효성 검사 기능 구현 </p>
@@ -273,13 +273,13 @@ Loading 컴포넌트 생성 및 css 구현
      <p> - 회원 탈퇴 기능 구현 </p>
      <p> - UI 디자인 / 레이아웃 구현 </p>
      <p> - 반응형 CSS </p> &nbsp;
-     <li>Footer</li>
+     <li><p>Footer</p></li>
      <p> - 외부링크 연결 기능 구현 </p>
      <p> - 반응형 CSS </p>
      <p> - UI 디자인 / 레이아웃 구현 </p> &nbsp;
-     <li>기술 외적인 부분 </p>
-     <p> - prototype 작성 </p>
-     <p> - 유튜브 썸네일, 노션 타이틀 이미지, PPT 제작 </p>
+     <li></p>기술 외적인 부분</p></li>
+       <p> - prototype 작성 </p>
+       <p> - 유튜브 썸네일, 노션 타이틀 이미지, PPT 제작 </p>
    </ul>
   </li>
 </details>
