@@ -14,6 +14,7 @@ Mission Eco? give it a try!
 - 챌린지를 하나씩 성공할 때마다 **뱃지**가 수여되어 뱃지를 모으는 **재미** 또한 느낄 수 있습니다.
 
 ### 배포링크 https://mission-eco.co.kr/
+### notion링크 https://codestates.notion.site/21-nabi-effect-Mission-Eco-4d39fb790c414031bd3179306e85a61a
 
 # LOGO
 <img src="https://cdn.discordapp.com/attachments/840550010826915841/907992075474190376/e3e0c0f231097f0e.png" width="200" height="200"/>
