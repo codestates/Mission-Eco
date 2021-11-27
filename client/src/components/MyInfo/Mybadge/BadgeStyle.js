@@ -11,7 +11,6 @@ export const BadgeContainer = styled.div`
     padding: 0 .7rem; 
     box-sizing: border-box;
     text-align: center; 
-    border: 1px solid red;
     
     @media screen and (max-width: 1020px) {
         margin: .7em .2rem 1rem;
