@@ -81,7 +81,7 @@ export const homeObjFour = {
   topLine: "Mission Eco",
   headline1: "미션에코를 마음껏 즐기셨나요?",
   headline2: "이제 나만의 컬렉션을",
-  headline3: "확인해보세요.",
+  headline3: "확인해보세요. ",
   description1: "마이페이지에서는 챌린지를 통해 획득한",
   description2: "에코뱃지, 내가 좋아한 챌린지, 내가 작성한",
   description3: "게시물을 컬렉션으로 모아 볼 수 있어요.",
