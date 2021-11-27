@@ -39,7 +39,7 @@ export const InfoLogH1 = styled.h1`
   color: #2b2b2b;
   margin-bottom: 20px;
   text-align: center;
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 960px) {
     font-size: 1.6rem;
   }
 `;
