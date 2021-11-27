@@ -70,16 +70,14 @@ export const Heading = styled.h1`
   font-weight: 600;
   color: ${({ lightText }) => (lightText ? "#010606" : "#f7f8fa")};
 
-  @media screen and (max-width: 480px) {
-    font-size: 28px;
+  @media screen and (max-width: 960px) {
+    font-size: 1.6rem;
   }
 `;
 
 export const Subtitle = styled.p`
   max-width: 440px;
   margin-bottom: 35px;
-  font-size: 18px;
-  line-height: 24px;
   color: ${({ darkText }) => (darkText ? "#010606" : "#fff")};
 `;
 
