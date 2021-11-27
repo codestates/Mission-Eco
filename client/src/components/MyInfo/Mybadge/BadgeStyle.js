@@ -11,10 +11,17 @@ export const BadgeContainer = styled.div`
     padding: 0 .7rem; 
     box-sizing: border-box;
     text-align: center; 
+    border: 1px solid red;
     
     @media screen and (max-width: 1020px) {
         margin: .7em .2rem 1rem;
         padding: 0;
+    }
+    
+    @media screen and (max-width: 500px) {
+        margin: 0;
+        padding:.4rem;
+        width: 20%;
     }
 
     > div {
@@ -25,7 +32,15 @@ export const BadgeContainer = styled.div`
             width: 100%;
             height: 100%;
             padding:1rem;
+
+            @media screen and (max-width: 768px) {
+            padding: 0.7rem;
             }
+
+            @media screen and (max-width: 500px) {
+            padding: 0.5rem;
+            }
+        }
             
         > img.colorOff {
             filter: grayscale(1);
