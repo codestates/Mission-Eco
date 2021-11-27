@@ -14,7 +14,7 @@ import {
   BtnWrap,
   ImgWrap,
   Img,
-} from "./MainInfoStyle";
+} from "./MainInfo4Style";
 
 import { gsap } from "gsap";
 import { Tween } from "react-gsap";
@@ -28,8 +28,12 @@ const MainInfo4 = ({
   topLine,
   lightText,
   darkText,
-  headline,
-  description,
+  headline1,
+  headline2,
+  headline3,
+  description1,
+  description2,
+  description3,
   buttonLabel,
   img,
   alt,
@@ -62,8 +66,22 @@ const MainInfo4 = ({
               >
                 <TextWrapper className="textWrapper">
                   <TopLine>{topLine}</TopLine>
-                  <Heading lightText={lightText}>{headline}</Heading>
-                  <Subtitle darkText={darkText}>{description}</Subtitle>
+                  <Heading lightText={lightText}>
+                    <span>{headline1}</span>
+                    <br />
+                    <span>{headline2}</span>
+                    <br />
+                    <span>{headline3}</span>
+                    <br />
+                  </Heading>
+                  <Subtitle darkText={darkText}>
+                    <span>{description1}</span>
+                    <br />
+                    <span>{description2}</span>
+                    <br />
+                    <span>{description3}</span>
+                    <br />
+                  </Subtitle>
                   <BtnWrap>
                     <Button
                       to="/login"

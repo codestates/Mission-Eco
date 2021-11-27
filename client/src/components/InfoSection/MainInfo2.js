@@ -29,8 +29,12 @@ const MainInfo2 = ({
   topLine,
   lightText,
   darkText,
-  headline,
-  description,
+  headline1,
+  headline2,
+  headline3,
+  description1,
+  description2,
+  description3,
   buttonLabel,
   img,
   alt,
@@ -63,8 +67,21 @@ const MainInfo2 = ({
               >
                 <TextWrapper className="textWrapper">
                   <TopLine>{topLine}</TopLine>
-                  <Heading lightText={lightText}>{headline}</Heading>
-                  <Subtitle darkText={darkText}>{description}</Subtitle>
+                  <Heading lightText={lightText}>
+                    <span>{headline1}</span>
+                    <br />
+                    <span>{headline2}</span>
+                    <br />
+                    <span>{headline3}</span>
+                  </Heading>
+                  <Subtitle darkText={darkText}>
+                    <span>{description1}</span>
+                    <br />
+                    <span>{description2}</span>
+                    <br />
+                    <span>{description3}</span>
+                    <br />
+                  </Subtitle>
                   <BtnWrap>
                     <Button
                       to="/upload"
