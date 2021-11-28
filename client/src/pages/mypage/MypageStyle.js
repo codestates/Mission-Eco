@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import blob1 from "../../imges/blob1.svg";
 
 export const MypageContainer = styled.div`
-  /* margin-top: 15em; */
-  //padding-top: 10em;
   @media screen and (max-width: 768px) {
   }
   @media screen and (max-width: 480px) {
@@ -32,7 +30,6 @@ export const MypageWrapper = styled.div`
   @media screen and (max-width: 768px) {
   }
   @media screen and (max-width: 480px) {
-    //max-width: 480px;
   }
 `;
 
