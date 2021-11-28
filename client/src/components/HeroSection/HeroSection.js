@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button } from "../Button/ButtonStyle";
-import Video from "../../videos/video.mp4";
 
 import {
   HeroContainer,
@@ -21,20 +20,14 @@ const HeroSection = (props) => {
   return (
     <HeroContainer id="home">
       <HeroBg>
-        <VideoBg
-          src={Video}
-          type="video/mp4"
-          playsinline
-          autoPlay
-          loop
-          muted
-        ></VideoBg>
+        <VideoBg src="gif/video.gif"></VideoBg>
       </HeroBg>
       <HeroContent>
         <HeroH1>지구를 위해 함께 실천해요!</HeroH1>
         <HeroP>
-          환경을 위해 어떻게 실천할지 막막하시나요? 작은것부터 실천할 수
-          있습니다.
+          <span>환경을 위해 어떻게 실천할지 막막하시나요?</span>
+          <br />
+          <span>작은것부터 실천할 수 있습니다.</span>
         </HeroP>
         <HeroBtnWrapper>
           <Button

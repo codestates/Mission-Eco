@@ -77,13 +77,10 @@ export const TopLine = styled.p`
 
 export const Heading = styled.h1`
   line-height: 2.6rem;
-
-  @media screen and (max-width: 768px) {
+  font-weight: 600;
+  @media screen and (max-width: 960px) {
     font-size: 1.6rem;
   }
-  /* @media screen and (max-width: 480px) {
-    font-size: 1rem;
-  } */
 `;
 
 export const Subtitle = styled.p`

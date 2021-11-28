@@ -38,8 +38,9 @@ export const InfoLogH1 = styled.h1`
   line-height: 2.6rem;
   color: #2b2b2b;
   margin-bottom: 20px;
-  @media screen and (max-width: 480px) {
-    font-size: 2rem;
+  text-align: center;
+  @media screen and (max-width: 960px) {
+    font-size: 1.6rem;
   }
 `;
 export const SubH2 = styled.p`
@@ -163,7 +164,7 @@ export const Button = styled(LinkR)`
   }
 `;
 
-const MainInfo3 = ({ topLine, headline, primary, dark, dark2 }) => {
+const MainInfo3 = ({ topLine1, topLine2, headline, primary, dark, dark2 }) => {
   const logList = useSelector((state) => state.infoReducer.challengeLogList);
   const dispatch = useDispatch();
   const { challengeLogList } = logList;
@@ -198,7 +199,12 @@ const MainInfo3 = ({ topLine, headline, primary, dark, dark2 }) => {
           },
         }}
       >
-        <InfoLogH1 className="title">{topLine}</InfoLogH1>
+        <InfoLogH1 className="title">
+          <span>{topLine1}</span>
+          <br />
+          <span>{topLine2}</span>
+          <br />
+        </InfoLogH1>
         <SubH2 className="title">{headline}</SubH2>
       </Tween>
       <Tween

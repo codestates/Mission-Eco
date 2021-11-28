@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const InfoContainer = styled.div`
   color: #fff;
   background: ${({ lightBg }) => (lightBg ? "#9dbfa5" : "#f9f9f9")};
-  padding: 200px 0 0 0;
+
   @media screen and (max-width: 768px) {
     padding: 100px 0;
   }
@@ -45,17 +45,17 @@ export const Column2 = styled.div`
   margin-bottom: 15px;
   padding: 0 15px;
   grid-area: col2;
+  border-radius: 10px;
 `;
 
 export const TextWrapper = styled.div`
   max-width: 540px;
   padding-top: 0;
   padding-bottom: 60px;
-  margin: 50px 0 0 120px;
 `;
 
 export const TopLine = styled.p`
-  color: #01bf71;
+  color: #234b68;
   font-size: 16px;
   line-height: 16px;
   font-weight: 700;
@@ -66,21 +66,18 @@ export const TopLine = styled.p`
 
 export const Heading = styled.h1`
   margin-bottom: 24px;
-  font-size: 48px;
-  line-height: 1.1;
+  line-height: 2.6rem;
   font-weight: 600;
   color: ${({ lightText }) => (lightText ? "#010606" : "#f7f8fa")};
 
-  @media screen and (max-width: 480px) {
-    font-size: 32px;
+  @media screen and (max-width: 960px) {
+    font-size: 1.6rem;
   }
 `;
 
 export const Subtitle = styled.p`
   max-width: 440px;
   margin-bottom: 35px;
-  font-size: 18px;
-  line-height: 24px;
   color: ${({ darkText }) => (darkText ? "#010606" : "#fff")};
 `;
 
@@ -99,7 +96,10 @@ export const Img = styled.img`
   width: 100%;
   margin: 0 0 10px 0;
   padding-right: 0;
-  box-shadow: 4px 4px 4px gray;
+
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   border-radius: 10px;
 `;
 
