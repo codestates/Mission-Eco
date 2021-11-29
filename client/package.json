@@ -47,5 +47,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "ansi-html": "0.0.7",
+    "immer": "^9.0.7"
   }
 }
