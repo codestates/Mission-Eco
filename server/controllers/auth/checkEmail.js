@@ -28,7 +28,7 @@ module.exports = {
         from: process.env.MAILID,
         to: email,
         subject: "MISSIONECO 회원가입 인증 이메일",
-        html: `<h1>Mission-Eco</h1><div>이메일 인증번호 ${randomNum} 를 입력해주세요.</div>`,
+        text: `이메일 인증번호 ${randomNum} 를 입력해주세요.`,
       });
 
       //  const checkEmail = await new Object();
