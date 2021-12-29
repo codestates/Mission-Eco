@@ -1,6 +1,6 @@
 #  프로젝트 소개 
 
-![IMG_69B429D25130-1](https://cdn.discordapp.com/attachments/840550010826915841/905455866382262292/89e63ad72c5b863e.png)
+![](https://images.velog.io/images/0hyo/post/2f0afbb6-6a51-4a40-9f2d-c861f7341877/main.gif) 
 
 Mission Eco? give it a try!  
 - 유난이 아니다! 
