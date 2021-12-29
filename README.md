@@ -1,6 +1,6 @@
 #  프로젝트 소개 
 
-<img src=https://images.velog.io/images/0hyo/post/2f0afbb6-6a51-4a40-9f2d-c861f7341877/main.gif width="1000" height="1000"/>
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/79884004/147663935-b909b75d-463a-4edb-a671-7a076e46aa58.gif)
 
 Mission Eco? give it a try!  
 - 유난이 아니다! 
